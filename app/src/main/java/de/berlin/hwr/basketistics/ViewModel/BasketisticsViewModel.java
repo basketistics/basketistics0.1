@@ -4,23 +4,37 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 public class BasketisticsViewModel extends AndroidViewModel {
 
-    private MutableLiveData<Integer> playerId;
-    private MutableLiveData<Integer> playerNumber;
-    private MutableLiveData<String> playerName;
-    private MutableLiveData<Integer> points;
-    private MutableLiveData<Integer> assist;
-    private MutableLiveData<Integer> rebound;
-    private MutableLiveData<Integer> foul;
-    private MutableLiveData<Integer> block;
-    private MutableLiveData<Integer> turnover;
-    private MutableLiveData<Integer> steal;
+    private final static String TAG = "BasketisticsViewModel";
+
+    private MutableLiveData<Integer> playerId = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> playerNumber = new MutableLiveData<Integer>();
+    private MutableLiveData<String> playerName = new MutableLiveData<String>();
+    private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> assist = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> rebound = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> foul = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> block = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
     // Konstruktor
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
+
+        playerId.setValue(0);
+        playerNumber.setValue(0);
+        playerName.setValue("");
+        points.setValue(0);
+        assist.setValue(0);
+        rebound.setValue(0);
+        foul.setValue(0);
+        block.setValue(0);
+        turnover.setValue(0);
+        steal.setValue(0);
     }
 
     //// ---------- getter and "setter" ---------- ////
@@ -62,8 +76,10 @@ public class BasketisticsViewModel extends AndroidViewModel {
     }
 
     public void incPoints(Integer iPoints) {
+        Log.i(TAG, "entered incPoints().");
         Integer currPoints = getPoints().getValue() + iPoints;
         this.setPoints(currPoints);
+        Log.i(TAG, "Points was set to " + getPoints().getValue());
     }
 
     //assist
@@ -77,7 +93,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incAssist(Integer iAssist) {
         Integer currAssist = getAssist().getValue() + iAssist;
-        this.setPoints(currAssist);
+        this.setAssist(currAssist);
     }
 
     // rebound
@@ -91,7 +107,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incRebound(Integer iRebound) {
         Integer currRebound = getRebound().getValue() + iRebound;
-        this.setPoints(currRebound);
+        this.setRebound(currRebound);
     }
 
 
@@ -106,7 +122,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incFoul(Integer iFoul) {
         Integer currFoul = getFoul().getValue() + iFoul;
-        this.setPoints(currFoul);
+        this.setFoul(currFoul);
     }
 
     // block
@@ -120,7 +136,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incBlock(Integer iBlock) {
         Integer currBlock = getBlock().getValue() + iBlock;
-        this.setPoints(currBlock);
+        this.setBlock(currBlock);
     }
 
     // turnover
@@ -134,7 +150,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incTurnover(Integer iTurnover) {
         Integer currTurnover = getTurnover().getValue() + iTurnover;
-        this.setPoints(currTurnover);
+        this.setTurnover(currTurnover);
     }
 
     // steal
@@ -148,6 +164,6 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void incSteal(Integer iSteal) {
         Integer currSteal = getSteal().getValue() + iSteal;
-        this.setPoints(currSteal);
+        this.setSteal(currSteal);
     }
 }
