@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "de.berlin.hwr.basketistics"
-        minSdkVersion 19 // orig 24
+        minSdkVersion 24
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
