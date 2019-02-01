@@ -55,7 +55,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="70"
-                            android:text="TextView"
+                            android:text="Marcel Davis\n#7"
                             android:textAlignment="center"
                             android:textSize="18sp"
                             android:textStyle="bold"
@@ -91,7 +91,15 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="shot"
+                                    android:textAllCaps="true" />
+
+                                <TextView
+                                    android:id="@+id/shot_1_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="TextView" />
 
                             </LinearLayout>
                         </TableRow>
@@ -111,7 +119,15 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="rebound" />
+
+                                <TextView
+                                    android:id="@+id/textView10"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_weight="1"
+                                    android:text="TextView" />
+
                             </LinearLayout>
                         </TableRow>
 
@@ -130,7 +146,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="assist" />
                             </LinearLayout>
                         </TableRow>
 
@@ -149,7 +165,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="steal" />
                             </LinearLayout>
                         </TableRow>
 
@@ -168,7 +184,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -187,7 +203,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -206,7 +222,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="foul" />
                             </LinearLayout>
                         </TableRow>
 
@@ -239,7 +255,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
-                        android:text="TextView"
+                        android:text="Marcel Davis\n#4"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -272,7 +288,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="shot" />
 
                             </LinearLayout>
                         </TableRow>
@@ -292,7 +308,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="rebound" />
                             </LinearLayout>
                         </TableRow>
 
@@ -311,7 +327,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="assist" />
                             </LinearLayout>
                         </TableRow>
 
@@ -330,7 +346,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="steal" />
                             </LinearLayout>
                         </TableRow>
 
@@ -349,7 +365,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -368,7 +384,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -387,7 +403,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="foul" />
                             </LinearLayout>
                         </TableRow>
 
@@ -420,7 +436,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
-                        android:text="TextView"
+                        android:text="Marcel Davis\n#24"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -453,7 +469,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="shot" />
 
                             </LinearLayout>
                         </TableRow>
@@ -473,7 +489,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="rebound" />
                             </LinearLayout>
                         </TableRow>
 
@@ -492,7 +508,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="assist" />
                             </LinearLayout>
                         </TableRow>
 
@@ -511,7 +527,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="steal" />
                             </LinearLayout>
                         </TableRow>
 
@@ -530,7 +546,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -549,7 +565,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -568,7 +584,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="foul" />
                             </LinearLayout>
                         </TableRow>
 
@@ -602,7 +618,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
-                        android:text="TextView"
+                        android:text="Marcel Davis\n#1"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -635,7 +651,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="shot" />
 
                             </LinearLayout>
                         </TableRow>
@@ -655,7 +671,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="rebound" />
                             </LinearLayout>
                         </TableRow>
 
@@ -674,7 +690,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="assist" />
                             </LinearLayout>
                         </TableRow>
 
@@ -693,7 +709,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="steal" />
                             </LinearLayout>
                         </TableRow>
 
@@ -712,7 +728,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -731,7 +747,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -750,7 +766,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="foul" />
                             </LinearLayout>
                         </TableRow>
 
@@ -783,7 +799,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
-                        android:text="TextView"
+                        android:text="Marcel Davis\n#19"
                         android:textAlignment="center"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -816,7 +832,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="shot" />
 
                             </LinearLayout>
                         </TableRow>
@@ -836,7 +852,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="rebound" />
                             </LinearLayout>
                         </TableRow>
 
@@ -855,7 +871,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="assist" />
                             </LinearLayout>
                         </TableRow>
 
@@ -874,7 +890,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="steal" />
                             </LinearLayout>
                         </TableRow>
 
@@ -893,7 +909,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -912,7 +928,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="block" />
                             </LinearLayout>
                         </TableRow>
 
@@ -931,7 +947,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="Button" />
+                                    android:text="foul" />
                             </LinearLayout>
                         </TableRow>
 
