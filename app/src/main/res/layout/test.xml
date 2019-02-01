@@ -45,7 +45,7 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="8">
+                        android:weightSum="7">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button"
+                                    android:id="@+id/points_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -78,7 +78,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button2"
+                                    android:id="@+id/rebound_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -97,7 +97,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button3"
+                                    android:id="@+id/assist_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -116,7 +116,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button4"
+                                    android:id="@+id/steal_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -135,7 +135,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button5"
+                                    android:id="@+id/block_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -154,7 +154,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button6"
+                                    android:id="@+id/turnOver_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -173,7 +173,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button7"
+                                    android:id="@+id/foul_1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -181,24 +181,6 @@
                             </LinearLayout>
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Button" />
-                            </LinearLayout>
-                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
 
@@ -225,7 +207,7 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="8">
+                        android:weightSum="7">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -238,7 +220,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button"
+                                    android:id="@+id/points_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -258,7 +240,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button2"
+                                    android:id="@+id/rebound_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -277,7 +259,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button3"
+                                    android:id="@+id/assist_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -296,7 +278,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button4"
+                                    android:id="@+id/steal_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -315,7 +297,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button5"
+                                    android:id="@+id/block_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -334,7 +316,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button6"
+                                    android:id="@+id/turnOver_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -353,7 +335,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button7"
+                                    android:id="@+id/foul_2"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -361,24 +343,6 @@
                             </LinearLayout>
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Button" />
-                            </LinearLayout>
-                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
 
@@ -405,7 +369,7 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="8">
+                        android:weightSum="7">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -418,7 +382,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button"
+                                    android:id="@+id/points_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -438,7 +402,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button2"
+                                    android:id="@+id/rebound_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -457,7 +421,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button3"
+                                    android:id="@+id/assist_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -476,7 +440,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button4"
+                                    android:id="@+id/steal_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -495,7 +459,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button5"
+                                    android:id="@+id/block_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -514,7 +478,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button6"
+                                    android:id="@+id/turnOver_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -533,7 +497,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button7"
+                                    android:id="@+id/foul_3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -541,24 +505,6 @@
                             </LinearLayout>
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Button" />
-                            </LinearLayout>
-                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
 
@@ -585,7 +531,7 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="8">
+                        android:weightSum="7">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -598,7 +544,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button"
+                                    android:id="@+id/points_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -618,7 +564,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button2"
+                                    android:id="@+id/rebound_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -637,7 +583,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button3"
+                                    android:id="@+id/assist_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -656,7 +602,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button4"
+                                    android:id="@+id/steal_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -675,7 +621,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button5"
+                                    android:id="@+id/block_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -694,7 +640,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button6"
+                                    android:id="@+id/turnOver_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -713,7 +659,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button7"
+                                    android:id="@+id/foul_4"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -721,24 +667,6 @@
                             </LinearLayout>
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Button" />
-                            </LinearLayout>
-                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
 
@@ -765,7 +693,7 @@
                     <TableLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:weightSum="8">
+                        android:weightSum="7">
 
                         <TableRow
                             android:layout_width="match_parent"
@@ -778,7 +706,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button"
+                                    android:id="@+id/points_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -798,7 +726,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button2"
+                                    android:id="@+id/rebound_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -817,7 +745,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button3"
+                                    android:id="@+id/assist_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -836,7 +764,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button4"
+                                    android:id="@+id/steal_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -855,7 +783,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button5"
+                                    android:id="@+id/block_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -874,7 +802,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button6"
+                                    android:id="@+id/turnOver_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -893,7 +821,7 @@
                                 android:orientation="horizontal">
 
                                 <Button
-                                    android:id="@+id/button7"
+                                    android:id="@+id/foul_5"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
@@ -901,24 +829,6 @@
                             </LinearLayout>
                         </TableRow>
 
-                        <TableRow
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="horizontal">
-
-                                <Button
-                                    android:id="@+id/button8"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Button" />
-                            </LinearLayout>
-                        </TableRow>
                     </TableLayout>
                 </LinearLayout>
 
