@@ -1,11 +1,8 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.arch.lifecycle.AndroidViewModel;
-import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProviders;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,13 +11,10 @@ import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private static final String TAG = "MainActivity";
+
     private Button shot_1_button;
-
     private BasketisticsViewModel basketisticsViewModel;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
