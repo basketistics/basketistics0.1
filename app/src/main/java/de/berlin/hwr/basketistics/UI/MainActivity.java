@@ -1,7 +1,9 @@
-package de.berlin.hwr.basketistics;
+package de.berlin.hwr.basketistics.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import de.berlin.hwr.basketistics.R;
 
 public class MainActivity extends AppCompatActivity {
 
