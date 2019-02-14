@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import de.berlin.hwr.basketistics.EventObserver;
+import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
@@ -20,11 +21,15 @@ public class MainActivity extends AppCompatActivity {
     // Lets have all the Buttons in an array to save some space
     private Button[][] playerButtons = new Button[5][7];
 
-    // PopUp windows in an array as well
-    // TODO: seems useless...
-    // private PopupWindow[] pointsPopupWindows = new PopupWindow[4];
-
     private BasketisticsViewModel basketisticsViewModel;
+
+    //  TODO: Only here for testing...
+    MockEventDB mockEventDB = new MockEventDB();
+    private final EventObserver eventObserver = new EventObserver(1, 1, mockEventDB);
+
+    private void initDB() {
+        basketisticsViewModel.getPoints().observe(this, eventObserver);
+    }
 
     private void showPointsPopup(Button button) {
 
@@ -98,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showPointsPopup((Button) v);
-                    // TODO: update ViewModel
                 }
             });
         }
@@ -159,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
+        initDB();
         bindPlayerButtons();
         attachPointsPopUp();
     }
