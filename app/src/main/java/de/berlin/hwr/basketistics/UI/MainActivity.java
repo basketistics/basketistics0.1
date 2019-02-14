@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     private BasketisticsViewModel basketisticsViewModel;
 
-    /*
     private void showPointsPopup(Button button) {
 
         PopupWindow pointsPopupWindow;
@@ -48,12 +47,12 @@ public class MainActivity extends AppCompatActivity {
         pointsPopupWindow.showAsDropDown(button);
 
         // Attach PopUp Buttons
-        plusOneButton = (Button) findViewById(R.id.inc1PointButton);
-        plusTwoButton = (Button) findViewById(R.id.inc2PointButton);
-        plusThreeButton = (Button) findViewById(R.id.inc3PointButton);
-        minusOneButton = (Button) findViewById(R.id.dec1PointButton);
-        minusTwoButton = (Button) findViewById(R.id.dec2PointButton);
-        minusThreeButton = (Button) findViewById(R.id.dec3PointButton);
+        plusOneButton = (Button) pointsPopupView.findViewById(R.id.inc1PointButton);
+        plusTwoButton = (Button) pointsPopupView.findViewById(R.id.inc2PointButton);
+        plusThreeButton = (Button) pointsPopupView.findViewById(R.id.inc3PointButton);
+        minusOneButton = (Button) pointsPopupView.findViewById(R.id.dec1PointButton);
+        minusTwoButton = (Button) pointsPopupView.findViewById(R.id.dec2PointButton);
+        minusThreeButton = (Button) pointsPopupView.findViewById(R.id.dec3PointButton);
 
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// create OnClickListener
@@ -97,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     showPointsPopup((Button) v);
+                    // TODO: update ViewModel
                 }
             });
         }
     }
-    */
 
     // find button views and bind them to Button objects
     private void bindPlayerButtons() {
@@ -149,8 +148,6 @@ public class MainActivity extends AppCompatActivity {
         playerButtons[4][6] = findViewById(R.id.foul_5);
     }
 
-
-
     //// ---------- Lifecycle Callbacks ------------ ////
 
     @Override
@@ -161,23 +158,6 @@ public class MainActivity extends AppCompatActivity {
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
         bindPlayerButtons();
-        // attachPointsPopUp();
-
-        PopupWindow pointsPopupWindow;
-
-        LayoutInflater layoutInflater = this.getLayoutInflater();
-        View pointsPopupView = layoutInflater.inflate(R.layout.popup_points, null);
-
-        // Create the popup Window
-        pointsPopupWindow = new PopupWindow(this);
-        pointsPopupWindow.setContentView(pointsPopupView);
-        pointsPopupWindow.setFocusable(true);
-        pointsPopupWindow.showAsDropDown(playerButtons[0][0]);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
+        attachPointsPopUp();
     }
 }
