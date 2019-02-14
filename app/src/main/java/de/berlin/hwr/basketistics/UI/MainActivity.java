@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
+import de.berlin.hwr.basketistics.EventObserver;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
@@ -71,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // TODO: inc points for playerID
                 Log.i(TAG, "inc points - Player: " + player + "; Points: " + points);
+                basketisticsViewModel.setPoints(points);
             }
         }
 

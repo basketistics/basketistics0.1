@@ -21,7 +21,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
-    // Construktor
+    // Constructor
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
 
@@ -73,6 +73,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setPoints(Integer points) {
         this.points.setValue(points);
+        Log.i(TAG, "entered setPoints().");
     }
 
     public void incPoints(Integer iPoints) {
