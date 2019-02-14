@@ -1,10 +1,14 @@
 package de.berlin.hwr.basketistics.Persistency;
 
+import android.util.Log;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MockEventDB {
+
+    final static String TAG = "MockEventDB";
 
     class Entry {
         int index = 0;
@@ -25,6 +29,13 @@ public class MockEventDB {
 
     public void add(int playerID, int eventID) {
         db.add(new Entry(index, playerID, eventID));
+
+        Log.i(TAG, "New Entry has been added.");
+        Log.i(TAG, "id:         " + index);
+        Log.i(TAG, "playerID:   " + playerID);
+        Log.i(TAG, "eventID:    " + eventID);
+        Log.i(TAG, "timestamp:  " + db.get(index).timestamp);
+
         index++;
     }
 }

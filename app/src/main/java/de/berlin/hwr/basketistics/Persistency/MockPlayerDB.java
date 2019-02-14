@@ -23,5 +23,6 @@ public class MockPlayerDB {
         this.db.add(new Entry(2, "Player3", 3));
         this.db.add(new Entry(3, "Player4", 4));
         this.db.add(new Entry(4, "Player5", 5));
+        this.db.add(new Entry(999, "Trainer", 999));
     }
 }
