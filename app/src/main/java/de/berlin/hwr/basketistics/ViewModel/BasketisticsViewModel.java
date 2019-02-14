@@ -21,7 +21,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
-    // Konstruktor
+    // Construktor
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
 
