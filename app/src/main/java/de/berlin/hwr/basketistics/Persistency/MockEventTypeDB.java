@@ -31,8 +31,9 @@ public class MockEventTypeDB {
         this.db.add(new Entry(9, "block"));
         this.db.add(new Entry(10, "turnover"));
         this.db.add(new Entry(11, "foul"));
-        this.db.add(new Entry(12, "game_resume"));
-        this.db.add(new Entry(13, "game_pause"));
-        this.db.add(new Entry(14, "game_end"));
+        this.db.add(new Entry(12, "steal"));
+        this.db.add(new Entry(13, "game_resume"));
+        this.db.add(new Entry(14, "game_pause"));
+        this.db.add(new Entry(15, "game_end"));
     }
 }

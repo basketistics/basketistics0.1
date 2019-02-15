@@ -17,6 +17,7 @@ public class MockEventDB {
         Timestamp timestamp;
 
         public Entry(int index, int playerID, int eventID) {
+            this.index = index;
             this.playerID = playerID;
             this.eventID = eventID;
             this.timestamp = new Timestamp(System.nanoTime());
@@ -31,7 +32,7 @@ public class MockEventDB {
         db.add(new Entry(index, playerID, eventID));
 
         Log.i(TAG, "New Entry has been added.");
-        Log.i(TAG, "id:         " + index);
+        Log.i(TAG, "index:      " + index);
         Log.i(TAG, "playerID:   " + playerID);
         Log.i(TAG, "eventID:    " + eventID);
         Log.i(TAG, "timestamp:  " + db.get(index).timestamp);

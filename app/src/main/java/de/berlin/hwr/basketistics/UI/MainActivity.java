@@ -28,8 +28,41 @@ public class MainActivity extends AppCompatActivity {
     MockEventDB mockEventDB = new MockEventDB();
     //private final EventObserver eventObserver = new EventObserver(1, 1, mockEventDB);
     private void initDB() {
-        basketisticsViewModel.getPoints().observe(this,
-                new EventObserver(1, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+
+         /* from MockEventTypeDB:
+            this.db.add(new Entry(0, "game_begin"));
+            this.db.add(new Entry(1, "point_plus_1"));
+            this.db.add(new Entry(2, "point_plus_2"));
+            this.db.add(new Entry(3, "point_plus_3"));
+            this.db.add(new Entry(4, "point_minus_1"));
+            this.db.add(new Entry(5, "point_minus_2"));
+            this.db.add(new Entry(6, "point_minus_3"));
+            this.db.add(new Entry(7, "rebound"));
+            this.db.add(new Entry(8, "assist"));
+            this.db.add(new Entry(9, "block"));
+            this.db.add(new Entry(10, "turnover"));
+            this.db.add(new Entry(11, "foul"));
+            this.db.add(new Entry(12, "steal"));
+            this.db.add(new Entry(13, "game_resume"));
+            this.db.add(new Entry(14, "game_pause"));
+            this.db.add(new Entry(15, "game_end"));;
+        */
+
+        // Special constructor is used for points!
+        basketisticsViewModel.getPoints().observe(
+                this, new EventObserver(basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+        basketisticsViewModel.getRebound().observe(
+                this, new EventObserver(7, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+        basketisticsViewModel.getAssist().observe(
+                this, new EventObserver(8, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+        basketisticsViewModel.getBlock().observe(
+                this, new EventObserver(9, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+        basketisticsViewModel.getTurnover().observe(
+                this, new EventObserver(10, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+        basketisticsViewModel.getFoul().observe(
+                this, new EventObserver(11, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
+        basketisticsViewModel.getSteal().observe(
+                this, new EventObserver(12, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
     }
 
     public void showPointsPopup(int player, Button button) {
@@ -187,9 +220,9 @@ public class MainActivity extends AppCompatActivity {
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
-        initDB();
         bindPlayerButtons();
         attachPointsPopUp();
         attachViewModel();
+        initDB();
     }
 }

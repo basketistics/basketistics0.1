@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
 
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
+import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
 public class EventObserver implements Observer {
 
@@ -13,7 +14,7 @@ public class EventObserver implements Observer {
     // TODO: Change to actually use MockPlayerDB
     int playerID;
     Boolean isPoints;
-    int points;
+    BasketisticsViewModel basketisticsViewModel;
 
     public EventObserver(int eventID, int playerID, MockEventDB mockEventDB) {
         this.eventID = eventID;
@@ -22,11 +23,11 @@ public class EventObserver implements Observer {
         this.isPoints = false;
     }
 
-    public EventObserver(int playerID, MockEventDB mockEventDB, int points) {
+    public EventObserver(int playerID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.playerID = playerID;
         this.mockEventDB = mockEventDB;
         this.isPoints = true;
-        this.points = points;
+        this.basketisticsViewModel = basketisticsViewModel;
     }
 
     @Override
@@ -34,7 +35,7 @@ public class EventObserver implements Observer {
         if (!isPoints) {
             mockEventDB.add(playerID, eventID);
         } else {
-            switch (points) {
+            switch (basketisticsViewModel.getPoints().getValue()) {
                 case 1:
                     mockEventDB.add(playerID, 1);
                     break;
