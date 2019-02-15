@@ -1,4 +1,4 @@
-package de.berlin.hwr.basketistics;
+package de.berlin.hwr.basketistics.UI;
 
 import android.view.View;
 

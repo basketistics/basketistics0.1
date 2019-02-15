@@ -1,4 +1,4 @@
-package de.berlin.hwr.basketistics;
+package de.berlin.hwr.basketistics.ViewModel;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;

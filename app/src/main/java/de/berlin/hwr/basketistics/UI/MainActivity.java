@@ -8,9 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
-import de.berlin.hwr.basketistics.EventObserver;
+import de.berlin.hwr.basketistics.ViewModel.EventObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
-import de.berlin.hwr.basketistics.PlayerButtonsOnClickListener;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
