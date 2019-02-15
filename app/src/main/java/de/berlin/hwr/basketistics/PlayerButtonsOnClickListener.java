@@ -21,6 +21,7 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         this.player = player;
         this.eventID = eventID;
         this.basketisticsViewModel = basketisticsViewModel;
+        this.points = points;
     }
 
     @Override

@@ -85,17 +85,17 @@ public class MainActivity extends AppCompatActivity {
 
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, 1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 1, basketisticsViewModel));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, 2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 2, basketisticsViewModel));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, 3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 3, basketisticsViewModel));
         minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, -1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -1, basketisticsViewModel));
         minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, -2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -2, basketisticsViewModel));
         minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 1, -3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -3, basketisticsViewModel));
 
     }
 

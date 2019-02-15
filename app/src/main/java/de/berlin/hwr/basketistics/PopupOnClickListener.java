@@ -2,8 +2,6 @@ package de.berlin.hwr.basketistics;
 
 import android.view.View;
 
-import de.berlin.hwr.basketistics.UI.MainActivity;
-
 public class PopupOnClickListener implements View.OnClickListener {
 
     private int player;
