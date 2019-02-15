@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 
 import de.berlin.hwr.basketistics.EventObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
+import de.berlin.hwr.basketistics.PlayerButtonsOnClickListener;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
@@ -25,10 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
     //  TODO: Only here for testing...
     MockEventDB mockEventDB = new MockEventDB();
-    private final EventObserver eventObserver = new EventObserver(1, 1, mockEventDB);
-
+    //private final EventObserver eventObserver = new EventObserver(1, 1, mockEventDB);
     private void initDB() {
-        basketisticsViewModel.getPoints().observe(this, eventObserver);
+        basketisticsViewModel.getPoints().observe(this,
+                new EventObserver(1, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
     }
 
     private void showPointsPopup(Button button) {
@@ -154,6 +155,10 @@ public class MainActivity extends AppCompatActivity {
         playerButtons[4][6] = findViewById(R.id.foul_5);
     }
 
+    private void attachViewModel() {
+        playerButtons[0][1].setOnClickListener(new PlayerButtonsOnClickListener());
+    }
+
     //// ---------- Lifecycle Callbacks ------------ ////
 
     @Override
@@ -166,5 +171,6 @@ public class MainActivity extends AppCompatActivity {
         initDB();
         bindPlayerButtons();
         attachPointsPopUp();
+        attachViewModel();
     }
 }
