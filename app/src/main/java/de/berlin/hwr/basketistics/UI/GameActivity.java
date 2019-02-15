@@ -13,9 +13,9 @@ import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "GameActivity";
 
     // Lets have all the Buttons in an array to save some space
     private Button[][] playerButtons = new Button[5][7];
@@ -214,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test);
+        setContentView(R.layout.game_activity);
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
