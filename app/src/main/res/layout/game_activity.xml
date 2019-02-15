@@ -99,8 +99,9 @@
                                     android:id="@+id/shot_1_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -128,11 +129,12 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/rebound_1_textView10"
+                                    android:id="@+id/rebound_1_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -160,11 +162,12 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView11"
+                                    android:id="@+id/assist_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -191,11 +194,12 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView12"
+                                    android:id="@+id/steal_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -222,11 +226,12 @@
                                     android:text="block" />
 
                                 <TextView
-                                    android:id="@+id/textView"
+                                    android:id="@+id/block_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -253,11 +258,12 @@
                                     android:text="turnover" />
 
                                 <TextView
-                                    android:id="@+id/textView2"
+                                    android:id="@+id/turnover_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -284,11 +290,12 @@
                                     android:text="foul" />
 
                                 <TextView
-                                    android:id="@+id/textView41"
+                                    android:id="@+id/foul_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -362,11 +369,12 @@
                                     android:text="shot" />
 
                                 <TextView
-                                    android:id="@+id/textView4"
+                                    android:id="@+id/shot_2_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -394,11 +402,12 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/textView9"
+                                    android:id="@+id/rebound_2_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -425,11 +434,12 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView10"
+                                    android:id="@+id/assist_2_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -456,11 +466,12 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView13"
+                                    android:id="@+id/steal_2_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -487,11 +498,12 @@
                                     android:text="block" />
 
                                 <TextView
-                                    android:id="@+id/textView14"
+                                    android:id="@+id/block_2_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -518,11 +530,12 @@
                                     android:text="turnover" />
 
                                 <TextView
-                                    android:id="@+id/textView15"
+                                    android:id="@+id/turnover_2_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -549,11 +562,12 @@
                                     android:text="foul" />
 
                                 <TextView
-                                    android:id="@+id/textView16"
+                                    android:id="@+id/foul_2_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -627,11 +641,12 @@
                                     android:text="shot" />
 
                                 <TextView
-                                    android:id="@+id/textView20"
+                                    android:id="@+id/shot_3_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -659,11 +674,12 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/textView21"
+                                    android:id="@+id/rebound_3_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -690,11 +706,12 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView22"
+                                    android:id="@+id/assist_3_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -721,11 +738,12 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView23"
+                                    android:id="@+id/steal_3_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -752,11 +770,12 @@
                                     android:text="block" />
 
                                 <TextView
-                                    android:id="@+id/textView24"
+                                    android:id="@+id/block_3_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -783,11 +802,12 @@
                                     android:text="turnover" />
 
                                 <TextView
-                                    android:id="@+id/textView25"
+                                    android:id="@+id/turnover_3_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -814,11 +834,12 @@
                                     android:text="foul" />
 
                                 <TextView
-                                    android:id="@+id/textView26"
+                                    android:id="@+id/foul_3_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -893,11 +914,12 @@
                                     android:text="shot" />
 
                                 <TextView
-                                    android:id="@+id/textView27"
+                                    android:id="@+id/shot_4_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -925,11 +947,12 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/textView28"
+                                    android:id="@+id/rebound_4_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -956,11 +979,12 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView29"
+                                    android:id="@+id/assist_4_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -987,11 +1011,12 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView30"
+                                    android:id="@+id/steal_4_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1018,11 +1043,12 @@
                                     android:text="block" />
 
                                 <TextView
-                                    android:id="@+id/textView31"
+                                    android:id="@+id/block_4_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1049,11 +1075,12 @@
                                     android:text="turnover" />
 
                                 <TextView
-                                    android:id="@+id/textView32"
+                                    android:id="@+id/turnover_4_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1080,11 +1107,12 @@
                                     android:text="foul" />
 
                                 <TextView
-                                    android:id="@+id/textView33"
+                                    android:id="@+id/foul_4_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1158,11 +1186,12 @@
                                     android:text="shot" />
 
                                 <TextView
-                                    android:id="@+id/textView34"
+                                    android:id="@+id/shot_5_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1190,11 +1219,12 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/textView35"
+                                    android:id="@+id/rebound_5_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1221,11 +1251,12 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView36"
+                                    android:id="@+id/assist_5_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1252,11 +1283,12 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView37"
+                                    android:id="@+id/steal_5_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1283,11 +1315,12 @@
                                     android:text="block" />
 
                                 <TextView
-                                    android:id="@+id/textView38"
+                                    android:id="@+id/block_5_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1314,11 +1347,12 @@
                                     android:text="turnover" />
 
                                 <TextView
-                                    android:id="@+id/textView39"
+                                    android:id="@+id/turnover_5_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
@@ -1345,11 +1379,12 @@
                                     android:text="foul" />
 
                                 <TextView
-                                    android:id="@+id/textView40"
+                                    android:id="@+id/foul_5_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:gravity="right|center_vertical"
+                                    android:gravity="right|center_vertical|end"
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"

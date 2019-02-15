@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import de.berlin.hwr.basketistics.ViewModel.EventObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
@@ -19,6 +20,9 @@ public class GameActivity extends AppCompatActivity {
 
     // Lets have all the Buttons in an array to save some space
     private Button[][] playerButtons = new Button[5][7];
+
+    // same for TextViews
+    private TextView[][] playerTextViews = new TextView[5][7];
 
     private BasketisticsViewModel basketisticsViewModel;
 
@@ -93,27 +97,6 @@ public class GameActivity extends AppCompatActivity {
         minusThreeButton = (Button) pointsPopupView.findViewById(R.id.dec3PointButton);
 
         // set OnClickListeners on Buttons to connect them to ViewModel
-        /*/// create OnClickListener
-        class PointsOnClickListener implements View.OnClickListener {
-
-            private int points;
-            private int player;
-
-            public PointsOnClickListener(int points, int player) {
-                this.points = points;
-                this.player = player;
-            }
-
-            @Override
-            // TODO: handle playerID stuff
-            public void onClick(View v) {
-                // TODO: inc points for playerID
-                Log.i(TAG, "inc points - Player: " + player + "; Points: " + points);
-                basketisticsViewModel.setPoints(points);
-            }
-        }
-        */
-
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
                 new PlayerButtonsOnClickListener(player, 0, 1, basketisticsViewModel));
@@ -127,7 +110,6 @@ public class GameActivity extends AppCompatActivity {
                 new PlayerButtonsOnClickListener(player, 0, -2, basketisticsViewModel));
         minusThreeButton.setOnClickListener(
                 new PlayerButtonsOnClickListener(player, 0, -3, basketisticsViewModel));
-
     }
 
     // Attach and enable Points PopUp an points buttons
@@ -198,13 +180,69 @@ public class GameActivity extends AppCompatActivity {
         playerButtons[4][6] = findViewById(R.id.foul_5);
     }
 
-    private void attachViewModel() {
+    private void bindPlayerTextViews() {
+
+        playerTextViews[0][0] = findViewById(R.id.shot_1_textView);
+        playerTextViews[1][0] = findViewById(R.id.shot_2_textView);
+        playerTextViews[2][0] = findViewById(R.id.shot_3_textView);
+        playerTextViews[3][0] = findViewById(R.id.shot_4_textView);
+        playerTextViews[4][0] = findViewById(R.id.shot_5_textView);
+
+        playerTextViews[0][1] = findViewById(R.id.rebound_1_textView);
+        playerTextViews[1][1] = findViewById(R.id.rebound_2_textView);
+        playerTextViews[2][1] = findViewById(R.id.rebound_3_textView);
+        playerTextViews[3][1] = findViewById(R.id.rebound_4_textView);
+        playerTextViews[4][1] = findViewById(R.id.rebound_5_textView);
+
+        playerTextViews[0][2] = findViewById(R.id.assist_1_TextView);
+        playerTextViews[1][2] = findViewById(R.id.assist_2_TextView);
+        playerTextViews[2][2] = findViewById(R.id.assist_3_TextView);
+        playerTextViews[3][2] = findViewById(R.id.assist_4_TextView);
+        playerTextViews[4][2] = findViewById(R.id.assist_5_TextView);
+
+        playerTextViews[0][3] = findViewById(R.id.steal_1_TextView);
+        playerTextViews[1][3] = findViewById(R.id.steal_2_TextView);
+        playerTextViews[2][3] = findViewById(R.id.steal_3_TextView);
+        playerTextViews[3][3] = findViewById(R.id.steal_4_TextView);
+        playerTextViews[4][3] = findViewById(R.id.steal_5_TextView);
+
+        playerTextViews[0][4] = findViewById(R.id.block_1_TextView);
+        playerTextViews[1][4] = findViewById(R.id.block_2_TextView);
+        playerTextViews[2][4] = findViewById(R.id.block_3_TextView);
+        playerTextViews[3][4] = findViewById(R.id.block_4_TextView);
+        playerTextViews[4][4] = findViewById(R.id.block_5_TextView);
+
+        playerTextViews[0][5] = findViewById(R.id.turnover_1_TextView);
+        playerTextViews[1][5] = findViewById(R.id.turnover_2_TextView);
+        playerTextViews[2][5] = findViewById(R.id.turnover_3_TextView);
+        playerTextViews[3][5] = findViewById(R.id.turnover_4_TextView);
+        playerTextViews[4][5] = findViewById(R.id.turnover_5_TextView);
+
+        playerTextViews[0][6] = findViewById(R.id.foul_1_TextView);
+        playerTextViews[1][6] = findViewById(R.id.foul_2_TextView);
+        playerTextViews[2][6] = findViewById(R.id.foul_3_TextView);
+        playerTextViews[3][6] = findViewById(R.id.foul_4_TextView);
+        playerTextViews[4][6] = findViewById(R.id.foul_5_TextView);
+
+    }
+
+    private void attachButtonsToViewModel() {
         // Iterate over all players
         for (int i = 0; i < 5; i++) {
             // Iterate over events except 0 (points)
             for (int j = 1; j < 7; j++) {
                 playerButtons[i][j].setOnClickListener(
                         new PlayerButtonsOnClickListener(i, j, basketisticsViewModel));
+            }
+        }
+    }
+
+    private void attachTextViewsToViewModel() {
+        // Iterate over all players
+        for (int i = 0; i < 5; i++) {
+            // Iterate over events except
+            for (int j = 0; j < 7; j++) {
+                playerTextViews[i][j].setText("" + 0);
             }
         }
     }
@@ -219,8 +257,10 @@ public class GameActivity extends AppCompatActivity {
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
         bindPlayerButtons();
+        bindPlayerTextViews();
         attachPointsPopUp();
-        attachViewModel();
+        attachButtonsToViewModel();
+        attachTextViewsToViewModel();
         initMockDB();
     }
 }
