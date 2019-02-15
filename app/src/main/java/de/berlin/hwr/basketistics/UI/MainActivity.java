@@ -49,19 +49,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Special constructor is used for points!
         basketisticsViewModel.getPoints().observe(
-                this, new EventObserver(basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getRebound().observe(
-                this, new EventObserver(7, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(7, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getAssist().observe(
-                this, new EventObserver(8, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(8, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getBlock().observe(
-                this, new EventObserver(9, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(9, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getTurnover().observe(
-                this, new EventObserver(10, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(10, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getFoul().observe(
-                this, new EventObserver(11, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(11, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getSteal().observe(
-                this, new EventObserver(12, basketisticsViewModel.getPlayerId().getValue(), mockEventDB, basketisticsViewModel));
+                this, new EventObserver(12, mockEventDB, basketisticsViewModel));
     }
 
     public void showPointsPopup(int player, Button button) {

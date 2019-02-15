@@ -21,21 +21,8 @@ public class BasketisticsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
-    // Constructor
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
-
-        playerId.setValue(0);
-        // TODO: I don't think we need playerName and playerNumber here - it's redundant.
-        playerNumber.setValue(0);
-        playerName.setValue("");
-        points.setValue(0);
-        assist.setValue(0);
-        rebound.setValue(0);
-        foul.setValue(0);
-        block.setValue(0);
-        turnover.setValue(0);
-        steal.setValue(0);
     }
 
     //// ---------- getter and "setter" ---------- ////

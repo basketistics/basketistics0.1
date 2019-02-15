@@ -14,20 +14,17 @@ public class EventObserver implements Observer {
 
     private int eventID;
     // TODO: Change to actually use MockPlayerDB
-    private int playerID;
     private Boolean isPoints;
     private BasketisticsViewModel basketisticsViewModel;
 
-    public EventObserver(int eventID, int playerID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
+    public EventObserver(int eventID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.eventID = eventID;
-        this.playerID = playerID;
         this.mockEventDB = mockEventDB;
         this.isPoints = false;
         this.basketisticsViewModel = basketisticsViewModel;
     }
 
-    public EventObserver(int playerID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
-        this.playerID = playerID;
+    public EventObserver(MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.mockEventDB = mockEventDB;
         this.isPoints = true;
         this.basketisticsViewModel = basketisticsViewModel;
