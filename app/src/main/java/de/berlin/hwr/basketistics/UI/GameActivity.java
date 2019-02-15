@@ -9,7 +9,8 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import de.berlin.hwr.basketistics.ViewModel.EventObserver;
+import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
+import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
@@ -28,7 +29,8 @@ public class GameActivity extends AppCompatActivity {
 
     //  TODO: Only here for testing...
     MockEventDB mockEventDB = new MockEventDB();
-    //private final EventObserver eventObserver = new EventObserver(1, 1, mockEventDB);
+    MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
+
     private void initMockDB() {
 
          /* from MockEventTypeDB:
@@ -52,19 +54,19 @@ public class GameActivity extends AppCompatActivity {
 
         // Special constructor is used for points!
         basketisticsViewModel.getPoints().observe(
-                this, new EventObserver(mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getRebound().observe(
-                this, new EventObserver(7, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(7, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getAssist().observe(
-                this, new EventObserver(8, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(8, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getBlock().observe(
-                this, new EventObserver(9, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(9, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getTurnover().observe(
-                this, new EventObserver(10, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(10, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getFoul().observe(
-                this, new EventObserver(11, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(11, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getSteal().observe(
-                this, new EventObserver(12, mockEventDB, basketisticsViewModel));
+                this, new MockDBObserver(12, mockEventDB, basketisticsViewModel));
     }
 
     public void showPointsPopup(int player, Button button) {
@@ -240,10 +242,26 @@ public class GameActivity extends AppCompatActivity {
     private void attachTextViewsToViewModel() {
         // Iterate over all players
         for (int i = 0; i < 5; i++) {
-            // Iterate over events except
+            // Iterate over events
             for (int j = 0; j < 7; j++) {
                 playerTextViews[i][j].setText("" + 0);
             }
+            // attach actual observer
+            basketisticsViewModel.getPoints().observe(
+                    this, new PlayerTextViewObserver(i, 0, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getRebound().observe(
+                    this, new PlayerTextViewObserver(i, 1, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getAssist().observe(
+                    this, new PlayerTextViewObserver(i, 2, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getBlock().observe(
+                    this, new PlayerTextViewObserver(i, 3, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getTurnover().observe(
+                    this, new PlayerTextViewObserver(i, 4, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getFoul().observe(
+                    this, new PlayerTextViewObserver(i, 5, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            basketisticsViewModel.getSteal().observe(
+                    this, new PlayerTextViewObserver(i, 6, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+
         }
     }
 

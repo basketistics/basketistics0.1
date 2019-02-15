@@ -1,4 +1,4 @@
-package de.berlin.hwr.basketistics.ViewModel;
+package de.berlin.hwr.basketistics.Persistency;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProvider;
@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
-public class EventObserver implements Observer {
+public class MockDBObserver implements Observer {
 
     private MockEventDB mockEventDB;
 
@@ -18,7 +18,7 @@ public class EventObserver implements Observer {
     private BasketisticsViewModel basketisticsViewModel;
 
     // Constructor for point events
-    public EventObserver(int eventID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
+    public MockDBObserver(int eventID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.eventID = eventID;
         this.mockEventDB = mockEventDB;
         this.isPoints = false;
@@ -26,7 +26,7 @@ public class EventObserver implements Observer {
     }
 
     // Constructor for all other events
-    public EventObserver(MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
+    public MockDBObserver(MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.mockEventDB = mockEventDB;
         this.isPoints = true;
         this.basketisticsViewModel = basketisticsViewModel;
