@@ -27,6 +27,8 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     //// ---------- getter and "setter" ---------- ////
 
+    // TODO: inc functions are not needed anymore (?)
+
     // playerId
     public MutableLiveData<Integer> getPlayerId() {
         return playerId;

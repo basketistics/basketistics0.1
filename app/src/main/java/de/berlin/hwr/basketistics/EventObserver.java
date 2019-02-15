@@ -17,6 +17,7 @@ public class EventObserver implements Observer {
     private Boolean isPoints;
     private BasketisticsViewModel basketisticsViewModel;
 
+    // Constructor for point events
     public EventObserver(int eventID, MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.eventID = eventID;
         this.mockEventDB = mockEventDB;
@@ -24,6 +25,7 @@ public class EventObserver implements Observer {
         this.basketisticsViewModel = basketisticsViewModel;
     }
 
+    // Constructor for all other events
     public EventObserver(MockEventDB mockEventDB, BasketisticsViewModel basketisticsViewModel) {
         this.mockEventDB = mockEventDB;
         this.isPoints = true;
