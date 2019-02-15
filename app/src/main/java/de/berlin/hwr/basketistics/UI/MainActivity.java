@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 new EventObserver(1, basketisticsViewModel.getPlayerId().getValue(), mockEventDB));
     }
 
-    private void showPointsPopup(Button button) {
+    public void showPointsPopup(int player, Button button) {
 
         PopupWindow pointsPopupWindow;
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         minusThreeButton = (Button) pointsPopupView.findViewById(R.id.dec3PointButton);
 
         // set OnClickListeners on Buttons to connect them to ViewModel
-        //// create OnClickListener
+        /*/// create OnClickListener
         class PointsOnClickListener implements View.OnClickListener {
 
             private int points;
@@ -81,18 +81,21 @@ public class MainActivity extends AppCompatActivity {
                 basketisticsViewModel.setPoints(points);
             }
         }
+        */
 
-        //// Attach PointsOnClickListener to buttons
-        // TODO: Currently fixed to player one for testing
-        if ( plusOneButton == null ) {
-            Log.e(TAG, "Button is null.");
-        }
-        plusOneButton.setOnClickListener(new PointsOnClickListener(1, 1));
-        plusTwoButton.setOnClickListener(new PointsOnClickListener(2, 1));
-        plusThreeButton.setOnClickListener(new PointsOnClickListener(3, 1));
-        minusOneButton.setOnClickListener(new PointsOnClickListener(-1, 1));
-        minusTwoButton.setOnClickListener(new PointsOnClickListener(-2, 1));
-        minusThreeButton.setOnClickListener(new PointsOnClickListener(-3, 1));
+        //// Attach PlayerButtonsOnClickListener to buttons
+        plusOneButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, 1, basketisticsViewModel));
+        plusTwoButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, 2, basketisticsViewModel));
+        plusThreeButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, 3, basketisticsViewModel));
+        minusOneButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, -1, basketisticsViewModel));
+        minusTwoButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, -2, basketisticsViewModel));
+        minusThreeButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(player, 1, -3, basketisticsViewModel));
 
     }
 
@@ -100,12 +103,21 @@ public class MainActivity extends AppCompatActivity {
     private void attachPointsPopUp() {
         // TODO: Refactor to depend on actual array
         for (int i = 0; i < 5; i++) {
-            playerButtons[i][0].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showPointsPopup((Button) v);
-                }
-            });
+            playerButtons[i][0].setOnClickListener(new PopupOnClickListener(i));
+        }
+    }
+
+    class PopupOnClickListener implements View.OnClickListener {
+
+        private int player;
+
+        public PopupOnClickListener(int player) {
+            this.player = player;
+        }
+
+        @Override
+        public void onClick(View v) {
+            showPointsPopup(player, (Button) v);
         }
     }
 

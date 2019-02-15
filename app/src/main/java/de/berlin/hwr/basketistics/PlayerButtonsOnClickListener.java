@@ -27,6 +27,7 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
 
         // set PlayerID in ViewModel to make it interpretable for the database-stuff
+        // player starts with 0 so that's normalized here
         basketisticsViewModel.setPlayerId(player + 1);
 
         switch (eventID) {
