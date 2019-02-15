@@ -35,13 +35,13 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
                 basketisticsViewModel.setPoints(points);
                 break;
             case 1:
-                basketisticsViewModel.setAssist(1);
-                break;
-            case 2:
                 basketisticsViewModel.setRebound(1);
                 break;
+            case 2:
+                basketisticsViewModel.setAssist(1);
+                break;
             case 3:
-                basketisticsViewModel.setFoul(1);
+                basketisticsViewModel.setSteal(1);
                 break;
             case 4:
                 basketisticsViewModel.setBlock(1);
@@ -50,7 +50,7 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
                 basketisticsViewModel.setTurnover(1);
                 break;
             case 6:
-                basketisticsViewModel.setSteal(1);
+                basketisticsViewModel.setFoul(1);
                 break;
             default:
                 // TODO: Exception handling!

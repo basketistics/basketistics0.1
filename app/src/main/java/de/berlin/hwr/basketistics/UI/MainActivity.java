@@ -156,7 +156,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void attachViewModel() {
-        playerButtons[0][1].setOnClickListener(new PlayerButtonsOnClickListener());
+        playerButtons[0][1].setOnClickListener(new PlayerButtonsOnClickListener(0, 1, 1, basketisticsViewModel));
+
+        // Iterate over all players
+        for (int i = 0; i < 5; i++) {
+            // Iterate over events except 0 (points)
+            for (int j = 1; j < 6) {
+                playerButtons[i][j].setOnClickListener(new PlayerButtonsOnClickListener(i, j, basketisticsViewModel));
+            }
+        }
     }
 
     //// ---------- Lifecycle Callbacks ------------ ////
