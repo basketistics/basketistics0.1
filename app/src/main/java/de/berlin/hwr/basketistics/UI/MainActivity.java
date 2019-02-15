@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         // Iterate over all players
         for (int i = 0; i < 5; i++) {
             // Iterate over events except 0 (points)
-            for (int j = 1; j < 6) {
+            for (int j = 1; j < 6; j++) {
                 playerButtons[i][j].setOnClickListener(
                         new PlayerButtonsOnClickListener(i, j, basketisticsViewModel));
             }
