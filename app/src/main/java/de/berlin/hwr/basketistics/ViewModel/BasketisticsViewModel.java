@@ -26,7 +26,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
         super(application);
 
         playerId.setValue(0);
-        // TODO: I don't think we need playerName and playernumber here - it's redundant.
+        // TODO: I don't think we need playerName and playerNumber here - it's redundant.
         playerNumber.setValue(0);
         playerName.setValue("");
         points.setValue(0);
