@@ -37,6 +37,19 @@ public class GameActivity extends AppCompatActivity {
     MockEventDB mockEventDB = new MockEventDB();
     MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
 
+    long millisleft=0;
+    boolean timer_running = false;
+    public void pauseTimer(CountDownTimer timer)
+    {
+        Log.i(TAG, "Times Paused");
+        timer.cancel();
+    }
+
+    public void resumeTimer()
+    {
+        Log.i(TAG, "Timer resumed");
+    }
+
     private void timerHandler()
     {
 
@@ -45,6 +58,7 @@ public class GameActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long millisUntilFinished) {
+                millisleft = millisUntilFinished;
                 String timeLeft = format("%02d:%02d",
                         TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
                         TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
@@ -77,8 +91,24 @@ public class GameActivity extends AppCompatActivity {
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "start timer.");
-                timer.start();
+                if (timer_running)
+                {
+                    resumeTimer();
+                }
+                 else{
+                    Log.i(TAG, "start timer.");
+                    timer.start();
+                    timer_running = true;
+                }
+            }
+        });
+
+        Button timerPause = findViewById(R.id.timer_end);
+        timerStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "Timer stopped.");
+                pauseTimer(timer);
             }
         });
 
@@ -330,6 +360,7 @@ public class GameActivity extends AppCompatActivity {
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
+        timerHandler();
         bindPlayerButtons();
         bindPlayerTextViews();
         attachPointsPopUp();
