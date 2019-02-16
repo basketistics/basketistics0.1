@@ -34,14 +34,16 @@ public class GameActivity extends AppCompatActivity {
     private TextView[][] playerTextViews = new TextView[5][7];
 
     private BasketisticsViewModel basketisticsViewModel;
+
+    // ----- TODO: Only here for testing... ----- //
+    private MockEventDB mockEventDB = new MockEventDB();
+    private MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
     private TextView timerTextView;
-    //  TODO: Only here for testing...
-    MockEventDB mockEventDB = new MockEventDB();
-    MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
-    TimerOnClickListener pauseListener;
+    private TimerOnClickListener pauseListener;
     boolean timer_running = false;
-   // public CountDownTimer timer;
-   int quaterCount = 1;
+    // public CountDownTimer timer;
+    int quaterCount = 1;
+    // ------ Test 'til here... ----- //
 
     CountDownTimerWithPause timer = new CountDownTimerWithPause(600000, 1000, false) {
         @Override
@@ -311,8 +313,15 @@ public class GameActivity extends AppCompatActivity {
         playerTextViews[3][6] = findViewById(R.id.foul_4_TextView);
         playerTextViews[4][6] = findViewById(R.id.foul_5_TextView);
 
+        /*
+
+        Das verursacht einen Fehler.
+
         TextView scoreTextView = findViewById(R.id.score);
         scoreTextView.setText();
+
+         */
+
     }
 
     private void attachButtonsToViewModel() {
