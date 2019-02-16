@@ -20,7 +20,8 @@ public class BasketisticsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> block = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
-
+    private MutableLiveData<Integer> enemyPoints = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> TeamPoints = new MutableLiveData<Integer>();
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
     }
@@ -165,5 +166,40 @@ public class BasketisticsViewModel extends AndroidViewModel {
     public void incSteal(Integer iSteal) {
         Integer currSteal = getSteal().getValue() + iSteal;
         this.setSteal(currSteal);
+    }
+    //enemy Points
+
+    public MutableLiveData<Integer> getEnemyPoints()
+    {
+        return enemyPoints;
+    }
+
+    public void setEnemyPoints(int iipoints)
+    {
+        this.enemyPoints.setValue(iipoints);
+    }
+
+    public void incEnemyPoints()
+    {
+        Integer currEnemyPoints = getEnemyPoints().getValue() + 1;
+        this.setEnemyPoints(currEnemyPoints);
+    }
+
+    //Team Points
+
+    public MutableLiveData<Integer> getTeamPoints()
+    {
+        return TeamPoints;
+    }
+
+    public void setTeamPoints(int iipoints)
+    {
+        this.TeamPoints.setValue(iipoints);
+    }
+
+    public void incTeamPoints(Integer iPoints)
+    {
+        Integer currTeamPoints = getTeamPoints().getValue() + iPoints;
+        this.setTeamPoints(currTeamPoints);
     }
 }

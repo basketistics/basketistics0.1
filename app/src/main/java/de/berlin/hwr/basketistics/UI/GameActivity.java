@@ -1,6 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.ClipData;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -149,6 +151,7 @@ public class GameActivity extends AppCompatActivity {
                 this, new MockDBObserver(11, mockEventDB, basketisticsViewModel));
         basketisticsViewModel.getSteal().observe(
                 this, new MockDBObserver(12, mockEventDB, basketisticsViewModel));
+
     }
 
     public void showPointsPopup(int player, Button button) {
@@ -308,6 +311,8 @@ public class GameActivity extends AppCompatActivity {
         playerTextViews[3][6] = findViewById(R.id.foul_4_TextView);
         playerTextViews[4][6] = findViewById(R.id.foul_5_TextView);
 
+        TextView scoreTextView = findViewById(R.id.score);
+        scoreTextView.setText();
     }
 
     private void attachButtonsToViewModel() {
@@ -350,6 +355,70 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    public void inflatePopup(ImageView bild)
+    {
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        PopupWindow playerPopupWindow = new PopupWindow(this);
+        View playerPopupView = layoutInflater.inflate(R.layout.popup_wechsel, null);
+        playerPopupWindow.setContentView(playerPopupView);
+        playerPopupWindow.setFocusable(true);
+        playerPopupWindow.showAsDropDown(bild);
+    }
+
+    public void spielerwechsel()
+    {
+        final ImageView spieler1 = findViewById(R.id.player_1_imageView);
+        spieler1.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inflatePopup(spieler1);
+
+                return false;
+            }
+        });
+
+        final ImageView spieler2 = findViewById(R.id.player_2_imageView);
+        spieler2.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inflatePopup(spieler2);
+
+                return false;
+            }
+        });
+
+        final ImageView spieler3 = findViewById(R.id.player_3_imageView);
+        spieler3.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inflatePopup(spieler3);
+
+                return false;
+            }
+        });
+
+        final ImageView spieler4 = findViewById(R.id.player_4_imageView);
+        spieler4.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inflatePopup(spieler4);
+
+                return false;
+            }
+        });
+
+        final ImageView spieler5 = findViewById(R.id.player_5_imageView);
+        spieler5.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                inflatePopup(spieler5);
+
+                return false;
+            }
+        });
+    }
+
+
     //// ---------- Lifecycle Callbacks ------------ ////
 
     @Override
@@ -359,6 +428,7 @@ public class GameActivity extends AppCompatActivity {
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
+        spielerwechsel();
         timerHandler();
         bindPlayerButtons();
         bindPlayerTextViews();

@@ -10,13 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:weightSum="100"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        android:weightSum="100">
 
 
         <LinearLayout
@@ -323,7 +317,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/player_1_imageView2"
+                        android:id="@+id/player_2_imageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
@@ -595,7 +589,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/player_1_imageView3"
+                        android:id="@+id/player_3_imageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
@@ -867,11 +861,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/player_1_imageView4"
+                        android:id="@+id/player_4_imageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
-                        android:rotation="180"
+                        android:rotation="0"
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
@@ -1140,7 +1134,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/player_1_imageView5"
+                        android:id="@+id/player_5_imageView"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
@@ -1462,6 +1456,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/score"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="20dp"
@@ -1474,10 +1469,12 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        android:foregroundGravity="right"
+                        android:gravity="right"
+                        android:orientation="vertical">
 
                         <Button
-                            android:id="@+id/spielstand_inc"
+                            android:id="@+id/ePoints_inc"
                             style="@style/Widget.AppCompat.Button.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -1488,13 +1485,14 @@
                             tools:text="+" />
 
                         <Button
-                            android:id="@+id/spielstand_dec"
+                            android:id="@+id/ePoints_dec"
                             style="@style/Widget.AppCompat.Button.Small"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:background="@android:color/holo_red_dark"
                             android:text="-"
+                            android:visibility="visible"
                             tools:text="-" />
                     </LinearLayout>
                 </LinearLayout>
