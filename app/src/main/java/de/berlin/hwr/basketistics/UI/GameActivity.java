@@ -36,81 +36,80 @@ public class GameActivity extends AppCompatActivity {
     //  TODO: Only here for testing...
     MockEventDB mockEventDB = new MockEventDB();
     MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
-
-    long millisleft=0;
+    TimerOnClickListener pauseListener;
     boolean timer_running = false;
-    public void pauseTimer(CountDownTimer timer)
-    {
-        Log.i(TAG, "Times Paused");
-        timer.cancel();
-    }
+   // public CountDownTimer timer;
+   int quaterCount = 1;
 
-    public void resumeTimer()
-    {
-        Log.i(TAG, "Timer resumed");
-    }
+    CountDownTimerWithPause timer = new CountDownTimerWithPause(600000, 1000, false) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            String timeLeft = format("%02d:%02d",
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+            timerTextView.setText(timeLeft);
+        }
+
+        @Override
+        public void onFinish() {
+
+            switch (quaterCount) {
+                case 1:
+                    timerTextView.setText("End of 1st");
+                    quaterCount++;
+                    break;
+                case 2:
+                    timerTextView.setText("End of 2nd");
+                    quaterCount++;
+                    break;
+                case 3:
+                    timerTextView.setText("End of 3rd");
+                    quaterCount++;
+                    break;
+                case 4:
+                    timerTextView.setText("End of 4th");
+                    quaterCount = 1;
+                    break;
+
+            }
+        }
+
+    };
+
 
     private void timerHandler()
     {
 
         timerTextView = findViewById(R.id.currTime);
-        final CountDownTimer timer = new CountDownTimer(600000  , 1000) {
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                millisleft = millisUntilFinished;
-                String timeLeft = format("%02d:%02d",
-                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-                timerTextView.setText(timeLeft);
-            }
-
-
-            @Override
-            public void onFinish() {
-                int quaterCount=0;
-                switch (quaterCount) {
-                    case 1: timerTextView.setText("End of 1st");
-                        quaterCount++;
-                        break;
-                    case 2: timerTextView.setText("End of 2nd");
-                        quaterCount++;
-                        break;
-                    case 3: timerTextView.setText("End of 3rd");
-                        quaterCount++;
-                        break;
-                    case 4: timerTextView.setText("End of 4th");
-                        quaterCount = 1;
-                        break;
-
-                }
-            }
-        };
+        timer.create();
 
         Button timerStart = findViewById(R.id.timer_start);
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(timerTextView.getText().toString().startsWith("E"))
+                    timer.create();
                 if (timer_running)
                 {
-                    resumeTimer();
+                    timer.resume();
                 }
-                 else{
+                 else if (!timer_running){
                     Log.i(TAG, "start timer.");
-                    timer.start();
+                    timer.resume();
                     timer_running = true;
                 }
             }
         });
 
         Button timerPause = findViewById(R.id.timer_end);
-        timerStart.setOnClickListener(new View.OnClickListener() {
+        timerPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "Timer stopped.");
-                pauseTimer(timer);
+                timer.pause();
             }
         });
+
 
     }
 
