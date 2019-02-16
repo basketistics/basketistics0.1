@@ -1,6 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -275,6 +276,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
+        Intent in = new Intent(this, StartActivity.class);
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
         bindPlayerButtons();
@@ -283,5 +285,6 @@ public class GameActivity extends AppCompatActivity {
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
         initMockDB();
+        startActivity(in);
     }
 }
