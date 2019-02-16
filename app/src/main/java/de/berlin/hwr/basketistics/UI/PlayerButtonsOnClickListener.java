@@ -1,8 +1,10 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.view.View;
+import android.widget.PopupWindow;
 
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
+
 
 public class PlayerButtonsOnClickListener implements View.OnClickListener {
 
@@ -10,6 +12,14 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
     private int eventID;
     private int points;
     private BasketisticsViewModel basketisticsViewModel;
+    PopupWindow window;
+
+    public PlayerButtonsOnClickListener(int player, int eventID, BasketisticsViewModel basketisticsViewModel, PopupWindow window) {
+        this.window = window;
+        this.player = player;
+        this.eventID = eventID;
+        this.basketisticsViewModel = basketisticsViewModel;
+    }
 
     public PlayerButtonsOnClickListener(int player, int eventID, BasketisticsViewModel basketisticsViewModel) {
         this.player = player;
@@ -17,7 +27,8 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         this.basketisticsViewModel = basketisticsViewModel;
     }
 
-    public PlayerButtonsOnClickListener(int player, int eventID, int points, BasketisticsViewModel basketisticsViewModel) {
+    public PlayerButtonsOnClickListener(int player, int eventID, int points, BasketisticsViewModel basketisticsViewModel, PopupWindow window) {
+        this.window = window;
         this.player = player;
         this.eventID = eventID;
         this.basketisticsViewModel = basketisticsViewModel;
@@ -55,7 +66,9 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
                 basketisticsViewModel.setFoul(1);
                 break;
             default:
-                // TODO: Exception handling!
+                // TODO: Exception handling
         }
+        if (window != null)
+            window.dismiss();
     }
 }

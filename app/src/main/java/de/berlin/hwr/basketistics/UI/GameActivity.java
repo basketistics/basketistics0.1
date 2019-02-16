@@ -1,19 +1,25 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.concurrent.TimeUnit;
+
 import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
 import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
+
+import static java.lang.String.format;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -26,10 +32,57 @@ public class GameActivity extends AppCompatActivity {
     private TextView[][] playerTextViews = new TextView[5][7];
 
     private BasketisticsViewModel basketisticsViewModel;
-
+    private TextView timerTextView;
     //  TODO: Only here for testing...
     MockEventDB mockEventDB = new MockEventDB();
     MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
+
+    private void timerHandler()
+    {
+
+        timerTextView = findViewById(R.id.currTime);
+        final CountDownTimer timer = new CountDownTimer(600000  , 1000) {
+
+            @Override
+            public void onTick(long millisUntilFinished) {
+                String timeLeft = format("%02d:%02d",
+                        TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                        TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+                timerTextView.setText(timeLeft);
+            }
+
+
+            @Override
+            public void onFinish() {
+                int quaterCount=0;
+                switch (quaterCount) {
+                    case 1: timerTextView.setText("End of 1st");
+                        quaterCount++;
+                        break;
+                    case 2: timerTextView.setText("End of 2nd");
+                        quaterCount++;
+                        break;
+                    case 3: timerTextView.setText("End of 3rd");
+                        quaterCount++;
+                        break;
+                    case 4: timerTextView.setText("End of 4th");
+                        quaterCount = 1;
+                        break;
+
+                }
+            }
+        };
+
+        Button timerStart = findViewById(R.id.timer_start);
+        timerStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.i(TAG, "start timer.");
+                timer.start();
+            }
+        });
+
+    }
 
     private void initMockDB() {
 
@@ -101,17 +154,17 @@ public class GameActivity extends AppCompatActivity {
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 1, basketisticsViewModel, pointsPopupWindow));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 2, basketisticsViewModel, pointsPopupWindow));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, 3, basketisticsViewModel, pointsPopupWindow));
         minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -1, basketisticsViewModel, pointsPopupWindow));
         minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -2, basketisticsViewModel, pointsPopupWindow));
         minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(player, 0, -3, basketisticsViewModel, pointsPopupWindow));
     }
 
     // Attach and enable Points PopUp an points buttons
