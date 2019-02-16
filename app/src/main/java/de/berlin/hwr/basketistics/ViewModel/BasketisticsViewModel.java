@@ -21,23 +21,13 @@ public class BasketisticsViewModel extends AndroidViewModel {
     private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
     private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
-    // Konstruktor
     public BasketisticsViewModel(@NonNull Application application) {
         super(application);
-
-        playerId.setValue(0);
-        playerNumber.setValue(0);
-        playerName.setValue("");
-        points.setValue(0);
-        assist.setValue(0);
-        rebound.setValue(0);
-        foul.setValue(0);
-        block.setValue(0);
-        turnover.setValue(0);
-        steal.setValue(0);
     }
 
     //// ---------- getter and "setter" ---------- ////
+
+    // TODO: inc functions are not needed anymore (?)
 
     // playerId
     public MutableLiveData<Integer> getPlayerId() {
@@ -46,6 +36,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setPlayerId(Integer playerId) {
         this.playerId.setValue(playerId);
+        Log.i(TAG, "playerID was set to " + playerId);
     }
 
     // playerNumber
@@ -55,6 +46,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setPlayerNumber(Integer playerNumber) {
         this.playerNumber.setValue(playerNumber);
+        Log.i(TAG, "playerNumber was set to " + playerNumber);
     }
 
     // playerName
@@ -64,6 +56,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setPlayerName(String playerName) {
         this.playerName.setValue(playerName);
+        Log.i(TAG, "playerName was set to " + playerName);
     }
 
     // points
@@ -73,6 +66,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setPoints(Integer points) {
         this.points.setValue(points);
+        Log.i(TAG, "points was set to " + points);
     }
 
     public void incPoints(Integer iPoints) {
@@ -89,6 +83,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setAssist(Integer assist) {
         this.assist .setValue(assist);
+        Log.i(TAG, "assist was set to " + assist);
     }
 
     public void incAssist(Integer iAssist) {
@@ -103,6 +98,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setRebound(Integer rebound) {
         this.rebound.setValue(rebound);
+        Log.i(TAG, "rebound was set to " + rebound);
     }
 
     public void incRebound(Integer iRebound) {
@@ -118,6 +114,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setFoul(Integer foul) {
         this.foul.setValue(foul);
+        Log.i(TAG, "foul was set to " + foul);
     }
 
     public void incFoul(Integer iFoul) {
@@ -132,6 +129,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setBlock(Integer block) {
         this.block.setValue(block);
+        Log.i(TAG, "block was set to " + block);
     }
 
     public void incBlock(Integer iBlock) {
@@ -146,6 +144,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setTurnover(Integer turnover) {
         this.turnover.setValue(turnover);
+        Log.i(TAG, "turnover was set to " + turnover);
     }
 
     public void incTurnover(Integer iTurnover) {
@@ -160,6 +159,7 @@ public class BasketisticsViewModel extends AndroidViewModel {
 
     public void setSteal(Integer steal) {
         this.steal.setValue(steal);
+        Log.i(TAG, "steal was set to " + steal);
     }
 
     public void incSteal(Integer iSteal) {

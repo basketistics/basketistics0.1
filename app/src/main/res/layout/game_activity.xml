@@ -84,6 +84,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -98,8 +99,13 @@
                                     android:id="@+id/shot_1_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:text="TextView" />
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </TableRow>
@@ -112,6 +118,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -122,11 +129,16 @@
                                     android:text="rebound" />
 
                                 <TextView
-                                    android:id="@+id/rebound_1_textView10"
+                                    android:id="@+id/rebound_1_textView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:text="TextView" />
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
 
                             </LinearLayout>
                         </TableRow>
@@ -139,6 +151,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -149,11 +162,16 @@
                                     android:text="assist" />
 
                                 <TextView
-                                    android:id="@+id/textView11"
+                                    android:id="@+id/assist_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:text="TextView" />
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -165,6 +183,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -175,11 +194,16 @@
                                     android:text="steal" />
 
                                 <TextView
-                                    android:id="@+id/textView12"
+                                    android:id="@+id/steal_1_TextView"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
                                     android:layout_weight="1"
-                                    android:text="TextView" />
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -191,6 +215,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -199,6 +224,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="block" />
+
+                                <TextView
+                                    android:id="@+id/block_1_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -210,6 +247,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -217,7 +255,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="block" />
+                                    android:text="turnover" />
+
+                                <TextView
+                                    android:id="@+id/turnover_1_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -229,6 +279,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -237,6 +288,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="foul" />
+
+                                <TextView
+                                    android:id="@+id/foul_1_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -295,6 +358,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -304,6 +368,18 @@
                                     android:layout_weight="1"
                                     android:text="shot" />
 
+                                <TextView
+                                    android:id="@+id/shot_2_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
                             </LinearLayout>
                         </TableRow>
 
@@ -315,6 +391,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -323,6 +400,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="rebound" />
+
+                                <TextView
+                                    android:id="@+id/rebound_2_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -334,6 +423,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -342,6 +432,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="assist" />
+
+                                <TextView
+                                    android:id="@+id/assist_2_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -353,6 +455,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -361,6 +464,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="steal" />
+
+                                <TextView
+                                    android:id="@+id/steal_2_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -372,6 +487,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -380,6 +496,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="block" />
+
+                                <TextView
+                                    android:id="@+id/block_2_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -391,6 +519,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -398,7 +527,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="block" />
+                                    android:text="turnover" />
+
+                                <TextView
+                                    android:id="@+id/turnover_2_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -410,6 +551,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -418,6 +560,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="foul" />
+
+                                <TextView
+                                    android:id="@+id/foul_2_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -476,6 +630,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -485,6 +640,18 @@
                                     android:layout_weight="1"
                                     android:text="shot" />
 
+                                <TextView
+                                    android:id="@+id/shot_3_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
                             </LinearLayout>
                         </TableRow>
 
@@ -496,6 +663,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -504,6 +672,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="rebound" />
+
+                                <TextView
+                                    android:id="@+id/rebound_3_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -515,6 +695,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -523,6 +704,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="assist" />
+
+                                <TextView
+                                    android:id="@+id/assist_3_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -534,6 +727,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -542,6 +736,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="steal" />
+
+                                <TextView
+                                    android:id="@+id/steal_3_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -553,6 +759,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -561,6 +768,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="block" />
+
+                                <TextView
+                                    android:id="@+id/block_3_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -572,6 +791,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -579,7 +799,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="block" />
+                                    android:text="turnover" />
+
+                                <TextView
+                                    android:id="@+id/turnover_3_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -591,6 +823,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -599,6 +832,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="foul" />
+
+                                <TextView
+                                    android:id="@+id/foul_3_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -658,6 +903,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -667,6 +913,18 @@
                                     android:layout_weight="1"
                                     android:text="shot" />
 
+                                <TextView
+                                    android:id="@+id/shot_4_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
                             </LinearLayout>
                         </TableRow>
 
@@ -678,6 +936,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -686,6 +945,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="rebound" />
+
+                                <TextView
+                                    android:id="@+id/rebound_4_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -697,6 +968,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -705,6 +977,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="assist" />
+
+                                <TextView
+                                    android:id="@+id/assist_4_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -716,6 +1000,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -724,6 +1009,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="steal" />
+
+                                <TextView
+                                    android:id="@+id/steal_4_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -735,6 +1032,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -743,6 +1041,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="block" />
+
+                                <TextView
+                                    android:id="@+id/block_4_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -754,6 +1064,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -761,7 +1072,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="block" />
+                                    android:text="turnover" />
+
+                                <TextView
+                                    android:id="@+id/turnover_4_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -773,6 +1096,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -781,6 +1105,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="foul" />
+
+                                <TextView
+                                    android:id="@+id/foul_4_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -839,6 +1175,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -848,6 +1185,18 @@
                                     android:layout_weight="1"
                                     android:text="shot" />
 
+                                <TextView
+                                    android:id="@+id/shot_5_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
+
                             </LinearLayout>
                         </TableRow>
 
@@ -859,6 +1208,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -867,6 +1217,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="rebound" />
+
+                                <TextView
+                                    android:id="@+id/rebound_5_textView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -878,6 +1240,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -886,6 +1249,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="assist" />
+
+                                <TextView
+                                    android:id="@+id/assist_5_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -897,6 +1272,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -905,6 +1281,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="steal" />
+
+                                <TextView
+                                    android:id="@+id/steal_5_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -916,6 +1304,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -924,6 +1313,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="block" />
+
+                                <TextView
+                                    android:id="@+id/block_5_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -935,6 +1336,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -942,7 +1344,19 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
-                                    android:text="block" />
+                                    android:text="turnover" />
+
+                                <TextView
+                                    android:id="@+id/turnover_5_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
@@ -954,6 +1368,7 @@
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <Button
@@ -962,6 +1377,18 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="foul" />
+
+                                <TextView
+                                    android:id="@+id/foul_5_TextView"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="12dp"
+                                    android:layout_weight="1"
+                                    android:gravity="right|center_vertical|end"
+                                    android:text="13"
+                                    android:textAlignment="textEnd"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
                         </TableRow>
 
