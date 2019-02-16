@@ -57,7 +57,7 @@
                             android:layout_weight="70"
                             android:text="Marcel Davis\n#7"
                             android:textAlignment="center"
-                            android:textSize="18sp"
+                            android:textSize="24sp"
                             android:textStyle="bold"
                             tools:text="Marcel Davis\n#7" />
 
@@ -334,7 +334,7 @@
                         android:layout_weight="70"
                         android:text="Marcel Davis\n#4"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="Marcel Davis\n#7" />
                 </LinearLayout>
@@ -606,7 +606,7 @@
                         android:layout_weight="70"
                         android:text="Marcel Davis\n#24"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="Marcel Davis\n#7" />
                 </LinearLayout>
@@ -879,7 +879,7 @@
                         android:layout_weight="70"
                         android:text="Marcel Davis\n#1"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="Marcel Davis\n#7" />
                 </LinearLayout>
@@ -1151,7 +1151,7 @@
                         android:layout_weight="70"
                         android:text="Marcel Davis\n#19"
                         android:textAlignment="center"
-                        android:textSize="18sp"
+                        android:textSize="24sp"
                         android:textStyle="bold"
                         tools:text="Marcel Davis\n#7" />
                 </LinearLayout>
