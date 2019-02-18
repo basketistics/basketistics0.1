@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_team"
+        android:enabled="true"
+        android:icon="@drawable/ic_accessible_black_24dp"
+        android:title="@string/navigation_team"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/nav_home"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/navigation_home"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
+        android:icon="@drawable/marcel_davis"
+        android:title="@string/test_nav" />
+</menu>
