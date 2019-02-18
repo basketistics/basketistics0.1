@@ -17,6 +17,6 @@ public class MockDBTeamObserver implements Observer {
 
     @Override
     public void onChanged(@Nullable Object o) {
-
+        this.mockPlayerDB.db =  teamViewModel.getTeam().getValue();
     }
 }
