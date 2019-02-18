@@ -20,7 +20,6 @@ public class SpieleListviewAdapter extends ArrayAdapter<SpieleListViewItem> {
         super(kontext, resourceLayout, items);
         this.resourceLayout = resourceLayout;
         this.kontext = kontext;
-
     }
 
 
@@ -34,7 +33,7 @@ public class SpieleListviewAdapter extends ArrayAdapter<SpieleListViewItem> {
         SpieleListViewItem slvi = getItem(position);
 
 
-        return super.getView(position, convertView, parent);
+        return v;
     }
 
     @Override
