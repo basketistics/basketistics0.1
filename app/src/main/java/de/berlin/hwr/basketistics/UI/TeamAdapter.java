@@ -57,9 +57,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public void onBindViewHolder(@NonNull TeamViewHolder teamViewHolder, int i) {
         Log.e(TAG, "onBindViewHolder was entered.");
         // TODO: teamViewHolder.playerImageView.setImageDrawable();
-        teamViewHolder.playerName.setText(mockPlayerDB.db.get(i).playerName);
-        teamViewHolder.playerNumber.setText("" + mockPlayerDB.db.get(i).playerNumber);
-        teamViewHolder.playerDescription.setText(mockPlayerDB.db.get(i).playerDescription);
+        teamViewHolder.playerName.setText(mockPlayerDB.db.get(i).name);
+        teamViewHolder.playerNumber.setText("" + mockPlayerDB.db.get(i).number);
+        teamViewHolder.playerDescription.setText(mockPlayerDB.db.get(i).description);
     }
 
     @Override
