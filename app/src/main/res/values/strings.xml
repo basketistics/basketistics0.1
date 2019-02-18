@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Basketistics</string>
+    <string name="nav_home" />
+    <string name="nav_team">Team</string>
+    <string name="nav_team2" />
+    <string name="nav_team3">team</string>
+    <string name="nav_home2">Home</string>
+    <string name="navigation_team">Team</string>
+    <string name="navigation_home">Home</string>
+    <string name="test_nav">tst</string>
+</resources>
