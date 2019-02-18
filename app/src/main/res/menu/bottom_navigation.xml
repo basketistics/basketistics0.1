@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/nav_games"
+        android:checkable="false"
+        android:enabled="true"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/nav_games"
+        android:visible="true"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/nav_team"
         android:enabled="true"
         android:icon="@drawable/ic_accessible_black_24dp"
         android:title="@string/navigation_team"
-        android:visible="true"
-        app:showAsAction="never" />
-    <item
-        android:id="@+id/nav_home"
-        android:checkable="false"
-        android:enabled="true"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/navigation_home"
         android:visible="true"
         app:showAsAction="never" />
 </menu>

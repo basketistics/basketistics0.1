@@ -26,7 +26,7 @@ public class StartActivity extends AppCompatActivity {
         bot_nav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
 
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
                 startActivity(intent);
                 return false;
