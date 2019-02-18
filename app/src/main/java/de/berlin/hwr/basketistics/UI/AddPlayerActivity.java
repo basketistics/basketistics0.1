@@ -1,7 +1,9 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,7 +11,10 @@ import android.widget.ImageView;
 
 import de.berlin.hwr.basketistics.R;
 
+// TODO: Set Flag FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS to Intent calling this Activity
 public class AddPlayerActivity extends AppCompatActivity {
+
+    private final static String TAG = "AddPlayerActivity";
 
     private ImageView playerImageView;
     private Button takePictureButton;
@@ -17,6 +22,9 @@ public class AddPlayerActivity extends AppCompatActivity {
     private EditText playerNumberEditText;
     private EditText playerDescriptionEditText;
     private Button addPlayerButton;
+
+    // TODO: Properly extend OnClickListener so Intent does not have to be public
+    public Intent teamActivityIntent;
 
     private void bindViews() {
         playerImageView = (ImageView) findViewById(R.id.add_playerImageView);
@@ -41,13 +49,21 @@ public class AddPlayerActivity extends AppCompatActivity {
             }
         });
 
+        // Prepare change to TeamActivity
+        teamActivityIntent = new Intent(this, TeamActivity.class);
         addPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // Write inserted data to database
+                // TODO: Write inserted data to ViewModel
+                // TODO: Check whether user input is legit.
+                Log.i(TAG, "addPlayerButton was clicked.");
+                Log.i(TAG, "Player Name: " + playerNameEditText.getText());
+                Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
+                Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
 
-                // start TeamActivity
+                // Start TeamActivity
+                startActivity(teamActivityIntent);
             }
         });
     }
