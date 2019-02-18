@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -37,7 +38,6 @@ public class GameActivity extends AppCompatActivity {
     private MockEventDB mockEventDB = new MockEventDB();
     private MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
     private TextView timerTextView;
-    private TimerOnClickListener pauseListener;
     boolean timer_running = false;
     // public CountDownTimer timer;
     int quaterCount = 1;
@@ -431,6 +431,12 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ////------Hide action-Bar---------
+        getWindow().requestFeature(Window.FEATURE_ACTION_BAR);
+        getSupportActionBar().hide();
+
+
         setContentView(R.layout.game_activity);
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);

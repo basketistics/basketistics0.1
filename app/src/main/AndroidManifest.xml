@@ -16,13 +16,18 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".UI.StartActivity">
+        <activity android:name=".UI.StartActivity"
+            android:label="Anstehende Spiele">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".UI.TeamActivity" />
+        <activity android:name=".UI.TeamActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".UI.AddPlayerActivity"></activity>
     </application>
 

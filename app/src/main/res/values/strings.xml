@@ -9,4 +9,6 @@
     <string name="navigation_home">Home</string>
     <string name="test_nav">tst</string>
     <string name="nav_games">Games</string>
+    <string name="plus_icon">plus_icon</string>
+    <string name="add">add</string>
 </resources>
