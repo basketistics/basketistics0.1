@@ -33,4 +33,7 @@ dependencies {
 
     // for ViewModelProviders
     implementation "android.arch.lifecycle:extensions:1.1.1"
+
+    // for RecyclerView
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
 }

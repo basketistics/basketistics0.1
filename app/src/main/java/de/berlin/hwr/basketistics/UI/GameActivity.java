@@ -1,9 +1,6 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
-import android.content.ClipData;
-import android.content.Intent;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -447,6 +444,5 @@ public class GameActivity extends AppCompatActivity {
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
         initMockDB();
-
     }
 }
