@@ -2,6 +2,7 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.ClipData;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -437,6 +438,7 @@ public class GameActivity extends AppCompatActivity {
 
         basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
 
+
         spielerwechsel();
         timerHandler();
         bindPlayerButtons();
@@ -445,5 +447,8 @@ public class GameActivity extends AppCompatActivity {
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
         initMockDB();
+
+        Intent intent = new Intent(this, StartActivity.class);
+        startActivity(intent);
     }
 }
