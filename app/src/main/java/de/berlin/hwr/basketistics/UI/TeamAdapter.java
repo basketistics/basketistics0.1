@@ -55,7 +55,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     // Replaces the contents of a view (invoked by layout manager)
     @Override
     public void onBindViewHolder(@NonNull TeamViewHolder teamViewHolder, int i) {
-        Log.e(TAG, "onBindViewHolder was entered.");
+        Log.i(TAG, "onBindViewHolder was entered.");
         // TODO: teamViewHolder.playerImageView.setImageDrawable();
         teamViewHolder.playerName.setText(mockPlayerDB.db.get(i).playerName);
         teamViewHolder.playerNumber.setText("" + mockPlayerDB.db.get(i).playerNumber);
