@@ -448,7 +448,5 @@ public class GameActivity extends AppCompatActivity {
         attachTextViewsToViewModel();
         initMockDB();
 
-        Intent intent = new Intent(this, StartActivity.class);
-        startActivity(intent);
     }
 }
