@@ -18,8 +18,8 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
 
-        final Intent intent = new Intent(this, GameActivity.class);
-
+        final Intent games_activity = new Intent(this, GameActivity.class);
+        final Intent team_activity = new Intent(this, TeamActivity.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.navbar);
         BottomNavigationView bot_nav = (BottomNavigationView) findViewById(R.id.navbar);
@@ -27,9 +27,23 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.nav_games:
+                        startActivity(games_activity);
+                        return true;
 
-                startActivity(intent);
+                    case R.id.nav_team:
+                            startActivity(team_activity);
+                            return true;
+                }
+
+
+
                 return false;
+
+
+
             }
         });
 
