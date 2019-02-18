@@ -286,7 +286,8 @@ public class GameActivity extends AppCompatActivity {
         initMockDB();
 
         // For testing
-        Intent intent = new Intent(this, TeamActivity.class);
-        startActivity(intent);
+        Intent teamActivityIntent = new Intent(this, TeamActivity.class);
+        Intent addPlayerintent = new Intent(this, AddPlayerActivity.class);
+        startActivity(addPlayerintent);
     }
 }
