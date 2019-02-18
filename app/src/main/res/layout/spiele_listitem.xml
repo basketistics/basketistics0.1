@@ -28,14 +28,14 @@
             android:weightSum="3">
 
             <TextView
-                android:id="@+id/textView21"
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="TextView" />
 
             <TextView
-                android:id="@+id/textView20"
+                android:id="@+id/time"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -57,14 +57,14 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/textView24"
+                    android:id="@+id/heim"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="Galataserei Neuköln" />
 
                 <TextView
-                    android:id="@+id/textView23"
+                    android:id="@+id/heim_score"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -79,14 +79,14 @@
                 android:weightSum="2">
 
                 <TextView
-                    android:id="@+id/textView26"
+                    android:id="@+id/gast"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Turbiene Tegel" />
 
                 <TextView
-                    android:id="@+id/textView25"
+                    android:id="@+id/gast_score"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

@@ -18,4 +18,13 @@ public class SpieleListViewItem {
        this.ort = ort;
 
     }
+    String getDate(){return datum;}
+    String getZeit(){return zeit;}
+    String getHeim(){return heim;}
+    String getPunkte_heim(){return punkte_heim;}
+    String getGast(){return gast;}
+    String getPunkte_gast(){return punkte_gast;}
+    String getOrt(){return ort;}
+
+
 }

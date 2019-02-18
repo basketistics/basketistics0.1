@@ -45,12 +45,12 @@ public class SpieleListviewAdapter extends ArrayAdapter<SpieleListViewItem> {
             TextView ort = v.findViewById(R.id.ort);
 
             date.setText(slvi.getDate());
-            if(time != null){time.setText(slvi.getZeit());}
-            if(heim != null){heim.setText(slvi.getHeim());}
-            if(heim_score != null){heim_score.setText(slvi.getPunkte_heim());}
-            if(gast != null){gast.setText(slvi.getGast());}
-            if(gast_score != null){gast_score.setText(slvi.getPunkte_gast());}
-            if(ort != null){ort.setText(slvi.getOrt());}
+            time.setText(slvi.getZeit());
+            heim.setText(slvi.getHeim());
+            heim_score.setText(slvi.getPunkte_heim());
+            gast.setText(slvi.getGast());
+            gast_score.setText(slvi.getPunkte_gast());
+            ort.setText(slvi.getOrt());
 
         }
 
