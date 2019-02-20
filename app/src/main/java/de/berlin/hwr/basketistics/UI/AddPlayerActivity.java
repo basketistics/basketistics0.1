@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.R;
 
 // TODO: Set Flag FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS to Intent calling this Activity
@@ -61,6 +62,12 @@ public class AddPlayerActivity extends AppCompatActivity {
                 Log.i(TAG, "Player Name: " + playerNameEditText.getText());
                 Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
                 Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
+
+                // Create player from user input and pass via intent to TeamActivity
+                teamActivityIntent.putExtra("player", new Player(
+                        playerNameEditText.getText().toString(),
+                        Integer.parseInt(playerNumberEditText.getText().toString()),
+                        playerDescriptionEditText.getText().toString()));
 
                 // Start TeamActivity
                 startActivity(teamActivityIntent);

@@ -12,12 +12,13 @@ import android.widget.TextView;
 
 import de.berlin.hwr.basketistics.Persistency.MockPlayerDB;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
 
     private static final String TAG = "TeamAdapter";
 
-    private String[] teamDataset;
+    private TeamViewModel teamViewModel;
 
     // TODO: Only for testing.
     public MockPlayerDB mockPlayerDB = new MockPlayerDB();
@@ -40,8 +41,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         }
     }
 
-    public TeamAdapter(String[] teamDataset) {
-        this.teamDataset = teamDataset;
+    public TeamAdapter(TeamViewModel teamViewModel) {
+        this.teamViewModel = teamViewModel;
     }
 
     @NonNull
@@ -57,13 +58,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public void onBindViewHolder(@NonNull TeamViewHolder teamViewHolder, int i) {
         Log.e(TAG, "onBindViewHolder was entered.");
         // TODO: teamViewHolder.playerImageView.setImageDrawable();
-        teamViewHolder.playerName.setText(mockPlayerDB.db.get(i).name);
-        teamViewHolder.playerNumber.setText("" + mockPlayerDB.db.get(i).number);
-        teamViewHolder.playerDescription.setText(mockPlayerDB.db.get(i).description);
+        teamViewHolder.playerName.setText(teamViewModel.getTeam().getValue().get(i).name);
+        teamViewHolder.playerNumber.setText("" + teamViewModel.getTeam().getValue().get(i).number);
+        teamViewHolder.playerDescription.setText(teamViewModel.getTeam().getValue().get(i).description);
     }
 
     @Override
     public int getItemCount() {
-        return teamDataset.length;
+        return teamViewModel.getTeam().getValue().size();
     }
 }
