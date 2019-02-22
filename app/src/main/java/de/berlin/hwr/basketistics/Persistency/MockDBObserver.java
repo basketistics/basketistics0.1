@@ -1,11 +1,8 @@
 package de.berlin.hwr.basketistics.Persistency;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
-import android.arch.lifecycle.ViewModelProviders;
 import android.support.annotation.Nullable;
 
-import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
 public class MockDBObserver implements Observer {

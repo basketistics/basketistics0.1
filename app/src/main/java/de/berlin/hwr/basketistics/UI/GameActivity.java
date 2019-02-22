@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
 import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
@@ -286,7 +287,8 @@ public class GameActivity extends AppCompatActivity {
         initMockDB();
 
         // For testing
-        Intent intent = new Intent(this, TeamActivity.class);
-        startActivity(intent);
+        Intent teamActivityIntent = new Intent(this, TeamActivity.class);
+        Intent addPlayerintent = new Intent(this, AddPlayerActivity.class);
+        startActivity(addPlayerintent);
     }
 }
