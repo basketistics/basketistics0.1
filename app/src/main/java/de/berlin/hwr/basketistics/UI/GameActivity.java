@@ -19,6 +19,9 @@ import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 
 public class GameActivity extends AppCompatActivity {
 
+    // For testing
+    Button toTeamActivityButton;
+
     private static final String TAG = "GameActivity";
 
     // Lets have all the Buttons in an array to save some space
@@ -286,9 +289,18 @@ public class GameActivity extends AppCompatActivity {
         attachTextViewsToViewModel();
         initMockDB();
 
+
         // For testing
-        Intent teamActivityIntent = new Intent(this, TeamActivity.class);
+        final Intent teamActivityIntent = new Intent(this, TeamActivity.class);
         Intent addPlayerintent = new Intent(this, AddPlayerActivity.class);
-        startActivity(teamActivityIntent);
+        //startActivity(teamActivityIntent);
+
+        toTeamActivityButton = findViewById(R.id.toTeamActivityButton);
+        toTeamActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(teamActivityIntent);
+            }
+        });
     }
 }

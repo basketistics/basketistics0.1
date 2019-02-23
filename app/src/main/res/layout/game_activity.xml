@@ -1405,6 +1405,12 @@
             android:layout_weight="80"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/toTeamActivityButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="to TeamActivity" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

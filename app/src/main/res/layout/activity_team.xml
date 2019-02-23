@@ -48,10 +48,18 @@
 
             <Button
                 android:id="@+id/addPlayerButton"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="70"
-                android:text="Spieler hinzufügen" />
+                android:text="Spieler hinzufügen"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/toGameActivityButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GameActivity"
+                app:layout_constraintStart_toStartOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

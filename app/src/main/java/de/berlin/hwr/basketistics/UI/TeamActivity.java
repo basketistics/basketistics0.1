@@ -25,6 +25,9 @@ import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class TeamActivity extends AppCompatActivity {
 
+    // For testing
+    Button toGameActivityButton;
+
     private final static int ADD_PLAYER_ACTIVITY_REQUEST_CODE = 3;
     private static final String TAG = "AddPlayerActivity";
 
@@ -85,11 +88,14 @@ public class TeamActivity extends AppCompatActivity {
             }
         });
 
-        Intent intent = getIntent();
-        if (intent == null) {
-            Log.i(TAG, "intent was null.");
-        } else {
-            Log.i(TAG, intent.toString());
-        }
+        // For testing
+        toGameActivityButton = findViewById(R.id.toGameActivityButton);
+        toGameActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gameIntent = new Intent(TeamActivity.this, GameActivity.class);
+                startActivity(gameIntent);
+            }
+        });
     }
 }
