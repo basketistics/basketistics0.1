@@ -38,7 +38,9 @@ public class TeamActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i(TAG, "reached onActivityresult().");
+        Log.i(TAG, "reached onActivityResult().");
+
+        teamDBViewModel = ViewModelProviders.of(this).get(TeamDBViewModel.class);
 
         if (requestCode == ADD_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             PlayerEntity playerEntity = (PlayerEntity) data.getExtras().get(AddPlayerActivity.EXTRA_REPLY);
@@ -68,8 +70,9 @@ public class TeamActivity extends AppCompatActivity {
         teamDBViewModel.getAllPlayers().observe(this, new Observer<List<PlayerEntity>>() {
             @Override
             public void onChanged(@Nullable List<PlayerEntity> playerEntities) {
+                Log.e(TAG, "teamViewModel has changed.");
                 // Update cached players
-                teamAdapter.setTeam(playerEntities);
+                teamAdapter.setTeam(teamDBViewModel.getAllPlayers().getValue());
             }
         });
 

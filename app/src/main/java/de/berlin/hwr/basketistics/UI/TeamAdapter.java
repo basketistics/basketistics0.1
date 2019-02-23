@@ -22,14 +22,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     private static final String TAG = "TeamAdapter";
 
-    private TeamViewModel teamViewModel;
-
     // Cached copy of Players
     private List<PlayerEntity> team;
     private LayoutInflater inflater;
-
-    // TODO: Only for testing.
-    public MockPlayerDB mockPlayerDB = new MockPlayerDB();
 
     public static class TeamViewHolder extends RecyclerView.ViewHolder {
 

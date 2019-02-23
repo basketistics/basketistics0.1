@@ -27,6 +27,7 @@ public class TeamDBViewModel extends AndroidViewModel {
     }
 
     public void insert(PlayerEntity playerEntity) {
+        allPlayers.getValue().add(playerEntity);
         repository.insert(playerEntity);
     }
 }
