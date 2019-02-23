@@ -10,9 +10,9 @@ import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
 @android.arch.persistence.room.Database(entities = {PlayerEntity.class}, version = 0)
-public class Database extends RoomDatabase {
+public abstract class Database extends RoomDatabase {
 
-    public abstract PlayerDao;
+    public abstract PlayerDao playerDao();
 
     @NonNull
     @Override
