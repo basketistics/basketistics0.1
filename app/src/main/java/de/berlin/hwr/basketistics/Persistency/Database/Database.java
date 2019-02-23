@@ -3,13 +3,16 @@ package de.berlin.hwr.basketistics.Persistency.Database;
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
+import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
-@android.arch.persistence.room.Database(entities = {PlayerEntity.class}, version = 1)
+@android.arch.persistence.room.Database(entities = {PlayerEntity.class, EventEntity.class}, version = 1)
+@TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
