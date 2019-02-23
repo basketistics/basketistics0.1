@@ -289,6 +289,6 @@ public class GameActivity extends AppCompatActivity {
         // For testing
         Intent teamActivityIntent = new Intent(this, TeamActivity.class);
         Intent addPlayerintent = new Intent(this, AddPlayerActivity.class);
-        startActivity(addPlayerintent);
+        startActivity(teamActivityIntent);
     }
 }

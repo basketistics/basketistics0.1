@@ -1,16 +1,19 @@
 package de.berlin.hwr.basketistics.Persistency.Database;
 
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
+import android.os.AsyncTask;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
-@android.arch.persistence.room.Database(entities = {PlayerEntity.class}, version = 0)
+@android.arch.persistence.room.Database(entities = {PlayerEntity.class}, version = 1)
 public abstract class Database extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
+
     private static volatile Database INSTANCE;
 
     public static Database getDatabase(final Context context) {
@@ -21,10 +24,40 @@ public abstract class Database extends RoomDatabase {
                             context.getApplicationContext(),
                             Database.class,
                             "database")
-                        .build();
+                            .fallbackToDestructiveMigration()
+                            .addCallback(databaseCallback)
+                            .allowMainThreadQueries()
+                            .build();
                 }
             }
         }
         return INSTANCE;
+    }
+
+    private static RoomDatabase.Callback databaseCallback = new RoomDatabase.Callback() {
+
+        @Override
+        public void onCreate(SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(INSTANCE).execute();
+        }
+    };
+
+    private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        private final PlayerDao dao;
+
+        public PopulateDbAsyncTask(Database db) {
+            this.dao = db.playerDao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+
+            PlayerEntity player = new PlayerEntity("Nachname", "Vorname", 15, "testtesttest.");
+            dao.insertAll(player);
+
+            return null;
+        }
     }
 }

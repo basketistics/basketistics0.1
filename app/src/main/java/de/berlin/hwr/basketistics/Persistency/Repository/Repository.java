@@ -43,7 +43,5 @@ public class Repository {
             asynchPlayerDao.insert(params[0]);
             return null;
         }
-    } {
-
     }
 }

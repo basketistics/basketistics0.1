@@ -66,9 +66,9 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public void onBindViewHolder(@NonNull TeamViewHolder teamViewHolder, int i) {
         Log.i(TAG, "onBindViewHolder was entered.");
         // TODO: teamViewHolder.playerImageView.setImageDrawable();
-        teamViewHolder.playerName.setText(teamViewModel.getTeam().getValue().get(i).name);
-        teamViewHolder.playerNumber.setText("" + teamViewModel.getTeam().getValue().get(i).number);
-        teamViewHolder.playerDescription.setText(teamViewModel.getTeam().getValue().get(i).description);
+        teamViewHolder.playerName.setText(team.get(i).getFirstName() + " " + team.get(i).getLastName());
+        teamViewHolder.playerNumber.setText("" + team.get(i).getNumber());
+        teamViewHolder.playerDescription.setText(team.get(i).getDescription());
     }
 
     public void setTeam(List<PlayerEntity> team) {

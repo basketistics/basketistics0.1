@@ -23,7 +23,7 @@ public class TeamDBViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<PlayerEntity>> getAllPlayers() {
-        return (LiveData<List<PlayerEntity>>) allPlayers.getValue();
+        return (LiveData<List<PlayerEntity>>) allPlayers;
     }
 
     public void insert(PlayerEntity playerEntity) {

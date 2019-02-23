@@ -9,19 +9,22 @@ import java.util.List;
 public class Player implements Serializable {
 
     public int id;
-    public String name;
+    public String lastName;
+    public String firstName;
     public int number;
     public String description;
 
-    public Player(int id, String name, int number, String description) {
+    public Player(int id, String lastName, String firstName, int number, String description) {
         this.id = id;
-        this.name = name;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.number = number;
         this.description = description;
     }
 
-    public Player(String name, int number, String description) {
-        this.name = name;
+    public Player(String lastName, String firstName, int number, String description) {
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.number = number;
         this.description = description;
     }

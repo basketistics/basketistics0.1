@@ -66,16 +66,28 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <EditText
-                    android:id="@+id/add_playerNamePlainText"
+                    android:id="@+id/add_playerFirstNamePlainText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
                     android:contentDescription="Name"
                     android:ems="10"
+                    android:hint="Vorname"
                     android:inputType="textPersonName"
                     android:paddingLeft="48dp"
-                    android:textAlignment="textStart"
-                    android:hint="Name"/>
+                    android:textAlignment="textStart" />
+
+                <EditText
+                    android:id="@+id/add_playerLastNamePlainText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:contentDescription="Name"
+                    android:ems="10"
+                    android:hint="Nachname"
+                    android:inputType="textPersonName"
+                    android:paddingLeft="48dp"
+                    android:textAlignment="textStart" />
 
                 <EditText
                     android:id="@+id/add_playerNumber"

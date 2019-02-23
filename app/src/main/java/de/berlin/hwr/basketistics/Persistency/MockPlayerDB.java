@@ -21,6 +21,7 @@ public class MockPlayerDB {
 
     public List<Player> db = new ArrayList<Player>();
 
+    /*
     public MockPlayerDB() {
         this.db.add(new Player(0, "Player1", 5, "Eveniet tempora sint et et. Nobis illo qui aut quas."));
         this.db.add(new Player(1, "Player2", 12, "Non illum fugiat recusandae magnam quod molestiae."));
@@ -29,4 +30,5 @@ public class MockPlayerDB {
         this.db.add(new Player(4, "Player5", 8, "Officiis dignissimos qui id ut eligendi."));
         this.db.add(new Player(999, "Trainer", 999, "Quam est dolor consequatur sunt vero autem accusantium."));
     }
+    */
 }

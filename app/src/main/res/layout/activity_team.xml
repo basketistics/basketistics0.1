@@ -22,7 +22,8 @@
             android:layout_height="match_parent"
             android:layout_weight="70"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/basketballteam" />
+            app:srcCompat="@drawable/basketballteam"
+            android:contentDescription="TODO" />
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -41,7 +42,16 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" >
+
+            </android.support.v7.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/addPlayerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="70"
+                android:text="Spieler hinzufügen" />
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

@@ -4,10 +4,12 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
-public class PlayerEntity {
+import java.io.Serializable;
 
-    @PrimaryKey
+@Entity
+public class PlayerEntity implements Serializable {
+
+    @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "last_name")
@@ -21,6 +23,13 @@ public class PlayerEntity {
 
     @ColumnInfo(name = "description")
     private String description;
+
+    public PlayerEntity(String lastName, String firstName, int number, String description) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.number = number;
+        this.description = description;
+    }
 
     // Getter and Setter
 

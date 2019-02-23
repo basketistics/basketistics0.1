@@ -23,10 +23,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.Player;
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 
 // TODO: Set Flag FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS to Intent calling this Activity
 public class AddPlayerActivity extends AppCompatActivity {
+
+    public final static String EXTRA_REPLY = "de.hwr.basketistis.addplayer.REPLY";
 
     // For Camera usage
     static final int REQUEST_IMAGE_CAPTURE = 1;
@@ -37,13 +40,11 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     private ImageView playerImageView;
     private Button takePictureButton;
-    private EditText playerNameEditText;
+    private EditText playerLastNameEditText;
+    private EditText playerFirstNameEditText;
     private EditText playerNumberEditText;
     private EditText playerDescriptionEditText;
     private Button addPlayerButton;
-
-    // TODO: Properly extend OnClickListener so Intent does not have to be public
-    public Intent teamActivityIntent;
 
     // Not used right now
     // TODO: Implement taking actual pictures
@@ -140,7 +141,8 @@ public class AddPlayerActivity extends AppCompatActivity {
     private void bindViews() {
         playerImageView = (ImageView) findViewById(R.id.add_playerImageView);
         takePictureButton = (Button) findViewById(R.id.add_playerFotoButton);
-        playerNameEditText = (EditText) findViewById(R.id.add_playerNamePlainText);
+        playerLastNameEditText = (EditText) findViewById(R.id.add_playerLastNamePlainText);
+        playerFirstNameEditText = (EditText) findViewById(R.id.add_playerFirstNamePlainText);
         playerNumberEditText = (EditText) findViewById(R.id.add_playerNumber);
         playerDescriptionEditText = (EditText) findViewById(R.id.add_playerDescription);
         addPlayerButton = (Button) findViewById(R.id.add_addPlayerButton);
@@ -161,27 +163,26 @@ public class AddPlayerActivity extends AppCompatActivity {
             }
         });
 
-        // Prepare change to TeamActivity
-        teamActivityIntent = new Intent(this, TeamActivity.class);
         addPlayerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                // TODO: Write inserted data to ViewModel
                 // TODO: Check whether user input is legit.
                 Log.i(TAG, "addPlayerButton was clicked.");
-                Log.i(TAG, "Player Name: " + playerNameEditText.getText());
+                Log.i(TAG, "Player Firstname: " + playerFirstNameEditText.getText());
+                Log.i(TAG, "Player Lastname: " + playerLastNameEditText.getText());
                 Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
                 Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
 
                 // Create player from user input and pass via intent to TeamActivity
-                teamActivityIntent.putExtra("player", new Player(
-                        playerNameEditText.getText().toString(),
+                Intent teamActivityIntent = new Intent();
+                teamActivityIntent.putExtra(EXTRA_REPLY, new PlayerEntity(
+                        playerLastNameEditText.getText().toString(),
+                        playerFirstNameEditText.getText().toString(),
                         Integer.parseInt(playerNumberEditText.getText().toString()),
                         playerDescriptionEditText.getText().toString()));
-
-                // Start TeamActivity
-                startActivity(teamActivityIntent);
+                setResult(RESULT_OK, teamActivityIntent);
+                finish();
             }
         });
     }
