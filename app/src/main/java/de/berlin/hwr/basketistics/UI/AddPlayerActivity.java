@@ -90,15 +90,6 @@ public class AddPlayerActivity extends AppCompatActivity {
         return image;
     }
 
-    private void bindViews() {
-        playerImageView = (ImageView) findViewById(R.id.add_playerImageView);
-        takePictureButton = (Button) findViewById(R.id.add_playerFotoButton);
-        playerNameEditText = (EditText) findViewById(R.id.add_playerNamePlainText);
-        playerNumberEditText = (EditText) findViewById(R.id.add_playerNumber);
-        playerDescriptionEditText = (EditText) findViewById(R.id.add_playerDescription);
-        addPlayerButton = (Button) findViewById(R.id.add_addPlayerButton);
-    }
-
     private void dispatchChoosePictureIntent() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -144,6 +135,15 @@ public class AddPlayerActivity extends AppCompatActivity {
             }
         }
         */
+    }
+
+    private void bindViews() {
+        playerImageView = (ImageView) findViewById(R.id.add_playerImageView);
+        takePictureButton = (Button) findViewById(R.id.add_playerFotoButton);
+        playerNameEditText = (EditText) findViewById(R.id.add_playerNamePlainText);
+        playerNumberEditText = (EditText) findViewById(R.id.add_playerNumber);
+        playerDescriptionEditText = (EditText) findViewById(R.id.add_playerDescription);
+        addPlayerButton = (Button) findViewById(R.id.add_addPlayerButton);
     }
 
     @Override

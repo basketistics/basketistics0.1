@@ -1,10 +1,8 @@
 package de.berlin.hwr.basketistics.Persistency.Database;
 
-import android.arch.persistence.db.SupportSQLiteOpenHelper;
-import android.arch.persistence.room.DatabaseConfiguration;
-import android.arch.persistence.room.InvalidationTracker;
+import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
-import android.support.annotation.NonNull;
+import android.content.Context;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
@@ -13,21 +11,20 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 public abstract class Database extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
+    private static volatile Database INSTANCE;
 
-    @NonNull
-    @Override
-    protected SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration config) {
-        return null;
-    }
-
-    @NonNull
-    @Override
-    protected InvalidationTracker createInvalidationTracker() {
-        return null;
-    }
-
-    @Override
-    public void clearAllTables() {
-
+    public static Database getDatabase(final Context context) {
+        if (INSTANCE == null) {
+            synchronized (Database.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(
+                            context.getApplicationContext(),
+                            Database.class,
+                            "database")
+                        .build();
+                }
+            }
+        }
+        return INSTANCE;
     }
 }

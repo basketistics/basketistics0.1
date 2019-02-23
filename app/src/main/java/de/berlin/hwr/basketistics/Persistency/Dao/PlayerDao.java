@@ -24,6 +24,9 @@ public interface PlayerDao {
     @Insert
     void insertAll(PlayerEntity... player);
 
+    @Insert
+    void insert(PlayerEntity player);
+
     @Delete
     void delete(PlayerEntity player);
 

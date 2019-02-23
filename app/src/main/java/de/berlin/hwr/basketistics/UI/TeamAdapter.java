@@ -1,5 +1,6 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.List;
+
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.Persistency.MockPlayerDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
@@ -19,6 +23,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     private static final String TAG = "TeamAdapter";
 
     private TeamViewModel teamViewModel;
+
+    // Cached copy of Players
+    private List<PlayerEntity> team;
+    private LayoutInflater inflater;
 
     // TODO: Only for testing.
     public MockPlayerDB mockPlayerDB = new MockPlayerDB();
@@ -41,14 +49,14 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         }
     }
 
-    public TeamAdapter(TeamViewModel teamViewModel) {
-        this.teamViewModel = teamViewModel;
+    public TeamAdapter(Context context) {
+        inflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout playerListItem = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.team_list_item, parent, false);
+        LinearLayout playerListItem = (LinearLayout) inflater.inflate(R.layout.team_list_item, parent, false);
         TeamViewHolder teamViewHolder = new TeamViewHolder(playerListItem);
         return teamViewHolder;
     }
@@ -63,8 +71,13 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         teamViewHolder.playerDescription.setText(teamViewModel.getTeam().getValue().get(i).description);
     }
 
+    public void setTeam(List<PlayerEntity> team) {
+        this.team = team;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
-        return teamViewModel.getTeam().getValue().size();
+        return team.size();
     }
 }
