@@ -104,11 +104,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="60"
+                    android:autofillHints="Description"
                     android:ems="10"
-                    android:hint="Number"
+                    android:hint="Description"
                     android:inputType="text|textMultiLine"
                     android:paddingLeft="48dp"
-                    android:autofillHints="Description"
                     android:textAlignment="textStart" />
 
                 <Button
