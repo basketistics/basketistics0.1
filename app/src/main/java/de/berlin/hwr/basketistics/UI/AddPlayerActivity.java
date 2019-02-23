@@ -2,6 +2,7 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -15,7 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -27,6 +30,7 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     // For Camera usage
     static final int REQUEST_IMAGE_CAPTURE = 1;
+    static final int PICK_IMAGE = 2;
     private String currentFotoPath;
 
     private final static String TAG = "AddPlayerActivity";
@@ -40,6 +44,16 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     // TODO: Properly extend OnClickListener so Intent does not have to be public
     public Intent teamActivityIntent;
+
+    // Not used right now
+    // TODO: Implement taking actual pictures
+    private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(currentFotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
+    }
 
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -72,6 +86,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         );
         // To be use by the Intent
         currentFotoPath = image.getAbsolutePath();
+        Log.i(TAG, currentFotoPath);
         return image;
     }
 
@@ -84,14 +99,51 @@ public class AddPlayerActivity extends AppCompatActivity {
         addPlayerButton = (Button) findViewById(R.id.add_addPlayerButton);
     }
 
-    // Coming back from Camera Intent
+    private void dispatchChoosePictureIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bundle extras = data.getExtras();
-            Bitmap imageBitmap = (Bitmap) extras.get("data");
-            playerImageView.setImageBitmap(imageBitmap);
+
+        if (requestCode == PICK_IMAGE) {
+            try {
+                InputStream inputStream = this.getContentResolver().openInputStream(data.getData());
+                Bitmap bitmap;
+                bitmap = BitmapFactory.decodeStream(inputStream);
+                playerImageView.setImageBitmap(bitmap);
+                // TODO: Save image to database (?).
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
         }
+
+        /*
+        Having trouble here...
+
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            super.onActivityResult(requestCode, resultCode, data);
+
+            // https://github.com/Vydia/react-native-background-upload/issues/8
+            String augmentedFilePath = "file://" + currentFotoPath;
+            Log.i(TAG, augmentedFilePath);
+            File file = new File(Environment.getExternalStorageDirectory().getPath(), augmentedFilePath);
+            Uri fotoUri = Uri.fromFile(file);
+            Bitmap bitmap;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), fotoUri);
+                // bitmap = cropAndScale(bitmap, 300); // Maybe do some scaling?
+                playerImageView.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        */
     }
 
     @Override
@@ -104,7 +156,8 @@ public class AddPlayerActivity extends AppCompatActivity {
         takePictureButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                dispatchChoosePictureIntent();
+                // dispatchTakePictureIntent();
             }
         });
 
