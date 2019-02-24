@@ -8,7 +8,9 @@ import android.util.Log;
 
 import java.util.List;
 
+import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
@@ -17,11 +19,14 @@ public class EventViewModel extends AndroidViewModel {
 
     private final static String TAG = "EventViewModel";
 
+    private MutableLiveData<MatchEntity> match = new MutableLiveData<MatchEntity>();
     private PlayerEvents[] playerEvents = new PlayerEvents[5];
     private Repository repository;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
+        // Prevent us from nullpointers.
+        this.match.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
         this.repository = new Repository(application);
         // this.playerEvents = repository.getAllEvents();
 
