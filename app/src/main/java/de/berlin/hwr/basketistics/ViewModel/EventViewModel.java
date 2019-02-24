@@ -6,6 +6,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.List;
+
+import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
 public class EventViewModel extends AndroidViewModel {
@@ -73,7 +76,7 @@ public class EventViewModel extends AndroidViewModel {
             return playerId;
         }
 
-        public void setPlayerId(Integer playerId) {
+        public void setPlayerId(Integer playerIndex, Integer playerId) {
             this.playerId.setValue(playerId);
         }
 
@@ -81,7 +84,7 @@ public class EventViewModel extends AndroidViewModel {
             return playerName;
         }
 
-        public void setPlayerFirstName(String playerName) {
+        public void setPlayerName(Integer playerIndex, String playerName) {
             this.playerName.setValue(playerName);
         }
 
@@ -89,7 +92,7 @@ public class EventViewModel extends AndroidViewModel {
             return playerNumber;
         }
 
-        public void setPlayerNumber(Integer playerNumber) {
+        public void setPlayerNumber(Integer playerIndex, Integer playerNumber) {
             this.playerNumber.setValue(playerNumber);
         }
 
@@ -97,56 +100,69 @@ public class EventViewModel extends AndroidViewModel {
             return points;
         }
 
-        public void addPoints(Integer points) {
+        public void addPoints(Integer playerIndex, Integer points) {
             this.points.setValue(this.points.getValue() + points);
+            repository.insertEvent(new EventEntity(1, playerId.getValue(), 1));
         }
 
         public MutableLiveData<Integer> getAssist() {
             return assist;
         }
 
-        public void addAssist(Integer assist) {
+        public void addAssist(Integer playerIndex, Integer assist) {
             this.assist.setValue(this.assist.getValue() + assist);
+            repository.insertEvent(new EventEntity(2, playerId.getValue(), 1));
         }
 
         public MutableLiveData<Integer> getRebound() {
             return rebound;
         }
 
-        public void addRebound(Integer rebound) {
+        public void addRebound(Integer playerIndex, Integer rebound) {
             this.rebound.setValue(this.rebound.getValue() + rebound);
+            repository.insertEvent(new EventEntity(3, playerId.getValue(), 1));
+
+            // Test
+            List<EventEntity> events = repository.getAllEvents();
+            for (EventEntity eventEntity : events) {
+                Log.i(TAG, eventEntity.getTimestamp() + " " + eventEntity.getId() + " " + eventEntity.toString() + " " + eventEntity.getPlayer() + " " + eventEntity.getEventType());
+            }
         }
 
         public MutableLiveData<Integer> getFoul() {
             return foul;
         }
 
-        public void addFoul(Integer foul) {
+        public void addFoul(Integer playerIndex, Integer foul) {
             this.foul.setValue(this.foul.getValue() + foul);
+            repository.insertEvent(new EventEntity(4, playerId.getValue(), 1));
         }
 
         public MutableLiveData<Integer> getBlock() {
             return block;
         }
 
-        public void addBlock(Integer block) {
+        public void addBlock(Integer playerIndex, Integer block) {
             this.block.setValue(this.block.getValue() + block);
+            repository.insertEvent(new EventEntity(5, playerId.getValue(), 1));
         }
 
         public MutableLiveData<Integer> getTurnover() {
             return turnover;
         }
 
-        public void addTurnover(Integer turnover) {
+        public void addTurnover(Integer playerIndex, Integer turnover) {
             this.turnover.setValue(this.turnover.getValue() + turnover);
+            repository.insertEvent(new EventEntity(6, playerId.getValue(), 1));
         }
 
         public MutableLiveData<Integer> getSteal() {
             return steal;
         }
 
-        public void addSteal(Integer steal) {
+        public void addSteal(Integer playerIndex, Integer steal) {
             this.steal.setValue(this.steal.getValue() + steal);
+            repository.insertEvent(new EventEntity(7, playerId.getValue(), 1));
         }
     }
 }

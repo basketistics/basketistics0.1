@@ -32,25 +32,25 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         switch (eventID) {
             case 0:
                 // TODO: Exception handling, points can be null!
-                eventViewModel.getPlayerEvents(playerIndex).addPoints(points);
+                eventViewModel.getPlayerEvents(playerIndex).addPoints(playerIndex, points);
                 break;
             case 1:
-                eventViewModel.getPlayerEvents(playerIndex).addRebound(1);
+                eventViewModel.getPlayerEvents(playerIndex).addRebound(playerIndex, 1);
                 break;
             case 2:
-                eventViewModel.getPlayerEvents(playerIndex).addAssist(1);
+                eventViewModel.getPlayerEvents(playerIndex).addAssist(playerIndex, 1);
                 break;
             case 3:
-                eventViewModel.getPlayerEvents(playerIndex).addSteal(1);
+                eventViewModel.getPlayerEvents(playerIndex).addSteal(playerIndex, 1);
                 break;
             case 4:
-                eventViewModel.getPlayerEvents(playerIndex).addBlock(1);
+                eventViewModel.getPlayerEvents(playerIndex).addBlock(playerIndex, 1);
                 break;
             case 5:
-                eventViewModel.getPlayerEvents(playerIndex).addTurnover(1);
+                eventViewModel.getPlayerEvents(playerIndex).addTurnover(playerIndex, 1);
                 break;
             case 6:
-                eventViewModel.getPlayerEvents(playerIndex).addFoul(1);
+                eventViewModel.getPlayerEvents(playerIndex).addFoul(playerIndex, 1);
                 break;
             default:
                 // TODO: Exception handling!

@@ -1,7 +1,6 @@
 package de.berlin.hwr.basketistics.Persistency.Repository;
 
 import android.app.Application;
-import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
 import java.util.List;
@@ -37,9 +36,24 @@ public class Repository {
     }
 
     public EventViewModel.PlayerEvents[] getPlayerEvents() {
-
-
         return null;
+    }
+
+    public void insertEvent(EventEntity eventEntity) {
+        new InsertEventAsyncTask(eventDao).execute(eventEntity);
+    }
+
+    private static class InsertEventAsyncTask extends AsyncTask<EventEntity, Void, Void> {
+
+        private EventDao asyncEventDao;
+
+        InsertEventAsyncTask(EventDao eventDao) {this.asyncEventDao = eventDao;}
+
+        @Override
+        protected Void doInBackground(EventEntity... eventEntities) {
+            asyncEventDao.insert(eventEntities[0]);
+            return null;
+        }
     }
 
     // ---------- PLayer ---------- //
@@ -48,21 +62,21 @@ public class Repository {
         return players;
     }
 
-    public void insert(PlayerEntity playerEntity) {
-        new insertAsynchTask(playerDao).execute(playerEntity);
+    public void insertPlayer(PlayerEntity playerEntity) {
+        new InsertAsynchTask(playerDao).execute(playerEntity);
     }
 
-    private static class insertAsynchTask extends AsyncTask<PlayerEntity, Void, Void> {
+    private static class InsertAsynchTask extends AsyncTask<PlayerEntity, Void, Void> {
 
-        private PlayerDao asynchPlayerDao;
+        private PlayerDao asyncPlayerDao;
 
-        insertAsynchTask(PlayerDao playerDao) {
-            this.asynchPlayerDao = playerDao;
+        InsertAsynchTask(PlayerDao playerDao) {
+            this.asyncPlayerDao = playerDao;
         }
 
         @Override
         protected Void doInBackground(PlayerEntity... params) {
-            asynchPlayerDao.insert(params[0]);
+            asyncPlayerDao.insert(params[0]);
             return null;
         }
     }

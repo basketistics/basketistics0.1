@@ -25,6 +25,14 @@ public class EventEntity implements Serializable{
     @ColumnInfo(name = "match")
     private int match;
 
+    // Constructor
+    public EventEntity(int eventType, int player, int match) {
+        this.timestamp = new Date();
+        this.eventType = eventType;
+        this.player = player;
+        this.match = match;
+    }
+
     // Getters and Setters
 
     public int getId() {
