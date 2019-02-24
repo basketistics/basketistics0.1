@@ -15,13 +15,15 @@ public class EventViewModel extends AndroidViewModel {
 
     private final static String TAG = "EventViewModel";
 
+    private MutableLiveData<List<EventEntity>> events;
     private PlayerEvents[] playerEvents = new PlayerEvents[5];
     private Repository repository;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
         this.repository = new Repository(application);
-        // this.playerEvents = repository.getAllEvents();
+        this.events = new MutableLiveData<List<EventEntity>>();
+        this.events.setValue(repository.getAllEvents());
 
         // For Testing
         if (playerEvents[0] == null) {

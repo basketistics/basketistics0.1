@@ -3,6 +3,7 @@ package de.berlin.hwr.basketistics.Persistency.Repository;
 import android.app.Application;
 import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -51,6 +52,8 @@ public class Repository {
 
     private static class InsertMatchAsyncTask extends AsyncTask<MatchEntity, Void, Void>{
 
+        private final static String TAG = "InsertMatchAsyncTask";
+
         private MatchDao asyncMatchDao;
 
         InsertMatchAsyncTask(MatchDao matchDao) {
@@ -59,6 +62,7 @@ public class Repository {
 
         @Override
         protected Void doInBackground(MatchEntity... matchEntities) {
+            Log.i(TAG, "inserting " + matchEntities[0].toString());
             asyncMatchDao.insert(matchEntities[0]);
             return null;
         }

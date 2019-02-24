@@ -10,7 +10,7 @@ public class MockDBObserver implements Observer {
     private MockEventDB mockEventDB;
 
     private int eventID;
-    // TODO: Change to actually use MockPlayerDB
+    // TODO: Change to actually use database
     private Boolean isPoints;
     private BasketisticsViewModel basketisticsViewModel;
 
