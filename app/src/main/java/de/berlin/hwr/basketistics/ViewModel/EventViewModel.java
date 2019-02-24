@@ -9,6 +9,8 @@ import android.util.Log;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.Player;
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
 public class EventViewModel extends AndroidViewModel {
@@ -26,7 +28,15 @@ public class EventViewModel extends AndroidViewModel {
         // For Testing
         if (playerEvents[0] == null) {
             for (int i = 0; i < 5; i++) {
-                playerEvents[i] = new PlayerEvents(i, "Player" + i, i, 0, 0, 0, 0, 0, 0, 0);
+                playerEvents[i] = new PlayerEvents(
+                        new PlayerEntity( "Player", "" + i, i, "Player " + i),
+                        0,
+                        0,
+                        0,
+                        0, 
+                        0,
+                        0,
+                        0);
             }
         }
     }
@@ -36,9 +46,7 @@ public class EventViewModel extends AndroidViewModel {
     }
 
     public class PlayerEvents {
-        private MutableLiveData<Integer> playerId = new MutableLiveData<Integer>();
-        private MutableLiveData<String> playerName = new MutableLiveData<String>();
-        private MutableLiveData<Integer> playerNumber = new MutableLiveData<Integer>();
+        private MutableLiveData<PlayerEntity> player = new MutableLiveData<PlayerEntity>();
         private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> assist = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> rebound = new MutableLiveData<Integer>();
@@ -49,9 +57,7 @@ public class EventViewModel extends AndroidViewModel {
 
         // Constructor
         public PlayerEvents(
-                int playerId,
-                String playerName,
-                int playerNumber,
+                PlayerEntity player,
                 int points,
                 int assist,
                 int rebound,
@@ -60,9 +66,7 @@ public class EventViewModel extends AndroidViewModel {
                 int turnover,
                 int steal) {
 
-            this.playerId.setValue(playerId);
-            this.playerName.setValue(playerName);
-            this.playerNumber.setValue(playerNumber);
+            this.player.setValue(player);
             this.points.setValue(points);
             this.assist.setValue(assist);
             this.rebound.setValue(rebound);
@@ -72,28 +76,12 @@ public class EventViewModel extends AndroidViewModel {
             this.steal.setValue(steal);
         }
 
-        public MutableLiveData<Integer> getPlayerId() {
-            return playerId;
+        public MutableLiveData<PlayerEntity> getPlayer() {
+            return player;
         }
 
-        public void setPlayerId(Integer playerIndex, Integer playerId) {
-            this.playerId.setValue(playerId);
-        }
-
-        public MutableLiveData<String> getPlayerName() {
-            return playerName;
-        }
-
-        public void setPlayerName(Integer playerIndex, String playerName) {
-            this.playerName.setValue(playerName);
-        }
-
-        public MutableLiveData<Integer> getPlayerNumber() {
-            return playerNumber;
-        }
-
-        public void setPlayerNumber(Integer playerIndex, Integer playerNumber) {
-            this.playerNumber.setValue(playerNumber);
+        public void setPlayer(PlayerEntity player) {
+            this.player.setValue(player);
         }
 
         public MutableLiveData<Integer> getPoints() {
@@ -102,7 +90,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addPoints(Integer playerIndex, Integer points) {
             this.points.setValue(this.points.getValue() + points);
-            repository.insertEvent(new EventEntity(1, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(1, player.getValue().getId(), 1));
         }
 
         public MutableLiveData<Integer> getAssist() {
@@ -111,7 +99,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addAssist(Integer playerIndex, Integer assist) {
             this.assist.setValue(this.assist.getValue() + assist);
-            repository.insertEvent(new EventEntity(2, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(2, player.getValue().getId(), 1));
         }
 
         public MutableLiveData<Integer> getRebound() {
@@ -120,7 +108,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addRebound(Integer playerIndex, Integer rebound) {
             this.rebound.setValue(this.rebound.getValue() + rebound);
-            repository.insertEvent(new EventEntity(3, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(3, player.getValue().getId(), 1));
 
             // Test
             List<EventEntity> events = repository.getAllEvents();
@@ -135,7 +123,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addFoul(Integer playerIndex, Integer foul) {
             this.foul.setValue(this.foul.getValue() + foul);
-            repository.insertEvent(new EventEntity(4, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(4, player.getValue().getId(), 1));
         }
 
         public MutableLiveData<Integer> getBlock() {
@@ -144,7 +132,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addBlock(Integer playerIndex, Integer block) {
             this.block.setValue(this.block.getValue() + block);
-            repository.insertEvent(new EventEntity(5, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(5, player.getValue().getId(), 1));
         }
 
         public MutableLiveData<Integer> getTurnover() {
@@ -153,7 +141,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addTurnover(Integer playerIndex, Integer turnover) {
             this.turnover.setValue(this.turnover.getValue() + turnover);
-            repository.insertEvent(new EventEntity(6, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(6, player.getValue().getId(), 1));
         }
 
         public MutableLiveData<Integer> getSteal() {
@@ -162,7 +150,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addSteal(Integer playerIndex, Integer steal) {
             this.steal.setValue(this.steal.getValue() + steal);
-            repository.insertEvent(new EventEntity(7, playerId.getValue(), 1));
+            repository.insertEvent(new EventEntity(7, player.getValue().getId(), 1));
         }
     }
 }
