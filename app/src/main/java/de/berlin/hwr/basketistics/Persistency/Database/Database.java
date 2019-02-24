@@ -8,16 +8,19 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
-@android.arch.persistence.room.Database(entities = {PlayerEntity.class, EventEntity.class}, version = 2)
+@android.arch.persistence.room.Database(entities = {PlayerEntity.class, EventEntity.class, MatchEntity.class}, version = 3)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
     public abstract EventDao eventDao();
+    public abstract MatchDao matchDao();
 
     private static volatile Database INSTANCE;
 

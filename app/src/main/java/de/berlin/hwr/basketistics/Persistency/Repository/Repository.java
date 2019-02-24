@@ -1,14 +1,18 @@
 package de.berlin.hwr.basketistics.Persistency.Repository;
 
 import android.app.Application;
+import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 
 import java.util.List;
+import java.util.regex.Matcher;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
@@ -20,6 +24,9 @@ public class Repository {
     private EventDao eventDao;
     private List<EventEntity> events;
 
+    private MatchDao matchDao;
+    private List<MatchEntity> matches;
+
     public Repository(Application application) {
 
         Database database = Database.getDatabase(application);
@@ -27,6 +34,33 @@ public class Repository {
         this.players = playerDao.getAll();
         this.eventDao = database.eventDao();
         this.events = eventDao.getAll();
+        this.matchDao = database.matchDao();
+        this.matches = matchDao.getAll();
+    }
+
+    // ---------- Matches ---------- //
+
+    public List<MatchEntity> getAllMatches() {
+        return matches;
+    }
+
+    public void insertMatch() {
+
+    }
+
+    private static class InsertMatchAsyncTask extends AsyncTask<MatchEntity, Void, Void>{
+
+        private MatchDao asyncMatchDao;
+
+        InsertMatchAsyncTask(MatchDao matchDao) {
+            this.asyncMatchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(MatchEntity... matchEntities) {
+            asyncMatchDao.insert(matchEntities[0]);
+            return null;
+        }
     }
 
     // ---------- Events ---------- //
