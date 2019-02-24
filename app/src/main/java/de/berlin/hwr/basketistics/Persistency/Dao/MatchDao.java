@@ -14,7 +14,7 @@ public interface MatchDao {
     @Query("SELECT * FROM MatchEntity")
     List<MatchEntity> getAll();
 
-    @Query("SELECT * FROM EventEntity WHERE id IN (:matchIds)")
+    @Query("SELECT * FROM MatchEntity WHERE id IN (:matchIds)")
     List<MatchEntity> getAllByIds(int[] matchIds);
 
     @Insert
