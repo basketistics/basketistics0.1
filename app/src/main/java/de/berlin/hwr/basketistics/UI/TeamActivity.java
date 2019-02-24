@@ -16,7 +16,7 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.TeamDBViewModel;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 public class TeamActivity extends AppCompatActivity {
 
     // For testing
@@ -28,7 +28,7 @@ public class TeamActivity extends AppCompatActivity {
     private static final String TAG = "AddPlayerActivity";
 
     private Button addPlayerButton;
-    private TeamDBViewModel teamDBViewModel;
+    private TeamViewModel teamViewModel;
 
     private RecyclerView teamRecyclerView;
 
@@ -39,11 +39,11 @@ public class TeamActivity extends AppCompatActivity {
 
         if (requestCode == ADD_PLAYER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             PlayerEntity playerEntity = (PlayerEntity) data.getExtras().get(AddPlayerActivity.EXTRA_REPLY);
-            teamDBViewModel.insert(playerEntity);
-            teamAdapter.setTeam(teamDBViewModel.getAllPlayers().getValue());
+            teamViewModel.insert(playerEntity);
+            teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
             // Test
-            for (PlayerEntity player : teamDBViewModel.getAllPlayers().getValue()) {
+            for (PlayerEntity player : teamViewModel.getAllPlayers().getValue()) {
                 Log.e(TAG, "PlayerID: " + player.getId());
             }
         } else {
@@ -65,15 +65,15 @@ public class TeamActivity extends AppCompatActivity {
         teamRecyclerView.setLayoutManager(linearLayoutManager);
 
         // get ViewModel
-        teamDBViewModel = ViewModelProviders.of(this).get(TeamDBViewModel.class);
+        teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
 
         // Observe ViewModel
-        teamDBViewModel.getAllPlayers().observe(this, new Observer<List<PlayerEntity>>() {
+        teamViewModel.getAllPlayers().observe(this, new Observer<List<PlayerEntity>>() {
             @Override
             public void onChanged(@Nullable List<PlayerEntity> playerEntities) {
                 Log.e(TAG, "teamViewModel has changed.");
                 // Update cached players
-                teamAdapter.setTeam(teamDBViewModel.getAllPlayers().getValue());
+                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
             }
         });
 

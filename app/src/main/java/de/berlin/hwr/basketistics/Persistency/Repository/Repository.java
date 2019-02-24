@@ -45,8 +45,8 @@ public class Repository {
         return matches;
     }
 
-    public void insertMatch() {
-
+    public void insertMatch(MatchEntity matchEntity) {
+        new InsertMatchAsyncTask(matchDao).execute(matchEntity);
     }
 
     private static class InsertMatchAsyncTask extends AsyncTask<MatchEntity, Void, Void>{

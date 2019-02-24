@@ -14,9 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
-import de.berlin.hwr.basketistics.Persistency.MockPlayerDB;
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
 

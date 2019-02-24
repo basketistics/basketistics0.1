@@ -1,23 +1,33 @@
 package de.berlin.hwr.basketistics.ViewModel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
-import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
 
-import de.berlin.hwr.basketistics.Persistency.Entities.Player;
-import de.berlin.hwr.basketistics.Persistency.MockPlayerDB;
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
+import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
-public class TeamViewModel extends ViewModel {
+public class TeamViewModel extends AndroidViewModel {
 
-    private MutableLiveData<List<Player>> team = new MutableLiveData<List<Player>>();
+    private Repository repository;
+    private MutableLiveData<List<PlayerEntity>> allPlayers;
 
-    public LiveData<List<Player>> getTeam() {
-        if (team.getValue() == null) {
-            team.setValue(new MockPlayerDB().db);
-        }
-        return (LiveData<List<Player>>) team;
+    public TeamViewModel(Application application) {
+        super(application);
+        repository = new Repository(application);
+        allPlayers = new MutableLiveData<List<PlayerEntity>>();
+        allPlayers.setValue(repository.getAllPlayers());
     }
-    public void addPlayer(Player player) { team.getValue().add(player); }
+
+    public LiveData<List<PlayerEntity>> getAllPlayers() {
+        return (LiveData<List<PlayerEntity>>) allPlayers;
+    }
+
+    public void insert(PlayerEntity playerEntity) {
+        allPlayers.getValue().add(playerEntity);
+        repository.insertPlayer(playerEntity);
+    }
 }
