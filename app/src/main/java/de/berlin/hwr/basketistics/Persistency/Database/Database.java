@@ -7,6 +7,7 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 
+import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
@@ -16,6 +17,7 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 public abstract class Database extends RoomDatabase {
 
     public abstract PlayerDao playerDao();
+    public abstract EventDao eventDao();
 
     private static volatile Database INSTANCE;
 

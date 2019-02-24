@@ -16,6 +16,7 @@ import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
+import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -30,51 +31,10 @@ public class GameActivity extends AppCompatActivity {
     // same for TextViews
     private TextView[][] playerTextViews = new TextView[5][7];
 
-    private BasketisticsViewModel basketisticsViewModel;
+    private EventViewModel eventViewModel;
 
-    //  TODO: Only here for testing...
-    MockEventDB mockEventDB = new MockEventDB();
-    MockPlayerStatsDB mockPlayerStatsDB = new MockPlayerStatsDB();
 
-    private void initMockDB() {
-
-         /* from MockEventTypeDB:
-            this.db.add(new Entry(0, "game_begin"));
-            this.db.add(new Entry(1, "point_plus_1"));
-            this.db.add(new Entry(2, "point_plus_2"));
-            this.db.add(new Entry(3, "point_plus_3"));
-            this.db.add(new Entry(4, "point_minus_1"));
-            this.db.add(new Entry(5, "point_minus_2"));
-            this.db.add(new Entry(6, "point_minus_3"));
-            this.db.add(new Entry(7, "rebound"));
-            this.db.add(new Entry(8, "assist"));
-            this.db.add(new Entry(9, "block"));
-            this.db.add(new Entry(10, "turnover"));
-            this.db.add(new Entry(11, "foul"));
-            this.db.add(new Entry(12, "steal"));
-            this.db.add(new Entry(13, "game_resume"));
-            this.db.add(new Entry(14, "game_pause"));
-            this.db.add(new Entry(15, "game_end"));;
-        */
-
-        // Special constructor is used for points!
-        basketisticsViewModel.getPoints().observe(
-                this, new MockDBObserver(mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getRebound().observe(
-                this, new MockDBObserver(7, mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getAssist().observe(
-                this, new MockDBObserver(8, mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getBlock().observe(
-                this, new MockDBObserver(9, mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getTurnover().observe(
-                this, new MockDBObserver(10, mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getFoul().observe(
-                this, new MockDBObserver(11, mockEventDB, basketisticsViewModel));
-        basketisticsViewModel.getSteal().observe(
-                this, new MockDBObserver(12, mockEventDB, basketisticsViewModel));
-    }
-
-    public void showPointsPopup(int player, Button button) {
+    public void showPointsPopup(int playerIndex, Button button) {
 
         PopupWindow pointsPopupWindow;
 
@@ -106,17 +66,17 @@ public class GameActivity extends AppCompatActivity {
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, 3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel));
         minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -1, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel));
         minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -2, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel));
         minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(player, 0, -3, basketisticsViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel));
     }
 
     // Attach and enable Points PopUp an points buttons
@@ -239,35 +199,34 @@ public class GameActivity extends AppCompatActivity {
             // Iterate over events except 0 (points)
             for (int j = 1; j < 7; j++) {
                 playerButtons[i][j].setOnClickListener(
-                        new PlayerButtonsOnClickListener(i, j, basketisticsViewModel));
+                        new PlayerButtonsOnClickListener(i, j, eventViewModel));
             }
         }
     }
 
     private void attachTextViewsToViewModel() {
         // Iterate over all players
-        // starts at 1
-        for (int i = 1; i < 6; i++) {
+        for (int i = 0; i < 5; i++) {
             // Iterate over events
             for (int j = 0; j < 7; j++) {
                 // - 1 here due to i starting at 1
-                playerTextViews[i - 1][j].setText("" + 0);
+                playerTextViews[i][j].setText("" + 0);
             }
             // attach actual observer
-            basketisticsViewModel.getPoints().observe(
-                    this, new PlayerTextViewObserver(i, 0, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getRebound().observe(
-                    this, new PlayerTextViewObserver(i, 1, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getAssist().observe(
-                    this, new PlayerTextViewObserver(i, 2, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getSteal().observe(
-                    this, new PlayerTextViewObserver(i, 3, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getBlock().observe(
-                    this, new PlayerTextViewObserver(i, 4, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getTurnover().observe(
-                    this, new PlayerTextViewObserver(i, 5, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
-            basketisticsViewModel.getFoul().observe(
-                    this, new PlayerTextViewObserver(i, 6, mockPlayerStatsDB, basketisticsViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getPoints().observe(
+                    this, new PlayerTextViewObserver(i, 0, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getRebound().observe(
+                    this, new PlayerTextViewObserver(i, 1, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getAssist().observe(
+                    this, new PlayerTextViewObserver(i, 2, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getSteal().observe(
+                    this, new PlayerTextViewObserver(i, 3, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getBlock().observe(
+                    this, new PlayerTextViewObserver(i, 4, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getTurnover().observe(
+                    this, new PlayerTextViewObserver(i, 5, eventViewModel, playerTextViews));
+            eventViewModel.getPlayerEvents(i).getFoul().observe(
+                    this, new PlayerTextViewObserver(i, 6, eventViewModel, playerTextViews));
 
 
         }
@@ -280,14 +239,13 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
-        basketisticsViewModel = ViewModelProviders.of(this).get(BasketisticsViewModel.class);
+        eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
 
         bindPlayerButtons();
         bindPlayerTextViews();
         attachPointsPopUp();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
-        initMockDB();
 
 
         // For testing

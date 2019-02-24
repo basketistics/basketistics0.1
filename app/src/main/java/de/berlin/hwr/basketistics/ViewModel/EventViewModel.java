@@ -1,12 +1,28 @@
 package de.berlin.hwr.basketistics.ViewModel;
 
+import android.app.Application;
+import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
+import android.support.annotation.NonNull;
 
-public class EventViewModel {
+import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
+
+public class EventViewModel extends AndroidViewModel {
 
     private PlayerEvents[] playerEvents = new PlayerEvents[5];
+    private Repository repository;
 
-    private class PlayerEvents {
+    public EventViewModel(@NonNull Application application) {
+        super(application);
+        this.repository = new Repository(application);
+        this.playerEvents = repository.getAllPlayerEvents();
+    }
+
+    public PlayerEvents getPlayerEvents(int playerIndex) {
+        return playerEvents[playerIndex];
+    }
+
+    public class PlayerEvents {
         private MutableLiveData<Integer> playerId = new MutableLiveData<Integer>();
         private MutableLiveData<String> playerFirstName = new MutableLiveData<String>();
         private MutableLiveData<Integer> playerNumber = new MutableLiveData<Integer>();
@@ -46,56 +62,56 @@ public class EventViewModel {
             return points;
         }
 
-        public void setPoints(Integer points) {
-            this.points.setValue(points);
+        public void addPoints(Integer points) {
+            this.points.setValue(this.points.getValue() + points);
         }
 
         public MutableLiveData<Integer> getAssist() {
             return assist;
         }
 
-        public void setAssist(Integer assist) {
-            this.assist.setValue(assist);
+        public void addAssist(Integer assist) {
+            this.assist.setValue(this.assist.getValue() + assist);
         }
 
         public MutableLiveData<Integer> getRebound() {
             return rebound;
         }
 
-        public void setRebound(Integer rebound) {
-            this.rebound.setValue(rebound);
+        public void addRebound(Integer rebound) {
+            this.rebound.setValue(this.rebound.getValue() + rebound);
         }
 
         public MutableLiveData<Integer> getFoul() {
             return foul;
         }
 
-        public void setFoul(Integer foul) {
-            this.foul.setValue(foul);
+        public void addFoul(Integer foul) {
+            this.foul.setValue(this.foul.getValue() + foul);
         }
 
         public MutableLiveData<Integer> getBlock() {
             return block;
         }
 
-        public void setBlock(Integer block) {
-            this.block.setValue(block);
+        public void addBlock(Integer block) {
+            this.block.setValue(this.block.getValue() + block);
         }
 
         public MutableLiveData<Integer> getTurnover() {
             return turnover;
         }
 
-        public void setTurnover(Integer turnover) {
-            this.turnover.setValue(turnover);
+        public void addTurnover(Integer turnover) {
+            this.turnover.setValue(this.turnover.getValue() + turnover);
         }
 
         public MutableLiveData<Integer> getSteal() {
             return steal;
         }
 
-        public void setSteal(Integer steal) {
-            this.steal.setValue(steal);
+        public void addSteal(Integer steal) {
+            this.steal.setValue(this.steal.getValue() + steal);
         }
     }
 }
