@@ -23,6 +23,7 @@ public class Repository {
 
     private EventDao eventDao;
     private List<EventEntity> events;
+    private EventViewModel.PlayerEvents[] playerEvents;
 
     private MatchDao matchDao;
     private List<MatchEntity> matches;
@@ -97,14 +98,14 @@ public class Repository {
     }
 
     public void insertPlayer(PlayerEntity playerEntity) {
-        new InsertAsynchTask(playerDao).execute(playerEntity);
+        new InsertPlayerAsyncTask(playerDao).execute(playerEntity);
     }
 
-    private static class InsertAsynchTask extends AsyncTask<PlayerEntity, Void, Void> {
+    private static class InsertPlayerAsyncTask extends AsyncTask<PlayerEntity, Void, Void> {
 
         private PlayerDao asyncPlayerDao;
 
-        InsertAsynchTask(PlayerDao playerDao) {
+        InsertPlayerAsyncTask(PlayerDao playerDao) {
             this.asyncPlayerDao = playerDao;
         }
 
