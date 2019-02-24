@@ -18,11 +18,17 @@ import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 public class StartGameActivity extends AppCompatActivity {
 
     private final static String TAG = "StartGameActivity";
+    public final static String STARTERS ="de.berlin.hwr.basketistics.UI.StartGameActivity.STARTERS";
 
     private EditText matchCityEditEText;
     private EditText matchOpponentEditText;
     private Switch matchIsHomeSwitch;
     private Boolean isHome = false;
+    private EditText player1EditText;
+    private EditText player2EditText;
+    private EditText player3EditText;
+    private EditText player4EditText;
+    private EditText player5EditText;
     private Button startGameButton;
 
     private MatchesViewModel matchesViewModel;
@@ -37,6 +43,11 @@ public class StartGameActivity extends AppCompatActivity {
         matchCityEditEText = findViewById(R.id.match_cityEditText);
         matchOpponentEditText = findViewById(R.id.match_contrahentEditText);
         matchIsHomeSwitch = findViewById(R.id.match_homeSwitch);
+        player1EditText = findViewById(R.id.player1);
+        player2EditText = findViewById(R.id.player2);
+        player3EditText = findViewById(R.id.player3);
+        player4EditText = findViewById(R.id.player4);
+        player5EditText = findViewById(R.id.player5);
         startGameButton = findViewById(R.id.match_startGameButton);
 
         matchIsHomeSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -60,7 +71,15 @@ public class StartGameActivity extends AppCompatActivity {
 
                 matchesViewModel.insert(match);
 
+                int[] starters = new int[5];
+                starters[0] = Integer.parseInt(player1EditText.getText().toString());
+                starters[1] = Integer.parseInt(player2EditText.getText().toString());
+                starters[2] = Integer.parseInt(player3EditText.getText().toString());
+                starters[3] = Integer.parseInt(player4EditText.getText().toString());
+                starters[4] = Integer.parseInt(player5EditText.getText().toString());
+
                 Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
+                gameIntent.putExtra(STARTERS, starters);
                 startActivity(gameIntent);
             }
         });

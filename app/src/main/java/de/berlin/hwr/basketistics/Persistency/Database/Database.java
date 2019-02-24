@@ -14,7 +14,9 @@ import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
-@android.arch.persistence.room.Database(entities = {PlayerEntity.class, EventEntity.class, MatchEntity.class}, version = 3)
+@android.arch.persistence.room.Database(
+        entities = {PlayerEntity.class, EventEntity.class, MatchEntity.class},
+        version = 4)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 

@@ -11,6 +11,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.Player;
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
 import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
 import de.berlin.hwr.basketistics.Persistency.MockEventDB;
@@ -30,8 +31,10 @@ public class GameActivity extends AppCompatActivity {
 
     // same for TextViews
     private TextView[][] playerTextViews = new TextView[5][7];
+    private TextView[] playerDescription = new TextView[5];
 
     private EventViewModel eventViewModel;
+    private int[] starters;
 
 
     public void showPointsPopup(int playerIndex, Button button) {
@@ -193,6 +196,16 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private void bindPlayerDescriptionTextViews() {
+        for (int i = 0; i > 5; i++) {
+            PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
+            playerDescription[i].setText(
+                    playerEntity.getFirstName() + " "
+                    + playerEntity.getLastName() + "\n"
+                    + playerEntity.getNumber());
+        }
+    }
+
     private void attachButtonsToViewModel() {
         // Iterate over all players
         for (int i = 0; i < 5; i++) {
@@ -209,7 +222,6 @@ public class GameActivity extends AppCompatActivity {
         for (int i = 0; i < 5; i++) {
             // Iterate over events
             for (int j = 0; j < 7; j++) {
-                // - 1 here due to i starting at 1
                 playerTextViews[i][j].setText("" + 0);
             }
             // attach actual observer
@@ -241,8 +253,21 @@ public class GameActivity extends AppCompatActivity {
 
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
 
+        // If coming from StartGameActivity set starters
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            int[] starters = (int[]) extras.get(StartGameActivity.STARTERS);
+            if (starters != null) {
+                this.starters = starters;
+                eventViewModel.proposeStarters(starters);
+            }
+        }
+
+
         bindPlayerButtons();
         bindPlayerTextViews();
+        bindPlayerDescriptionTextViews();
         attachPointsPopUp();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();

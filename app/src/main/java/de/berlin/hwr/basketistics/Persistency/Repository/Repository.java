@@ -73,6 +73,30 @@ public class Repository {
 
     // ---------- Events ---------- //
 
+    // TODO: Remove if unnecessary
+    public List<EventEntity> getAllEvents() {
+        return events;
+    }
+
+    public void insertEvent(EventEntity eventEntity) {
+        new InsertEventAsyncTask(eventDao).execute(eventEntity);
+    }
+
+    private static class InsertEventAsyncTask extends AsyncTask<EventEntity, Void, Void> {
+
+        private EventDao asyncEventDao;
+
+        InsertEventAsyncTask(EventDao eventDao) {this.asyncEventDao = eventDao;}
+
+        @Override
+        protected Void doInBackground(EventEntity... eventEntities) {
+            asyncEventDao.insert(eventEntities[0]);
+            return null;
+        }
+    }
+
+    // ---------- PLayer ---------- //
+
     public void addPlayerToCurrentGame(PlayerEntity playerEntity) {
         playersInCurrentGame.add(playerEntity);
     }
@@ -114,32 +138,13 @@ public class Repository {
         }
     }
 
-    // TODO: Remove if unnecessary
-    public List<EventEntity> getAllEvents() {
-        return events;
-    }
-
-    public void insertEvent(EventEntity eventEntity) {
-        new InsertEventAsyncTask(eventDao).execute(eventEntity);
-    }
-
-    private static class InsertEventAsyncTask extends AsyncTask<EventEntity, Void, Void> {
-
-        private EventDao asyncEventDao;
-
-        InsertEventAsyncTask(EventDao eventDao) {this.asyncEventDao = eventDao;}
-
-        @Override
-        protected Void doInBackground(EventEntity... eventEntities) {
-            asyncEventDao.insert(eventEntities[0]);
-            return null;
-        }
-    }
-
-    // ---------- PLayer ---------- //
 
     public List<PlayerEntity> getAllPlayers() {
         return players;
+    }
+
+    public PlayerEntity getPlayerById(int playerId) {
+        return playerDao.getPlayerById(playerId);
     }
 
     public void insertPlayer(PlayerEntity playerEntity) {

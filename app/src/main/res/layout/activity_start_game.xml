@@ -75,9 +75,45 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <Space
+        <EditText
+            android:id="@+id/player1"
             android:layout_width="match_parent"
-            android:layout_height="77dp" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Player 1 ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/player2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Player 2 ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/player3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Player 3 ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/player4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Player 4 ID"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/player5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Player 5 ID"
+            android:inputType="number" />
 
         <Button
             android:id="@+id/match_startGameButton"

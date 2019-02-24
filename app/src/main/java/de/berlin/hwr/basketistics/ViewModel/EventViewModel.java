@@ -6,7 +6,9 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
@@ -20,29 +22,45 @@ public class EventViewModel extends AndroidViewModel {
     private final static String TAG = "EventViewModel";
 
     private MutableLiveData<MatchEntity> match = new MutableLiveData<MatchEntity>();
-    private PlayerEvents[] playerEvents = new PlayerEvents[5];
+    private PlayerEvents[] playerEvents;
     private Repository repository;
+    private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
 
     public EventViewModel(@NonNull Application application) {
         super(application);
         // Prevent us from nullpointers.
         this.match.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
         this.repository = new Repository(application);
+    }
 
-        // For Testing
-        if (playerEvents[0] == null) {
-            for (int i = 0; i < 5; i++) {
-                playerEvents[i] = new PlayerEvents(
-                        new PlayerEntity( "Player", "" + i, i, "Player " + i),
+    public void proposeStarters(int[] starterIds) {
+        if (currentPlayerMap == null) {
+            currentPlayerMap = new HashMap<Integer, Integer>();
+            int i = 0;
+            for (int starterId : starterIds) {
+                currentPlayerMap.put(i, starterId);
+                i++;
+            }
+        }
+        if (playerEvents == null) {
+            Log.i(TAG, "playerEvents == null.");
+            playerEvents = new PlayerEvents[5];
+            for (int j = 0; j < 5; j++) {
+                playerEvents[j] = new PlayerEvents(
+                        repository.getPlayerById(currentPlayerMap.get(j)),
                         0,
                         0,
                         0,
-                        0, 
+                        0,
                         0,
                         0,
                         0);
             }
         }
+    }
+
+    public PlayerEntity getPlayerByIndex(int index) {
+        return playerEvents[index].player.getValue();
     }
 
     public PlayerEvents getPlayerEvents(int playerIndex) {
