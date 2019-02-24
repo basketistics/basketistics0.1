@@ -30,16 +30,22 @@ public class Repository {
         this.events = eventDao.getAll();
     }
 
-    public List<PlayerEntity> getAllPlayers() {
-        return players;
-    }
+    // ---------- Events ---------- //
 
     public List<EventEntity> getAllEvents() {
         return events;
     }
 
     public EventViewModel.PlayerEvents[] getPlayerEvents() {
+
+
         return null;
+    }
+
+    // ---------- PLayer ---------- //
+
+    public List<PlayerEntity> getAllPlayers() {
+        return players;
     }
 
     public void insert(PlayerEntity playerEntity) {

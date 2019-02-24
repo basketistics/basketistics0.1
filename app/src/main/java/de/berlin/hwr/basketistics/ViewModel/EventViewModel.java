@@ -4,10 +4,13 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
 public class EventViewModel extends AndroidViewModel {
+
+    private final static String TAG = "EventViewModel";
 
     private PlayerEvents[] playerEvents = new PlayerEvents[5];
     private Repository repository;
@@ -15,7 +18,14 @@ public class EventViewModel extends AndroidViewModel {
     public EventViewModel(@NonNull Application application) {
         super(application);
         this.repository = new Repository(application);
-        this.playerEvents = repository.getAllPlayerEvents();
+        // this.playerEvents = repository.getAllEvents();
+
+        // For Testing
+        if (playerEvents[0] == null) {
+            for (int i = 0; i < 5; i++) {
+                playerEvents[i] = new PlayerEvents(i, "Player" + i, i, 0, 0, 0, 0, 0, 0, 0);
+            }
+        }
     }
 
     public PlayerEvents getPlayerEvents(int playerIndex) {
@@ -24,7 +34,7 @@ public class EventViewModel extends AndroidViewModel {
 
     public class PlayerEvents {
         private MutableLiveData<Integer> playerId = new MutableLiveData<Integer>();
-        private MutableLiveData<String> playerFirstName = new MutableLiveData<String>();
+        private MutableLiveData<String> playerName = new MutableLiveData<String>();
         private MutableLiveData<Integer> playerNumber = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> assist = new MutableLiveData<Integer>();
@@ -34,6 +44,31 @@ public class EventViewModel extends AndroidViewModel {
         private MutableLiveData<Integer> turnover = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> steal = new MutableLiveData<Integer>();
 
+        // Constructor
+        public PlayerEvents(
+                int playerId,
+                String playerName,
+                int playerNumber,
+                int points,
+                int assist,
+                int rebound,
+                int foul,
+                int block,
+                int turnover,
+                int steal) {
+
+            this.playerId.setValue(playerId);
+            this.playerName.setValue(playerName);
+            this.playerNumber.setValue(playerNumber);
+            this.points.setValue(points);
+            this.assist.setValue(assist);
+            this.rebound.setValue(rebound);
+            this.foul.setValue(foul);
+            this.block.setValue(block);
+            this.turnover.setValue(turnover);
+            this.steal.setValue(steal);
+        }
+
         public MutableLiveData<Integer> getPlayerId() {
             return playerId;
         }
@@ -42,12 +77,12 @@ public class EventViewModel extends AndroidViewModel {
             this.playerId.setValue(playerId);
         }
 
-        public MutableLiveData<String> getPlayerFirstName() {
-            return playerFirstName;
+        public MutableLiveData<String> getPlayerName() {
+            return playerName;
         }
 
-        public void setPlayerFirstName(String playerFirstName) {
-            this.playerFirstName.setValue(playerFirstName);
+        public void setPlayerFirstName(String playerName) {
+            this.playerName.setValue(playerName);
         }
 
         public MutableLiveData<Integer> getPlayerNumber() {

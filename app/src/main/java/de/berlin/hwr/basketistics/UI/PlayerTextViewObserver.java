@@ -36,31 +36,31 @@ public class PlayerTextViewObserver implements Observer {
         switch (eventIndex) {
             case 0:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getPoints());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getPoints().getValue());
                 break;
             case 1:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getRebound());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getRebound().getValue());
                 break;
             case 2:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getAssist());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getAssist().getValue());
                 break;
             case 3:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getSteal());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getSteal().getValue());
                 break;
             case 4:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getBlock());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getBlock().getValue());
                 break;
             case 5:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getTurnover());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getTurnover().getValue());
                 break;
             case 6:
                 playerTextViews[playerIndex][eventIndex]
-                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getFoul());
+                        .setText("" + eventViewModel.getPlayerEvents(playerIndex).getFoul().getValue());
                 break;
         }
 
