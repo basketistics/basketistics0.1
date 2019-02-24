@@ -19,17 +19,17 @@ public class EventEntity implements Serializable{
     @ColumnInfo(name = "event_type")
     private int eventType;
 
-    @ColumnInfo(name = "player")
-    private int player;
+    @ColumnInfo(name = "player_id")
+    private int playerId;
 
-    @ColumnInfo(name = "match")
+    @ColumnInfo(name = "match_id")
     private int match;
 
     // Constructor
-    public EventEntity(int eventType, int player, int match) {
+    public EventEntity(int eventType, int playerId, int match) {
         this.timestamp = new Date();
         this.eventType = eventType;
-        this.player = player;
+        this.playerId = playerId;
         this.match = match;
     }
 
@@ -59,12 +59,12 @@ public class EventEntity implements Serializable{
         this.eventType = eventType;
     }
 
-    public int getPlayer() {
-        return player;
+    public int getPlayerId() {
+        return playerId;
     }
 
     public void setPlayer(int player) {
-        this.player = player;
+        this.playerId = player;
     }
 
     public int getMatch() {

@@ -1,12 +1,12 @@
 package de.berlin.hwr.basketistics.Persistency.Repository;
 
 import android.app.Application;
-import android.graphics.LightingColorFilter;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
+import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
@@ -14,15 +14,18 @@ import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class Repository {
 
     private PlayerDao playerDao;
-    private List<PlayerEntity>  players;
+    private List<PlayerEntity> players;
+    private List<PlayerEntity> playersInCurrentGame;
 
     private EventDao eventDao;
+    // TODO: Remove if unnecessary (storage issues with big list?).
     private List<EventEntity> events;
     private EventViewModel.PlayerEvents[] playerEvents;
 
@@ -70,12 +73,50 @@ public class Repository {
 
     // ---------- Events ---------- //
 
-    public List<EventEntity> getAllEvents() {
-        return events;
+    public void addPlayerToCurrentGame(PlayerEntity playerEntity) {
+        playersInCurrentGame.add(playerEntity);
     }
 
-    public EventViewModel.PlayerEvents[] getPlayerEvents() {
-        return null;
+    public List<PlayerEntity> getPlayersInCurrentGame(int matchId) throws ExecutionException, InterruptedException {
+
+        if (playersInCurrentGame == null) {
+            playersInCurrentGame = new GetPlayerEventsAsyncTask(eventDao, playerDao).execute(matchId).get();
+        }
+        return playersInCurrentGame;
+    }
+
+    private static class GetPlayerEventsAsyncTask extends AsyncTask<Integer, Void, List<PlayerEntity>>{
+        private EventDao asyncEventDao;
+        private PlayerDao asyncPlayerDao;
+
+        GetPlayerEventsAsyncTask(EventDao eventDao, PlayerDao playerDao) {
+            this.asyncEventDao = eventDao;
+            this.asyncPlayerDao = playerDao;
+        }
+
+        @Override
+        protected List<PlayerEntity> doInBackground(Integer... matchIds) {
+
+            // Iterate through events and list all players involved
+            List<EventEntity> eventsByMatch = asyncEventDao.getPlayerEventsByMatch(matchIds[0]);
+            List<Integer> playerIdsByMatch = new ArrayList<Integer>();
+            for (EventEntity eventEntity : eventsByMatch) {
+                if (!playerIdsByMatch.contains(eventEntity.getPlayerId())) {
+                    playerIdsByMatch.add(eventEntity.getPlayerId());
+                }
+            }
+            // Create those players and add to list
+            List<PlayerEntity> playerByMatch = new ArrayList<PlayerEntity>();
+            for (Integer playerId : playerIdsByMatch) {
+                playerByMatch.add(asyncPlayerDao.getPlayerById(playerId));
+            }
+            return playerByMatch;
+        }
+    }
+
+    // TODO: Remove if unnecessary
+    public List<EventEntity> getAllEvents() {
+        return events;
     }
 
     public void insertEvent(EventEntity eventEntity) {

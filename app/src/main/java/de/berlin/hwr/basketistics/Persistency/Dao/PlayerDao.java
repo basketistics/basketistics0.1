@@ -15,8 +15,8 @@ public interface PlayerDao {
     @Query("SELECT * FROM PLAYERENTITY")
     List<PlayerEntity> getAll();
 
-    @Query("SELECT * FROM playerentity WHERE id IN (:userIds)")
-    List<PlayerEntity> getAllByIds(int[] userIds);
+    @Query("SELECT * FROM playerentity WHERE id IN (:playerIds)")
+    List<PlayerEntity> getAllByIds(int[] playerIds);
 
     @Query("SELECT * FROM PlayerEntity WHERE first_name LIKE :first AND last_name LIKE :last LIMIT 1")
     PlayerEntity getByName(String first, String last);
@@ -29,4 +29,7 @@ public interface PlayerDao {
 
     @Delete
     void delete(PlayerEntity player);
+
+    @Query("SELECT * FROM playerentity WHERE id IN (:playerId)")
+    PlayerEntity getPlayerById(int playerId);
 }

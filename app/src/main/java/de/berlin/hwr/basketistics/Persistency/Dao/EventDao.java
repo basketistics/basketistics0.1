@@ -27,4 +27,6 @@ public interface EventDao {
     @Insert
     void insert(EventEntity eventEntity);
 
+    @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId)")
+    List<EventEntity> getPlayerEventsByMatch(int matchId);
 }

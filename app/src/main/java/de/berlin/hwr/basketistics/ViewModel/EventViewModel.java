@@ -117,7 +117,7 @@ public class EventViewModel extends AndroidViewModel {
             // Test
             List<EventEntity> events = repository.getAllEvents();
             for (EventEntity eventEntity : events) {
-                Log.i(TAG, eventEntity.getTimestamp() + " " + eventEntity.getId() + " " + eventEntity.toString() + " " + eventEntity.getPlayer() + " " + eventEntity.getEventType());
+                Log.i(TAG, eventEntity.getTimestamp() + " " + eventEntity.getId() + " " + eventEntity.toString() + " " + eventEntity.getPlayerId() + " " + eventEntity.getEventType());
             }
         }
 

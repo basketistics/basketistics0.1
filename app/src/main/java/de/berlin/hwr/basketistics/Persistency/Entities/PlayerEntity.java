@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class PlayerEntity implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private int id;
 
     @ColumnInfo(name = "last_name")
