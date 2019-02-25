@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
@@ -191,7 +192,13 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void bindPlayerDescriptionTextViews() {
-        /*
+
+        playerDescription[0] = findViewById(R.id.game_playerDescription1);
+        playerDescription[1] = findViewById(R.id.game_playerDescription2);
+        playerDescription[2] = findViewById(R.id.game_playerDescription3);
+        playerDescription[3] = findViewById(R.id.game_playerDescription4);
+        playerDescription[4] = findViewById(R.id.game_playerDescription5);
+
         for (int i = 0; i < 5; i++) {
             PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
             playerDescription[i].setText(
@@ -199,7 +206,6 @@ public class GameActivity extends AppCompatActivity {
                 + playerEntity.getLastName() + "\n"
                 + playerEntity.getNumber());
         }
-        */
     }
 
     private void attachButtonsToViewModel() {

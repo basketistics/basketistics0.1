@@ -51,7 +51,7 @@
                             app:srcCompat="@drawable/marcel_davis" />
 
                         <TextView
-                            android:id="@+id/textView3"
+                            android:id="@+id/game_playerDescription1"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_weight="70"
@@ -328,7 +328,7 @@
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/game_playerDescription2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
@@ -600,7 +600,7 @@
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/game_playerDescription3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
@@ -873,7 +873,7 @@
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/game_playerDescription4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
@@ -1145,7 +1145,7 @@
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/game_playerDescription5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="70"
