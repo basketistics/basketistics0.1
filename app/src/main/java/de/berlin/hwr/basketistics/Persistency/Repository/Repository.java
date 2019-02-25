@@ -14,7 +14,6 @@ import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
-import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 

@@ -2,11 +2,8 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.widget.TextView;
 
-import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
-import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class PlayerTextViewObserver implements Observer {

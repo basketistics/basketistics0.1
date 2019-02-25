@@ -10,10 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
-import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 

@@ -22,7 +22,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import de.berlin.hwr.basketistics.Persistency.Entities.Player;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 

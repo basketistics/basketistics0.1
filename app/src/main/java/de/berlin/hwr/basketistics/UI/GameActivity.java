@@ -79,7 +79,6 @@ public class GameActivity extends AppCompatActivity {
 
     // Attach and enable Points PopUp an points buttons
     private void attachPointsPopUp() {
-        // TODO: Refactor to depend on actual array
         for (int i = 0; i < 5; i++) {
             playerButtons[i][0].setOnClickListener(new PopupOnClickListener(i));
         }

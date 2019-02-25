@@ -2,8 +2,6 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.view.View;
 
-import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
-import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class PlayerButtonsOnClickListener implements View.OnClickListener {
