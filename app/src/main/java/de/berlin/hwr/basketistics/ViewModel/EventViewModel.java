@@ -55,6 +55,7 @@ public class EventViewModel extends AndroidViewModel {
                         0,
                         0,
                         0);
+                Log.e(TAG, "" + j);
             }
         }
     }

@@ -45,7 +45,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Ort"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Ort" />
 
         <EditText
             android:id="@+id/match_contrahentEditText"
@@ -53,7 +54,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Gegner"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:text="Gegner" />
 
         <Switch
             android:id="@+id/match_homeSwitch"
@@ -81,7 +83,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Player 1 ID"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="1" />
 
         <EditText
             android:id="@+id/player2"
@@ -89,7 +92,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Player 2 ID"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="2" />
 
         <EditText
             android:id="@+id/player3"
@@ -97,7 +101,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Player 3 ID"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="3" />
 
         <EditText
             android:id="@+id/player4"
@@ -105,7 +110,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Player 4 ID"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="4" />
 
         <EditText
             android:id="@+id/player5"
@@ -113,7 +119,8 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Player 5 ID"
-            android:inputType="number" />
+            android:inputType="number"
+            android:text="5" />
 
         <Button
             android:id="@+id/match_startGameButton"

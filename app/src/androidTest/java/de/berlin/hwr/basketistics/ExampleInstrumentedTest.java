@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 import static org.junit.Assert.*;
 
 /**
- * Instrumented game_activity, which will execute on an Android device.
+ * Instrumented activity_game, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
 public class ExampleInstrumentedTest {
     @Test
     public void useAppContext() {
-        // Context of the app under game_activity.
+        // Context of the app under activity_game.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
         assertEquals("de.berlin.hwr.basketistics", appContext.getPackageName());

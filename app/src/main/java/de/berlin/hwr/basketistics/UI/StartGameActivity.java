@@ -38,6 +38,10 @@ public class StartGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
 
+        // Test
+        // Intent teamIntent = new Intent(StartGameActivity.this, TeamActivity.class);
+        // startActivity(teamIntent);
+
         matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
 
         matchCityEditEText = findViewById(R.id.match_cityEditText);
@@ -81,7 +85,9 @@ public class StartGameActivity extends AppCompatActivity {
                 Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
                 gameIntent.putExtra(STARTERS, starters);
                 startActivity(gameIntent);
+
             }
         });
+
     }
 }

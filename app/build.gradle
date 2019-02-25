@@ -8,7 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.game_activity.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "android.support.activity_game.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -25,8 +25,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 
     // TODO: Need it, and why?
-    // androidTestImplementation 'com.android.support.game_activity:runner:1.0.2'
-    // androidTestImplementation 'com.android.support.game_activity.espresso:espresso-core:3.0.2'
+    // androidTestImplementation 'com.android.support.activity_game:runner:1.0.2'
+    // androidTestImplementation 'com.android.support.activity_game.espresso:espresso-core:3.0.2'
 
     // for ViewModelProviders
     implementation 'android.arch.lifecycle:extensions:1.1.1'

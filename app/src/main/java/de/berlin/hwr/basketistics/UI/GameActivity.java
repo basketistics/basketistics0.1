@@ -10,13 +10,7 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import de.berlin.hwr.basketistics.Persistency.Entities.Player;
-import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
-import de.berlin.hwr.basketistics.Persistency.MockPlayerStatsDB;
-import de.berlin.hwr.basketistics.Persistency.MockDBObserver;
-import de.berlin.hwr.basketistics.Persistency.MockEventDB;
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.BasketisticsViewModel;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class GameActivity extends AppCompatActivity {
@@ -197,13 +191,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void bindPlayerDescriptionTextViews() {
-        for (int i = 0; i > 5; i++) {
+        /*
+        for (int i = 0; i < 5; i++) {
             PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
             playerDescription[i].setText(
-                    playerEntity.getFirstName() + " "
-                    + playerEntity.getLastName() + "\n"
-                    + playerEntity.getNumber());
+                playerEntity.getFirstName() + " "
+                + playerEntity.getLastName() + "\n"
+                + playerEntity.getNumber());
         }
+        */
     }
 
     private void attachButtonsToViewModel() {
@@ -249,7 +245,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_activity);
+        setContentView(R.layout.activity_game);
 
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
 
