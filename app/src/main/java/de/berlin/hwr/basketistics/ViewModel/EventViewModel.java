@@ -35,6 +35,7 @@ public class EventViewModel extends AndroidViewModel {
     }
 
     public void proposeStarters(int[] starterIds) {
+        Log.e(TAG, "proposeStarters() was called.");
         if (currentPlayerMap == null) {
             currentPlayerMap = new HashMap<Integer, Integer>();
             int i = 0;
@@ -62,6 +63,8 @@ public class EventViewModel extends AndroidViewModel {
     }
 
     public int switchPlayers(int currentPlayerIndex, int newPLayerId) {
+
+        Log.e(TAG, "switchPlayers() was called.");
 
         for (PlayerEvents playerEvents : allPlayerEvents) {
             if (playerEvents.getPlayer().getValue().getId() == newPLayerId) {
@@ -131,6 +134,13 @@ public class EventViewModel extends AndroidViewModel {
 
     public PlayerEvents getPlayerEvents(int playerIndex) {
         return currentPlayerEvents[playerIndex];
+    }
+
+    public void fetchSavedState(int[] currentPlayers) {
+        int i = 0;
+        for (int playerId : currentPlayers) {
+            switchPlayers(i, playerId);
+        }
     }
 
     public class PlayerEvents {

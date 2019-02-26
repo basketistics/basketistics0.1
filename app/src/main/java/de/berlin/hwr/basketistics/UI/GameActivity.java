@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView[] playerDescription = new TextView[5];
 
     private EventViewModel eventViewModel;
-    private int[] starters;
+    private int[] currentPlayers;
 
 
     public void showPointsPopup(int playerIndex, Button button) {
@@ -198,7 +199,6 @@ public class GameActivity extends AppCompatActivity {
         playerDescription[3] = findViewById(R.id.game_playerDescription4);
         playerDescription[4] = findViewById(R.id.game_playerDescription5);
 
-        /*
         for (int i = 0; i < 5; i++) {
             PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
             playerDescription[i].setText(
@@ -206,7 +206,6 @@ public class GameActivity extends AppCompatActivity {
                 + playerEntity.getLastName() + "\n"
                 + playerEntity.getNumber());
         }
-        */
     }
 
     private void attachButtonsToViewModel() {
@@ -250,11 +249,40 @@ public class GameActivity extends AppCompatActivity {
     //// ---------- Lifecycle Callbacks ------------ ////
 
     @Override
+    public void onSaveInstanceState(Bundle bundle) {
+        bundle.putIntArray("currentPlayerIds", currentPlayers);
+        super.onSaveInstanceState(bundle);
+        Log.e(TAG, "onSaveInstanceState() was called.");
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_game);
 
-        eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        // Restore currentPlayers
+        if (savedInstanceState != null) {
+            Log.e(TAG, "savedInstanceState != null");
+            int[] playerIds = (int[]) savedInstanceState.get("currentPlayerIds");
+            if (playerIds != null) {
+                Log.e(TAG, "playerIds != null");
+                currentPlayers = playerIds;
+
+                // Get ViewModel
+                eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+
+                // Make ViewModel fetch data
+                eventViewModel.fetchSavedState(currentPlayers);
+            }
+
+        } else {
+
+            Log.e(TAG, "savedInstanceState == null!!");
+
+            // Get ViewModel
+            eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        }
 
         // If coming from StartGameActivity set starters
         Intent intent = getIntent();
@@ -262,7 +290,7 @@ public class GameActivity extends AppCompatActivity {
         if (extras != null) {
             int[] starters = (int[]) extras.get(StartGameActivity.STARTERS);
             if (starters != null) {
-                this.starters = starters;
+                currentPlayers = starters;
                 eventViewModel.proposeStarters(starters);
             }
         }
