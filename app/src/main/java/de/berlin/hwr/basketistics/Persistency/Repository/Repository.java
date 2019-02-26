@@ -26,7 +26,6 @@ public class Repository {
     private EventDao eventDao;
     // TODO: Remove if unnecessary (storage issues with big list?).
     private List<EventEntity> events;
-    private EventViewModel.PlayerEvents[] playerEvents;
 
     private MatchDao matchDao;
     private List<MatchEntity> matches;
@@ -72,6 +71,31 @@ public class Repository {
 
     // ---------- Events ---------- //
 
+    // TODO: Maybe use cached values?
+    public List<EventEntity> getEventsByMatchAndPlayer(int matchId, int playerId)
+        throws ExecutionException, InterruptedException {
+        List<EventEntity> eventsByMatchAndPlayer =
+                new GetEventsByMatchAndPlayerAsyncTask(eventDao).execute(matchId, playerId).get();
+        return eventsByMatchAndPlayer;
+    }
+
+    private static class GetEventsByMatchAndPlayerAsyncTask extends
+            AsyncTask<Integer, Void, List<EventEntity>>{
+
+        private EventDao asyncEventDao;
+
+        GetEventsByMatchAndPlayerAsyncTask(EventDao eventDao) {
+            this.asyncEventDao = eventDao;
+        }
+
+        @Override
+        protected List<EventEntity> doInBackground(Integer... integers) {
+            List<EventEntity> eventEntitiesByMatchAndPlayer =
+                    asyncEventDao.getEventsByMatchesAndPlayers(integers[0], integers[1]);
+            return eventEntitiesByMatchAndPlayer;
+        }
+    }
+
     // TODO: Remove if unnecessary
     public List<EventEntity> getAllEvents() {
         return events;
@@ -100,19 +124,22 @@ public class Repository {
         playersInCurrentGame.add(playerEntity);
     }
 
-    public List<PlayerEntity> getPlayersInCurrentGame(int matchId) throws ExecutionException, InterruptedException {
+    public List<PlayerEntity> getPlayersInCurrentGame(int matchId)
+            throws ExecutionException, InterruptedException {
 
         if (playersInCurrentGame == null) {
-            playersInCurrentGame = new GetPlayerEventsAsyncTask(eventDao, playerDao).execute(matchId).get();
+            playersInCurrentGame =
+                    new GetPlayersByEventsAsyncTask(eventDao, playerDao).execute(matchId).get();
         }
         return playersInCurrentGame;
     }
 
-    private static class GetPlayerEventsAsyncTask extends AsyncTask<Integer, Void, List<PlayerEntity>>{
+    private static class GetPlayersByEventsAsyncTask
+            extends AsyncTask<Integer, Void, List<PlayerEntity>>{
         private EventDao asyncEventDao;
         private PlayerDao asyncPlayerDao;
 
-        GetPlayerEventsAsyncTask(EventDao eventDao, PlayerDao playerDao) {
+        GetPlayersByEventsAsyncTask(EventDao eventDao, PlayerDao playerDao) {
             this.asyncEventDao = eventDao;
             this.asyncPlayerDao = playerDao;
         }

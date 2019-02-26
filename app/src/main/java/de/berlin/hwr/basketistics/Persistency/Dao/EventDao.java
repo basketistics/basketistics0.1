@@ -29,4 +29,7 @@ public interface EventDao {
 
     @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId)")
     List<EventEntity> getPlayerEventsByMatch(int matchId);
+
+    @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId) AND player_id IN (:playerId)")
+    List<EventEntity> getEventsByMatchesAndPlayers(int matchId, int playerId);
 }

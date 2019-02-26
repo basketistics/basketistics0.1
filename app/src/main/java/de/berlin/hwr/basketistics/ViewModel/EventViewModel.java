@@ -9,6 +9,7 @@ import android.util.Log;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
@@ -19,15 +20,16 @@ public class EventViewModel extends AndroidViewModel {
 
     private final static String TAG = "EventViewModel";
 
-    private MutableLiveData<MatchEntity> match = new MutableLiveData<MatchEntity>();
-    private PlayerEvents[] playerEvents;
+    private MutableLiveData<MatchEntity> currentMatch = new MutableLiveData<MatchEntity>();
+    private PlayerEvents[] currentPlayerEvents;
+    private List<PlayerEvents> allPlayerEvents;
     private Repository repository;
     private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
 
     public EventViewModel(@NonNull Application application) {
         super(application);
         // Prevent us from nullpointers.
-        this.match.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
+        this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
         this.repository = new Repository(application);
     }
 
@@ -40,11 +42,11 @@ public class EventViewModel extends AndroidViewModel {
                 i++;
             }
         }
-        if (playerEvents == null) {
-            Log.i(TAG, "playerEvents == null.");
-            playerEvents = new PlayerEvents[5];
+        if (currentPlayerEvents == null) {
+            Log.i(TAG, "currentPlayerEvents == null.");
+            currentPlayerEvents = new PlayerEvents[5];
             for (int j = 0; j < 5; j++) {
-                playerEvents[j] = new PlayerEvents(
+                currentPlayerEvents[j] = new PlayerEvents(
                         repository.getPlayerById(currentPlayerMap.get(j)),
                         0,
                         0,
@@ -58,12 +60,76 @@ public class EventViewModel extends AndroidViewModel {
         }
     }
 
+    public int switchPlayers(int currentPlayerIndex, int newPLayerId) {
+
+        for (PlayerEvents playerEvents : allPlayerEvents) {
+            if (playerEvents.getPlayer().getValue().getId() == newPLayerId) {
+                currentPlayerEvents[currentPlayerIndex] = playerEvents;
+                return 1; // 1 means success, player was in game already
+            }
+        }
+        try {
+            List<EventEntity> playerEventEntities =
+                    repository.getEventsByMatchAndPlayer(currentMatch.getValue().getId(), newPLayerId);
+            // TODO: Ugly dependency
+            PlayerEvents playerEvents = new PlayerEvents(
+                    repository.getPlayerById(newPLayerId),
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0);
+
+            for (EventEntity eventEntity : playerEventEntities) {
+                switch (eventEntity.getEventType()) {
+                    case 0:
+                        // TODO: Exception handling, points can be null!
+                        playerEvents.points.setValue(playerEvents.points.getValue() + 1);
+                        break;
+                    case 1:
+                        playerEvents.rebound.setValue(playerEvents.rebound.getValue() + 1);
+                        break;
+                    case 2:
+                        playerEvents.assist.setValue(playerEvents.assist.getValue() + 1);
+                        break;
+                    case 3:
+                        playerEvents.steal.setValue(playerEvents.steal.getValue() + 1);
+                        break;
+                    case 4:
+                        playerEvents.block.setValue(playerEvents.block.getValue() + 1);
+                        break;
+                    case 5:
+                        playerEvents.turnover.setValue(playerEvents.turnover.getValue() + 1);
+                        break;
+                    case 6:
+                        playerEvents.foul.setValue(playerEvents.foul.getValue() + 1);
+                        break;
+                    default:
+                        // TODO: Exception handling!
+                }
+            }
+
+            currentPlayerEvents[currentPlayerIndex] = playerEvents;
+            return 2; // Means success, playerEvents were created.
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            return -1; // ERROR
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            return -1; // ERROR
+        }
+
+    }
+
     public PlayerEntity getPlayerByIndex(int index) {
-        return playerEvents[index].player.getValue();
+        return currentPlayerEvents[index].player.getValue();
     }
 
     public PlayerEvents getPlayerEvents(int playerIndex) {
-        return playerEvents[playerIndex];
+        return currentPlayerEvents[playerIndex];
     }
 
     public class PlayerEvents {
