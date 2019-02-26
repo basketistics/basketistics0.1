@@ -198,6 +198,7 @@ public class GameActivity extends AppCompatActivity {
         playerDescription[3] = findViewById(R.id.game_playerDescription4);
         playerDescription[4] = findViewById(R.id.game_playerDescription5);
 
+        /*
         for (int i = 0; i < 5; i++) {
             PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
             playerDescription[i].setText(
@@ -205,6 +206,7 @@ public class GameActivity extends AppCompatActivity {
                 + playerEntity.getLastName() + "\n"
                 + playerEntity.getNumber());
         }
+        */
     }
 
     private void attachButtonsToViewModel() {
