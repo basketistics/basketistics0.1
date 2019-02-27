@@ -80,10 +80,12 @@ public class EventViewModel extends AndroidViewModel {
 
         Log.e(TAG, "switchPlayers() was called.");
 
-        for (PlayerEvents playerEvents : allPlayerEvents) {
-            if (playerEvents.getPlayer().getValue().getId() == newPLayerId) {
-                currentPlayerEvents[currentPlayerIndex] = playerEvents;
-                return 1; // 1 means success, player was in game already
+        if (allPlayerEvents != null) {
+            for (PlayerEvents playerEvents : allPlayerEvents) {
+                if (playerEvents.getPlayer().getValue().getId() == newPLayerId) {
+                    currentPlayerEvents[currentPlayerIndex] = playerEvents;
+                    return 1; // 1 means success, player was in game already
+                }
             }
         }
         try {
