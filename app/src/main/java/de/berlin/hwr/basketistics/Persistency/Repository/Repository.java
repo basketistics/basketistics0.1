@@ -15,7 +15,6 @@ import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
-import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class Repository {
 
@@ -41,8 +40,8 @@ public class Repository {
         this.matches = matchDao.getAll();
     }
 
-    // ---------- Matches ---------- //
 
+    // ---------- Matches ---------- //
     public List<MatchEntity> getAllMatches() {
         return matches;
     }
@@ -50,6 +49,7 @@ public class Repository {
     public void insertMatch(MatchEntity matchEntity) {
         new InsertMatchAsyncTask(matchDao).execute(matchEntity);
     }
+
 
     private static class InsertMatchAsyncTask extends AsyncTask<MatchEntity, Void, Void>{
 
@@ -66,6 +66,31 @@ public class Repository {
             Log.i(TAG, "inserting " + matchEntities[0].toString());
             asyncMatchDao.insert(matchEntities[0]);
             return null;
+        }
+
+    }
+
+    public MatchEntity getMatchById(int matchId) throws ExecutionException, InterruptedException {
+
+        MatchEntity match = new GetMatchByIdAsyncTask(matchDao).execute(matchId).get();
+        return match;
+    }
+
+    private static class GetMatchByIdAsyncTask extends AsyncTask<Integer, Void, MatchEntity> {
+
+        private final static String TAG = "getMatchByIdAsynchTask";
+        private MatchDao asyncMatchDao;
+
+        public GetMatchByIdAsyncTask(MatchDao matchDao) {
+            this.asyncMatchDao = matchDao;
+        }
+
+        @Override
+        protected MatchEntity doInBackground(Integer... integers) {
+            int[] ids = new int[1];
+            ids[0] = integers[0];
+            List<MatchEntity> matchEntities = asyncMatchDao.getAllByIds(ids);
+            return matchEntities.get(0);
         }
     }
 

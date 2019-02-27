@@ -25,7 +25,7 @@ public class TeamActivity extends AppCompatActivity {
     private TeamAdapter teamAdapter;
 
     private final static int ADD_PLAYER_ACTIVITY_REQUEST_CODE = 3;
-    private static final String TAG = "AddPlayerActivity";
+    public static final String TAG = "AddPlayerActivity";
 
     private Button addPlayerButton;
     private TeamViewModel teamViewModel;
@@ -92,6 +92,7 @@ public class TeamActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent gameIntent = new Intent(TeamActivity.this, GameActivity.class);
+                gameIntent.putExtra("origin", TAG);
                 startActivity(gameIntent);
             }
         });

@@ -17,8 +17,9 @@ import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 public class StartGameActivity extends AppCompatActivity {
 
-    private final static String TAG = "StartGameActivity";
+    public final static String TAG = "StartGameActivity";
     public final static String STARTERS ="de.berlin.hwr.basketistics.UI.StartGameActivity.STARTERS";
+    public final static String MATCH ="de.berlin.hwr.basketistics.UI.StartGameActivity.MATCH";
 
     private EditText matchCityEditEText;
     private EditText matchOpponentEditText;
@@ -39,7 +40,7 @@ public class StartGameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_start_game);
 
         // Test
-        // Intent teamIntent = new Intent(StartGameActivity.this, TeamActivity.class);
+        Intent teamIntent = new Intent(this, TeamActivity.class);
         // startActivity(teamIntent);
 
         matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
@@ -82,8 +83,14 @@ public class StartGameActivity extends AppCompatActivity {
                 starters[3] = Integer.parseInt(player4EditText.getText().toString());
                 starters[4] = Integer.parseInt(player5EditText.getText().toString());
 
+                int matchId = matchesViewModel.getAllMatches().getValue().get(
+                        matchesViewModel.getAllMatches().getValue().size() - 1).getId();
+
+                // Changed for testing to getApplicationContext
                 Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
                 gameIntent.putExtra(STARTERS, starters);
+                gameIntent.putExtra(MATCH, matchId);
+                gameIntent.putExtra("origin", TAG);
                 startActivity(gameIntent);
 
             }

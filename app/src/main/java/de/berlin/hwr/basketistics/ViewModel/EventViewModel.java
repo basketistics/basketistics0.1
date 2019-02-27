@@ -25,6 +25,7 @@ public class EventViewModel extends AndroidViewModel {
     private List<PlayerEvents> allPlayerEvents;
     private Repository repository;
     private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
+    private int currentMatchId;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
@@ -34,7 +35,11 @@ public class EventViewModel extends AndroidViewModel {
         this.repository = new Repository(application);
     }
 
-    public void proposeStarters(int[] starterIds) {
+    public void setCurrentMatchId(int matchId) {
+        this.currentMatchId = matchId;
+    }
+
+    public void proposeStarters(int[] starterIds, int currentMatchId) {
         Log.e(TAG, "proposeStarters() was called.");
         if (currentPlayerMap == null) {
             currentPlayerMap = new HashMap<Integer, Integer>();
@@ -58,6 +63,15 @@ public class EventViewModel extends AndroidViewModel {
                         0,
                         0);
                 Log.e(TAG, "" + j);
+            }
+        }
+        if (currentMatch== null) {
+            try {
+                currentMatch.setValue(repository.getMatchById(currentMatchId));
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
     }

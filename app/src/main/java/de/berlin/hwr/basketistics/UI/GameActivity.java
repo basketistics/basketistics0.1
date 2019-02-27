@@ -15,6 +15,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
+import static de.berlin.hwr.basketistics.UI.StartGameActivity.*;
+
 public class GameActivity extends AppCompatActivity {
 
     // For testing
@@ -30,7 +32,8 @@ public class GameActivity extends AppCompatActivity {
     private TextView[] playerDescription = new TextView[5];
 
     private EventViewModel eventViewModel;
-    private int[] currentPlayers;
+    private static int[] currentPlayersIds;
+    private static int currentMatchId;
 
 
     public void showPointsPopup(int playerIndex, Button button) {
@@ -250,51 +253,104 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle bundle) {
-        bundle.putIntArray("currentPlayerIds", currentPlayers);
         super.onSaveInstanceState(bundle);
+        bundle.putIntArray("currentPlayerIds", currentPlayersIds);
+        bundle.putInt("currentMatchId", currentMatchId);
         Log.e(TAG, "onSaveInstanceState() was called.");
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        // getIntent() should always return the most recent
+        setIntent(getIntent());
+        Log.e(TAG, "onNewIntent() was entered!");
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_game);
 
-        // Restore currentPlayers
+        // Get ViewModel
+        eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+
+        // Check, which Activity we are coming from
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            if (intent.getStringExtra("origin") == StartGameActivity.TAG) {
+
+                currentPlayersIds = (int[]) extras.get(StartGameActivity.STARTERS);
+                currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
+
+            } else if (intent.getExtras().get("origin") == TeamActivity.TAG) {
+                // update matchId in ViewModel
+                // update currentPlayerIds in ViewModel
+                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
+                // fetch PlayerEvents
+                eventViewModel.fetchSavedState(currentPlayersIds);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*
+
+        // Restore currentPlayersIds
         if (savedInstanceState != null) {
             Log.e(TAG, "savedInstanceState != null");
             int[] playerIds = (int[]) savedInstanceState.get("currentPlayerIds");
             if (playerIds != null) {
                 Log.e(TAG, "playerIds != null");
-                currentPlayers = playerIds;
+                currentPlayersIds = playerIds;
 
                 // Get ViewModel
                 eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
 
                 // Make ViewModel fetch data
-                eventViewModel.fetchSavedState(currentPlayers);
+                eventViewModel.fetchSavedState(currentPlayersIds);
             }
 
         } else {
 
             Log.e(TAG, "savedInstanceState == null!!");
 
-            // Get ViewModel
             eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-        }
 
-        // If coming from StartGameActivity set starters
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            int[] starters = (int[]) extras.get(StartGameActivity.STARTERS);
-            if (starters != null) {
-                currentPlayers = starters;
-                eventViewModel.proposeStarters(starters);
+            // If coming from StartGameActivity set starters
+            Intent intent = getIntent();
+            Bundle extras = intent.getExtras();
+            if (extras != null) {
+                int[] starters = (int[]) extras.get(STARTERS);
+                if (starters != null) {
+                    currentPlayersIds = starters;
+                    eventViewModel.proposeStarters(starters, currentMatchId);
+                }
+                int matchId = (int) extras.get(MATCH);
+                if (matchId > 0) {
+                    currentMatchId = matchId;
+                }
+            } else {
+                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
             }
-        }
 
+        }
+        */
 
         bindPlayerButtons();
         bindPlayerTextViews();
