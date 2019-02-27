@@ -278,14 +278,16 @@ public class GameActivity extends AppCompatActivity {
         // Check, which Activity we are coming from
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
+        Log.i(TAG, "!!!!!!!!" + (String) extras.get("origin"));
         if (extras != null) {
-            if (intent.getStringExtra("origin") == StartGameActivity.TAG) {
+            Log.i(TAG, "!!!!!!!!! extras != null");
+            if (intent.getStringExtra("origin").equals(StartGameActivity.TAG)) {
 
                 currentPlayersIds = (int[]) extras.get(StartGameActivity.STARTERS);
                 currentMatchId = (int) extras.get(StartGameActivity.MATCH);
                 eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
 
-            } else if (intent.getExtras().get("origin") == TeamActivity.TAG) {
+            } else if (intent.getExtras().get("origin").equals(TeamActivity.TAG)) {
                 // update matchId in ViewModel
                 // update currentPlayerIds in ViewModel
                 eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
