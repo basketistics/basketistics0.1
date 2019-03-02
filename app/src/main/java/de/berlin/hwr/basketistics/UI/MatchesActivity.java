@@ -112,5 +112,12 @@ public class MatchesActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        // For testing
+        Intent gameIntent = new Intent(this, GameActivity.class);
+        gameIntent.putExtra("origin", StartGameActivity.TAG);
+        int[] starters = {1, 2, 3, 4, 5};
+        gameIntent.putExtra(StartGameActivity.STARTERS, starters);
+        startActivity(gameIntent);
     }
 }
