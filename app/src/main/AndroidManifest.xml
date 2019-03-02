@@ -28,15 +28,15 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".UI.StartGameActivity">
+        <activity android:name=".UI.StartGameActivity"></activity>
+        <activity android:name=".UI.TeamActivity" />
+        <activity android:name=".UI.AddPlayerActivity" />
+        <activity android:name=".UI.GameActivity"></activity>
+        <activity android:name=".UI.MatchesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".UI.TeamActivity" />
-        <activity android:name=".UI.AddPlayerActivity" />
-        <activity android:name=".UI.GameActivity">
         </activity>
     </application>
 

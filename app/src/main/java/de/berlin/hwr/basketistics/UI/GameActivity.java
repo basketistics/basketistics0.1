@@ -1,7 +1,9 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +16,6 @@ import android.widget.TextView;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
-
-import static de.berlin.hwr.basketistics.UI.StartGameActivity.*;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -278,13 +278,14 @@ public class GameActivity extends AppCompatActivity {
         // Check, which Activity we are coming from
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        Log.i(TAG, "!!!!!!!!" + (String) extras.get("origin"));
         if (extras != null) {
-            Log.i(TAG, "!!!!!!!!! extras != null");
             if (intent.getStringExtra("origin").equals(StartGameActivity.TAG)) {
 
                 currentPlayersIds = (int[]) extras.get(StartGameActivity.STARTERS);
-                currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                // matchId is null in Intent
+                // currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+
+                // TODO: Setting matchId from ViewModel this way is only for testing
                 eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
 
             } else if (intent.getExtras().get("origin").equals(TeamActivity.TAG)) {
@@ -296,63 +297,13 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        /*
-
-        // Restore currentPlayersIds
-        if (savedInstanceState != null) {
-            Log.e(TAG, "savedInstanceState != null");
-            int[] playerIds = (int[]) savedInstanceState.get("currentPlayerIds");
-            if (playerIds != null) {
-                Log.e(TAG, "playerIds != null");
-                currentPlayersIds = playerIds;
-
-                // Get ViewModel
-                eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-
-                // Make ViewModel fetch data
-                eventViewModel.fetchSavedState(currentPlayersIds);
+        // Observe matchId
+        eventViewModel.getCurrentMatchId().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                currentMatchId = integer;
             }
-
-        } else {
-
-            Log.e(TAG, "savedInstanceState == null!!");
-
-            eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
-
-            // If coming from StartGameActivity set starters
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-            if (extras != null) {
-                int[] starters = (int[]) extras.get(STARTERS);
-                if (starters != null) {
-                    currentPlayersIds = starters;
-                    eventViewModel.proposeStarters(starters, currentMatchId);
-                }
-                int matchId = (int) extras.get(MATCH);
-                if (matchId > 0) {
-                    currentMatchId = matchId;
-                }
-            } else {
-                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
-            }
-
-        }
-        */
+        });
 
         bindPlayerButtons();
         bindPlayerTextViews();

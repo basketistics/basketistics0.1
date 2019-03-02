@@ -25,7 +25,7 @@ public class TeamActivity extends AppCompatActivity {
     private TeamAdapter teamAdapter;
 
     private final static int ADD_PLAYER_ACTIVITY_REQUEST_CODE = 3;
-    public static final String TAG = "AddPlayerActivity";
+    public static final String TAG = "TeamActivity";
 
     private Button addPlayerButton;
     private TeamViewModel teamViewModel;

@@ -89,7 +89,9 @@ public class StartGameActivity extends AppCompatActivity {
                 // Changed for testing to getApplicationContext
                 Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
                 gameIntent.putExtra(STARTERS, starters);
-                gameIntent.putExtra(MATCH, matchId);
+
+                // matchId is always null here
+                // gameIntent.putExtra(MATCH, matchId);
                 gameIntent.putExtra("origin", TAG);
                 startActivity(gameIntent);
 

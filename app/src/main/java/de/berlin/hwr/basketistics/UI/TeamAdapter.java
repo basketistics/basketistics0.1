@@ -31,7 +31,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         private TextView playerNumber;
         private TextView playerDescription;
 
-        public TextView textView;
         public TeamViewHolder(View itemView) {
             super(itemView);
             playerImageView = (ImageView) itemView.findViewById(R.id.playerPicture);

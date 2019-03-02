@@ -4,11 +4,16 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class MatchEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "date")
+    private Date date;
 
     @ColumnInfo(name = "city")
     private String city;
@@ -28,6 +33,9 @@ public class MatchEntity {
     @ColumnInfo(name = "is_winner")
     private Boolean isWinner;
 
+    @ColumnInfo(name = "description")
+    private String description;
+
     // Constructor
     public MatchEntity(String city, String opponent, Boolean isHome) {
         this.city = city;
@@ -43,6 +51,14 @@ public class MatchEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getCity() {
@@ -91,5 +107,13 @@ public class MatchEntity {
 
     public void setWinner(Boolean winner) {
         isWinner = winner;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

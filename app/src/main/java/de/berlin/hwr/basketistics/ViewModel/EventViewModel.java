@@ -25,18 +25,15 @@ public class EventViewModel extends AndroidViewModel {
     private List<PlayerEvents> allPlayerEvents;
     private Repository repository;
     private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
-    private int currentMatchId;
+    private MutableLiveData<Integer> currentMatchId;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
         Log.e(TAG, "Constructor.");
         // Prevent us from nullpointers.
         this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
+        this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
-    }
-
-    public void setCurrentMatchId(int matchId) {
-        this.currentMatchId = matchId;
     }
 
     public void proposeStarters(int[] starterIds, int currentMatchId) {
@@ -65,14 +62,15 @@ public class EventViewModel extends AndroidViewModel {
                 Log.e(TAG, "" + j);
             }
         }
-        if (currentMatch== null) {
-            try {
-                currentMatch.setValue(repository.getMatchById(currentMatchId));
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if (currentMatch.getValue().getId() == 0) {
+            // TODO: Only for testing, has to be changed asap
+            int matchId;
+            if (currentMatchId == 0) {
+                matchId = repository.getAllMatches().size();
+            } else {
+                matchId = currentMatchId;
             }
+            currentMatch.setValue(repository.getAllMatches().get(matchId - 1));
         }
     }
 
@@ -144,6 +142,13 @@ public class EventViewModel extends AndroidViewModel {
 
     }
 
+    public void fetchSavedState(int[] currentPlayers) {
+        int i = 0;
+        for (int playerId : currentPlayers) {
+            switchPlayers(i, playerId);
+        }
+    }
+
     public PlayerEntity getPlayerByIndex(int index) {
         return currentPlayerEvents[index].player.getValue();
     }
@@ -152,11 +157,8 @@ public class EventViewModel extends AndroidViewModel {
         return currentPlayerEvents[playerIndex];
     }
 
-    public void fetchSavedState(int[] currentPlayers) {
-        int i = 0;
-        for (int playerId : currentPlayers) {
-            switchPlayers(i, playerId);
-        }
+    public MutableLiveData<Integer> getCurrentMatchId() {
+        return currentMatchId;
     }
 
     public class PlayerEvents {
