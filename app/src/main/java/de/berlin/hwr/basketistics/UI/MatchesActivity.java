@@ -113,11 +113,22 @@ public class MatchesActivity extends AppCompatActivity {
             }
         });
 
+        /*
         // For testing
         Intent gameIntent = new Intent(this, GameActivity.class);
         gameIntent.putExtra("origin", StartGameActivity.TAG);
         int[] starters = {1, 2, 3, 4, 5};
         gameIntent.putExtra(StartGameActivity.STARTERS, starters);
         startActivity(gameIntent);
+        */
+
+        Button startGameButton = findViewById(R.id.startGameButton);
+        startGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startGameIntent = new Intent(MatchesActivity.this, StartGameActivity.class);
+                startActivity(startGameIntent);
+            }
+        });
     }
 }
