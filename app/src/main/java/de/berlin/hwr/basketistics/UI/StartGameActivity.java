@@ -69,7 +69,9 @@ public class StartGameActivity extends AppCompatActivity {
                 MatchEntity match = new MatchEntity(
                         matchCityEditEText.getText().toString(),
                         matchOpponentEditText.getText().toString(),
-                        isHome
+                        isHome,
+                        "<no_date>",
+                        "<no_description>"
                 );
 
                 Log.i(TAG, match.getCity() + " " + match.getOpponent() + " " + match.getHome());

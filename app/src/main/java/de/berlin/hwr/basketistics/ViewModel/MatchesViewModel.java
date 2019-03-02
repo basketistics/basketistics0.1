@@ -33,7 +33,7 @@ public class MatchesViewModel extends AndroidViewModel {
     }
 
     public LiveData<List<MatchEntity>> getAllMatches() {
-        return (LiveData<List<MatchEntity>>) matches;
+        return matches;
     }
 
     public void insert(MatchEntity matchEntity) {

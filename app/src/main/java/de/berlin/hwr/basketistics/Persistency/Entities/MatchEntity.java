@@ -4,16 +4,17 @@ import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-public class MatchEntity {
+public class MatchEntity implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
 
     @ColumnInfo(name = "date")
-    private Date date;
+    private String date;
 
     @ColumnInfo(name = "city")
     private String city;
@@ -37,10 +38,12 @@ public class MatchEntity {
     private String description;
 
     // Constructor
-    public MatchEntity(String city, String opponent, Boolean isHome) {
+    public MatchEntity(String city, String opponent, Boolean isHome, String date, String description) {
         this.city = city;
         this.opponent = opponent;
         this.isHome = isHome;
+        this.date = date;
+        this.description = description;
     }
 
     // Getter and Setter
@@ -53,11 +56,11 @@ public class MatchEntity {
         this.id = id;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

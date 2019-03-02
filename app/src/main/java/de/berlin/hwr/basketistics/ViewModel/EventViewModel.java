@@ -31,7 +31,7 @@ public class EventViewModel extends AndroidViewModel {
         super(application);
         Log.e(TAG, "Constructor.");
         // Prevent us from nullpointers.
-        this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false));
+        this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false, "<no_date>", "<no_description>"));
         this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
     }

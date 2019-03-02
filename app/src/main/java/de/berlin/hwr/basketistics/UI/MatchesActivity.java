@@ -32,6 +32,26 @@ public class MatchesActivity extends AppCompatActivity {
     private RecyclerView matchesRecyclerView;
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        Log.i(TAG, "reached onActivityResult().");
+
+        if (requestCode == ADD_MATCH_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            MatchEntity matchEntity = (MatchEntity) data.getExtras().get(AddMatchActivity.EXTRA_REPLY);
+            matchesViewModel.insert(matchEntity);
+            matchesAdapter.setMatches(matchesViewModel.getAllMatches().getValue());
+
+            // Test
+            for (MatchEntity match : matchesViewModel.getAllMatches().getValue()) {
+                Log.e(TAG, "MatchID: " + match.getId());
+            }
+        } else {
+            // TODO: Exceptionhandling.
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
@@ -57,7 +77,6 @@ public class MatchesActivity extends AppCompatActivity {
             }
         });
 
-        /*
         addMatchButton = (Button) findViewById(R.id.addMatchButton);
         addMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,6 +85,5 @@ public class MatchesActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
             }
         });
-        */
     }
 }

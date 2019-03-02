@@ -28,7 +28,7 @@ import de.berlin.hwr.basketistics.R;
 // TODO: Set Flag FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS to Intent calling this Activity
 public class AddPlayerActivity extends AppCompatActivity {
 
-    public final static String EXTRA_REPLY = "de.hwr.basketistis.addplayer.REPLY";
+    public final static String EXTRA_REPLY = "de.hwr.basketistis.AddPlayerActivity.REPLY";
 
     // For Camera usage
     static final int REQUEST_IMAGE_CAPTURE = 1;
