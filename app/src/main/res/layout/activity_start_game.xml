@@ -174,37 +174,46 @@
                 android:id="@+id/starter1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieler 1"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 1 (antippen zum aendern)"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/starter2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieler 2"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 2 (antippen zum aendern)"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/starter3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieler 3"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 3 (antippen zum aendern)"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/starter4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieler 4"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 4 (antippen zum aendern)"
                 android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/starter5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spieler 5"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 5 (antippen zum aendern)"
                 android:textSize="24sp" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="67dp" />
 
         <Button
             android:id="@+id/match_startGameButton"
