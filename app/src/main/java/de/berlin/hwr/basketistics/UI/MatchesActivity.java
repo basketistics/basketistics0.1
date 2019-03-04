@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -31,7 +32,7 @@ public class MatchesActivity extends AppCompatActivity {
     private final static int ADD_MATCH_ACTIVITY_REQUEST_CODE = 4;
     public static final String TAG = "MatchesActivity";
 
-    private Button addMatchButton;
+    private FloatingActionButton addMatchButton;
     private MatchesViewModel matchesViewModel;
 
     private RecyclerView matchesRecyclerView;
@@ -104,7 +105,7 @@ public class MatchesActivity extends AppCompatActivity {
             }
         });
 
-        addMatchButton = (Button) findViewById(R.id.addMatchButton);
+        addMatchButton =  findViewById(R.id.addMatchButton);
         addMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
