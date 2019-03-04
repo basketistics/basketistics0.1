@@ -80,7 +80,7 @@ public class MatchEntity implements Serializable {
         this.opponent = opponent;
     }
 
-    public Boolean getHome() {
+    public Boolean getIsHome() {
         return isHome;
     }
 

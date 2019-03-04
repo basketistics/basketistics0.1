@@ -3,9 +3,11 @@ package de.berlin.hwr.basketistics.UI;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,15 +30,16 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         private TextView matchOutTeam;
         private TextView matchDate;
         private TextView matchCity;
-        private TextView matchDescription;
+        private Button startGameButton;
 
         public MatchesViewHolder(View itemView) {
             super(itemView);
+            Log.e(TAG, "MatchesViewHolder was entered.");
             matchHomeTeam = itemView.findViewById(R.id.matchItemHomeTeam);
             matchOutTeam = itemView.findViewById(R.id.matchItemOutTeam);
             matchDate = itemView.findViewById(R.id.matchDateTextView);
             matchCity = itemView.findViewById(R.id.matchCityTextView);
-            matchDescription = itemView.findViewById(R.id.matchDescriptionTextView);
+            startGameButton = itemView.findViewById(R.id.selectMatchButton);
         }
     }
 
@@ -47,6 +50,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     @NonNull
     @Override
     public MatchesAdapter.MatchesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.e(TAG, "onCreateViewHolder() was entered.");
         LinearLayout matchesListItem = (LinearLayout) inflater.inflate(R.layout.match_list_item, parent, false);
         MatchesAdapter.MatchesViewHolder matchesViewHolder = new MatchesAdapter.MatchesViewHolder(matchesListItem);
         return matchesViewHolder;
@@ -55,7 +59,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     // Replaces the contents of a view (invoked by layout manager)
     @Override
     public void onBindViewHolder(@NonNull MatchesViewHolder matchesViewHolder, int i) {
-        if (matches.get(i).getHome()) {
+        Log.e(TAG, "onBindViewHolder was entered.");
+        if (matches.get(i).getIsHome()) {
             matchesViewHolder.matchHomeTeam.setText("MeinTeam");
             matchesViewHolder.matchOutTeam.setText(matches.get(i).getOpponent());
         } else {
@@ -64,16 +69,18 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         }
         matchesViewHolder.matchDate.setText(matches.get(i).getDate().toString());
         matchesViewHolder.matchCity.setText(matches.get(i).getCity());
-        matchesViewHolder.matchDescription.setText(matches.get(i).getDescription());
+        matchesViewHolder.startGameButton.setText("Spiel auswählen");
     }
 
     public void setMatches(List<MatchEntity> matches) {
+        Log.e(TAG, "setMatches() was entered.");
         this.matches = matches;
         notifyDataSetChanged();
     }
 
     @Override
     public int getItemCount() {
+        Log.e(TAG, "getItemCount() was entered.");
         return matches.size();
     }
 }
