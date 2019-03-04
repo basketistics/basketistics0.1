@@ -1,9 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -23,6 +21,7 @@ import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesViewHolder> {
 
     private static final String TAG = "MatchesAdapter";
+    public static final String MATCH_ID = "de.berlin.hwr.basketistics.UI.MatchesAdapter.MATCH_ID";
 
     // Cached copy of Matches
     private List<MatchEntity> matches;
@@ -44,7 +43,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         public MatchesViewHolder(View itemView) {
             super(itemView);
             matchHomeTeam = itemView.findViewById(R.id.matchItemHomeTeam);
-            matchOutTeam = itemView.findViewById(R.id.matchItemOutTeam);
+            matchOutTeam = itemView.findViewById(R.id.start_matchItemOutTeam);
             matchDate = itemView.findViewById(R.id.matchDateTextView);
             matchCity = itemView.findViewById(R.id.matchCityTextView);
             startGameButton = itemView.findViewById(R.id.selectMatchButton);
@@ -86,7 +85,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
             @Override
             public void onClick(View v) {
                 Intent startGameIntent = new Intent(matchesViewHolder.startGameButton.getContext(), StartGameActivity.class);
-                startGameIntent.putExtra("matchID", matchId);
+                startGameIntent.putExtra(MATCH_ID, matchId);
                 Log.i(TAG, "MatchId: " + matchId);
                 matchesViewHolder.startGameButton.getContext().startActivity(startGameIntent);
             }

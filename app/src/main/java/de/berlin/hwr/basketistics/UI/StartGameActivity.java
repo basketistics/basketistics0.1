@@ -15,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.util.concurrent.ExecutionException;
+
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
@@ -25,12 +27,13 @@ public class StartGameActivity extends AppCompatActivity {
     public final static String STARTERS ="de.berlin.hwr.basketistics.UI.StartGameActivity.STARTERS";
     public final static String MATCH ="de.berlin.hwr.basketistics.UI.StartGameActivity.MATCH";
 
+    private MatchesViewModel matchesViewModel;
+
     // Match
     private TextView opponentTextView;
     private TextView teamTextView;
     private TextView cityTextView;
     private TextView dateTextView;
-    private TextView descriptionTextView;
     LinearLayout matchLinearLayout;
 
     // Starters
@@ -42,8 +45,6 @@ public class StartGameActivity extends AppCompatActivity {
 
     private Button startGameButton;
 
-    private MatchesViewModel matchesViewModel;
-
     private void showPlayerPopUp() {}
 
     @Override
@@ -51,18 +52,14 @@ public class StartGameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
 
-        opponentTextView = findViewById(R.id.startOutTeam);
-        teamTextView = findViewById(R.id.startHomeTeam);
-        cityTextView = findViewById(R.id.startCityTextView);
-        dateTextView = findViewById(R.id.startDateTextView);
-        descriptionTextView = findViewById(R.id.startDescriptionTextView);
-        matchLinearLayout = findViewById(R.id.matchListItemLinearLayout);
-        matchLinearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                showPlayerPopUp();
-            }
-        });
+        // Get MatchesViewModel
+        matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
+
+        // Find Views
+        opponentTextView = findViewById(R.id.start_matchItemOutTeam);
+        teamTextView = findViewById(R.id.start_matchItemHomeTeam);
+        cityTextView = findViewById(R.id.start_matchCityTextView);
+        dateTextView = findViewById(R.id.start_matchDateTextView);
 
         starter1 = findViewById(R.id.starter1);
         starter2 = findViewById(R.id.starter2);
@@ -70,6 +67,26 @@ public class StartGameActivity extends AppCompatActivity {
         starter4 = findViewById(R.id.starter4);
         starter5 = findViewById(R.id.starter5);
 
+        try {
+            // Get current match from MatchesViewModel
+            int matchId = (int) getIntent().getExtras().get(MatchesAdapter.MATCH_ID);
+            MatchEntity match = matchesViewModel.getMatchById(matchId);
+
+            // Set texts for match
+            opponentTextView.setText(match.getOpponent());
+            teamTextView.setText("MeinTeam");
+            cityTextView.setText(match.getCity());
+            dateTextView.setText(match.getDate());
+
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+            Intent matchesIntent = new Intent(this, MatchesActivity.class);
+            startActivity(matchesIntent);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Intent matchesIntent = new Intent(this, MatchesActivity.class);
+            startActivity(matchesIntent);
+        }
 
     }
 }
