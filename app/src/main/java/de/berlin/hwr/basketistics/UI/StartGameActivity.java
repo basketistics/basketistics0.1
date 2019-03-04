@@ -44,6 +44,8 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     private TextView dateTextView;
     LinearLayout matchLinearLayout;
 
+    int matchId;
+
     // Starters
     private TextView[] starterTextViews = new TextView[5];
 
@@ -52,6 +54,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     int clickedPlayerIndex;
 
     private Button startGameButton;
+
     private int[] starters = new int[5];
 
     @Override
@@ -261,9 +264,11 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         starterTextViews[3] = findViewById(R.id.starter4);
         starterTextViews[4] = findViewById(R.id.starter5);
 
+        startGameButton = findViewById(R.id.match_startGameButton);
+
         try {
             // Get current match from MatchesViewModel
-            int matchId = (int) getIntent().getExtras().get(MatchesAdapter.MATCH_ID);
+            matchId = (int) getIntent().getExtras().get(MatchesAdapter.MATCH_ID);
             MatchEntity match = matchesViewModel.getMatchById(matchId);
 
             // Set texts for match
@@ -283,5 +288,19 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         }
 
         attachPopups();
+
+        // Attach startGame Button
+        startGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (starters != null) {
+                    Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
+                    gameIntent.putExtra("origin", TAG);
+                    gameIntent.putExtra(STARTERS, starters);
+                    gameIntent.putExtra(MATCH, matchId);
+                    startActivity(gameIntent);
+                }
+            }
+        });
     }
 }
