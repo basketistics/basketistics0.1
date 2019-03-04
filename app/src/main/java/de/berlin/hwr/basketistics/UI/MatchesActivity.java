@@ -62,6 +62,7 @@ public class MatchesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
+        // Set up navbar
         bottomNavigationView = findViewById(R.id.matchesBottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -113,15 +114,6 @@ public class MatchesActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
             }
         });
-
-        /*
-        // For testing
-        Intent gameIntent = new Intent(this, GameActivity.class);
-        gameIntent.putExtra("origin", StartGameActivity.TAG);
-        int[] starters = {1, 2, 3, 4, 5};
-        gameIntent.putExtra(StartGameActivity.STARTERS, starters);
-        startActivity(gameIntent);
-        */
 
         Button startGameButton = findViewById(R.id.startGameButton);
         startGameButton.setOnClickListener(new View.OnClickListener() {
