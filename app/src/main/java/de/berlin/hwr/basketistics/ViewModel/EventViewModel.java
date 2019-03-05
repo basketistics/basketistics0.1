@@ -59,7 +59,6 @@ public class EventViewModel extends AndroidViewModel {
                         0,
                         0,
                         0);
-                Log.e(TAG, "" + j);
             }
         }
         if (currentMatch.getValue().getId() == 0) {
@@ -89,7 +88,6 @@ public class EventViewModel extends AndroidViewModel {
         try {
             List<EventEntity> playerEventEntities =
                     repository.getEventsByMatchAndPlayer(currentMatch.getValue().getId(), newPLayerId);
-            // TODO: Ugly dependency
             PlayerEvents playerEvents = new PlayerEvents(
                     repository.getPlayerById(newPLayerId),
                     0,

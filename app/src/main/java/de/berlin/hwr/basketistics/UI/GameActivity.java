@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
     // Timer
     private TextView timerTextView;
     boolean timer_running = false;
-    int quaterCount = 1;
+    int quarterCount = 1;
 
     CountDownTimerWithPause timer = new CountDownTimerWithPause(600000, 1000, false) {
         @Override
@@ -56,22 +56,22 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
 
-            switch (quaterCount) {
+            switch (quarterCount) {
                 case 1:
                     timerTextView.setText("End of 1st");
-                    quaterCount++;
+                    quarterCount++;
                     break;
                 case 2:
                     timerTextView.setText("End of 2nd");
-                    quaterCount++;
+                    quarterCount++;
                     break;
                 case 3:
                     timerTextView.setText("End of 3rd");
-                    quaterCount++;
+                    quarterCount++;
                     break;
                 case 4:
                     timerTextView.setText("End of 4th");
-                    quaterCount = 1;
+                    quarterCount = 1;
                     break;
 
             }
@@ -146,17 +146,17 @@ public class GameActivity extends AppCompatActivity {
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel, pointsPopupWindow));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel, pointsPopupWindow));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel, pointsPopupWindow));
         minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel, pointsPopupWindow));
         minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel, pointsPopupWindow));
         minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel, pointsPopupWindow));
     }
 
     // Attach and enable Points PopUp an points buttons
