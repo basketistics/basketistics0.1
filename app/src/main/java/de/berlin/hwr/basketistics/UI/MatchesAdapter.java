@@ -2,6 +2,7 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,10 +30,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     private LayoutInflater inflater;
     private Context context;
 
-    public static class MatchesViewHolder extends RecyclerView.ViewHolder {
+    private String teamName;
 
-        private MatchesViewModel matchesViewModel;
-        private int matchId;
+    public static class MatchesViewHolder extends RecyclerView.ViewHolder {
 
         private TextView matchHomeTeam;
         private TextView matchOutTeam;
@@ -50,8 +50,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         }
     }
 
-    public MatchesAdapter(Context context) {
+    public MatchesAdapter(Context context, String teamName) {
         this.context = context;
+        this.teamName = teamName;
         inflater = LayoutInflater.from(context);
     }
 
@@ -70,11 +71,11 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         final int matchId = matches.get(i).getId();
 
         if (matches.get(i).getIsHome()) {
-            matchesViewHolder.matchHomeTeam.setText("MeinTeam");
+            matchesViewHolder.matchHomeTeam.setText(teamName);
             matchesViewHolder.matchOutTeam.setText(matches.get(i).getOpponent());
         } else {
             matchesViewHolder.matchHomeTeam.setText(matches.get(i).getOpponent());
-            matchesViewHolder.matchOutTeam.setText("MeinTeam");
+            matchesViewHolder.matchOutTeam.setText(teamName);
         }
         matchesViewHolder.matchDate.setText(matches.get(i).getDate());
         matchesViewHolder.matchCity.setText(matches.get(i).getCity());

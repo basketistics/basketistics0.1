@@ -3,6 +3,7 @@ package de.berlin.hwr.basketistics.UI;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +25,7 @@ import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 public class MatchesActivity extends AppCompatActivity {
 
+    SharedPreferences sharedPreferences = null;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -62,9 +64,13 @@ public class MatchesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
-        // For Testing
-        Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
-        startActivity(firstRunIntent);
+        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+
+        // First run?
+        if (sharedPreferences.getBoolean("first_run", true)) {
+            Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
+            startActivity(firstRunIntent);
+        }
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.matchesBottomNavigationView);
@@ -91,7 +97,7 @@ public class MatchesActivity extends AppCompatActivity {
 
         // Set up RecyclerView
         matchesRecyclerView = (RecyclerView) findViewById(R.id.matchesRecyclerView);
-        matchesAdapter = new MatchesAdapter(this);
+        matchesAdapter = new MatchesAdapter(this, sharedPreferences.getString("team_name", "<PREFERENCES CORRUPTED>"));
         matchesRecyclerView.setAdapter(matchesAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

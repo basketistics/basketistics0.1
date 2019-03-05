@@ -2,6 +2,7 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioTrack;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -33,6 +34,8 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     public final static String TAG = "StartGameActivity";
     public final static String STARTERS = "de.berlin.hwr.basketistics.UI.StartGameActivity.STARTERS";
     public final static String MATCH = "de.berlin.hwr.basketistics.UI.StartGameActivity.MATCH";
+
+    private SharedPreferences sharedPreferences;
 
     private MatchesViewModel matchesViewModel;
     private TeamViewModel teamViewModel;
@@ -248,6 +251,8 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_game);
 
+        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+
         // Get ViewModels
         matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
         teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
@@ -274,7 +279,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
 
             // Set texts for match
             opponentTextView.setText(match.getOpponent());
-            teamTextView.setText("MeinTeam");
+            teamTextView.setText(sharedPreferences.getString("team_name", "<PREFERENCES CORRUPTED>"));
             cityTextView.setText(match.getCity());
             dateTextView.setText(match.getDate());
 
