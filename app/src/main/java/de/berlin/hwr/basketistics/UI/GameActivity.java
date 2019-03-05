@@ -389,5 +389,6 @@ public class GameActivity extends AppCompatActivity {
         attachPointsPopUp();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
+        timerHandler();
     }
 }
