@@ -269,6 +269,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         try {
             // Get current match from MatchesViewModel
             matchId = (int) getIntent().getExtras().get(MatchesAdapter.MATCH_ID);
+            Log.e(TAG, "" + matchId);
             MatchEntity match = matchesViewModel.getMatchById(matchId);
 
             // Set texts for match
@@ -298,6 +299,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
                     gameIntent.putExtra("origin", TAG);
                     gameIntent.putExtra(STARTERS, starters);
                     gameIntent.putExtra(MATCH, matchId);
+                    Log.e(TAG, "" + matchId);
                     startActivity(gameIntent);
                 }
             }

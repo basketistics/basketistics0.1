@@ -440,8 +440,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             if (intent.getStringExtra("origin").equals(StartGameActivity.TAG)) {
 
                 currentPlayersIds = (int[]) extras.get(StartGameActivity.STARTERS);
-                // matchId is null in Intent
-                // currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                Log.e(TAG, "" + currentMatchId);
 
                 // TODO: Setting matchId from ViewModel this way is only for testing
                 eventViewModel.init(currentPlayersIds, currentMatchId);
