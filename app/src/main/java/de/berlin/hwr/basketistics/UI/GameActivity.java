@@ -39,6 +39,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     // and player pictures
     private ImageView[] playerImage = new ImageView[5];
     PopupWindow playerPopupWindow;
+    int clickedPlayerIndex;
 
     private EventViewModel eventViewModel;
     private static int[] currentPlayersIds;
@@ -173,6 +174,22 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         }
     }
 
+    private void attachPlayerDescriptionToViewModel() {
+        for (int i = 0; i < 5; i++) {
+            final int finalI = i;
+            eventViewModel.getPlayerEvents(i).getPlayer() .observe(this, new Observer<PlayerEntity>() {
+                @Override
+                public void onChanged(@Nullable PlayerEntity playerEntity) {
+                    Log.e(TAG, "onChanged() was called.");
+                    playerDescription[finalI].setText(
+                            playerEntity.getFirstName() + " "
+                                    + playerEntity.getLastName() + "\n"
+                                    + playerEntity.getNumber());
+                }
+            });
+        }
+    }
+
     class PopupOnClickListener implements View.OnClickListener {
 
         private int player;
@@ -199,6 +216,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
         for (int i = 0; i < 5; i++) {
 
+            final int finalI = i;
+
             playerImage[i].setOnClickListener(new View.OnClickListener() {
 
                 RecyclerView playerRecyclerView;
@@ -206,6 +225,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
                 @Override
                 public void onClick(View v) {
+
+                    clickedPlayerIndex = finalI;
 
                     // Inflate the popup_points.xml View
                     LayoutInflater layoutInflater = GameActivity.this.getLayoutInflater();
@@ -235,7 +256,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     @Override
     public void onItemClicked(PlayerEntity playerEntity) {
-        // TODO!!
+        eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
     }
 
     // find button views and bind them to Button objects
@@ -339,7 +360,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         playerDescription[4] = findViewById(R.id.game_playerDescription5);
 
         for (int i = 0; i < 5; i++) {
-            PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
+            PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i).getValue();
             playerDescription[i].setText(
                 playerEntity.getFirstName() + " "
                 + playerEntity.getLastName() + "\n"
@@ -423,14 +444,16 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 // currentMatchId = (int) extras.get(StartGameActivity.MATCH);
 
                 // TODO: Setting matchId from ViewModel this way is only for testing
-                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
+                eventViewModel.init(currentPlayersIds, currentMatchId);
 
             } else if (intent.getExtras().get("origin").equals(TeamActivity.TAG)) {
                 // update matchId in ViewModel
                 // update currentPlayerIds in ViewModel
-                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
-                // fetch PlayerEvents
-                eventViewModel.fetchSavedState(currentPlayersIds);
+                int i = 0;
+                for (int id : currentPlayersIds) {
+                    eventViewModel.insertPlayer(id, i);
+                    i++;
+                }
             }
         }
 
@@ -450,5 +473,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachImageViewPopUps();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
+        attachPlayerDescriptionToViewModel();
+        timerHandler();
     }
 }
