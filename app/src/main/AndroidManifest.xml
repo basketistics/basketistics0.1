@@ -39,7 +39,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.AddMatchActivity"></activity>
+        <activity android:name=".UI.AddMatchActivity" />
+        <activity android:name=".UI.FirstRunActivity"></activity>
     </application>
 
 </manifest>

@@ -62,6 +62,10 @@ public class MatchesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
+        // For Testing
+        Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
+        startActivity(firstRunIntent);
+
         // Set up navbar
         bottomNavigationView = findViewById(R.id.matchesBottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
