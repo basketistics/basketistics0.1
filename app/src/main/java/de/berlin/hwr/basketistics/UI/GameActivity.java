@@ -6,10 +6,13 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -18,13 +21,11 @@ import java.util.concurrent.TimeUnit;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 import static java.lang.String.format;
 
-public class GameActivity extends AppCompatActivity {
-
-    // For testing
-    Button toTeamActivityButton;
+public class GameActivity extends AppCompatActivity implements TeamAdapter.ClickListener {
 
     private static final String TAG = "GameActivity";
 
@@ -35,9 +36,15 @@ public class GameActivity extends AppCompatActivity {
     private TextView[][] playerTextViews = new TextView[5][7];
     private TextView[] playerDescription = new TextView[5];
 
+    // and player pictures
+    private ImageView[] playerImage = new ImageView[5];
+    PopupWindow playerPopupWindow;
+
     private EventViewModel eventViewModel;
     private static int[] currentPlayersIds;
     private static int currentMatchId;
+
+    private TeamViewModel teamViewModel;
 
     // Timer
     private TextView timerTextView;
@@ -178,6 +185,57 @@ public class GameActivity extends AppCompatActivity {
         public void onClick(View v) {
             showPointsPopup(player, (Button) v);
         }
+    }
+
+    private void bindPlayerImageViews() {
+        playerImage[0] = findViewById(R.id.player_1_imageView);
+        playerImage[1] = findViewById(R.id.player_1_imageView2);
+        playerImage[2] = findViewById(R.id.player_1_imageView3);
+        playerImage[3] = findViewById(R.id.player_1_imageView4);
+        playerImage[4] = findViewById(R.id.player_1_imageView5);
+    }
+
+    private void attachImageViewPopUps() {
+
+        for (int i = 0; i < 5; i++) {
+
+            playerImage[i].setOnClickListener(new View.OnClickListener() {
+
+                RecyclerView playerRecyclerView;
+                TeamAdapter teamAdapter;
+
+                @Override
+                public void onClick(View v) {
+
+                    // Inflate the popup_points.xml View
+                    LayoutInflater layoutInflater = GameActivity.this.getLayoutInflater();
+                    View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
+
+                    // Create the popup Window
+                    playerPopupWindow = new PopupWindow(GameActivity.this);
+                    playerPopupWindow.setContentView(playerListView);
+                    playerPopupWindow.setFocusable(true);
+                    // TODO: Calculate from displaysize and pixeldensity!
+                    playerPopupWindow.setWidth(1300);
+                    playerPopupWindow.showAsDropDown(v);
+
+                    // Set up RecyclerView
+                    playerRecyclerView =
+                            (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
+                    teamAdapter = new TeamAdapter(GameActivity.this, GameActivity.this, playerPopupWindow);
+                    teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
+                    playerRecyclerView.setAdapter(teamAdapter);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GameActivity.this);
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    playerRecyclerView.setLayoutManager(linearLayoutManager);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onItemClicked(PlayerEntity playerEntity) {
+        // TODO!!
     }
 
     // find button views and bind them to Button objects
@@ -350,8 +408,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Get ViewModel
+        // Get ViewModels
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
 
         // Check, which Activity we are coming from
         Intent intent = getIntent();
@@ -385,8 +444,10 @@ public class GameActivity extends AppCompatActivity {
 
         bindPlayerButtons();
         bindPlayerTextViews();
+        bindPlayerImageViews();
         bindPlayerDescriptionTextViews();
         attachPointsPopUp();
+        attachImageViewPopUps();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
     }
