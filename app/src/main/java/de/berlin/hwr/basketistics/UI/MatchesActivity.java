@@ -106,21 +106,12 @@ public class MatchesActivity extends AppCompatActivity {
             }
         });
 
-        addMatchButton =  findViewById(R.id.addMatchButton);
+        addMatchButton = findViewById(R.id.addMatchButton);
         addMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent addPlayerIntent = new Intent(MatchesActivity.this, AddMatchActivity.class);
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
-            }
-        });
-
-        Button startGameButton = findViewById(R.id.startGameButton);
-        startGameButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startGameIntent = new Intent(MatchesActivity.this, StartGameActivity.class);
-                startActivity(startGameIntent);
             }
         });
     }

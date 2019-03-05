@@ -59,13 +59,6 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/startGameButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Spiel starten"
-                app:layout_constraintStart_toStartOf="parent" />
-
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/matchesBottomNavigationView"
                 android:layout_width="match_parent"
