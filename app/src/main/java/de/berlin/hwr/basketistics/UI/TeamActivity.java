@@ -3,6 +3,8 @@ package de.berlin.hwr.basketistics.UI;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,12 +17,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 public class TeamActivity extends AppCompatActivity {
+
+    private SharedPreferences sharedPreferences;
 
     private BottomNavigationView bottomNavigationView;
 
@@ -44,10 +51,15 @@ public class TeamActivity extends AppCompatActivity {
             teamViewModel.insert(playerEntity);
             teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
-            // Test
-            for (PlayerEntity player : teamViewModel.getAllPlayers().getValue()) {
-                Log.e(TAG, "PlayerID: " + player.getId());
-            }
+            // Get imageUri
+            final String imageUri = (String) data.getExtras().get(AddPlayerActivity.IMAGE_URI);
+
+            // Only save Uri if valid
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("PLAYER" + teamViewModel.getAllPlayers().getValue().size(), imageUri.toString());
+            editor.commit();
+            Log.e(TAG, imageUri.toString());
+
         } else {
             // TODO: Exceptionhandling.
         }
@@ -57,6 +69,8 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
+
+        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
         bottomNavigationView = findViewById(R.id.teamBottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

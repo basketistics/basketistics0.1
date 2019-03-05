@@ -31,7 +31,6 @@ public class FirstRunActivity extends AppCompatActivity {
         teamName = findViewById(R.id.firstTeamName);
         teamHome = findViewById(R.id.firstTeamHome);
         teamWhatEver = findViewById(R.id.firstTeamWhatever);
-
         startButton = findViewById(R.id.firstStartButton);
 
         sharedPreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
@@ -39,6 +38,7 @@ public class FirstRunActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (!(teamName.getText().length() < 5 && teamHome.getText().length() < 5 && teamWhatEver.getText().length() < 5)) {
 
                     SharedPreferences.Editor editor = sharedPreferences.edit();

@@ -1,6 +1,12 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.io.FileDescriptor;
+import java.io.IOException;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
@@ -21,12 +29,15 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     private static final String TAG = "TeamAdapter";
 
+    SharedPreferences sharedPreferences;
+
     // Cached copy of Players
     private List<PlayerEntity> team;
 
     private LayoutInflater inflater;
     private ClickListener clickListener;
     private PopupWindow popupWindow;
+    private Context context;
 
     public static class TeamViewHolder extends RecyclerView.ViewHolder {
 
@@ -52,12 +63,14 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     public TeamAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+        this.context = context;
     }
 
     public TeamAdapter(Context context, ClickListener clickListener, PopupWindow popupWindow) {
         inflater = LayoutInflater.from(context);
         this.clickListener = clickListener;
         this.popupWindow = popupWindow;
+        this.context = context;
     }
 
     @NonNull
@@ -65,6 +78,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LinearLayout playerListItem = (LinearLayout) inflater.inflate(R.layout.team_list_item, parent, false);
         TeamViewHolder teamViewHolder = new TeamViewHolder(playerListItem);
+        sharedPreferences = parent.getContext().getSharedPreferences(FirstRunActivity.PREFERENCES, Context.MODE_PRIVATE);
         return teamViewHolder;
     }
 
@@ -76,6 +90,15 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         teamViewHolder.playerName.setText(team.get(i).getFirstName() + " " + team.get(i).getLastName());
         teamViewHolder.playerNumber.setText("" + team.get(i).getNumber());
         teamViewHolder.playerDescription.setText(team.get(i).getDescription());
+
+        // Set Image
+        String imageUriString = sharedPreferences.getString("PLAYER" + team.get(i).getId(), "");
+        Log.e(TAG, imageUriString);
+        if (imageUriString != "") {
+
+            // TODO: Fix permission.
+            teamViewHolder.playerImageView.setImageURI(Uri.parse(imageUriString));
+        }
 
         // Set ClickListener
         if (clickListener != null) {
