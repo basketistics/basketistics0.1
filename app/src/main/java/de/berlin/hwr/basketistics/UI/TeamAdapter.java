@@ -22,6 +22,7 @@ import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.List;
 
+import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 
@@ -85,19 +86,25 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     // Replaces the contents of a view (invoked by layout manager)
     @Override
     public void onBindViewHolder(@NonNull final TeamViewHolder teamViewHolder, final int i) {
+
         Log.i(TAG, "onBindViewHolder was entered.");
-        // TODO: teamViewHolder.playerImageView.setImageDrawable();
+
         teamViewHolder.playerName.setText(team.get(i).getFirstName() + " " + team.get(i).getLastName());
         teamViewHolder.playerNumber.setText("" + team.get(i).getNumber());
         teamViewHolder.playerDescription.setText(team.get(i).getDescription());
 
         // Set Image
-        String imageUriString = sharedPreferences.getString("PLAYER" + team.get(i).getId(), "");
-        Log.e(TAG, imageUriString);
-        if (imageUriString != "") {
+        String fileName = sharedPreferences.getString("PLAYER" + team.get(i).getId(), "");
+        Log.e(TAG, fileName);
+        if (fileName != "") {
 
-            // TODO: Fix permission.
-            teamViewHolder.playerImageView.setImageURI(Uri.parse(imageUriString));
+            ImageSaver imageSaver = new ImageSaver(context.getApplicationContext());
+            Bitmap bitmap = imageSaver.setExternal(false)
+                    .setFileName(fileName)
+                    .setDirectoryName("images")
+                    .load();
+
+            teamViewHolder.playerImageView.setImageBitmap(bitmap);
         }
 
         // Set ClickListener

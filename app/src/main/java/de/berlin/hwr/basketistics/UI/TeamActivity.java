@@ -52,13 +52,13 @@ public class TeamActivity extends AppCompatActivity {
             teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
             // Get imageUri
-            final String imageUri = (String) data.getExtras().get(AddPlayerActivity.IMAGE_URI);
+            final String imageUriString = (String) data.getExtras().get(AddPlayerActivity.IMAGE_FILENAME);
 
             // Only save Uri if valid
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("PLAYER" + teamViewModel.getAllPlayers().getValue().size(), imageUri.toString());
+            editor.putString("PLAYER" + teamViewModel.getAllPlayers().getValue().size(), imageUriString);
             editor.commit();
-            Log.e(TAG, imageUri.toString());
+            Log.e(TAG, imageUriString);
 
         } else {
             // TODO: Exceptionhandling.

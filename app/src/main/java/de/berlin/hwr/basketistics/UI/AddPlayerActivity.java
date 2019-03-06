@@ -1,7 +1,12 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,11 +16,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Date;
 
+import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 
@@ -26,8 +37,8 @@ public class AddPlayerActivity extends AppCompatActivity {
 
     // For image
     static final int PICK_IMAGE = 2;
-    public static final String IMAGE_URI = "de.hwr.basketistis.AddPlayerActivity.IMAGE_URI";
-    private Uri imageUri;
+    public static final String IMAGE_FILENAME = "de.hwr.basketistis.AddPlayerActivity.IMAGE_URI";
+    Bitmap playerBitmap;
 
     private final static String TAG = "AddPlayerActivity";
 
@@ -50,8 +61,22 @@ public class AddPlayerActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == PICK_IMAGE) {
-            playerImageView.setImageURI(data.getData());
-            imageUri = data.getData();
+            try {
+
+                // Get Image
+                Uri selectedImage = data.getData();
+                InputStream inputStream =
+                        getContentResolver().openInputStream(selectedImage);
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                playerBitmap = BitmapFactory.decodeStream(bufferedInputStream);
+
+                // Set ImageView
+                playerImageView.setImageBitmap(playerBitmap);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -91,6 +116,14 @@ public class AddPlayerActivity extends AppCompatActivity {
                 Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
                 Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
 
+                // Save Bitmap to app storage and return Uri
+                ImageSaver imageSaver = new ImageSaver(getApplicationContext());
+                String imageFileName = playerFirstNameEditText.getText().toString() + "_" + playerLastNameEditText.getText().toString() + "_" + new Date();
+                imageSaver.setExternal(false)
+                        .setFileName(imageFileName)
+                        .setDirectoryName("images")
+                        .save(playerBitmap);
+
                 // Create player from user input and pass via intent to TeamActivity
                 Intent teamActivityIntent = new Intent();
                 teamActivityIntent.putExtra(EXTRA_REPLY, new PlayerEntity(
@@ -98,7 +131,7 @@ public class AddPlayerActivity extends AppCompatActivity {
                         playerFirstNameEditText.getText().toString(),
                         Integer.parseInt(playerNumberEditText.getText().toString()),
                         playerDescriptionEditText.getText().toString()));
-                teamActivityIntent.putExtra(IMAGE_URI, imageUri);
+                teamActivityIntent.putExtra(IMAGE_FILENAME, imageFileName);
                 setResult(RESULT_OK, teamActivityIntent);
                 finish();
             }
