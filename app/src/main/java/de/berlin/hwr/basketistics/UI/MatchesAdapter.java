@@ -1,6 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -45,12 +46,13 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
 
     public MatchesAdapter(Context context) {
         inflater = LayoutInflater.from(context);
+
     }
 
     @NonNull
     @Override
     public MatchesAdapter.MatchesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout matchesListItem = (LinearLayout) inflater.inflate(R.layout.match_list_item, parent, false);
+        final LinearLayout matchesListItem = (LinearLayout) inflater.inflate(R.layout.match_list_item, parent, false);
         MatchesAdapter.MatchesViewHolder matchesViewHolder = new MatchesAdapter.MatchesViewHolder(matchesListItem);
         return matchesViewHolder;
     }

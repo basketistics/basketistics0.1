@@ -27,18 +27,18 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+        <activity android:name=".UI.StatActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".UI.StartGameActivity" />
         <activity android:name=".UI.TeamActivity" />
         <activity android:name=".UI.AddPlayerActivity" />
         <activity android:name=".UI.GameActivity" />
-        <activity android:name=".UI.MatchesActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".UI.MatchesActivity"/>
         <activity android:name=".UI.AddMatchActivity"></activity>
     </application>
 
