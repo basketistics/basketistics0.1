@@ -388,19 +388,19 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
             // attach actual observer
             eventViewModel.getPlayerEvents(i).getPoints().observe(
-                    this, new PlayerTextViewObserver(i, 0, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 0, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getRebound().observe(
-                    this, new PlayerTextViewObserver(i, 1, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 1, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getAssist().observe(
-                    this, new PlayerTextViewObserver(i, 2, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 2, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getSteal().observe(
-                    this, new PlayerTextViewObserver(i, 3, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 3, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getBlock().observe(
-                    this, new PlayerTextViewObserver(i, 4, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 4, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getTurnover().observe(
-                    this, new PlayerTextViewObserver(i, 5, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 5, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getFoul().observe(
-                    this, new PlayerTextViewObserver(i, 6, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 6, eventViewModel, playerTextViews));
 
 
         }
