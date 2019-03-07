@@ -3,6 +3,9 @@ package de.berlin.hwr.basketistics.UI;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +19,11 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.concurrent.TimeUnit;
 
+import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
@@ -29,6 +35,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     private static final String TAG = "GameActivity";
 
+    private SharedPreferences sharedPreferences;
+
     // Lets have all the Buttons in an array to save some space
     private Button[][] playerButtons = new Button[5][7];
 
@@ -37,7 +45,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     private TextView[] playerDescription = new TextView[5];
 
     // and player pictures
-    private ImageView[] playerImage = new ImageView[5];
+    private ImageView[] playerImageViews = new ImageView[5];
     PopupWindow playerPopupWindow;
     int clickedPlayerIndex;
 
@@ -205,11 +213,11 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     private void bindPlayerImageViews() {
-        playerImage[0] = findViewById(R.id.player_1_imageView);
-        playerImage[1] = findViewById(R.id.player_1_imageView2);
-        playerImage[2] = findViewById(R.id.player_1_imageView3);
-        playerImage[3] = findViewById(R.id.player_1_imageView4);
-        playerImage[4] = findViewById(R.id.player_1_imageView5);
+        playerImageViews[0] = findViewById(R.id.player_1_imageView);
+        playerImageViews[1] = findViewById(R.id.player_1_imageView2);
+        playerImageViews[2] = findViewById(R.id.player_1_imageView3);
+        playerImageViews[3] = findViewById(R.id.player_1_imageView4);
+        playerImageViews[4] = findViewById(R.id.player_1_imageView5);
     }
 
     private void attachImageViewPopUps() {
@@ -218,7 +226,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
             final int finalI = i;
 
-            playerImage[i].setOnClickListener(new View.OnClickListener() {
+            playerImageViews[i].setOnClickListener(new View.OnClickListener() {
 
                 RecyclerView playerRecyclerView;
                 TeamAdapter teamAdapter;
@@ -429,6 +437,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+
         // Get ViewModels
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
         teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
@@ -474,6 +484,44 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
         attachPlayerDescriptionToViewModel();
+        attachPlayerImageViewToViewModel();
+        // initImages();
         timerHandler();
+    }
+
+    private void attachPlayerImageViewToViewModel() {
+
+        for (int i = 0; i < 5; i++) {
+
+            final int finalI = i;
+            eventViewModel.getPlayerEvents(i).getPlayer().observe(this, new Observer<PlayerEntity>() {
+                @Override
+                public void onChanged(@Nullable PlayerEntity playerEntity) {
+
+                    int playerId = eventViewModel.getPlayerEvents(finalI).getPlayer().getValue().getId();
+                    String fileName = sharedPreferences.getString("PLAYER" + playerId, "");
+                    Log.e(TAG, "PLAYER" + playerId);
+
+                    ImageSaver imageSaver = new ImageSaver(GameActivity.this.getApplicationContext());
+                    Bitmap bitmap = imageSaver.setExternal(false)
+                            .setFileName(fileName)
+                            .setDirectoryName("images")
+                            .load();
+                    playerImageViews[finalI].setImageBitmap(bitmap);
+                }
+            });
+        }
+    }
+
+    private void initImages() {
+        for (int i = 0; i < 5; i++) {
+
+            int playerId = eventViewModel.getPlayerEvents(i).getPlayer().getValue().getId();
+            String uriString = sharedPreferences.getString("PLAYER" + playerId, "");
+
+            Glide.with(GameActivity.this)
+                    .load(uriString)
+                    .into(playerImageViews[i]);
+        }
     }
 }
