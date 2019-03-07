@@ -18,7 +18,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
 @android.arch.persistence.room.Database(
         entities = {PlayerEntity.class, EventEntity.class, MatchEntity.class},
-        version = 12, exportSchema = false)
+        version = 13)
+
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
@@ -39,7 +40,7 @@ public abstract class Database extends RoomDatabase {
                             .fallbackToDestructiveMigration()
                             // TODO: remove all main thread queries!
                             .allowMainThreadQueries()
-                            .addCallback(databaseCallback)
+                            // .addCallback(databaseCallback)
                             .build();
                 }
             }

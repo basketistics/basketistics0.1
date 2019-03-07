@@ -6,21 +6,26 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
-public class GameActivity extends AppCompatActivity {
+import static java.lang.String.format;
 
-    // For testing
-    Button toTeamActivityButton;
+public class GameActivity extends AppCompatActivity implements TeamAdapter.ClickListener {
 
     private static final String TAG = "GameActivity";
 
@@ -31,10 +36,91 @@ public class GameActivity extends AppCompatActivity {
     private TextView[][] playerTextViews = new TextView[5][7];
     private TextView[] playerDescription = new TextView[5];
 
+    // and player pictures
+    private ImageView[] playerImage = new ImageView[5];
+    PopupWindow playerPopupWindow;
+    int clickedPlayerIndex;
+
     private EventViewModel eventViewModel;
     private static int[] currentPlayersIds;
     private static int currentMatchId;
 
+    private TeamViewModel teamViewModel;
+
+    // Timer
+    private TextView timerTextView;
+    boolean timer_running = false;
+    int quarterCount = 1;
+
+    CountDownTimerWithPause timer = new CountDownTimerWithPause(600000, 1000, false) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            String timeLeft = format("%02d:%02d",
+                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
+                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
+            timerTextView.setText(timeLeft);
+        }
+
+        @Override
+        public void onFinish() {
+
+            switch (quarterCount) {
+                case 1:
+                    timerTextView.setText("End of 1st");
+                    quarterCount++;
+                    break;
+                case 2:
+                    timerTextView.setText("End of 2nd");
+                    quarterCount++;
+                    break;
+                case 3:
+                    timerTextView.setText("End of 3rd");
+                    quarterCount++;
+                    break;
+                case 4:
+                    timerTextView.setText("End of 4th");
+                    quarterCount = 1;
+                    break;
+
+            }
+        }
+
+    };
+
+
+    private void timerHandler()
+    {
+
+        timerTextView = findViewById(R.id.currTime);
+
+        timer.create();
+
+        Button timerStart = findViewById(R.id.timer_start);
+        timerStart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(timerTextView.getText().toString().startsWith("E"))
+                    timer.create();
+                if (timer_running)
+                {
+                    timer.resume();
+                }
+                else if (!timer_running){
+                    Log.i(TAG, "start timer.");
+                    timer.resume();
+                    timer_running = true;
+                }
+            }
+        });
+
+        Button timerPause = findViewById(R.id.timer_end);
+        timerPause.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                timer.pause();
+            }
+        });
+    }
 
     public void showPointsPopup(int playerIndex, Button button) {
 
@@ -68,23 +154,39 @@ public class GameActivity extends AppCompatActivity {
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel, pointsPopupWindow));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel, pointsPopupWindow));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel, pointsPopupWindow));
         minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel, pointsPopupWindow));
         minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel, pointsPopupWindow));
         minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel));
+                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel, pointsPopupWindow));
     }
 
     // Attach and enable Points PopUp an points buttons
     private void attachPointsPopUp() {
         for (int i = 0; i < 5; i++) {
             playerButtons[i][0].setOnClickListener(new PopupOnClickListener(i));
+        }
+    }
+
+    private void attachPlayerDescriptionToViewModel() {
+        for (int i = 0; i < 5; i++) {
+            final int finalI = i;
+            eventViewModel.getPlayerEvents(i).getPlayer() .observe(this, new Observer<PlayerEntity>() {
+                @Override
+                public void onChanged(@Nullable PlayerEntity playerEntity) {
+                    Log.e(TAG, "onChanged() was called.");
+                    playerDescription[finalI].setText(
+                            playerEntity.getFirstName() + " "
+                                    + playerEntity.getLastName() + "\n"
+                                    + playerEntity.getNumber());
+                }
+            });
         }
     }
 
@@ -100,6 +202,61 @@ public class GameActivity extends AppCompatActivity {
         public void onClick(View v) {
             showPointsPopup(player, (Button) v);
         }
+    }
+
+    private void bindPlayerImageViews() {
+        playerImage[0] = findViewById(R.id.player_1_imageView);
+        playerImage[1] = findViewById(R.id.player_1_imageView2);
+        playerImage[2] = findViewById(R.id.player_1_imageView3);
+        playerImage[3] = findViewById(R.id.player_1_imageView4);
+        playerImage[4] = findViewById(R.id.player_1_imageView5);
+    }
+
+    private void attachImageViewPopUps() {
+
+        for (int i = 0; i < 5; i++) {
+
+            final int finalI = i;
+
+            playerImage[i].setOnClickListener(new View.OnClickListener() {
+
+                RecyclerView playerRecyclerView;
+                TeamAdapter teamAdapter;
+
+                @Override
+                public void onClick(View v) {
+
+                    clickedPlayerIndex = finalI;
+
+                    // Inflate the popup_points.xml View
+                    LayoutInflater layoutInflater = GameActivity.this.getLayoutInflater();
+                    View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
+
+                    // Create the popup Window
+                    playerPopupWindow = new PopupWindow(GameActivity.this);
+                    playerPopupWindow.setContentView(playerListView);
+                    playerPopupWindow.setFocusable(true);
+                    // TODO: Calculate from displaysize and pixeldensity!
+                    playerPopupWindow.setWidth(1300);
+                    playerPopupWindow.showAsDropDown(v);
+
+                    // Set up RecyclerView
+                    playerRecyclerView =
+                            (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
+                    teamAdapter = new TeamAdapter(GameActivity.this, GameActivity.this, playerPopupWindow);
+                    teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
+                    playerRecyclerView.setAdapter(teamAdapter);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(GameActivity.this);
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    playerRecyclerView.setLayoutManager(linearLayoutManager);
+                }
+            });
+        }
+    }
+
+    @Override
+    public void onItemClicked(PlayerEntity playerEntity) {
+        eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
     }
 
     // find button views and bind them to Button objects
@@ -203,7 +360,7 @@ public class GameActivity extends AppCompatActivity {
         playerDescription[4] = findViewById(R.id.game_playerDescription5);
 
         for (int i = 0; i < 5; i++) {
-            PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i);
+            PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i).getValue();
             playerDescription[i].setText(
                 playerEntity.getFirstName() + " "
                 + playerEntity.getLastName() + "\n"
@@ -231,19 +388,19 @@ public class GameActivity extends AppCompatActivity {
             }
             // attach actual observer
             eventViewModel.getPlayerEvents(i).getPoints().observe(
-                    this, new PlayerTextViewObserver(i, 0, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 0, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getRebound().observe(
-                    this, new PlayerTextViewObserver(i, 1, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 1, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getAssist().observe(
-                    this, new PlayerTextViewObserver(i, 2, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 2, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getSteal().observe(
-                    this, new PlayerTextViewObserver(i, 3, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 3, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getBlock().observe(
-                    this, new PlayerTextViewObserver(i, 4, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 4, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getTurnover().observe(
-                    this, new PlayerTextViewObserver(i, 5, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 5, eventViewModel, playerTextViews));
             eventViewModel.getPlayerEvents(i).getFoul().observe(
-                    this, new PlayerTextViewObserver(i, 6, eventViewModel, playerTextViews));
+                    this, new PlayerViewObserver(i, 6, eventViewModel, playerTextViews));
 
 
         }
@@ -272,8 +429,9 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Get ViewModel
+        // Get ViewModels
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
+        teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
 
         // Check, which Activity we are coming from
         Intent intent = getIntent();
@@ -282,18 +440,20 @@ public class GameActivity extends AppCompatActivity {
             if (intent.getStringExtra("origin").equals(StartGameActivity.TAG)) {
 
                 currentPlayersIds = (int[]) extras.get(StartGameActivity.STARTERS);
-                // matchId is null in Intent
-                // currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                currentMatchId = (int) extras.get(StartGameActivity.MATCH);
+                Log.e(TAG, "" + currentMatchId);
 
                 // TODO: Setting matchId from ViewModel this way is only for testing
-                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
+                eventViewModel.init(currentPlayersIds, currentMatchId);
 
             } else if (intent.getExtras().get("origin").equals(TeamActivity.TAG)) {
                 // update matchId in ViewModel
                 // update currentPlayerIds in ViewModel
-                eventViewModel.proposeStarters(currentPlayersIds, currentMatchId);
-                // fetch PlayerEvents
-                eventViewModel.fetchSavedState(currentPlayersIds);
+                int i = 0;
+                for (int id : currentPlayersIds) {
+                    eventViewModel.insertPlayer(id, i);
+                    i++;
+                }
             }
         }
 
@@ -307,23 +467,13 @@ public class GameActivity extends AppCompatActivity {
 
         bindPlayerButtons();
         bindPlayerTextViews();
+        bindPlayerImageViews();
         bindPlayerDescriptionTextViews();
         attachPointsPopUp();
+        attachImageViewPopUps();
         attachButtonsToViewModel();
         attachTextViewsToViewModel();
-
-
-        // For testing
-        final Intent teamActivityIntent = new Intent(this, TeamActivity.class);
-        Intent addPlayerintent = new Intent(this, AddPlayerActivity.class);
-        //startActivity(teamActivityIntent);
-
-        toTeamActivityButton = findViewById(R.id.toTeamActivityButton);
-        toTeamActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(teamActivityIntent);
-            }
-        });
+        attachPlayerDescriptionToViewModel();
+        timerHandler();
     }
 }

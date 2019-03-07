@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
@@ -30,6 +31,10 @@ public class MatchesViewModel extends AndroidViewModel {
             matches = new MutableLiveData<List<MatchEntity>>();
         }
         */
+    }
+
+    public MatchEntity getMatchById(int id) throws ExecutionException, InterruptedException {
+        return repository.getMatchById(id);
     }
 
     public LiveData<List<MatchEntity>> getAllMatches() {

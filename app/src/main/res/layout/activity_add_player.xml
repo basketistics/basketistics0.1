@@ -33,7 +33,7 @@
                 android:layout_marginEnd="24dp"
                 android:layout_weight="60"
                 android:gravity="center"
-                android:text="Take Foto"
+                android:text="Foto auswaeahlen"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -116,7 +116,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="70"
-                    android:text="Add Player" />
+                    android:text="Spieler hinzufuegen" />
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
 

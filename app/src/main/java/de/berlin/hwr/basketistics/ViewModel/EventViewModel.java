@@ -6,6 +6,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class EventViewModel extends AndroidViewModel {
 
     private MutableLiveData<MatchEntity> currentMatch = new MutableLiveData<MatchEntity>();
     private PlayerEvents[] currentPlayerEvents;
-    private List<PlayerEvents> allPlayerEvents;
+    private List<PlayerEvents> allPlayerEvents; //TODO: Remove safely
     private Repository repository;
     private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
     private MutableLiveData<Integer> currentMatchId;
@@ -36,62 +37,81 @@ public class EventViewModel extends AndroidViewModel {
         this.repository = new Repository(application);
     }
 
-    public void proposeStarters(int[] starterIds, int currentMatchId) {
-        Log.e(TAG, "proposeStarters() was called.");
-        if (currentPlayerMap == null) {
-            currentPlayerMap = new HashMap<Integer, Integer>();
-            int i = 0;
-            for (int starterId : starterIds) {
-                currentPlayerMap.put(i, starterId);
-                i++;
+    public void insertPlayer(int playerId, int playerIndex) {
+
+        currentPlayerEvents[playerIndex].getPlayer().setValue(repository.getPlayerById(playerId));
+        updateEvents(playerId, playerIndex);
+    }
+
+    private void updateEvents(int playerId, int playerIndex) {
+
+        // Clear last players stats
+        currentPlayerEvents[playerIndex].getPoints().setValue(0);
+        currentPlayerEvents[playerIndex].getRebound().setValue(0);
+        currentPlayerEvents[playerIndex].getAssist().setValue(0);
+        currentPlayerEvents[playerIndex].getSteal().setValue(0);
+        currentPlayerEvents[playerIndex].getBlock().setValue(0);
+        currentPlayerEvents[playerIndex].getTurnover().setValue(0);
+        currentPlayerEvents[playerIndex].getFoul().setValue(0);
+
+        // update stats from database
+        List<EventEntity> playerEvents;
+        try {
+            playerEvents = repository.getEventsByMatchAndPlayer(currentMatchId.getValue(), playerId);
+            Log.e(TAG, "" + currentMatchId.getValue());
+            for (EventEntity event : playerEvents) {
+                switch (event.getEventType()) {
+                    case 0:
+                        // TODO: New Events are needed for points and attempts
+                        currentPlayerEvents[playerIndex].getPoints().setValue(
+                                currentPlayerEvents[playerIndex].getPoints().getValue() + 1);
+                        break;
+                    case 1:
+                        currentPlayerEvents[playerIndex].getRebound().setValue(
+                                currentPlayerEvents[playerIndex].getRebound().getValue() + 1);
+                        break;
+                    case 2:
+                        currentPlayerEvents[playerIndex].getAssist().setValue(
+                                currentPlayerEvents[playerIndex].getAssist().getValue() + 1);
+                        break;
+                    case 3:
+                        currentPlayerEvents[playerIndex].getSteal().setValue(
+                                currentPlayerEvents[playerIndex].getSteal().getValue() + 1);
+                        break;
+                    case 4:
+                        currentPlayerEvents[playerIndex].getBlock().setValue(
+                                currentPlayerEvents[playerIndex].getBlock().getValue() + 1);
+                        break;
+                    case 5:
+                        currentPlayerEvents[playerIndex].getTurnover().setValue(
+                                currentPlayerEvents[playerIndex].getTurnover().getValue() + 1);
+                        break;
+                    case 6:
+                        currentPlayerEvents[playerIndex].getFoul().setValue(
+                                currentPlayerEvents[playerIndex].getFoul().getValue() + 1);
+                        break;
+                    default:
+                        // TODO: Exception handling!
+                }
             }
-        }
-        if (currentPlayerEvents == null) {
-            Log.i(TAG, "currentPlayerEvents == null.");
-            currentPlayerEvents = new PlayerEvents[5];
-            for (int j = 0; j < 5; j++) {
-                currentPlayerEvents[j] = new PlayerEvents(
-                        repository.getPlayerById(currentPlayerMap.get(j)),
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0,
-                        0);
-                Log.e(TAG, "" + j);
-            }
-        }
-        if (currentMatch.getValue().getId() == 0) {
-            // TODO: Only for testing, has to be changed asap
-            int matchId;
-            if (currentMatchId == 0) {
-                matchId = repository.getAllMatches().size();
-            } else {
-                matchId = currentMatchId;
-            }
-            currentMatch.setValue(repository.getAllMatches().get(matchId - 1));
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    public int switchPlayers(int currentPlayerIndex, int newPLayerId) {
+    public void init(int[] starters, int currentMatchId) {
 
-        Log.e(TAG, "switchPlayers() was called.");
+        if (this.currentMatchId == null) { this.currentMatchId = new MutableLiveData<Integer>(); }
+        this.currentMatchId.setValue(currentMatchId);
+        Log.e(TAG, "" + currentMatchId);
+        Log.e(TAG, "" + this.currentMatchId.getValue());
 
-        if (allPlayerEvents != null) {
-            for (PlayerEvents playerEvents : allPlayerEvents) {
-                if (playerEvents.getPlayer().getValue().getId() == newPLayerId) {
-                    currentPlayerEvents[currentPlayerIndex] = playerEvents;
-                    return 1; // 1 means success, player was in game already
-                }
-            }
-        }
-        try {
-            List<EventEntity> playerEventEntities =
-                    repository.getEventsByMatchAndPlayer(currentMatch.getValue().getId(), newPLayerId);
-            // TODO: Ugly dependency
-            PlayerEvents playerEvents = new PlayerEvents(
-                    repository.getPlayerById(newPLayerId),
+        this.currentPlayerEvents = new PlayerEvents[5];
+        for (int i = 0; i < 5; i++) {
+            currentPlayerEvents[i] = new PlayerEvents(
+                    repository.getPlayerById(starters[i]),
                     0,
                     0,
                     0,
@@ -99,58 +119,13 @@ public class EventViewModel extends AndroidViewModel {
                     0,
                     0,
                     0);
-
-            for (EventEntity eventEntity : playerEventEntities) {
-                switch (eventEntity.getEventType()) {
-                    case 0:
-                        // TODO: Exception handling, points can be null!
-                        playerEvents.points.setValue(playerEvents.points.getValue() + 1);
-                        break;
-                    case 1:
-                        playerEvents.rebound.setValue(playerEvents.rebound.getValue() + 1);
-                        break;
-                    case 2:
-                        playerEvents.assist.setValue(playerEvents.assist.getValue() + 1);
-                        break;
-                    case 3:
-                        playerEvents.steal.setValue(playerEvents.steal.getValue() + 1);
-                        break;
-                    case 4:
-                        playerEvents.block.setValue(playerEvents.block.getValue() + 1);
-                        break;
-                    case 5:
-                        playerEvents.turnover.setValue(playerEvents.turnover.getValue() + 1);
-                        break;
-                    case 6:
-                        playerEvents.foul.setValue(playerEvents.foul.getValue() + 1);
-                        break;
-                    default:
-                        // TODO: Exception handling!
-                }
-            }
-
-            currentPlayerEvents[currentPlayerIndex] = playerEvents;
-            return 2; // Means success, playerEvents were created.
-
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-            return -1; // ERROR
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return -1; // ERROR
-        }
-
-    }
-
-    public void fetchSavedState(int[] currentPlayers) {
-        int i = 0;
-        for (int playerId : currentPlayers) {
-            switchPlayers(i, playerId);
+            // TODO: Is that useful??
+            updateEvents(starters[i], i);
         }
     }
 
-    public PlayerEntity getPlayerByIndex(int index) {
-        return currentPlayerEvents[index].player.getValue();
+    public MutableLiveData<PlayerEntity> getPlayerByIndex(int index) {
+        return currentPlayerEvents[index].player;
     }
 
     public PlayerEvents getPlayerEvents(int playerIndex) {
@@ -198,6 +173,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void setPlayer(PlayerEntity player) {
             this.player.setValue(player);
+            // TODO: Events missing!
         }
 
         public MutableLiveData<Integer> getPoints() {
@@ -206,7 +182,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addPoints(Integer playerIndex, Integer points) {
             this.points.setValue(this.points.getValue() + points);
-            repository.insertEvent(new EventEntity(1, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(1, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getAssist() {
@@ -215,7 +191,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addAssist(Integer playerIndex, Integer assist) {
             this.assist.setValue(this.assist.getValue() + assist);
-            repository.insertEvent(new EventEntity(2, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(2, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getRebound() {
@@ -224,7 +200,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addRebound(Integer playerIndex, Integer rebound) {
             this.rebound.setValue(this.rebound.getValue() + rebound);
-            repository.insertEvent(new EventEntity(3, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(3, player.getValue().getId(), currentMatchId.getValue()));
 
             // Test
             List<EventEntity> events = repository.getAllEvents();
@@ -239,7 +215,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addFoul(Integer playerIndex, Integer foul) {
             this.foul.setValue(this.foul.getValue() + foul);
-            repository.insertEvent(new EventEntity(4, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(4, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getBlock() {
@@ -248,7 +224,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addBlock(Integer playerIndex, Integer block) {
             this.block.setValue(this.block.getValue() + block);
-            repository.insertEvent(new EventEntity(5, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(5, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getTurnover() {
@@ -257,7 +233,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addTurnover(Integer playerIndex, Integer turnover) {
             this.turnover.setValue(this.turnover.getValue() + turnover);
-            repository.insertEvent(new EventEntity(6, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(6, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getSteal() {
@@ -266,7 +242,7 @@ public class EventViewModel extends AndroidViewModel {
 
         public void addSteal(Integer playerIndex, Integer steal) {
             this.steal.setValue(this.steal.getValue() + steal);
-            repository.insertEvent(new EventEntity(7, player.getValue().getId(), 1));
+            repository.insertEvent(new EventEntity(7, player.getValue().getId(), currentMatchId.getValue()));
         }
     }
 }

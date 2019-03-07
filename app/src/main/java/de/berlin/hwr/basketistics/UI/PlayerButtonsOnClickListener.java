@@ -1,6 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.view.View;
+import android.widget.PopupWindow;
 
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
@@ -10,6 +11,7 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
     private int eventID;
     private int points;
     private EventViewModel eventViewModel;
+    private PopupWindow popupWindow;
 
     public PlayerButtonsOnClickListener(int playerIndex, int eventID, EventViewModel eventViewModel) {
         this.playerIndex = playerIndex;
@@ -17,11 +19,12 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         this.eventViewModel = eventViewModel;
     }
 
-    public PlayerButtonsOnClickListener(int playerIndex, int eventID, int points, EventViewModel eventViewModel) {
+    public PlayerButtonsOnClickListener(int playerIndex, int eventID, int points, EventViewModel eventViewModel, PopupWindow popupWindow) {
         this.playerIndex = playerIndex;
         this.eventID = eventID;
         this.eventViewModel = eventViewModel;
         this.points = points;
+        this.popupWindow = popupWindow;
     }
 
     @Override
@@ -52,6 +55,9 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
                 break;
             default:
                 // TODO: Exception handling!
+        }
+        if (popupWindow != null) {
+            popupWindow.dismiss();
         }
     }
 }

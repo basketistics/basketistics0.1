@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
-public class PlayerTextViewObserver implements Observer {
+public class PlayerViewObserver implements Observer {
 
     private static final String TAG = "PlayerTextVeiwObserver";
 
@@ -15,7 +15,7 @@ public class PlayerTextViewObserver implements Observer {
     int playerIndex;
     private TextView[][] playerTextViews;
 
-    public PlayerTextViewObserver(
+    public PlayerViewObserver(
             int playerIndex,
             int eventIndex,
             EventViewModel eventViewModel,

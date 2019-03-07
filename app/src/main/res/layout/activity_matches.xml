@@ -30,29 +30,43 @@
             android:layout_height="match_parent"
             android:layout_weight="30">
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/addMatchButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:src="@drawable/ic_add_circle_black_24dp"
+                app:backgroundTint="@android:color/holo_green_light"
+                app:layout_constraintBottom_toTopOf="@+id/matchesBottomNavigationView"
+                app:layout_constraintEnd_toEndOf="parent" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/matchesRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
                 android:scrollbars="vertical"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/matchesBottomNavigationView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
             </android.support.v7.widget.RecyclerView>
 
-            <Button
-                android:id="@+id/addMatchButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="70"
-                android:text="Spiel hinzufügen"
-                app:layout_constraintEnd_toEndOf="parent" />
+            <android.support.design.widget.BottomNavigationView
+                android:id="@+id/matchesBottomNavigationView"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:menu="@menu/navbar"/>
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

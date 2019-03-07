@@ -2,29 +2,35 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.content.Context;
 import android.content.Intent;
+
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
-import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesViewHolder> {
 
     private static final String TAG = "MatchesAdapter";
+    public static final String MATCH_ID = "de.berlin.hwr.basketistics.UI.MatchesAdapter.MATCH_ID";
 
     // Cached copy of Matches
     private List<MatchEntity> matches;
+
     private LayoutInflater inflater;
+    private Context context;
+
+    private String teamName;
 
     public static class MatchesViewHolder extends RecyclerView.ViewHolder {
 
@@ -32,19 +38,21 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         private TextView matchOutTeam;
         private TextView matchDate;
         private TextView matchCity;
-        private TextView matchDescription;
+        private Button startGameButton;
 
         public MatchesViewHolder(View itemView) {
             super(itemView);
             matchHomeTeam = itemView.findViewById(R.id.matchItemHomeTeam);
-            matchOutTeam = itemView.findViewById(R.id.matchItemOutTeam);
+            matchOutTeam = itemView.findViewById(R.id.start_matchItemOutTeam);
             matchDate = itemView.findViewById(R.id.matchDateTextView);
             matchCity = itemView.findViewById(R.id.matchCityTextView);
-            matchDescription = itemView.findViewById(R.id.matchDescriptionTextView);
+            startGameButton = itemView.findViewById(R.id.selectMatchButton);
         }
     }
 
-    public MatchesAdapter(Context context) {
+    public MatchesAdapter(Context context, String teamName) {
+        this.context = context;
+        this.teamName = teamName;
         inflater = LayoutInflater.from(context);
 
     }
@@ -59,17 +67,31 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
 
     // Replaces the contents of a view (invoked by layout manager)
     @Override
-    public void onBindViewHolder(@NonNull MatchesViewHolder matchesViewHolder, int i) {
-        if (matches.get(i).getHome()) {
-            matchesViewHolder.matchHomeTeam.setText("MeinTeam");
+    public void onBindViewHolder(@NonNull final MatchesViewHolder matchesViewHolder, int i) {
+
+        final int matchId = matches.get(i).getId();
+
+        if (matches.get(i).getIsHome()) {
+            matchesViewHolder.matchHomeTeam.setText(teamName);
             matchesViewHolder.matchOutTeam.setText(matches.get(i).getOpponent());
         } else {
             matchesViewHolder.matchHomeTeam.setText(matches.get(i).getOpponent());
-            matchesViewHolder.matchOutTeam.setText("MeinTeam");
+            matchesViewHolder.matchOutTeam.setText(teamName);
         }
-        matchesViewHolder.matchDate.setText(matches.get(i).getDate().toString());
+        matchesViewHolder.matchDate.setText(matches.get(i).getDate());
         matchesViewHolder.matchCity.setText(matches.get(i).getCity());
-        matchesViewHolder.matchDescription.setText(matches.get(i).getDescription());
+        matchesViewHolder.startGameButton.setText("Spiel auswählen");
+
+        // Make Buttons clickable
+        matchesViewHolder.startGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startGameIntent = new Intent(matchesViewHolder.startGameButton.getContext(), StartGameActivity.class);
+                startGameIntent.putExtra(MATCH_ID, matchId);
+                Log.i(TAG, "MatchId: " + matchId);
+                matchesViewHolder.startGameButton.getContext().startActivity(startGameIntent);
+            }
+        });
     }
 
     public void setMatches(List<MatchEntity> matches) {

@@ -23,7 +23,7 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Start Game Activity"
+            android:text="Start Game"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -39,31 +39,119 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/match_cityEditText"
+        <LinearLayout
+            android:id="@+id/matchListItemLinearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Ort"
-            android:inputType="textPersonName"
-            android:text="Ort" />
+            android:orientation="horizontal"
+            android:weightSum="100">
 
-        <EditText
-            android:id="@+id/match_contrahentEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Gegner"
-            android:inputType="textPersonName"
-            android:text="Gegner" />
 
-        <Switch
-            android:id="@+id/match_homeSwitch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Heimspiel?"
-            android:textSize="18sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="30"
+                android:orientation="vertical"
+                android:weightSum="100">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50">
+
+                    <TextView
+                        android:id="@+id/start_matchItemOutTeam"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="45"
+                        android:padding="8dp"
+                        android:text="sdfsdf"
+                        android:textAlignment="textStart"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/machColonDivider"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/start_matchItemHomeTeam"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="45"
+                        android:padding="8dp"
+                        android:text="TextView"
+                        android:textAlignment="textEnd"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/machColonDivider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/machColonDivider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="-1dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_weight="10"
+                        android:gravity="center_vertical|center_horizontal|center"
+                        android:padding="8dp"
+                        android:text=":"
+                        android:textAlignment="center"
+                        android:textSize="48sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/start_matchItemOutTeam"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text=":" />
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:orientation="vertical"
+                    android:weightSum="100">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:id="@+id/start_matchDateTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:text="TextView"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/start_matchCityTextView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="50"
+                            android:gravity="center_vertical"
+                            android:padding="8dp"
+                            android:paddingRight="16dp"
+                            android:text="TextView\\nTextview"
+                            android:textAlignment="center"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
 
         <Space
             android:layout_width="match_parent"
@@ -77,50 +165,55 @@
             android:textSize="30sp"
             android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/player1"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Player 1 ID"
-            android:inputType="number"
-            android:text="1" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/player2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Player 2 ID"
-            android:inputType="number"
-            android:text="2" />
+            <TextView
+                android:id="@+id/starter1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 1 (antippen zum aendern)"
+                android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/player3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Player 3 ID"
-            android:inputType="number"
-            android:text="3" />
+            <TextView
+                android:id="@+id/starter2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 2 (antippen zum aendern)"
+                android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/player4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Player 4 ID"
-            android:inputType="number"
-            android:text="4" />
+            <TextView
+                android:id="@+id/starter3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 3 (antippen zum aendern)"
+                android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/player5"
+            <TextView
+                android:id="@+id/starter4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 4 (antippen zum aendern)"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/starter5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Spieler 5 (antippen zum aendern)"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Player 5 ID"
-            android:inputType="number"
-            android:text="5" />
+            android:layout_height="67dp" />
 
         <Button
             android:id="@+id/match_startGameButton"
