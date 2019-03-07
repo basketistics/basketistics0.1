@@ -5,7 +5,6 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +17,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.concurrent.TimeUnit;
 
@@ -510,18 +507,6 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     playerImageViews[finalI].setImageBitmap(bitmap);
                 }
             });
-        }
-    }
-
-    private void initImages() {
-        for (int i = 0; i < 5; i++) {
-
-            int playerId = eventViewModel.getPlayerEvents(i).getPlayer().getValue().getId();
-            String uriString = sharedPreferences.getString("PLAYER" + playerId, "");
-
-            Glide.with(GameActivity.this)
-                    .load(uriString)
-                    .into(playerImageViews[i]);
         }
     }
 }
