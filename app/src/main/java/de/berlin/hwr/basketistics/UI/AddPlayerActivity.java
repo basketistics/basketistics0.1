@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -110,19 +111,10 @@ public class AddPlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // TODO: Check whether user input is legit.
-                Log.i(TAG, "addPlayerButton was clicked.");
-                Log.i(TAG, "Player Firstname: " + playerFirstNameEditText.getText());
-                Log.i(TAG, "Player Lastname: " + playerLastNameEditText.getText());
-                Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
-                Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
 
                 // Save Bitmap to app storage and return Uri
-                ImageSaver imageSaver = new ImageSaver(getApplicationContext());
                 String imageFileName = playerFirstNameEditText.getText().toString() + "_" + playerLastNameEditText.getText().toString() + "_" + new Date();
-                imageSaver.setExternal(false)
-                        .setFileName(imageFileName)
-                        .setDirectoryName("images")
-                        .save(playerBitmap);
+                new SaveBitmpAsynchTask(imageFileName, playerBitmap).execute();
 
                 // Create player from user input and pass via intent to TeamActivity
                 Intent teamActivityIntent = new Intent();
@@ -136,5 +128,28 @@ public class AddPlayerActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private class SaveBitmpAsynchTask extends AsyncTask {
+
+        private Bitmap bitmap;
+        private String fileName;
+
+        public SaveBitmpAsynchTask(String fileName, Bitmap bitmap) {
+            this.bitmap = bitmap;
+            this.fileName = fileName;
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            ImageSaver imageSaver = new ImageSaver(getApplicationContext());
+            imageSaver.setExternal(false)
+                    .setFileName(fileName)
+                    .setDirectoryName("images")
+                    .save(bitmap);
+
+            return null;
+        }
     }
 }
