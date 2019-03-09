@@ -45,7 +45,7 @@ public class StatActivity extends AppCompatActivity {
 
         setContentView(R.layout.stat_view);
 
-        pdfView = (PDFView) findViewById(R.id.pdfView);
+        //pdfView = (PDFView) findViewById(R.id.pdfView);
         pdfView.fromAsset("Ergebnisdokument Basketistics.pdf").load();
 
 
@@ -58,7 +58,7 @@ public class StatActivity extends AppCompatActivity {
             }
         */
 
-        View content = findViewById(R.id.pdfView);
+      /*  View content = findViewById(R.id.pdfView);
         content.draw(page.getCanvas());
         doc.finishPage(page);
 
@@ -66,14 +66,14 @@ public class StatActivity extends AppCompatActivity {
 
         try {
             outputStream = openFileOutput("test.pdf", Context.MODE_PRIVATE);
-            doc.writeTo(outputStream);
-            doc.close();
+            //doc.writeTo(outputStream);
+            //doc.close();
         }  catch (FileNotFoundException e) {
         Log.e(TAG, "[createInternalFile]" + e.getMessage());
     } catch (IOException e) {
         Log.e(TAG, "[createInternalFile]" + e.getMessage());
     }
-
+*/
 
         try {
             pdfView.recycle();
