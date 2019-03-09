@@ -120,6 +120,12 @@ public class EventViewModel extends AndroidViewModel {
                     0,
                     0,
                     0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
                     0);
             // TODO: Is that useful??
             updateEvents(starters[i], i);
@@ -141,6 +147,12 @@ public class EventViewModel extends AndroidViewModel {
     public class PlayerEvents {
         private MutableLiveData<PlayerEntity> player = new MutableLiveData<PlayerEntity>();
         private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> onePoint = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> twoPoints = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> threePoints = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> onePointAttempt = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> twoPointsAttempt = new MutableLiveData<Integer>();
+        private MutableLiveData<Integer> threepointsAttempt = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> assist = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> rebound = new MutableLiveData<Integer>();
         private MutableLiveData<Integer> foul = new MutableLiveData<Integer>();
@@ -152,6 +164,12 @@ public class EventViewModel extends AndroidViewModel {
         public PlayerEvents(
                 PlayerEntity player,
                 int points,
+                int onePoint,
+                int twoPoints,
+                int threePoints,
+                int onePointAttempt,
+                int twoPointsAttemp,
+                int threePointsAttempt,
                 int assist,
                 int rebound,
                 int foul,
@@ -161,6 +179,12 @@ public class EventViewModel extends AndroidViewModel {
 
             this.player.setValue(player);
             this.points.setValue(points);
+            this.onePoint.setValue(onePoint);
+            this.twoPoints.setValue(twoPoints);
+            this.threePoints.setValue(threePoints);
+            this.onePointAttempt.setValue(onePointAttempt);
+            this.twoPointsAttempt.setValue(twoPointsAttemp);
+            this.threepointsAttempt.setValue(threePointsAttempt);
             this.assist.setValue(assist);
             this.rebound.setValue(rebound);
             this.foul.setValue(foul);
@@ -182,9 +206,63 @@ public class EventViewModel extends AndroidViewModel {
             return points;
         }
 
-        public void addPoints(Integer playerIndex, Integer points) {
-            this.points.setValue(this.points.getValue() + points);
-            repository.insertEvent(new EventEntity(1, player.getValue().getId(), currentMatchId.getValue()));
+        public void addPoints() {
+            this.points.setValue(this.points.getValue() + 1);
+            repository.insertEvent(new EventEntity(10, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getOnePoint() {
+            return onePoint;
+        }
+
+        public void addOnePoint() {
+            this.onePoint.setValue(this.onePoint.getValue() + 1);
+            repository.insertEvent(new EventEntity(11, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getTwoPoints() {
+            return twoPoints;
+        }
+
+        public void addTwoPoints() {
+            this.twoPoints.setValue(this.twoPoints.getValue() + 1);
+            repository.insertEvent(new EventEntity(12, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getThreePoints() {
+            return threePoints;
+        }
+
+        public void addThreePoints() {
+            this.threePoints.setValue(this.threePoints.getValue() + 1);
+            repository.insertEvent(new EventEntity(13, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getOnePointAttempt() {
+            return onePointAttempt;
+        }
+
+        public void addonePointAttempt() {
+            this.onePointAttempt.setValue(this.onePointAttempt.getValue() + 1);
+            repository.insertEvent(new EventEntity(14, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getTwoPointsAttempt() {
+            return twoPointsAttempt;
+        }
+
+        public void addTwoPointsAttempt() {
+            this.twoPointsAttempt.setValue(this.twoPointsAttempt.getValue() + 1);
+            repository.insertEvent(new EventEntity(15, player.getValue().getId(), currentMatchId.getValue()));
+        }
+
+        public MutableLiveData<Integer> getThreepointsAttempt() {
+            return threepointsAttempt;
+        }
+
+        public void addThreePointsAttempt() {
+            this.threepointsAttempt.setValue(this.threepointsAttempt.getValue() + 1);
+            repository.insertEvent(new EventEntity(16, player.getValue().getId(), currentMatchId.getValue()));
         }
 
         public MutableLiveData<Integer> getAssist() {
