@@ -269,8 +269,8 @@ public class EventViewModel extends AndroidViewModel {
             return assist;
         }
 
-        public void addAssist(Integer playerIndex, Integer assist) {
-            this.assist.setValue(this.assist.getValue() + assist);
+        public void addAssist() {
+            this.assist.setValue(this.assist.getValue() + 1);
             repository.insertEvent(new EventEntity(2, player.getValue().getId(), currentMatchId.getValue()));
         }
 
@@ -278,23 +278,17 @@ public class EventViewModel extends AndroidViewModel {
             return rebound;
         }
 
-        public void addRebound(Integer playerIndex, Integer rebound) {
-            this.rebound.setValue(this.rebound.getValue() + rebound);
+        public void addRebound() {
+            this.rebound.setValue(this.rebound.getValue() + 1);
             repository.insertEvent(new EventEntity(3, player.getValue().getId(), currentMatchId.getValue()));
-
-            // Test
-            List<EventEntity> events = repository.getAllEvents();
-            for (EventEntity eventEntity : events) {
-                Log.i(TAG, eventEntity.getTimestamp() + " " + eventEntity.getId() + " " + eventEntity.toString() + " " + eventEntity.getPlayerId() + " " + eventEntity.getEventType());
-            }
         }
 
         public MutableLiveData<Integer> getFoul() {
             return foul;
         }
 
-        public void addFoul(Integer playerIndex, Integer foul) {
-            this.foul.setValue(this.foul.getValue() + foul);
+        public void addFoul() {
+            this.foul.setValue(this.foul.getValue() + 1);
             repository.insertEvent(new EventEntity(4, player.getValue().getId(), currentMatchId.getValue()));
         }
 
@@ -302,8 +296,8 @@ public class EventViewModel extends AndroidViewModel {
             return block;
         }
 
-        public void addBlock(Integer playerIndex, Integer block) {
-            this.block.setValue(this.block.getValue() + block);
+        public void addBlock() {
+            this.block.setValue(this.block.getValue() + 1);
             repository.insertEvent(new EventEntity(5, player.getValue().getId(), currentMatchId.getValue()));
         }
 
@@ -311,8 +305,8 @@ public class EventViewModel extends AndroidViewModel {
             return turnover;
         }
 
-        public void addTurnover(Integer playerIndex, Integer turnover) {
-            this.turnover.setValue(this.turnover.getValue() + turnover);
+        public void addTurnover() {
+            this.turnover.setValue(this.turnover.getValue() + 1);
             repository.insertEvent(new EventEntity(6, player.getValue().getId(), currentMatchId.getValue()));
         }
 
@@ -320,8 +314,8 @@ public class EventViewModel extends AndroidViewModel {
             return steal;
         }
 
-        public void addSteal(Integer playerIndex, Integer steal) {
-            this.steal.setValue(this.steal.getValue() + steal);
+        public void addSteal() {
+            this.steal.setValue(this.steal.getValue() + 1);
             repository.insertEvent(new EventEntity(7, player.getValue().getId(), currentMatchId.getValue()));
         }
     }
