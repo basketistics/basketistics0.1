@@ -3,13 +3,13 @@ package de.berlin.hwr.basketistics.UI;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 public class PlayerButtonsOnClickListener implements View.OnClickListener {
 
     private int playerIndex;
     private int eventID;
-    private int points;
     private EventViewModel eventViewModel;
     private PopupWindow popupWindow;
 
@@ -19,11 +19,10 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         this.eventViewModel = eventViewModel;
     }
 
-    public PlayerButtonsOnClickListener(int playerIndex, int eventID, int points, EventViewModel eventViewModel, PopupWindow popupWindow) {
+    public PlayerButtonsOnClickListener(int playerIndex, int eventID, EventViewModel eventViewModel, PopupWindow popupWindow) {
         this.playerIndex = playerIndex;
         this.eventID = eventID;
         this.eventViewModel = eventViewModel;
-        this.points = points;
         this.popupWindow = popupWindow;
     }
 
@@ -31,27 +30,41 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
 
         switch (eventID) {
-            case 0:
-                // TODO: Exception handling, points can be null!
-                eventViewModel.getPlayerEvents(playerIndex).addPoints(playerIndex, points);
+            case Constants.ONE_POINT:
+                eventViewModel.getPlayerEvents(playerIndex).addOnePoint();
                 break;
-            case 1:
-                eventViewModel.getPlayerEvents(playerIndex).addRebound(playerIndex, 1);
+            case Constants.TWO_POINTS:
+                eventViewModel.getPlayerEvents(playerIndex).addTwoPoints();
                 break;
-            case 2:
-                eventViewModel.getPlayerEvents(playerIndex).addAssist(playerIndex, 1);
+            case Constants.THREE_POINTS:
+                eventViewModel.getPlayerEvents(playerIndex).addThreePoints();
                 break;
-            case 3:
-                eventViewModel.getPlayerEvents(playerIndex).addSteal(playerIndex, 1);
+            case Constants.ONE_POINT_ATTEMPT:
+                eventViewModel.getPlayerEvents(playerIndex).addOnePointAttempt();
                 break;
-            case 4:
-                eventViewModel.getPlayerEvents(playerIndex).addBlock(playerIndex, 1);
+            case Constants.TWO_POINTS_ATTEMPT:
+                eventViewModel.getPlayerEvents(playerIndex).addTwoPointsAttempt();
                 break;
-            case 5:
-                eventViewModel.getPlayerEvents(playerIndex).addTurnover(playerIndex, 1);
+            case Constants.THREE_POINTS_ATTEMPT:
+                eventViewModel.getPlayerEvents(playerIndex).addThreePointsAttempt();
                 break;
-            case 6:
-                eventViewModel.getPlayerEvents(playerIndex).addFoul(playerIndex, 1);
+            case Constants.REBOUND:
+                eventViewModel.getPlayerEvents(playerIndex).addRebound();
+                break;
+            case Constants.ASSIST:
+                eventViewModel.getPlayerEvents(playerIndex).addAssist();
+                break;
+            case Constants.STEAL:
+                eventViewModel.getPlayerEvents(playerIndex).addSteal();
+                break;
+            case Constants.BLOCK:
+                eventViewModel.getPlayerEvents(playerIndex).addBlock();
+                break;
+            case Constants.TURNOVER:
+                eventViewModel.getPlayerEvents(playerIndex).addTurnover();
+                break;
+            case Constants.FOUL:
+                eventViewModel.getPlayerEvents(playerIndex).addFoul();
                 break;
             default:
                 // TODO: Exception handling!

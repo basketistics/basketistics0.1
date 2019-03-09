@@ -3,6 +3,7 @@ package de.berlin.hwr.basketistics.UI;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
+import android.provider.SyncStateContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,8 +17,11 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
@@ -129,9 +133,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         Button plusOneButton;
         Button plusTwoButton;
         Button plusThreeButton;
-        Button minusOneButton;
-        Button minusTwoButton;
-        Button minusThreeButton;
+        Button onPointAttemptButton;
+        Button twoPointsAttemptButton;
+        Button threePointsAttemptButton;
 
         // Inflate the popup_points.xml View
         LayoutInflater layoutInflater = this.getLayoutInflater();
@@ -147,24 +151,24 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         plusOneButton = (Button) pointsPopupView.findViewById(R.id.inc1PointButton);
         plusTwoButton = (Button) pointsPopupView.findViewById(R.id.inc2PointButton);
         plusThreeButton = (Button) pointsPopupView.findViewById(R.id.inc3PointButton);
-        minusOneButton = (Button) pointsPopupView.findViewById(R.id.dec1PointButton);
-        minusTwoButton = (Button) pointsPopupView.findViewById(R.id.dec2PointButton);
-        minusThreeButton = (Button) pointsPopupView.findViewById(R.id.dec3PointButton);
+        onPointAttemptButton = (Button) pointsPopupView.findViewById(R.id.dec1PointButton);
+        twoPointsAttemptButton = (Button) pointsPopupView.findViewById(R.id.dec2PointButton);
+        threePointsAttemptButton = (Button) pointsPopupView.findViewById(R.id.dec3PointButton);
 
         // set OnClickListeners on Buttons to connect them to ViewModel
         //// Attach PlayerButtonsOnClickListener to buttons
         plusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 1, eventViewModel, pointsPopupWindow));
+                new PlayerButtonsOnClickListener(playerIndex, Constants.ONE_POINT, eventViewModel, pointsPopupWindow));
         plusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 2, eventViewModel, pointsPopupWindow));
+                new PlayerButtonsOnClickListener(playerIndex, Constants.TWO_POINTS, eventViewModel, pointsPopupWindow));
         plusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, 3, eventViewModel, pointsPopupWindow));
-        minusOneButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -1, eventViewModel, pointsPopupWindow));
-        minusTwoButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -2, eventViewModel, pointsPopupWindow));
-        minusThreeButton.setOnClickListener(
-                new PlayerButtonsOnClickListener(playerIndex, 0, -3, eventViewModel, pointsPopupWindow));
+                new PlayerButtonsOnClickListener(playerIndex, Constants.THREE_POINTS, eventViewModel, pointsPopupWindow));
+        onPointAttemptButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(playerIndex, Constants.ONE_POINT_ATTEMPT, eventViewModel, pointsPopupWindow));
+        twoPointsAttemptButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(playerIndex, Constants.TWO_POINTS_ATTEMPT, eventViewModel, pointsPopupWindow));
+        threePointsAttemptButton.setOnClickListener(
+                new PlayerButtonsOnClickListener(playerIndex, Constants.THREE_POINTS_ATTEMPT, eventViewModel, pointsPopupWindow));
     }
 
     // Attach and enable Points PopUp an points buttons
@@ -369,12 +373,22 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     private void attachButtonsToViewModel() {
+
+        Map<Integer, Integer> buttonsEventMap = new HashMap<Integer, Integer>();
+        buttonsEventMap.put(0, Constants.POINTS);
+        buttonsEventMap.put(1, Constants.REBOUND);
+        buttonsEventMap.put(2, Constants.ASSIST);
+        buttonsEventMap.put(3, Constants.STEAL);
+        buttonsEventMap.put(4, Constants.BLOCK);
+        buttonsEventMap.put(5, Constants.TURNOVER);
+        buttonsEventMap.put(6, Constants.FOUL);
+
         // Iterate over all players
         for (int i = 0; i < 5; i++) {
             // Iterate over events except 0 (points)
             for (int j = 1; j < 7; j++) {
                 playerButtons[i][j].setOnClickListener(
-                        new PlayerButtonsOnClickListener(i, j, eventViewModel));
+                        new PlayerButtonsOnClickListener(i, buttonsEventMap.get(j), eventViewModel));
             }
         }
     }
