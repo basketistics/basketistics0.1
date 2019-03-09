@@ -61,34 +61,36 @@ public class EventViewModel extends AndroidViewModel {
             Log.e(TAG, "" + currentMatchId.getValue());
             for (EventEntity event : playerEvents) {
                 switch (event.getEventType()) {
-                    case 0:
+                    case 1:
                         // TODO: New Events are needed for points and attempts
                         currentPlayerEvents[playerIndex].getPoints().setValue(
                                 currentPlayerEvents[playerIndex].getPoints().getValue() + 1);
-                        break;
-                    case 1:
-                        currentPlayerEvents[playerIndex].getRebound().setValue(
-                                currentPlayerEvents[playerIndex].getRebound().getValue() + 1);
                         break;
                     case 2:
                         currentPlayerEvents[playerIndex].getAssist().setValue(
                                 currentPlayerEvents[playerIndex].getAssist().getValue() + 1);
                         break;
                     case 3:
-                        currentPlayerEvents[playerIndex].getSteal().setValue(
-                                currentPlayerEvents[playerIndex].getSteal().getValue() + 1);
+
+                        currentPlayerEvents[playerIndex].getRebound().setValue(
+                                currentPlayerEvents[playerIndex].getRebound().getValue() + 1);
                         break;
                     case 4:
+
+                        currentPlayerEvents[playerIndex].getFoul().setValue(
+                                currentPlayerEvents[playerIndex].getFoul().getValue() + 1);
+                        break;
+                    case 5:
                         currentPlayerEvents[playerIndex].getBlock().setValue(
                                 currentPlayerEvents[playerIndex].getBlock().getValue() + 1);
                         break;
-                    case 5:
+                    case 6:
                         currentPlayerEvents[playerIndex].getTurnover().setValue(
                                 currentPlayerEvents[playerIndex].getTurnover().getValue() + 1);
                         break;
-                    case 6:
-                        currentPlayerEvents[playerIndex].getFoul().setValue(
-                                currentPlayerEvents[playerIndex].getFoul().getValue() + 1);
+                    case 7:
+                        currentPlayerEvents[playerIndex].getSteal().setValue(
+                                currentPlayerEvents[playerIndex].getSteal().getValue() + 1);
                         break;
                     default:
                         // TODO: Exception handling!
