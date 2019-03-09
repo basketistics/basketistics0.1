@@ -12,9 +12,6 @@ import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 @Dao
 public interface EventDao {
 
-    // @Query("")
-    // EventViewModel.PlayerEvents[] getPlayerEvents();
-
     @Query("SELECT * FROM EventEntity")
     List<EventEntity> getAll();
 
