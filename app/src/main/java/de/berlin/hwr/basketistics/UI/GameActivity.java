@@ -60,7 +60,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     boolean timer_running = false;
     int quarterCount = 1;
 
-    CountDownTimerWithPause timer = new CountDownTimerWithPause(600000, 1000, false) {
+    CountDownTimerWithPause timer = new CountDownTimerWithPause(
+            600000,
+            1000,
+            false) {
         @Override
         public void onTick(long millisUntilFinished) {
             String timeLeft = format("%02d:%02d",
