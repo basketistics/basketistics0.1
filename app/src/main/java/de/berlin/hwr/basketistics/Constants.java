@@ -11,6 +11,7 @@ public abstract class Constants {
     public static final int SECOND_QUARTER_END      =  6;
     public static final int THIRD_QUARTER_END       =  7;
     public static final int FOURTH_QUARTER_END      =  8;
+
     public static final int STARTER                 = 10;
     public static final int IN                      = 11;
     public static final int OUT                     = 12;

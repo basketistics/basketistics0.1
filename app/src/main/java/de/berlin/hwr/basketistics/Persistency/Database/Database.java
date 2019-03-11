@@ -10,15 +10,21 @@ import android.os.AsyncTask;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
 @android.arch.persistence.room.Database(
-        entities = {PlayerEntity.class, EventEntity.class, MatchEntity.class},
-        version = 13)
+        entities = {
+                PlayerEntity.class,
+                EventEntity.class,
+                MatchEntity.class,
+                EventTypeEntity.class},
+        version = 14)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
@@ -37,8 +43,7 @@ public abstract class Database extends RoomDatabase {
                             Database.class,
                             "database")
                             .fallbackToDestructiveMigration()
-                            // .allowMainThreadQueries()
-                            // .addCallback(databaseCallback)
+                            .addCallback(databaseCallback)
                             .build();
                 }
             }
@@ -49,7 +54,7 @@ public abstract class Database extends RoomDatabase {
     private static RoomDatabase.Callback databaseCallback = new RoomDatabase.Callback() {
 
         @Override
-        public void onOpen(SupportSQLiteDatabase db) {
+        public void onCreate(SupportSQLiteDatabase db) {
             super.onCreate(db);
             new PopulateDbAsyncTask(INSTANCE).execute();
         }
@@ -57,23 +62,43 @@ public abstract class Database extends RoomDatabase {
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
 
-        private final PlayerDao dao;
+        private final EventTypeDao eventTypeDao;
 
         public PopulateDbAsyncTask(Database db) {
-            this.dao = db.playerDao();
+            this.eventTypeDao = eventTypeDao;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
 
-            PlayerEntity playerEntity = dao.getPlayerById(5);
-            if (playerEntity == null) {
-                PlayerEntity[] players = new PlayerEntity[10];
-                for (int i = 0; i < 10; i++) {
-                    players[i] = new PlayerEntity("" + i, "Spieler", i, "testtesttest.");
-                }
-                dao.insertAll(players);
-            }
+            eventTypeDao.insert(new EventTypeEntity("GAME_START"              , 0));
+            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_START"     , 1));
+            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_START"    , 2));
+            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_START"     , 3));
+            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_START"    , 4));
+            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_END"       , 5));
+            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_END"      , 6));
+            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_END"       , 7));
+            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_END"      , 8));
+
+            eventTypeDao.insert(new EventTypeEntity("STARTER"                 ,10));
+            eventTypeDao.insert(new EventTypeEntity("IN"                      ,11));
+            eventTypeDao.insert(new EventTypeEntity("OUT"                     ,12));
+
+            eventTypeDao.insert(new EventTypeEntity("POINTS"                  ,20));
+            eventTypeDao.insert(new EventTypeEntity("ONE_POINT"               ,21));
+            eventTypeDao.insert(new EventTypeEntity("TWO_POINTS"              ,22));
+            eventTypeDao.insert(new EventTypeEntity("THREE_POINTS"            ,23));
+            eventTypeDao.insert(new EventTypeEntity("ONE_POINT_ATTEMPT"       ,24));
+            eventTypeDao.insert(new EventTypeEntity("TWO_POINTS_ATTEMPT"      ,25));
+            eventTypeDao.insert(new EventTypeEntity("THREE_POINTS_ATTEMPT"    ,26));
+            eventTypeDao.insert(new EventTypeEntity("REBOUND"                 ,30));
+            eventTypeDao.insert(new EventTypeEntity("ASSIST"                  ,40));
+            eventTypeDao.insert(new EventTypeEntity("STEAL"                   ,50));
+            eventTypeDao.insert(new EventTypeEntity("BLOCK"                   ,60));
+            eventTypeDao.insert(new EventTypeEntity("TURNOVER"                ,70));
+            eventTypeDao.insert(new EventTypeEntity("FOUL"                    ,80));
+
             return null;
         }
     }
