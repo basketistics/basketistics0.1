@@ -47,10 +47,10 @@ public class Repository {
     }
 
     // ---------- EventTypes ---------- //
-    public List<EventTypeEntity> getAllEventEntities() {
+    public List<EventTypeEntity> getAllEventTypeEntities() {
         List<EventTypeEntity> eventTypeEntities= null;
         try {
-            eventTypeEntities = new GetAllEventTypeEntities(eventTypeDao).execute().get();
+            eventTypeEntities = new GetAllEventTypeEntitiesAsyncTask(eventTypeDao).execute().get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -59,12 +59,12 @@ public class Repository {
         return eventTypeEntities;
     }
 
-    private class GetAllEventTypeEntities extends AsyncTask<Void, Void, List<EventTypeEntity>> {
+    private class GetAllEventTypeEntitiesAsyncTask extends AsyncTask<Void, Void, List<EventTypeEntity>> {
 
         private final static String TAG = "getMatchByIdAsynchTask";
         private EventTypeDao asyncEventTypeDao;
 
-        public GetAllEventTypeEntities(EventTypeDao eventTypeDao) {
+        public GetAllEventTypeEntitiesAsyncTask(EventTypeDao eventTypeDao) {
             this.asyncEventTypeDao = eventTypeDao;
         }
 

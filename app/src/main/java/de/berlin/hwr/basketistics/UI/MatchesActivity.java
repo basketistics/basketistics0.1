@@ -22,7 +22,9 @@ import android.widget.ImageView;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.ImageSaver;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
+import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
@@ -135,5 +137,12 @@ public class MatchesActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        // Test
+        Repository repository = new Repository(getApplication());
+        List<EventTypeEntity> eventTypes = repository.getAllEventTypeEntities();
+        for (EventTypeEntity eventTypeEntity : eventTypes) {
+            Log.e(TAG, eventTypeEntity.getEventName() + ": " + eventTypeEntity.getEventId());
+        }
     }
 }
