@@ -7,7 +7,7 @@
     tools:context=".UI.FirstRunActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/first_teamImageView"
         android:layout_width="wrap_content"
         android:layout_height="280sp"
         android:scaleType="centerCrop"
@@ -29,7 +29,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/first_teamImageView" />
 
     <TextView
         android:id="@+id/textView6"
@@ -100,4 +100,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstTeamWhatever" />
+
+    <Button
+        android:id="@+id/first_takePictureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="Bild hinzufuegen"
+        app:layout_constraintBottom_toBottomOf="@+id/first_teamImageView"
+        app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
