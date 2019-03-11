@@ -45,6 +45,8 @@ public class EventViewModel extends AndroidViewModel {
         updateEvents(playerId, playerIndex);
     }
 
+    public PlayerEvents[] getCurrentPlayerEvents() { return currentPlayerEvents; }
+
     private void updateEvents(int playerId, int playerIndex) {
 
         // Clear last players stats

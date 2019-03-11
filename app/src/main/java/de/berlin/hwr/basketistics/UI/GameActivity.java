@@ -19,8 +19,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -269,7 +272,23 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     @Override
     public void onItemClicked(PlayerEntity playerEntity) {
-        eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
+
+        EventViewModel.PlayerEvents[] playerEventsArray = eventViewModel.getCurrentPlayerEvents();
+        Boolean isUniq = true;
+        for (EventViewModel.PlayerEvents playerEvents : playerEventsArray) {
+            if (playerEvents.getPlayer().getValue().getId() != playerEntity.getId()) {
+            } else {
+                isUniq = false;
+            }
+        }
+        if (isUniq) {
+            eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    "Sie koennen einen Spieler nicht mehrfach einsetzen.",
+                    Toast.LENGTH_LONG).show();
+        }
     }
 
     // find button views and bind them to Button objects
