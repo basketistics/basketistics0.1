@@ -69,7 +69,7 @@ public class Repository {
         }
 
         @Override
-        protected List<MatchEntity>doInBackground(Void... voids) {
+        protected List<EventTypeEntity>doInBackground(Void... voids) {
             return asyncEventTypeDao.getAll();
         }
     }

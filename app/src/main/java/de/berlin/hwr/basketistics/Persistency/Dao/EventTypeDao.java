@@ -18,5 +18,5 @@ public interface EventTypeDao {
     void insert(EventTypeEntity eventTypeEntity);
 
     @Query("SELECT * FROM EventTypeEntity")
-    List<MatchEntity> getAll();
+    List<EventTypeEntity> getAll();
 }
