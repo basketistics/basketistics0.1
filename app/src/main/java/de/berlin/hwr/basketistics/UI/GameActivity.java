@@ -21,15 +21,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Constants;
-import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
@@ -105,21 +102,29 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     }
 
-    private void showfinishedQuater(){
+    private void finishCurrentQuater(){
         switch (quarterCount) {
             case 1:
+                quater_running=0;
+                eventViewModel.endFirstQuarter();
                 timerTextView.setText("End of 1st");
                 quarterCount++;
                 break;
             case 2:
+                quater_running=0;
+                eventViewModel.endSecondQuarter();
                 timerTextView.setText("End of 2nd");
                 quarterCount++;
                 break;
             case 3:
+                quater_running=0;
+                eventViewModel.endThirdQuarter();
                 timerTextView.setText("End of 3rd");
                 quarterCount++;
                 break;
             case 4:
+                quater_running=0;
+                eventViewModel.endFourthQuarter();
                 timerTextView.setText("End of 4th");
                 quarterCount = 1;
                 break;
@@ -127,8 +132,26 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         }
     }
 
+
+
+    private void insertQuaterstart(){
+        switch (quarterCount){
+            case 1: eventViewModel.startFirstQuarter();
+                break;
+            case 2:
+                eventViewModel.startSecondQuarter();
+                break;
+            case 3:
+                eventViewModel.startThirdQuarter();
+                break;
+            case 4:
+                eventViewModel.startFourthQuarter();
+                break;
+        }
+    }
+
     CountDownTimerWithPause timer = new CountDownTimerWithPause(
-            6000,
+            600000,
             1000,
             false) {
         @Override
@@ -141,43 +164,42 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
         @Override
         public void onFinish() {
-            showfinishedQuater();
-            List<EventEntity> events = eventViewModel.getAllEventIds();
-            for(EventEntity ev : events)
-            {
-                Log.i(TAG, ev.getEventType()+ ev.getPlayerId() +  ev.getTimestamp().toString() + " hi");
-
-            }
-
+            finishCurrentQuater();
+            timer_running = false;
         }
-
     };
-
-
+        private int quater_running=0;
     private void timerHandler()
     {
 
         timerTextView = findViewById(R.id.currTime);
 
-        timer.create();
 
         Button timerStart = findViewById(R.id.timer_start);
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(timerTextView.getText().toString().startsWith("E")) {
-                    timer.cancel();
-                    timer.create();
-                    eventViewModel.startGame();
+
+                if (timer_running)
+                {
+                    Log.i(TAG, "timer already running");
                 }
 
-                if (timer_running) {
-                    timer.resume();
-                } else {
-                    Log.i(TAG, "start timer.");
+                else if ((timer.timeLeft() < 600000)&& quater_running==1){
                     timer.resume();
                     timer_running = true;
+                    Log.i(TAG, "timer resumed");
                     eventViewModel.startGame();
+
+                }
+                if(timerTextView.getText().toString().startsWith("E") | quater_running == 0) {
+                    timer.cancel();
+                    timer.create();
+                    Log.i(TAG, quarterCount + " quater started");
+                    timer.resume();
+                    insertQuaterstart();
+                    quater_running = 1;
+timer_running = true;
                 }
             }
         });
@@ -187,6 +209,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             @Override
             public void onClick(View v) {
                 timer.pause();
+                timer_running = false;
+                Log.i(TAG, "timer paused");
+                eventViewModel.pauseGame();
             }
         });
     }
