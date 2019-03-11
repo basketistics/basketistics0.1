@@ -490,6 +490,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
         });
 
+        // Set starters
+        eventViewModel.setStarters(currentPlayersIds);
+
         bindPlayerButtons();
         bindPlayerTextViews();
         bindPlayerImageViews();
@@ -502,6 +505,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachPlayerImageViewToViewModel();
         // initImages();
         timerHandler();
+
     }
 
     @Override
