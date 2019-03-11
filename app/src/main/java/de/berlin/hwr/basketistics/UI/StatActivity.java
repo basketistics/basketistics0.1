@@ -1,13 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
-import android.os.Environment;
-import android.print.PrintAttributes;
-import android.print.pdf.PrintedPdfDocument;
-import android.provider.DocumentsContract;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,10 +9,7 @@ import android.view.View;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import java.io.*;
-import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.net.URI;
 
 import de.berlin.hwr.basketistics.R;
 
@@ -43,7 +34,7 @@ public class StatActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.stat_view);
+        setContentView(R.layout.stat_single_game_and_player);
 
         //pdfView = (PDFView) findViewById(R.id.pdfView);
         pdfView.fromAsset("Ergebnisdokument Basketistics.pdf").load();
