@@ -102,7 +102,7 @@ public class EventViewModel extends AndroidViewModel {
             enemyPoints.setValue(1);
         } else {
             enemyPoints.setValue(enemyPoints.getValue() + 1);
-            repository.incEnemyPoints();
+            repository.incEnemyPoints(new EventEntity(Constants.ENEMY_POINT, 0, currentMatchId.getValue()));
         }
     }
 
@@ -112,7 +112,7 @@ public class EventViewModel extends AndroidViewModel {
             enemyPoints.setValue(1);
         } else {
             enemyPoints.setValue(enemyPoints.getValue() - 1);
-            repository.decEnemyPopints();
+            repository.decEnemyPopints(new EventEntity(Constants.ENEMY_POINT, 0, currentMatchId.getValue()));
         }
     }
 
