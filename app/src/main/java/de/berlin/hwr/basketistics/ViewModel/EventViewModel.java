@@ -49,6 +49,51 @@ public class EventViewModel extends AndroidViewModel {
         }
     }
 
+    public void pauseGame() {
+        repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, 0, currentMatchId.getValue()));
+    }
+
+    public void startFirstQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endFirstQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startSecondQuarter() {
+        repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endSecondQuarter() {
+        repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startThirdQuarter() {
+        repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endThirdQuarter() {
+        repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startFourthQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endFourthQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void playerIn(int playerId) {
+        repository.insertEvent(new EventEntity(Constants.IN, playerId, currentMatchId.getValue()));
+    }
+
+    public void playerOut(int playerId) {
+        repository.insertEvent(new EventEntity(Constants.OUT, playerId, currentMatchId.getValue()));
+    }
+
+
     public void insertPlayer(int playerId, int playerIndex) {
 
         currentPlayerEvents[playerIndex].getPlayer().setValue(repository.getPlayerById(playerId));

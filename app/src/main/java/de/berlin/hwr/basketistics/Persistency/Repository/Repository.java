@@ -177,8 +177,7 @@ public class Repository {
 
         @Override
         protected List<EventEntity> doInBackground(Void... voids) {
-            List<EventEntity> eventEntitiesByMatchAndPlayer =
-                    asyncEventDao.getAll();
+            List<EventEntity> eventEntitiesByMatchAndPlayer = asyncEventDao.getAll();
             return eventEntitiesByMatchAndPlayer;
         }
     }
