@@ -32,4 +32,7 @@ public interface EventDao {
 
     @Insert
     void startGame(EventEntity eventEntity);
+
+    @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId)")
+    List<EventEntity> getEventsByMatches(Integer matchId);
 }

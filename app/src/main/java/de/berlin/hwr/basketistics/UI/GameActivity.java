@@ -23,12 +23,14 @@ import android.widget.TextView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
+import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
@@ -124,15 +126,15 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(timerTextView.getText().toString().startsWith("E"))
+                if(timerTextView.getText().toString().startsWith("E")) {
                     timer.cancel();
                     timer.create();
                     eventViewModel.startGame();
-                if (timer_running)
-                {
-                    timer.resume();
                 }
-                else {
+
+                if (timer_running) {
+                    timer.resume();
+                } else {
                     Log.i(TAG, "start timer.");
                     timer.resume();
                     timer_running = true;
