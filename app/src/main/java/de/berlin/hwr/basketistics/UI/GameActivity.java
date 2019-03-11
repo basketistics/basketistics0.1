@@ -104,10 +104,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             List<EventEntity> events = eventViewModel.getAllEventIds();
             for(EventEntity ev : events)
             {
-                Log.i(TAG, ev.getEventType()+ ev.getPlayerId() +  ev.getTimestamp().toString() + " hi");
+                Log.i(TAG, ev.getEventType()+" "+ ev.getPlayerId() +" " + ev.getMatch() +  ev.getTimestamp().toString() + " hi");
 
             }
-
+            Log.e(TAG, "----------------------------------------------");
         }
 
     };
@@ -124,15 +124,16 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(timerTextView.getText().toString().startsWith("E"))
+                if(timerTextView.getText().toString().startsWith("E")) {
                     timer.cancel();
                     timer.create();
                     eventViewModel.startGame();
+                }
                 if (timer_running)
                 {
                     timer.resume();
                 }
-                else {
+                else if (!(timerTextView.getText().toString().startsWith("E"))&& !timer_running){
                     Log.i(TAG, "start timer.");
                     timer.resume();
                     timer_running = true;
