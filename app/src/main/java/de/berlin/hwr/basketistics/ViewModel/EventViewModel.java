@@ -40,7 +40,13 @@ public class EventViewModel extends AndroidViewModel {
     }
 
     public void startGame() {
-        repository.startGame(new EventEntity(Constants.GAME_START, 0, currentMatchId.getValue()));
+        repository.insertEvent(new EventEntity(Constants.GAME_START, 0, currentMatchId.getValue()));
+    }
+
+    public void setStarters(Integer[] playerIds) {
+        for (Integer playerId : playerIds) {
+            repository.insertEvent(new EventEntity(Constants.STARTER, playerId, currentMatchId.getValue()));
+        }
     }
 
     public void insertPlayer(int playerId, int playerIndex) {
