@@ -149,7 +149,7 @@
                         android:id="@+id/visu_fgs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FG; A/M/%: "
+                        android:text="FG; M/A/%: "
                         android:textSize="28sp" />
                 </TableRow>
 
@@ -167,7 +167,7 @@
                         android:id="@+id/visu_fgs3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FG3; A/M/%: "
+                        android:text="FG3; M/A/%: "
                         android:textSize="28sp" />
                 </TableRow>
 
@@ -185,7 +185,7 @@
                         android:id="@+id/visu_fts"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="FT; A/M/%: "
+                        android:text="FT; M/A/%: "
                         android:textSize="28sp" />
                 </TableRow>
 
