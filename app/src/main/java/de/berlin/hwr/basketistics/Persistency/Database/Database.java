@@ -31,6 +31,7 @@ public abstract class Database extends RoomDatabase {
     public abstract PlayerDao playerDao();
     public abstract EventDao eventDao();
     public abstract MatchDao matchDao();
+    public abstract EventTypeDao eventTypeDao();
 
     private static volatile Database INSTANCE;
 
@@ -65,7 +66,7 @@ public abstract class Database extends RoomDatabase {
         private final EventTypeDao eventTypeDao;
 
         public PopulateDbAsyncTask(Database db) {
-            this.eventTypeDao = eventTypeDao;
+            this.eventTypeDao = db.eventTypeDao();
         }
 
         @Override

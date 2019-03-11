@@ -7,11 +7,12 @@ import android.arch.persistence.room.Query;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 
 @Dao
 public interface EventTypeDao {
 
     @Insert
-    void insert();
+    void insert(EventTypeEntity eventTypeEntity);
 }

@@ -7,6 +7,11 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class EventTypeEntity {
 
+    public EventTypeEntity(String eventName, Integer id) {
+        this.eventName = eventName;
+        this.eventId = id;
+    }
+
     @PrimaryKey
     @ColumnInfo(name = "event_id")
     private int eventId;
