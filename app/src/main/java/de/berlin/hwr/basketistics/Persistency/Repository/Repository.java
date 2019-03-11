@@ -152,25 +152,6 @@ public class Repository {
     }
 
     // ---------- Events ---------- //
-
-
-    public void startGame(EventEntity eventEntity) {
-        new StartGameAsyncTask(eventDao).execute(eventEntity);
-    }
-
-    private static class StartGameAsyncTask extends AsyncTask<EventEntity, Void, Void> {
-
-        private EventDao asyncEventDao;
-
-        StartGameAsyncTask(EventDao eventDao) {this.asyncEventDao = eventDao;}
-
-        @Override
-        protected Void doInBackground(EventEntity... eventEntities) {
-            asyncEventDao.startGame(eventEntities[0]);
-            return null;
-        }
-    }
-
     public List<EventEntity> getAllEvents() {
 
         List<EventEntity> eventEntities = null;
