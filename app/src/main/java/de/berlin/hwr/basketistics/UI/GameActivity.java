@@ -2,10 +2,12 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -497,6 +499,22 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachPlayerImageViewToViewModel();
         // initImages();
         timerHandler();
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this)
+                .setMessage("Moechten Sie Basketistics wirklich beenden?")
+                .setPositiveButton("Ja", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        GameActivity.super.onBackPressed();
+                    }
+                })
+                .setNegativeButton("Nein", null)
+                .show();
+
+
     }
 
     private void attachPlayerImageViewToViewModel() {

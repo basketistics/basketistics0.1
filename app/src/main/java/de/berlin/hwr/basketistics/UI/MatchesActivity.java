@@ -126,6 +126,7 @@ public class MatchesActivity extends AppCompatActivity {
             }
         });
 
+        // Start MatchesActivity on button click
         addMatchButton = findViewById(R.id.addMatchButton);
         addMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override

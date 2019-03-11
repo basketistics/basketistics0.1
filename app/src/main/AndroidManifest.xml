@@ -29,7 +29,8 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".UI.StartGameActivity" />
+        <activity android:name=".UI.StartGameActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".UI.TeamActivity" />
         <activity android:name=".UI.AddPlayerActivity" />
         <activity android:name=".UI.GameActivity" />

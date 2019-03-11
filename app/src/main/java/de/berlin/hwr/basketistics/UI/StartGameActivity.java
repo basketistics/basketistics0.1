@@ -305,6 +305,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
                     gameIntent.putExtra(STARTERS, starters);
                     gameIntent.putExtra(MATCH, matchId);
                     Log.e(TAG, "" + matchId);
+                    finishAffinity();
                     startActivity(gameIntent);
                 }
             }
