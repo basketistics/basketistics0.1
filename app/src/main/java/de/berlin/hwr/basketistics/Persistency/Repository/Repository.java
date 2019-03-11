@@ -9,10 +9,12 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
@@ -29,6 +31,8 @@ public class Repository {
     private MatchDao matchDao;
     private List<MatchEntity> matches;
 
+    private EventTypeDao eventTypeDao;
+
     public Repository(Application application) {
 
         Database database = Database.getDatabase(application);
@@ -38,9 +42,37 @@ public class Repository {
         this.events = getAllEvents();
         this.matchDao = database.matchDao();
         this.matches = getAllMatches();
+        this.eventTypeDao = database.eventTypeDao();
 
     }
 
+    // ---------- EventTypes ---------- //
+    public List<EventTypeEntity> getAllEventEntities() {
+        List<EventTypeEntity> eventTypeEntities= null;
+        try {
+            eventTypeEntities = new GetAllEventTypeEntities(eventTypeDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventTypeEntities;
+    }
+
+    private class GetAllEventTypeEntities extends AsyncTask<Void, Void, List<EventTypeEntity>> {
+
+        private final static String TAG = "getMatchByIdAsynchTask";
+        private EventTypeDao asyncEventTypeDao;
+
+        public GetAllEventTypeEntities(EventTypeDao eventTypeDao) {
+            this.asyncEventTypeDao = eventTypeDao;
+        }
+
+        @Override
+        protected List<MatchEntity>doInBackground(Void... voids) {
+            return asyncEventTypeDao.getAll();
+        }
+    }
 
     // ---------- Matches ---------- //
     public List<MatchEntity> getAllMatches() {
@@ -192,7 +224,7 @@ public class Repository {
         }
     }
 
-    // ---------- PLayer ---------- //
+    // ---------- Player ---------- //
 
     @Deprecated
     public void addPlayerToCurrentGame(PlayerEntity playerEntity) {
