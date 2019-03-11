@@ -62,6 +62,28 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     boolean timer_running = false;
     int quarterCount = 1;
 
+    private void showfinishedQuater(){
+        switch (quarterCount) {
+            case 1:
+                timerTextView.setText("End of 1st");
+                quarterCount++;
+                break;
+            case 2:
+                timerTextView.setText("End of 2nd");
+                quarterCount++;
+                break;
+            case 3:
+                timerTextView.setText("End of 3rd");
+                quarterCount++;
+                break;
+            case 4:
+                timerTextView.setText("End of 4th");
+                quarterCount = 1;
+                break;
+
+        }
+    }
+
     CountDownTimerWithPause timer = new CountDownTimerWithPause(
             600000,
             1000,
@@ -76,26 +98,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
         @Override
         public void onFinish() {
-
-            switch (quarterCount) {
-                case 1:
-                    timerTextView.setText("End of 1st");
-                    quarterCount++;
-                    break;
-                case 2:
-                    timerTextView.setText("End of 2nd");
-                    quarterCount++;
-                    break;
-                case 3:
-                    timerTextView.setText("End of 3rd");
-                    quarterCount++;
-                    break;
-                case 4:
-                    timerTextView.setText("End of 4th");
-                    quarterCount = 1;
-                    break;
-
-            }
+            showfinishedQuater();
         }
 
     };
@@ -113,7 +116,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             @Override
             public void onClick(View v) {
                 if(timerTextView.getText().toString().startsWith("E"))
+                    timer.cancel();
                     timer.create();
+                    eventViewModel.startGame();
                 if (timer_running)
                 {
                     timer.resume();
@@ -122,6 +127,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     Log.i(TAG, "start timer.");
                     timer.resume();
                     timer_running = true;
+                    eventViewModel.startGame();
                 }
             }
         });
