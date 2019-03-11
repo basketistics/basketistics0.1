@@ -24,7 +24,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
                 EventEntity.class,
                 MatchEntity.class,
                 EventTypeEntity.class},
-        version = 14)
+        version = 14,
+        exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 

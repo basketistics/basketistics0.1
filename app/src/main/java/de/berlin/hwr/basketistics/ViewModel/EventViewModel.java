@@ -149,6 +149,11 @@ public class EventViewModel extends AndroidViewModel {
         }
     }
 
+
+    public List<EventEntity> getAllEventIds(){
+        return repository.getAllEvents();
+    }
+
     public MutableLiveData<PlayerEntity> getPlayerByIndex(int index) {
         return currentPlayerEvents[index].player;
     }

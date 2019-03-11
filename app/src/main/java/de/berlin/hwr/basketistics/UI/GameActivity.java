@@ -21,11 +21,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Constants;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
@@ -85,7 +87,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     CountDownTimerWithPause timer = new CountDownTimerWithPause(
-            600000,
+            6000,
             1000,
             false) {
         @Override
@@ -99,6 +101,13 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         @Override
         public void onFinish() {
             showfinishedQuater();
+            List<EventEntity> events = eventViewModel.getAllEventIds();
+            for(EventEntity ev : events)
+            {
+                Log.i(TAG, ev.getEventType()+ ev.getPlayerId() +  ev.getTimestamp().toString() + " hi");
+
+            }
+
         }
 
     };
@@ -123,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 {
                     timer.resume();
                 }
-                else if (!timer_running){
+                else {
                     Log.i(TAG, "start timer.");
                     timer.resume();
                     timer_running = true;

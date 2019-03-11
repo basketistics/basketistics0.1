@@ -152,6 +152,7 @@ public class Repository {
     }
 
     // ---------- Events ---------- //
+
     public List<EventEntity> getAllEvents() {
 
         List<EventEntity> eventEntities = null;
@@ -181,6 +182,7 @@ public class Repository {
             return eventEntitiesByMatchAndPlayer;
         }
     }
+
 
     // TODO: Maybe use cached values?
     public List<EventEntity> getEventsByMatchAndPlayer(int matchId, int playerId)
