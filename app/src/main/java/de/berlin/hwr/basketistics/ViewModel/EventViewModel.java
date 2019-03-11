@@ -25,10 +25,10 @@ public class EventViewModel extends AndroidViewModel {
 
     private MutableLiveData<MatchEntity> currentMatch = new MutableLiveData<MatchEntity>();
     private PlayerEvents[] currentPlayerEvents;
-    private List<PlayerEvents> allPlayerEvents; //TODO: Remove safely
     private Repository repository;
-    private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
     private MutableLiveData<Integer> currentMatchId;
+    private MutableLiveData<Integer> points;
+    private MutableLiveData<Integer> enemyPoints;
 
     public EventViewModel(@NonNull Application application) {
         super(application);
@@ -37,6 +37,10 @@ public class EventViewModel extends AndroidViewModel {
         this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false, "<no_date>", "<no_description>"));
         this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
+    }
+
+    public void startGame() {
+        repository.startGame(new EventEntity(Constants.GAME_START, 0, currentMatchId.getValue()));
     }
 
     public void insertPlayer(int playerId, int playerIndex) {
@@ -175,7 +179,7 @@ public class EventViewModel extends AndroidViewModel {
                 int twoPoints,
                 int threePoints,
                 int onePointAttempt,
-                int twoPointsAttemp,
+                int twoPointsAttempt,
                 int threePointsAttempt,
                 int assist,
                 int rebound,
@@ -190,7 +194,7 @@ public class EventViewModel extends AndroidViewModel {
             this.twoPoints.setValue(twoPoints);
             this.threePoints.setValue(threePoints);
             this.onePointAttempt.setValue(onePointAttempt);
-            this.twoPointsAttempt.setValue(twoPointsAttemp);
+            this.twoPointsAttempt.setValue(twoPointsAttempt);
             this.threepointsAttempt.setValue(threePointsAttempt);
             this.assist.setValue(assist);
             this.rebound.setValue(rebound);

@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
@@ -151,6 +152,24 @@ public class Repository {
     }
 
     // ---------- Events ---------- //
+
+
+    public void startGame(EventEntity eventEntity) {
+        new StartGameAsyncTask(eventDao).execute(eventEntity);
+    }
+
+    private static class StartGameAsyncTask extends AsyncTask<EventEntity, Void, Void> {
+
+        private EventDao asyncEventDao;
+
+        StartGameAsyncTask(EventDao eventDao) {this.asyncEventDao = eventDao;}
+
+        @Override
+        protected Void doInBackground(EventEntity... eventEntities) {
+            asyncEventDao.startGame(eventEntities[0]);
+            return null;
+        }
+    }
 
     public List<EventEntity> getAllEvents() {
 
