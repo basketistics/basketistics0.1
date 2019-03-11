@@ -137,12 +137,5 @@ public class MatchesActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_MATCH_ACTIVITY_REQUEST_CODE);
             }
         });
-
-        // Test
-        Repository repository = new Repository(getApplication());
-        List<EventTypeEntity> eventTypes = repository.getAllEventTypeEntities();
-        for (EventTypeEntity eventTypeEntity : eventTypes) {
-            Log.e(TAG, eventTypeEntity.getEventName() + ": " + eventTypeEntity.getEventId());
-        }
     }
 }
