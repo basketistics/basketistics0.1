@@ -37,8 +37,7 @@ public abstract class Database extends RoomDatabase {
                             Database.class,
                             "database")
                             .fallbackToDestructiveMigration()
-                            // TODO: remove all main thread queries!
-                            .allowMainThreadQueries()
+                            // .allowMainThreadQueries()
                             // .addCallback(databaseCallback)
                             .build();
                 }
