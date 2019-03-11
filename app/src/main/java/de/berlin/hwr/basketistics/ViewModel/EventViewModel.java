@@ -44,6 +44,7 @@ public class EventViewModel extends AndroidViewModel {
     }
 
     public void setStarters(int[] playerIds) {
+        Log.e(TAG, "setStarters() was entered.");
         for (Integer playerId : playerIds) {
             repository.insertEvent(new EventEntity(Constants.STARTER, playerId, currentMatchId.getValue()));
         }

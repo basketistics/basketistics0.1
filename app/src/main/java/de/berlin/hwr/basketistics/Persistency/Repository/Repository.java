@@ -76,6 +76,7 @@ public class Repository {
     }
 
     // ---------- Matches ---------- //
+
     public List<MatchEntity> getAllMatches() {
         List<MatchEntity> matchEntities = null;
         try {
@@ -207,6 +208,31 @@ public class Repository {
             return eventEntitiesByMatchAndPlayer;
         }
     }
+
+    public List<EventEntity> getEventsByMatch(int matchId)
+            throws ExecutionException, InterruptedException {
+        List<EventEntity> eventsByMatch =
+                new GetEventsByMatchAsyncTask(eventDao).execute(matchId).get();
+        return eventsByMatch;
+    }
+
+    private  class GetEventsByMatchAsyncTask extends
+            AsyncTask<Integer, Void, List<EventEntity>>{
+
+        private EventDao asyncEventDao;
+
+        GetEventsByMatchAsyncTask(EventDao eventDao) {
+            this.asyncEventDao = eventDao;
+        }
+
+        @Override
+        protected List<EventEntity> doInBackground(Integer... integers) {
+            List<EventEntity> eventEntitiesByMatch =
+                    asyncEventDao.getEventsByMatches(integers[0]);
+            return eventEntitiesByMatch;
+        }
+    }
+
 
     public void insertEvent(EventEntity eventEntity) {
         new InsertEventAsyncTask(eventDao).execute(eventEntity);
