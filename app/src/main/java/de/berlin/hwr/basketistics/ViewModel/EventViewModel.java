@@ -25,10 +25,10 @@ public class EventViewModel extends AndroidViewModel {
 
     private MutableLiveData<MatchEntity> currentMatch = new MutableLiveData<MatchEntity>();
     private PlayerEvents[] currentPlayerEvents;
-    private List<PlayerEvents> allPlayerEvents; //TODO: Remove safely
     private Repository repository;
-    private Map<Integer, Integer> currentPlayerMap;  // K: playerIndex, V: playerId
     private MutableLiveData<Integer> currentMatchId;
+    private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> enemyPoints = new MutableLiveData<Integer>();
 
     public EventViewModel(@NonNull Application application) {
         super(application);
@@ -37,6 +37,83 @@ public class EventViewModel extends AndroidViewModel {
         this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false, "<no_date>", "<no_description>"));
         this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
+        this.points.setValue(0);
+        this.enemyPoints.setValue(0);
+    }
+
+    public void startGame() {
+        repository.insertEvent(new EventEntity(Constants.GAME_START, 0, currentMatchId.getValue()));
+    }
+
+    public void setStarters(int[] playerIds) {
+        Log.e(TAG, "setStarters() was entered.");
+        for (Integer playerId : playerIds) {
+            repository.insertEvent(new EventEntity(Constants.STARTER, playerId, currentMatchId.getValue()));
+        }
+    }
+
+    public void pauseGame() {
+        repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, 0, currentMatchId.getValue()));
+    }
+
+    public void startFirstQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endFirstQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startSecondQuarter() {
+        repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endSecondQuarter() {
+        repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startThirdQuarter() {
+        repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endThirdQuarter() {
+        repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void startFourthQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_START, 0, currentMatchId.getValue()));
+    }
+
+    public void endFourthQuarter() {
+        repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_END, 0, currentMatchId.getValue()));
+    }
+
+    public void playerIn(int playerId) {
+        repository.insertEvent(new EventEntity(Constants.IN, playerId, currentMatchId.getValue()));
+    }
+
+    public void playerOut(int playerId) {
+        repository.insertEvent(new EventEntity(Constants.OUT, playerId, currentMatchId.getValue()));
+    }
+
+    public void incEnemyPoints() {
+        if (enemyPoints == null) {
+            enemyPoints = new MutableLiveData<Integer>();
+            enemyPoints.setValue(1);
+        } else {
+            enemyPoints.setValue(enemyPoints.getValue() + 1);
+            repository.incEnemyPoints(new EventEntity(Constants.ENEMY_POINT, 0, currentMatchId.getValue()));
+        }
+    }
+
+    public void decEnemyPoints() {
+        if (enemyPoints == null) {
+            enemyPoints = new MutableLiveData<Integer>();
+            enemyPoints.setValue(1);
+        } else {
+            enemyPoints.setValue(enemyPoints.getValue() - 1);
+            repository.decEnemyPopints(new EventEntity(Constants.ENEMY_POINT, 0, currentMatchId.getValue()));
+        }
     }
 
     public void insertPlayer(int playerId, int playerIndex) {
@@ -141,6 +218,11 @@ public class EventViewModel extends AndroidViewModel {
         }
     }
 
+
+    public List<EventEntity> getAllEventIds(){
+        return repository.getAllEvents();
+    }
+
     public MutableLiveData<PlayerEntity> getPlayerByIndex(int index) {
         return currentPlayerEvents[index].player;
     }
@@ -151,6 +233,22 @@ public class EventViewModel extends AndroidViewModel {
 
     public MutableLiveData<Integer> getCurrentMatchId() {
         return currentMatchId;
+    }
+
+    public MutableLiveData<Integer> getEnemyPoints() {
+        return enemyPoints;
+    }
+
+    public MutableLiveData<Integer> getPoints() {
+        return points;
+    }
+
+    public void incPoints(int increment) {
+        points.setValue(points.getValue() + increment);
+    }
+
+    public void setEnemyPoints(MutableLiveData<Integer> enemyPoints) {
+        this.enemyPoints = enemyPoints;
     }
 
     public class PlayerEvents {
@@ -177,7 +275,7 @@ public class EventViewModel extends AndroidViewModel {
                 int twoPoints,
                 int threePoints,
                 int onePointAttempt,
-                int twoPointsAttemp,
+                int twoPointsAttempt,
                 int threePointsAttempt,
                 int assist,
                 int rebound,
@@ -192,7 +290,7 @@ public class EventViewModel extends AndroidViewModel {
             this.twoPoints.setValue(twoPoints);
             this.threePoints.setValue(threePoints);
             this.onePointAttempt.setValue(onePointAttempt);
-            this.twoPointsAttempt.setValue(twoPointsAttemp);
+            this.twoPointsAttempt.setValue(twoPointsAttempt);
             this.threepointsAttempt.setValue(threePointsAttempt);
             this.assist.setValue(assist);
             this.rebound.setValue(rebound);

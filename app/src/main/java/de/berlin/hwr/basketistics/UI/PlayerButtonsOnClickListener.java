@@ -32,12 +32,15 @@ public class PlayerButtonsOnClickListener implements View.OnClickListener {
         switch (eventID) {
             case Constants.ONE_POINT:
                 eventViewModel.getPlayerEvents(playerIndex).addOnePoint();
+                eventViewModel.incPoints(1);
                 break;
             case Constants.TWO_POINTS:
                 eventViewModel.getPlayerEvents(playerIndex).addTwoPoints();
+                eventViewModel.incPoints(2);
                 break;
             case Constants.THREE_POINTS:
                 eventViewModel.getPlayerEvents(playerIndex).addThreePoints();
+                eventViewModel.incPoints(3);
                 break;
             case Constants.ONE_POINT_ATTEMPT:
                 eventViewModel.getPlayerEvents(playerIndex).addOnePointAttempt();

@@ -24,7 +24,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
                 EventEntity.class,
                 MatchEntity.class,
                 EventTypeEntity.class},
-        version = 14)
+        version = 14,
+        exportSchema = false)
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
@@ -73,14 +74,15 @@ public abstract class Database extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
 
             eventTypeDao.insert(new EventTypeEntity("GAME_START"              , 0));
-            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_START"     , 1));
-            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_START"    , 2));
-            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_START"     , 3));
-            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_START"    , 4));
-            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_END"       , 5));
-            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_END"      , 6));
-            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_END"       , 7));
-            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_END"      , 8));
+            eventTypeDao.insert(new EventTypeEntity("GAME_PAUSE"              , 1));
+            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_START"     , 2));
+            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_START"    , 3));
+            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_START"     , 4));
+            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_START"    , 5));
+            eventTypeDao.insert(new EventTypeEntity("FIRST_QUARTER_END"       , 6));
+            eventTypeDao.insert(new EventTypeEntity("SECOND_QUARTER_END"      , 7));
+            eventTypeDao.insert(new EventTypeEntity("THIRD_QUARTER_END"       , 8));
+            eventTypeDao.insert(new EventTypeEntity("FOURTH_QUARTER_END"      , 9));
 
             eventTypeDao.insert(new EventTypeEntity("STARTER"                 ,10));
             eventTypeDao.insert(new EventTypeEntity("IN"                      ,11));

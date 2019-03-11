@@ -67,7 +67,7 @@ public abstract class CountDownTimerWithPause {
         if (mMillisInFuture <= 0) {
             onFinish();
         } else {
-            mPauseTimeRemaining = mMillisInFuture;
+            mPauseTimeRemaining = mTotalCountdown;
         }
 
         if (mRunAtStart) {

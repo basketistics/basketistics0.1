@@ -3,14 +3,15 @@ package de.berlin.hwr.basketistics;
 public abstract class Constants {
 
     public static final int GAME_START              =  0;
-    public static final int FIRST_QUARTER_START     =  1;
-    public static final int SECOND_QUARTER_START    =  2;
-    public static final int THIRD_QUARTER_START     =  3;
-    public static final int FOURTH_QUARTER_START    =  4;
-    public static final int FIRST_QUARTER_END       =  5;
-    public static final int SECOND_QUARTER_END      =  6;
-    public static final int THIRD_QUARTER_END       =  7;
-    public static final int FOURTH_QUARTER_END      =  8;
+    public static final int GAME_PAUSE              =  1;
+    public static final int FIRST_QUARTER_START     =  2;
+    public static final int SECOND_QUARTER_START    =  3;
+    public static final int THIRD_QUARTER_START     =  4;
+    public static final int FOURTH_QUARTER_START    =  5;
+    public static final int FIRST_QUARTER_END       =  6;
+    public static final int SECOND_QUARTER_END      =  7;
+    public static final int THIRD_QUARTER_END       =  8;
+    public static final int FOURTH_QUARTER_END      =  9;
 
     public static final int STARTER                 = 10;
     public static final int IN                      = 11;
@@ -29,5 +30,7 @@ public abstract class Constants {
     public static final int BLOCK                   = 60;
     public static final int TURNOVER                = 70;
     public static final int FOUL                    = 80;
+
+    public static final int ENEMY_POINT             =100;
 
 }

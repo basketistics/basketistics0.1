@@ -29,6 +29,7 @@ import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Constants;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
@@ -55,18 +56,79 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     int clickedPlayerIndex;
 
     private EventViewModel eventViewModel;
+    private TeamViewModel teamViewModel;
     private static int[] currentPlayersIds;
     private static int currentMatchId;
 
-    private TeamViewModel teamViewModel;
+    // Enemy points
+    private Button incEnemyPointsButton;
+    private Button decEnemyPointsButton;
+    private TextView enemyPointsTextView;
 
     // Timer
     private TextView timerTextView;
     boolean timer_running = false;
     int quarterCount = 1;
 
+    void initEnemyPoints() {
+        incEnemyPointsButton = findViewById(R.id.ePoints_inc);
+        decEnemyPointsButton = findViewById(R.id.ePoints_dec);
+        enemyPointsTextView = findViewById(R.id.score);
+
+        incEnemyPointsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventViewModel.incEnemyPoints();
+            }
+        });
+
+        decEnemyPointsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                eventViewModel.decEnemyPoints();
+            }
+        });
+
+        eventViewModel.getEnemyPoints().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                enemyPointsTextView.setText(eventViewModel.getPoints().getValue() + " : " + eventViewModel.getEnemyPoints().getValue());
+            }
+        });
+
+        eventViewModel.getPoints().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer integer) {
+                enemyPointsTextView.setText(eventViewModel.getPoints().getValue() + " : " + eventViewModel.getEnemyPoints().getValue());
+            }
+        });
+
+    }
+
+    private void showfinishedQuater(){
+        switch (quarterCount) {
+            case 1:
+                timerTextView.setText("End of 1st");
+                quarterCount++;
+                break;
+            case 2:
+                timerTextView.setText("End of 2nd");
+                quarterCount++;
+                break;
+            case 3:
+                timerTextView.setText("End of 3rd");
+                quarterCount++;
+                break;
+            case 4:
+                timerTextView.setText("End of 4th");
+                quarterCount = 1;
+                break;
+
+        }
+    }
+
     CountDownTimerWithPause timer = new CountDownTimerWithPause(
-            600000,
+            6000,
             1000,
             false) {
         @Override
@@ -79,26 +141,14 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
         @Override
         public void onFinish() {
-
-            switch (quarterCount) {
-                case 1:
-                    timerTextView.setText("End of 1st");
-                    quarterCount++;
-                    break;
-                case 2:
-                    timerTextView.setText("End of 2nd");
-                    quarterCount++;
-                    break;
-                case 3:
-                    timerTextView.setText("End of 3rd");
-                    quarterCount++;
-                    break;
-                case 4:
-                    timerTextView.setText("End of 4th");
-                    quarterCount = 1;
-                    break;
+            showfinishedQuater();
+            List<EventEntity> events = eventViewModel.getAllEventIds();
+            for(EventEntity ev : events)
+            {
+                Log.i(TAG, ev.getEventType()+ ev.getPlayerId() +  ev.getTimestamp().toString() + " hi");
 
             }
+
         }
 
     };
@@ -115,16 +165,19 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(timerTextView.getText().toString().startsWith("E"))
+                if(timerTextView.getText().toString().startsWith("E")) {
+                    timer.cancel();
                     timer.create();
-                if (timer_running)
-                {
-                    timer.resume();
+                    eventViewModel.startGame();
                 }
-                else if (!timer_running){
+
+                if (timer_running) {
+                    timer.resume();
+                } else {
                     Log.i(TAG, "start timer.");
                     timer.resume();
                     timer_running = true;
+                    eventViewModel.startGame();
                 }
             }
         });
@@ -509,6 +562,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
         });
 
+        // Set starters
+        eventViewModel.setStarters(currentPlayersIds);
+
         bindPlayerButtons();
         bindPlayerTextViews();
         bindPlayerImageViews();
@@ -519,8 +575,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachTextViewsToViewModel();
         attachPlayerDescriptionToViewModel();
         attachPlayerImageViewToViewModel();
+        initEnemyPoints();
         // initImages();
         timerHandler();
+
     }
 
     @Override
