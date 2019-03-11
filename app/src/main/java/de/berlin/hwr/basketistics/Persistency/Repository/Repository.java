@@ -47,6 +47,17 @@ public class Repository {
 
     }
 
+    // ---------- Enemy Points ---------- //
+
+    public void incEnemyPoints() {
+        // TODO!
+    }
+
+
+    public void decEnemyPopints() {
+        // TODO!
+    }
+
     // ---------- EventTypes ---------- //
     public List<EventTypeEntity> getAllEventTypeEntities() {
         List<EventTypeEntity> eventTypeEntities= null;

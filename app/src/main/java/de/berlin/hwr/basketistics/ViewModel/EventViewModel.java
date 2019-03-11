@@ -27,8 +27,8 @@ public class EventViewModel extends AndroidViewModel {
     private PlayerEvents[] currentPlayerEvents;
     private Repository repository;
     private MutableLiveData<Integer> currentMatchId;
-    private MutableLiveData<Integer> points;
-    private MutableLiveData<Integer> enemyPoints;
+    private MutableLiveData<Integer> points = new MutableLiveData<Integer>();
+    private MutableLiveData<Integer> enemyPoints = new MutableLiveData<Integer>();
 
     public EventViewModel(@NonNull Application application) {
         super(application);
@@ -37,6 +37,8 @@ public class EventViewModel extends AndroidViewModel {
         this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false, "<no_date>", "<no_description>"));
         this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
+        this.points.setValue(0);
+        this.enemyPoints.setValue(0);
     }
 
     public void startGame() {
@@ -94,6 +96,25 @@ public class EventViewModel extends AndroidViewModel {
         repository.insertEvent(new EventEntity(Constants.OUT, playerId, currentMatchId.getValue()));
     }
 
+    public void incEnemyPoints() {
+        if (enemyPoints == null) {
+            enemyPoints = new MutableLiveData<Integer>();
+            enemyPoints.setValue(1);
+        } else {
+            enemyPoints.setValue(enemyPoints.getValue() + 1);
+            repository.incEnemyPoints();
+        }
+    }
+
+    public void decEnemyPoints() {
+        if (enemyPoints == null) {
+            enemyPoints = new MutableLiveData<Integer>();
+            enemyPoints.setValue(1);
+        } else {
+            enemyPoints.setValue(enemyPoints.getValue() - 1);
+            repository.decEnemyPopints();
+        }
+    }
 
     public void insertPlayer(int playerId, int playerIndex) {
 
@@ -210,6 +231,22 @@ public class EventViewModel extends AndroidViewModel {
 
     public MutableLiveData<Integer> getCurrentMatchId() {
         return currentMatchId;
+    }
+
+    public MutableLiveData<Integer> getEnemyPoints() {
+        return enemyPoints;
+    }
+
+    public MutableLiveData<Integer> getPoints() {
+        return points;
+    }
+
+    public void incPoints(int increment) {
+        points.setValue(points.getValue() + increment);
+    }
+
+    public void setEnemyPoints(MutableLiveData<Integer> enemyPoints) {
+        this.enemyPoints = enemyPoints;
     }
 
     public class PlayerEvents {
