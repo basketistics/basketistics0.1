@@ -3,7 +3,9 @@ package de.berlin.hwr.basketistics.Persistency.Entities;
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.ForeignKey;
 
+import static android.arch.persistence.room.ForeignKey.CASCADE;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -16,6 +18,7 @@ public class EventEntity implements Serializable{
     @ColumnInfo(name = "timestamp")
     private Date timestamp;
 
+    @ForeignKey(entity = EventTypeEntity.class, parentColumns = "event_id", childColumns = "eventType")
     @ColumnInfo(name = "event_type")
     private int eventType;
 

@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.EventJoinDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventJoinEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
@@ -34,6 +35,8 @@ public class Repository {
 
     private EventTypeDao eventTypeDao;
 
+    private EventJoinDao eventJoinDao;
+
     public Repository(Application application) {
 
         Database database = Database.getDatabase(application);
@@ -44,6 +47,7 @@ public class Repository {
         this.matchDao = database.matchDao();
         this.matches = getAllMatches();
         this.eventTypeDao = database.eventTypeDao();
+        this.eventJoinDao = database.eventJoinDao();
 
     }
 
@@ -372,4 +376,67 @@ public class Repository {
             return null;
         }
     }
+
+
+
+
+    public EventJoinEntity getReboundsByPlayerId (int playerId) {
+
+        EventJoinEntity eventJoinEntity = null;
+        try {
+            eventJoinEntity = new GetReboundsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventJoinEntity;
+    }
+
+    private class GetReboundsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+
+        private EventJoinDao asyncEventJoinDao;
+
+        public GetReboundsByPlayerIdAsyncTask(EventJoinDao eventJoinDao) {
+            this.asyncEventJoinDao = eventJoinDao;
+        }
+        @Override
+        protected EventJoinEntity doInBackground(Integer... integers) {
+            return asyncEventJoinDao.getReboundsByPlayerId(integers[0]);
+        }
+    }
+
+
+    public List<Integer> getPlayerIdsByMatch(int matchId) {
+
+        List<Integer> playerIds = null;
+        try {
+            playerIds = new GetPlayerIdsByMatchAsyncTask(eventJoinDao).execute(matchId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return playerIds;
+    }
+
+    private class GetPlayerIdsByMatchAsyncTask extends AsyncTask<Integer, Void, List<Integer>> {
+
+        private EventJoinDao asyncEventJoinDao;
+
+        public GetPlayerIdsByMatchAsyncTask(EventJoinDao eventJoinDao) {
+            this.asyncEventJoinDao = eventJoinDao;
+        }
+        @Override
+        protected List<Integer> doInBackground(Integer... integers) {
+            return asyncEventJoinDao.getPlayerIdsByMatch(integers[0]);
+        }
+    }
+
+
+
 }
+
+
+
+

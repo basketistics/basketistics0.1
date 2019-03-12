@@ -7,14 +7,14 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import java.util.List;
-
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.EventJoinDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventJoinEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
@@ -23,8 +23,9 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
                 PlayerEntity.class,
                 EventEntity.class,
                 MatchEntity.class,
-                EventTypeEntity.class},
-        version = 14,
+                EventTypeEntity.class,
+                EventJoinEntity.class},
+        version = 15,
         exportSchema = false)
 
 @TypeConverters({Converter.class})
@@ -34,6 +35,7 @@ public abstract class Database extends RoomDatabase {
     public abstract EventDao eventDao();
     public abstract MatchDao matchDao();
     public abstract EventTypeDao eventTypeDao();
+    public abstract EventJoinDao eventJoinDao();
 
     private static volatile Database INSTANCE;
 
@@ -106,4 +108,6 @@ public abstract class Database extends RoomDatabase {
             return null;
         }
     }
+
+
 }
