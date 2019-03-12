@@ -32,4 +32,7 @@ public interface PlayerDao {
 
     @Query("SELECT * FROM playerentity WHERE id IN (:playerId)")
     PlayerEntity getPlayerById(int playerId);
+
+    @Query("SELECT * FROM playerentity")
+    List<PlayerEntity> getAllPLayers();
 }

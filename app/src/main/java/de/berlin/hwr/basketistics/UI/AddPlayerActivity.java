@@ -1,15 +1,12 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.provider.MediaStore;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +14,8 @@ import android.widget.ImageView;
 
 
 import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Date;
 
 import de.berlin.hwr.basketistics.ImageSaver;
@@ -110,19 +102,10 @@ public class AddPlayerActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // TODO: Check whether user input is legit.
-                Log.i(TAG, "addPlayerButton was clicked.");
-                Log.i(TAG, "Player Firstname: " + playerFirstNameEditText.getText());
-                Log.i(TAG, "Player Lastname: " + playerLastNameEditText.getText());
-                Log.i(TAG, "Player Number: " + playerNumberEditText.getText());
-                Log.i(TAG, "Player Description: " + playerDescriptionEditText.getText());
 
                 // Save Bitmap to app storage and return Uri
-                ImageSaver imageSaver = new ImageSaver(getApplicationContext());
                 String imageFileName = playerFirstNameEditText.getText().toString() + "_" + playerLastNameEditText.getText().toString() + "_" + new Date();
-                imageSaver.setExternal(false)
-                        .setFileName(imageFileName)
-                        .setDirectoryName("images")
-                        .save(playerBitmap);
+                new SaveBitmpAsyncTask(imageFileName, playerBitmap).execute();
 
                 // Create player from user input and pass via intent to TeamActivity
                 Intent teamActivityIntent = new Intent();
@@ -136,5 +119,28 @@ public class AddPlayerActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    private class SaveBitmpAsyncTask extends AsyncTask {
+
+        private Bitmap bitmap;
+        private String fileName;
+
+        public SaveBitmpAsyncTask(String fileName, Bitmap bitmap) {
+            this.bitmap = bitmap;
+            this.fileName = fileName;
+        }
+
+        @Override
+        protected Object doInBackground(Object[] objects) {
+
+            ImageSaver imageSaver = new ImageSaver(getApplicationContext());
+            imageSaver.setExternal(false)
+                    .setFileName(fileName)
+                    .setDirectoryName("images")
+                    .save(bitmap);
+
+            return null;
+        }
     }
 }

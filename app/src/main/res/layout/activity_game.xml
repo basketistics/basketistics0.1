@@ -49,6 +49,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="30"
+                            android:scaleType="centerCrop"
                             app:srcCompat="@drawable/marcel_davis" />
 
                         <TextView
@@ -326,6 +327,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
+                        android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
@@ -598,6 +600,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
+                        android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
@@ -871,6 +874,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
                         android:rotation="180"
+                        android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView
@@ -1143,6 +1147,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="30"
+                        android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
 
                     <TextView

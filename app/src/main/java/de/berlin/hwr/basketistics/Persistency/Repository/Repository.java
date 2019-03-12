@@ -8,11 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
+import de.berlin.hwr.basketistics.Persistency.Dao.EventTypeDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.MatchDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.PlayerDao;
 import de.berlin.hwr.basketistics.Persistency.Database.Database;
 import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
+import de.berlin.hwr.basketistics.Persistency.Entities.EventTypeEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 
@@ -29,21 +32,76 @@ public class Repository {
     private MatchDao matchDao;
     private List<MatchEntity> matches;
 
+    private EventTypeDao eventTypeDao;
+
     public Repository(Application application) {
 
         Database database = Database.getDatabase(application);
         this.playerDao = database.playerDao();
-        this.players = playerDao.getAll();
+        this.players = getAllPlayers();
         this.eventDao = database.eventDao();
-        this.events = eventDao.getAll();
+        this.events = getAllEvents();
         this.matchDao = database.matchDao();
-        this.matches = matchDao.getAll();
+        this.matches = getAllMatches();
+        this.eventTypeDao = database.eventTypeDao();
+
     }
 
+    // ---------- EventTypes ---------- //
+    public List<EventTypeEntity> getAllEventTypeEntities() {
+        List<EventTypeEntity> eventTypeEntities= null;
+        try {
+            eventTypeEntities = new GetAllEventTypeEntitiesAsyncTask(eventTypeDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventTypeEntities;
+    }
+
+    private class GetAllEventTypeEntitiesAsyncTask extends AsyncTask<Void, Void, List<EventTypeEntity>> {
+
+        private final static String TAG = "getMatchByIdAsynchTask";
+        private EventTypeDao asyncEventTypeDao;
+
+        public GetAllEventTypeEntitiesAsyncTask(EventTypeDao eventTypeDao) {
+            this.asyncEventTypeDao = eventTypeDao;
+        }
+
+        @Override
+        protected List<EventTypeEntity>doInBackground(Void... voids) {
+            return asyncEventTypeDao.getAll();
+        }
+    }
 
     // ---------- Matches ---------- //
+
     public List<MatchEntity> getAllMatches() {
-        return matches;
+        List<MatchEntity> matchEntities = null;
+        try {
+            matchEntities = new GetAllMatchesAsyncTask(matchDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return matchEntities;
+    }
+
+    private class GetAllMatchesAsyncTask extends AsyncTask<Void, Void, List<MatchEntity>> {
+
+        private final static String TAG = "getMatchByIdAsynchTask";
+        private MatchDao asyncMatchDao;
+
+        public GetAllMatchesAsyncTask(MatchDao matchDao) {
+            this.asyncMatchDao = matchDao;
+        }
+
+        @Override
+        protected List<MatchEntity>doInBackground(Void... voids) {
+            return asyncMatchDao.getAll();
+        }
     }
 
     public void insertMatch(MatchEntity matchEntity) {
@@ -96,6 +154,36 @@ public class Repository {
 
     // ---------- Events ---------- //
 
+    public List<EventEntity> getAllEvents() {
+
+        List<EventEntity> eventEntities = null;
+        try {
+            eventEntities = new GetAllEventsAsyncTask(eventDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventEntities;
+    }
+
+    private class GetAllEventsAsyncTask extends
+            AsyncTask<Void, Void, List<EventEntity>>{
+
+        private EventDao asyncEventDao;
+
+        GetAllEventsAsyncTask(EventDao eventDao) {
+            this.asyncEventDao = eventDao;
+        }
+
+        @Override
+        protected List<EventEntity> doInBackground(Void... voids) {
+            List<EventEntity> eventEntitiesByMatchAndPlayer = asyncEventDao.getAll();
+            return eventEntitiesByMatchAndPlayer;
+        }
+    }
+
+
     // TODO: Maybe use cached values?
     public List<EventEntity> getEventsByMatchAndPlayer(int matchId, int playerId)
         throws ExecutionException, InterruptedException {
@@ -104,7 +192,7 @@ public class Repository {
         return eventsByMatchAndPlayer;
     }
 
-    private static class GetEventsByMatchAndPlayerAsyncTask extends
+    private  class GetEventsByMatchAndPlayerAsyncTask extends
             AsyncTask<Integer, Void, List<EventEntity>>{
 
         private EventDao asyncEventDao;
@@ -121,10 +209,30 @@ public class Repository {
         }
     }
 
-    // TODO: Remove if unnecessary
-    public List<EventEntity> getAllEvents() {
-        return events;
+    public List<EventEntity> getEventsByMatch(int matchId)
+            throws ExecutionException, InterruptedException {
+        List<EventEntity> eventsByMatch =
+                new GetEventsByMatchAsyncTask(eventDao).execute(matchId).get();
+        return eventsByMatch;
     }
+
+    private  class GetEventsByMatchAsyncTask extends
+            AsyncTask<Integer, Void, List<EventEntity>>{
+
+        private EventDao asyncEventDao;
+
+        GetEventsByMatchAsyncTask(EventDao eventDao) {
+            this.asyncEventDao = eventDao;
+        }
+
+        @Override
+        protected List<EventEntity> doInBackground(Integer... integers) {
+            List<EventEntity> eventEntitiesByMatch =
+                    asyncEventDao.getEventsByMatches(integers[0]);
+            return eventEntitiesByMatch;
+        }
+    }
+
 
     public void insertEvent(EventEntity eventEntity) {
         new InsertEventAsyncTask(eventDao).execute(eventEntity);
@@ -143,18 +251,20 @@ public class Repository {
         }
     }
 
-    // ---------- PLayer ---------- //
+    // ---------- Player ---------- //
 
+    @Deprecated
     public void addPlayerToCurrentGame(PlayerEntity playerEntity) {
         playersInCurrentGame.add(playerEntity);
     }
 
+    @Deprecated
     public List<PlayerEntity> getPlayersInCurrentGame(int matchId)
             throws ExecutionException, InterruptedException {
 
         if (playersInCurrentGame == null) {
-            playersInCurrentGame =
-                    new GetPlayersByEventsAsyncTask(eventDao, playerDao).execute(matchId).get();
+            playersInCurrentGame
+                    = new GetPlayersByEventsAsyncTask(eventDao, playerDao).execute(matchId).get();
         }
         return playersInCurrentGame;
     }
@@ -191,12 +301,58 @@ public class Repository {
 
 
     public List<PlayerEntity> getAllPlayers() {
+
+        List<PlayerEntity> players = null;
+        try {
+            players = new GetAllPlayersAsyncTask(playerDao).execute().get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return players;
     }
 
-    public PlayerEntity getPlayerById(int playerId) {
-        return playerDao.getPlayerById(playerId);
+    private class GetAllPlayersAsyncTask extends AsyncTask<Void, Void, List<PlayerEntity>> {
+
+        private PlayerDao asyncPlayerDao;
+
+        public GetAllPlayersAsyncTask(PlayerDao playerDao) {
+            this.asyncPlayerDao = playerDao;
+        }
+        @Override
+        protected List<PlayerEntity> doInBackground(Void... voids) {
+
+            return asyncPlayerDao.getAllPLayers();
+        }
     }
+
+    public PlayerEntity getPlayerById(int playerId) {
+
+        PlayerEntity playerEntity = null;
+        try {
+            playerEntity = new GetPlayerByIdAsyncTask(playerDao).execute(playerId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return playerEntity;
+    }
+
+    private class GetPlayerByIdAsyncTask extends AsyncTask<Integer, Void, PlayerEntity> {
+
+        private PlayerDao asyncPlayerDao;
+
+        public GetPlayerByIdAsyncTask(PlayerDao playerDao) {
+            this.asyncPlayerDao = playerDao;
+        }
+        @Override
+        protected PlayerEntity doInBackground(Integer... integers) {
+            return asyncPlayerDao.getPlayerById(integers[0]);
+        }
+    }
+
 
     public void insertPlayer(PlayerEntity playerEntity) {
         new InsertPlayerAsyncTask(playerDao).execute(playerEntity);

@@ -28,12 +28,12 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-        <activity android:name=".UI.StatActivity" />
-        <activity android:name=".UI.StartGameActivity" />
+
+        <activity android:name=".UI.StartGameActivity"
+            android:launchMode="singleTask"/>
         <activity android:name=".UI.TeamActivity" />
         <activity android:name=".UI.AddPlayerActivity" />
         <activity android:name=".UI.GameActivity" />
-
         <activity android:name=".UI.MatchesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,7 +43,6 @@
         </activity>
         <activity android:name=".UI.AddMatchActivity" />
         <activity android:name=".UI.FirstRunActivity"></activity>
-
     </application>
 
 </manifest>

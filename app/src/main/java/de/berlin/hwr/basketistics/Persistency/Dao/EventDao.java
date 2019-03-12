@@ -12,15 +12,12 @@ import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 @Dao
 public interface EventDao {
 
-    // @Query("")
-    // EventViewModel.PlayerEvents[] getPlayerEvents();
-
     @Query("SELECT * FROM EventEntity")
     List<EventEntity> getAll();
 
     @Query("SELECT * FROM EventEntity WHERE id IN (:eventIds)")
     List<EventEntity> getAllByIds(int[] eventIds);
-
+    
     @Insert
     void insertAll(EventEntity... eventEntities);
 
@@ -32,4 +29,10 @@ public interface EventDao {
 
     @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId) AND player_id IN (:playerId)")
     List<EventEntity> getEventsByMatchesAndPlayers(int matchId, int playerId);
+
+    @Insert
+    void startGame(EventEntity eventEntity);
+
+    @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId)")
+    List<EventEntity> getEventsByMatches(Integer matchId);
 }

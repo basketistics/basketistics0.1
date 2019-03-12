@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,30 +16,28 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.util.List;
 
+import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 public class TeamActivity extends AppCompatActivity {
 
-    private SharedPreferences sharedPreferences;
-
-    private BottomNavigationView bottomNavigationView;
-
-    private TeamAdapter teamAdapter;
-
     private final static int ADD_PLAYER_ACTIVITY_REQUEST_CODE = 3;
     public static final String TAG = "TeamActivity";
 
-    private FloatingActionButton addPlayerButton;
+    private SharedPreferences sharedPreferences;
+
     private TeamViewModel teamViewModel;
 
+    private BottomNavigationView bottomNavigationView;
+    private FloatingActionButton addPlayerButton;
     private RecyclerView teamRecyclerView;
+    private TeamAdapter teamAdapter;
+    private ImageView teamImageView;
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -93,6 +91,14 @@ public class TeamActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        // Set Team Image
+        teamImageView = findViewById(R.id.teamImageView);
+        ImageSaver imageSaver = new ImageSaver(this);
+        Bitmap teamBitmap =  imageSaver.setDirectoryName("images")
+                .setFileName(sharedPreferences.getString("team_image", ""))
+                .load();
+        teamImageView.setImageBitmap(teamBitmap);
 
         // Set up RecyclerView
         teamRecyclerView = (RecyclerView) findViewById(R.id.teamRecyclerView);

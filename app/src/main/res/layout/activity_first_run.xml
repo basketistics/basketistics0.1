@@ -19,19 +19,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="24dp"
+                    android:text="Bitte tragen Sie die Daten Ihres Teams ein."
+                    android:textAlignment="center"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
                 <EditText
-                    android:id="@+id/firstTeamName"
+                    android:id="@+id/firstTeamHome"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="16dp"
                     android:layout_marginEnd="32dp"
                     android:ems="10"
-                    android:hint="Name des Teams"
-                    android:inputType="textCapWords"
+                    android:hint="Heimathalle"
+                    android:inputType="textCapSentences"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                    app:layout_constraintTop_toBottomOf="@+id/firstTeamName" />
 
                 <EditText
                     android:id="@+id/firstTeamWhatever"
@@ -47,22 +61,8 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/firstTeamHome" />
 
-                <Button
-                    android:id="@+id/firstStartButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="24dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Basketistics starten"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstTeamWhatever" />
-
                 <ImageView
-                    android:id="@+id/imageView"
+                    android:id="@+id/first_teamImageView"
                     android:layout_width="wrap_content"
                     android:layout_height="280sp"
                     android:scaleType="centerCrop"
@@ -70,20 +70,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/basketballteam" />
-
-                <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="24dp"
-                    android:text="Bitte tragen Sie die Daten Ihres Teams ein."
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
                 <TextView
                     android:id="@+id/textView5"
@@ -98,21 +84,45 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                    app:layout_constraintTop_toBottomOf="@+id/first_teamImageView" />
+
+                <Button
+                    android:id="@+id/firstStartButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="Basketistics starten"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/firstTeamWhatever" />
+
+                <Button
+                    android:id="@+id/first_takePictureButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="Bild hinzufuegen"
+                    app:layout_constraintBottom_toBottomOf="@+id/first_teamImageView"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
                 <EditText
-                    android:id="@+id/firstTeamHome"
+                    android:id="@+id/firstTeamName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
                     android:ems="10"
-                    android:hint="Heimathalle"
-                    android:inputType="textCapSentences"
+                    android:hint="Name des Teams"
+                    android:inputType="textCapWords"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/firstTeamName" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
