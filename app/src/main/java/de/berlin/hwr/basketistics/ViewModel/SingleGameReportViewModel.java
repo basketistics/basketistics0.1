@@ -46,7 +46,23 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         public boolean starter;
         public long spielzeit;
 
-        public PlayerReport(int points, int onePoint, int twoPoints, int threePoints, int onePointAttempt, int twoPointsAttempt, int threePointsAttempt, int rebound, int assist, int steal, int block, int turnover, int foul, boolean starter, long spielzeit) {
+        public PlayerReport(
+                int points,
+                int onePoint,
+                int twoPoints,
+                int threePoints,
+                int onePointAttempt,
+                int twoPointsAttempt,
+                int threePointsAttempt,
+                int rebound,
+                int assist,
+                int steal,
+                int block,
+                int turnover,
+                int foul,
+                boolean starter,
+                long spielzeit
+        ) {
 
 
             this.points = points;
@@ -77,7 +93,7 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         {
             playerReports.add(new PlayerReport(
                     0,
-                    0,
+                    repository.getOnePointerByPlayerId(id).getCountOnePointer(),
                     0,
                     0,
                     0,

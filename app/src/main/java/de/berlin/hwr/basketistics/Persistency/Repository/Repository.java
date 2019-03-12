@@ -378,7 +378,7 @@ public class Repository {
     }
 
 
-
+    //---------stat visualisaion-----------
 
     public EventJoinEntity getReboundsByPlayerId (int playerId) {
 
@@ -432,6 +432,33 @@ public class Repository {
             return asyncEventJoinDao.getPlayerIdsByMatch(integers[0]);
         }
     }
+
+    public EventJoinEntity getOnePointerByPlayerId (int playerId) {
+
+        EventJoinEntity eventJoinEntity = null;
+        try {
+            eventJoinEntity = new GetOnePointerByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventJoinEntity;
+    }
+
+    private class GetOnePointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+
+        private EventJoinDao asyncEventJoinDao;
+
+        public GetOnePointerByPlayerIdAsyncTask(EventJoinDao eventJoinDao) {
+            this.asyncEventJoinDao = eventJoinDao;
+        }
+        @Override
+        protected EventJoinEntity doInBackground(Integer... integers) {
+            return asyncEventJoinDao.getOnePointerByPlayerId(integers[0]);
+        }
+    }
+
 
 
 

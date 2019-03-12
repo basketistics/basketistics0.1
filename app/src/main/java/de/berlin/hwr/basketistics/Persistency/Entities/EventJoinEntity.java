@@ -16,11 +16,13 @@ import android.arch.persistence.room.ForeignKey;
 public class EventJoinEntity {
     public final int eventTypeId;
     public final int eventId;
+    public final int countOnePointer;
 
-    public EventJoinEntity(final int eventId, final int eventTypeId)
+    public EventJoinEntity(final int eventId, final int eventTypeId, final int countOnePointer)
     {
         this.eventId = eventId;
         this.eventTypeId = eventTypeId;
+        this.countOnePointer = countOnePointer;
     }
 
     public int getEventTypeId() {
@@ -33,4 +35,6 @@ public class EventJoinEntity {
 
     public void setEventTypeId(int eventTypeId){
     }
+
+    public int getCountOnePointer(){return countOnePointer;}
 }

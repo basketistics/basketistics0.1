@@ -1,5 +1,6 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,17 +13,19 @@ import java.io.*;
 import java.io.IOException;
 
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class StatActivity extends AppCompatActivity {
 
     private final static String TAG = "StatActivity";
 
-    PDFView pdfView;
+    //PDFView pdfView;
     PdfDocument doc = new PdfDocument();
     PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(2250, 1400, 1).create();
 
     PdfDocument.Page page = doc.startPage(pageInfo);
-
+    SingleGameReportViewModel gameViewModel;
 
 
 
@@ -36,8 +39,12 @@ public class StatActivity extends AppCompatActivity {
 
         setContentView(R.layout.stat_single_game_and_player);
 
+        gameViewModel = ViewModelProviders.of(this).get(SingleGameReportViewModel.class);
+
+        gameViewModel.setMatchId(1);
+        gameViewModel.fet
         //pdfView = (PDFView) findViewById(R.id.pdfView);
-        pdfView.fromAsset("Ergebnisdokument Basketistics.pdf").load();
+        //pdfView.fromAsset("Ergebnisdokument Basketistics.pdf").load();
 
 
         /*File pdfDir = new File(this.getFilesDir(), "Basketistics.pdf");
@@ -65,7 +72,7 @@ public class StatActivity extends AppCompatActivity {
         Log.e(TAG, "[createInternalFile]" + e.getMessage());
     }
 */
-
+/*
         try {
             pdfView.recycle();
             Log.i(TAG, "View Recycled");
@@ -77,6 +84,10 @@ public class StatActivity extends AppCompatActivity {
         {
             Log.e(TAG, e.getStackTrace().toString());
         }
+
+
+
+*/
 
 
 
