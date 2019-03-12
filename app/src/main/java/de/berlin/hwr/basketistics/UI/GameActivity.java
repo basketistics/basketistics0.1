@@ -549,7 +549,7 @@ timer_running = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        /*sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
         // Get ViewModels
         eventViewModel = ViewModelProviders.of(this).get(EventViewModel.class);
@@ -644,6 +644,6 @@ timer_running = true;
                 }
             });
         }
-        */
+
     }
 }

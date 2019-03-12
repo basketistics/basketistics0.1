@@ -62,11 +62,14 @@
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/matchesBottomNavigationView"
                 android:layout_width="match_parent"
-                android:layout_height="75dp"
+                android:layout_height="wrap_content"
+                app:itemBackground="@color/orange"
+                app:itemIconTint="@drawable/navbar_color"
+                app:itemTextColor="@drawable/navbar_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/navbar"/>
+                app:menu="@menu/navbar" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>

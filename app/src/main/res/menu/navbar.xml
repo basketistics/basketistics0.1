@@ -4,7 +4,7 @@
     <item
         android:id="@+id/team"
         android:icon="@android:drawable/ic_menu_myplaces"
-        android:title="team" />
+        android:title="team"/>
 
     <item
         android:id="@+id/matches"

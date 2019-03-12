@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grau"
     tools:context=".UI.TeamActivity">
 
     <LinearLayout
@@ -62,11 +63,14 @@
             <android.support.design.widget.BottomNavigationView
                 android:id="@+id/teamBottomNavigationView"
                 android:layout_width="match_parent"
-                android:layout_height="79dp"
+                android:layout_height="wrap_content"
+                app:itemBackground="@color/orange"
+                app:itemIconTint="@drawable/navbar_color"
+                app:itemTextColor="@drawable/navbar_color"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:menu="@menu/navbar"/>
+                app:menu="@menu/navbar" />
 
         </android.support.constraint.ConstraintLayout>
     </LinearLayout>
