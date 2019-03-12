@@ -1522,11 +1522,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="100">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="20"
                     android:orientation="vertical">
 
                     <TextView
@@ -1542,15 +1544,14 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
                         <Button
                             android:id="@+id/timer_start"
                             style="@style/Widget.AppCompat.Button.Small"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:background="@drawable/timerbuttonshapegreen"
                             android:backgroundTintMode="src_in"
                             android:text="Start"
@@ -1559,19 +1560,36 @@
                         <Button
                             android:id="@+id/timer_end"
                             style="@style/Widget.AppCompat.Button.Small"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:background="@drawable/timerbuttonshapered"
                             android:text="Stop"
                             tools:text="Stop" />
                     </LinearLayout>
+
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="20"
                     android:orientation="vertical">
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="20"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gegner Punktestand"
+                        android:textColor="#000000"
+                        android:textSize="36sp"/>
 
                     <TextView
                         android:id="@+id/score"
@@ -1594,9 +1612,8 @@
                         <Button
                             android:id="@+id/ePoints_inc"
                             style="@style/Widget.AppCompat.Button.Small"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:background="@drawable/timerbuttonshapegreen"
                             android:backgroundTintMode="src_in"
                             android:text="+"
@@ -1605,9 +1622,8 @@
                         <Button
                             android:id="@+id/ePoints_dec"
                             style="@style/Widget.AppCompat.Button.Small"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
                             android:background="@drawable/timerbuttonshapered"
                             android:text="-"
                             android:visibility="visible"
