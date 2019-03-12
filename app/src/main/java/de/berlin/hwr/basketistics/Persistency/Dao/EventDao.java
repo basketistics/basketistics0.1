@@ -36,7 +36,4 @@ public interface EventDao {
     @Query("SELECT * FROM EventEntity WHERE match_id IN (:matchId)")
     List<EventEntity> getEventsByMatches(Integer matchId);
 
-
-    //-----stat visualisation query------
-    @Query("SELECT COUNT(event_name) FROM EventEntity WHERE event_type=")
 }

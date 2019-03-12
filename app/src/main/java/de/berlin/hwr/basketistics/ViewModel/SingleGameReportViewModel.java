@@ -93,7 +93,7 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         {
             playerReports.add(new PlayerReport(
                     0,
-                    repository.getOnePointerByPlayerId(id).getCountOnePointer(),
+                    repository.getOnePointerByPlayerId(id, matchId).getCountOnePointer(),
                     0,
                     0,
                     0,
