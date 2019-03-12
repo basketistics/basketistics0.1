@@ -1551,7 +1551,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@android:color/holo_green_light"
+                            android:background="@drawable/timerbuttonshapegreen"
                             android:backgroundTintMode="src_in"
                             android:text="Start"
                             tools:text="Start" />
@@ -1562,7 +1562,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@android:color/holo_red_dark"
+                            android:background="@drawable/timerbuttonshapered"
                             android:text="Stop"
                             tools:text="Stop" />
                     </LinearLayout>
@@ -1597,7 +1597,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@android:color/holo_green_light"
+                            android:background="@drawable/timerbuttonshapegreen"
                             android:backgroundTintMode="src_in"
                             android:text="+"
                             tools:text="+" />
@@ -1608,7 +1608,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="@android:color/holo_red_dark"
+                            android:background="@drawable/timerbuttonshapered"
                             android:text="-"
                             android:visibility="visible"
                             tools:text="-" />
