@@ -61,6 +61,7 @@
                             android:textAlignment="center"
                             android:textSize="24sp"
                             android:textStyle="bold"
+                            android:textColor="#000000"
                             tools:text="Marcel Davis\n#7" />
 
                     </LinearLayout>
@@ -95,6 +96,8 @@
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:text="shot"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:textAllCaps="true" />
 
                                 <TextView
@@ -107,7 +110,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -128,6 +132,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="rebound" />
 
                                 <TextView
@@ -140,7 +146,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -161,6 +168,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="assist" />
 
                                 <TextView
@@ -173,7 +182,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -193,6 +203,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="steal" />
 
                                 <TextView
@@ -205,7 +217,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -225,6 +238,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="block" />
 
                                 <TextView
@@ -237,7 +252,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -257,6 +273,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="turnover" />
 
                                 <TextView
@@ -269,7 +287,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -289,6 +308,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="foul" />
 
                                 <TextView
@@ -301,7 +322,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -339,7 +361,8 @@
                         android:textAlignment="center"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        tools:text="Marcel Davis\n#7" />
+                        tools:text="Marcel Davis\n#7"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -369,6 +392,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="shot" />
 
                                 <TextView
@@ -381,7 +406,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -402,6 +428,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="rebound" />
 
                                 <TextView
@@ -414,7 +442,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -434,6 +463,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="assist" />
 
                                 <TextView
@@ -446,7 +477,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -466,6 +498,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="steal" />
 
                                 <TextView
@@ -478,7 +512,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -498,6 +533,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="block" />
 
                                 <TextView
@@ -510,7 +547,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -530,6 +568,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="turnover" />
 
                                 <TextView
@@ -542,7 +582,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -562,6 +603,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="foul" />
 
                                 <TextView
@@ -574,7 +617,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -612,7 +656,8 @@
                         android:textAlignment="center"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        tools:text="Marcel Davis\n#7" />
+                        tools:text="Marcel Davis\n#7"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -642,6 +687,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="shot" />
 
                                 <TextView
@@ -654,7 +701,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -675,6 +723,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="rebound" />
 
                                 <TextView
@@ -687,7 +737,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -707,6 +758,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="assist" />
 
                                 <TextView
@@ -719,7 +772,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -739,6 +793,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="steal" />
 
                                 <TextView
@@ -751,7 +807,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -771,6 +828,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="block" />
 
                                 <TextView
@@ -783,7 +842,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -803,6 +863,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="turnover" />
 
                                 <TextView
@@ -815,7 +877,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -835,6 +898,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="foul" />
 
                                 <TextView
@@ -847,7 +912,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -886,7 +952,8 @@
                         android:textAlignment="center"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        tools:text="Marcel Davis\n#7" />
+                        tools:text="Marcel Davis\n#7"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -916,6 +983,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="shot" />
 
                                 <TextView
@@ -928,7 +997,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -949,6 +1019,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="rebound" />
 
                                 <TextView
@@ -961,7 +1033,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -981,6 +1054,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="assist" />
 
                                 <TextView
@@ -993,7 +1068,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1013,6 +1089,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="steal" />
 
                                 <TextView
@@ -1025,7 +1103,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1045,6 +1124,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="block" />
 
                                 <TextView
@@ -1057,7 +1138,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1077,6 +1159,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="turnover" />
 
                                 <TextView
@@ -1089,7 +1173,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1109,6 +1194,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="foul" />
 
                                 <TextView
@@ -1121,7 +1208,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1159,7 +1247,8 @@
                         android:textAlignment="center"
                         android:textSize="24sp"
                         android:textStyle="bold"
-                        tools:text="Marcel Davis\n#7" />
+                        tools:text="Marcel Davis\n#7"
+                        android:textColor="#000000"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1189,6 +1278,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="shot" />
 
                                 <TextView
@@ -1201,7 +1292,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
 
                             </LinearLayout>
                         </TableRow>
@@ -1222,6 +1314,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="rebound" />
 
                                 <TextView
@@ -1234,7 +1328,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1254,6 +1349,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="assist" />
 
                                 <TextView
@@ -1266,7 +1363,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1286,6 +1384,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="steal" />
 
                                 <TextView
@@ -1298,7 +1398,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1318,6 +1419,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="block" />
 
                                 <TextView
@@ -1330,7 +1433,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1350,6 +1454,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="turnover" />
 
                                 <TextView
@@ -1362,7 +1468,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
 
@@ -1382,6 +1489,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
+                                    android:textColor="#000000"
+                                    android:background="@drawable/buttonshape"
                                     android:text="foul" />
 
                                 <TextView
@@ -1394,7 +1503,8 @@
                                     android:text="13"
                                     android:textAlignment="textEnd"
                                     android:textSize="18sp"
-                                    android:textStyle="bold" />
+                                    android:textStyle="bold"
+                                    android:textColor="#000000"/>
                             </LinearLayout>
                         </TableRow>
                     </TableLayout>
@@ -1427,7 +1537,7 @@
                         android:text="10:00"
                         android:textAlignment="center"
                         android:textAllCaps="true"
-                        android:textColor="@android:color/background_dark"
+                        android:textColor="#000000"
                         android:textSize="36sp" />
 
                     <LinearLayout
@@ -1471,7 +1581,7 @@
                         android:text="0:0"
                         android:textAlignment="center"
                         android:textAllCaps="true"
-                        android:textColor="@android:color/background_dark"
+                        android:textColor="#000000"
                         android:textSize="36sp" />
 
                     <LinearLayout
