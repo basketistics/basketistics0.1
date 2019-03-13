@@ -29,7 +29,7 @@ public class SingleGameReportViewModel extends AndroidViewModel {
 
     public class PlayerReport {
 
-
+        public int playerId;
         public int points;
         public int onePoint;
         public int twoPoints;
@@ -47,6 +47,7 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         public long spielzeit;
 
         public PlayerReport(
+                int playerId,
                 int points,
                 int onePoint,
                 int twoPoints,
@@ -65,6 +66,7 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         ) {
 
 
+            this.playerId = playerId;
             this.points = points;
             this.onePoint = onePoint;
             this.twoPoints = twoPoints;
@@ -91,24 +93,39 @@ public class SingleGameReportViewModel extends AndroidViewModel {
         List<Integer> playerIds = repository.getPlayerIdsByMatch(matchId);
         for (Integer id: playerIds)
         {
+            boolean thisPlayerStarts;
+            List<Integer> starterList = repository.getStarterByMatchId(matchId);
+            if (starterList.contains(id))
+                thisPlayerStarts = true;
+            else thisPlayerStarts = false;
             playerReports.add(new PlayerReport(
+                    id,
                     0,
                     repository.getOnePointerByPlayerId(id, matchId).getCountOnePointer(),
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    true,
+                    repository.getTwoPointerByPlayerId(id, matchId).getCountTwoPointer(),
+                    repository.getThreePointerByPlayerId(id, matchId).getCountThreePointer(),
+                    repository.getOnePointerAttemptByPlayerId(id, matchId).getCountOnePointerAttemps(),
+                    repository.getTwoPointerAttemptByPlayerId(id, matchId).getCountTwoPointerAttemps(),
+                    repository.getThreePointerAttemptByPlayerId(id, matchId).getCountThreePointerAttemps(),
+                    repository.getReboundsByPlayerId(id, matchId).getCountRebounds(),
+                    repository.getAssistsByPlayerId(id, matchId).getCountAssists(),
+                    repository.getStealsByPlayerId(id, matchId).getCountSteals(),
+                    repository.getBlocksByPlayerId(id, matchId).getCountBlocks(),
+                    repository.getTurnoverByPlayerId(id, matchId).getCountTurnover(),
+                    repository.getFoulsByPlayerId(id, matchId).getCountFouls(),
+                    thisPlayerStarts,
                     0));
 
         }
+    }
+
+    public PlayerReport getReportByPlayerId(int playerId){
+        for (PlayerReport pr: playerReports)
+        {
+            if(pr.playerId==playerId)
+                return pr;
+        }
+        return null;
     }
 
 }

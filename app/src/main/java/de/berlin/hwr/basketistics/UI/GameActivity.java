@@ -91,6 +91,18 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 eventViewModel.endFourthQuarter();
                 timerTextView.setText("End of 4th");
                 quarterCount = 1;
+
+
+                try
+                {
+                    wait(5000);
+                }
+                catch(InterruptedException ex)
+            {
+                ex.printStackTrace();
+            }
+                Intent goToStatActivity = new Intent(this, StatActivity.class);
+                startActivity(goToStatActivity);
                 break;
 
         }

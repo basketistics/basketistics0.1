@@ -380,11 +380,11 @@ public class Repository {
 
     //---------stat visualisaion-----------
 
-    public EventJoinEntity getReboundsByPlayerId (int playerId) {
+    public EventJoinEntity getReboundsByPlayerId (int playerId, int matchId) {
 
         EventJoinEntity eventJoinEntity = null;
         try {
-            eventJoinEntity = new GetReboundsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+            eventJoinEntity = new GetReboundsByPlayerIdAsyncTask(eventJoinDao).execute(playerId, matchId).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {

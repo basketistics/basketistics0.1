@@ -22,6 +22,7 @@ public class EventJoinEntity {
     public final int countOnePointerAttemps;
     public final int countTwoPointerAttemps;
     public final int countThreePointerAttemps;
+    public final int countRebounds;
     public final int[] starterList;
     public final int countAssists;
     public final int countSteals;
@@ -34,7 +35,7 @@ public class EventJoinEntity {
     public EventJoinEntity(final int eventId, final int eventTypeId, final int countOnePointer,
                            final int countTwoPointer, final int countThreePointer,
                            final int countOnePointerAttempts, final int countTwoPointerAttempts,
-                           final int countThreePointerAttempts, final int[] starterList,
+                           final int countThreePointerAttempts, final int countRebounds, final int[] starterList,
                            final int countAssists, final int countSteals, final int countBlocks,
                            final int countTurnover, final int countFouls)
     {
@@ -52,6 +53,7 @@ public class EventJoinEntity {
         this.countBlocks = countBlocks;
         this.countTurnover = countTurnover;
         this.countFouls = countFouls;
+        this.countRebounds = countRebounds;
     }
 
     public int getEventTypeId() {
@@ -66,4 +68,52 @@ public class EventJoinEntity {
     }
 
     public int getCountOnePointer(){return countOnePointer;}
+
+    public int getCountTwoPointer() {
+        return countTwoPointer;
+    }
+
+    public int getCountThreePointer() {
+        return countThreePointer;
+    }
+
+    public int getCountOnePointerAttemps() {
+        return countOnePointerAttemps;
+    }
+
+    public int getCountTwoPointerAttemps() {
+        return countTwoPointerAttemps;
+    }
+
+    public int getCountThreePointerAttemps() {
+        return countThreePointerAttemps;
+    }
+
+    public int[] getStarterList() {
+        return starterList;
+    }
+
+    public int getCountAssists() {
+        return countAssists;
+    }
+
+    public int getCountSteals() {
+        return countSteals;
+    }
+
+    public int getCountBlocks() {
+        return countBlocks;
+    }
+
+    public int getCountTurnover() {
+        return countTurnover;
+    }
+
+    public int getCountFouls() {
+        return countFouls;
+    }
+
+    public int getCountRebounds() {
+        return countRebounds;
+    }
 }
