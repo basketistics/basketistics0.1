@@ -51,6 +51,39 @@ public class Repository {
 
     }
 
+    // ---------- Enemy Points ---------- //
+
+    public void incEnemyPoints(EventEntity eventEntity) {
+        new EnemyPointsAsyncTask(eventDao, 1).execute(eventEntity);
+    }
+
+
+    public void decEnemyPopints(EventEntity eventEntity) {
+        new EnemyPointsAsyncTask(eventDao, -1).execute(eventEntity);
+    }
+
+    private static class EnemyPointsAsyncTask extends AsyncTask<EventEntity, Void, Void>{
+
+        private EventDao asyncEventDao;
+        private int incDec;
+
+        EnemyPointsAsyncTask(EventDao eventDao, int incDec) {
+            this.asyncEventDao = eventDao;
+            this.incDec = incDec;
+        }
+
+        @Override
+        protected Void doInBackground(EventEntity... eventEntitys) {
+            if (incDec == 1) {
+                asyncEventDao.insert(eventEntitys[0]);
+            } else if (incDec == -1) {
+                asyncEventDao.insert(eventEntitys[0]);
+            }
+            return null;
+        }
+
+    }
+
     // ---------- EventTypes ---------- //
     public List<EventTypeEntity> getAllEventTypeEntities() {
         List<EventTypeEntity> eventTypeEntities= null;

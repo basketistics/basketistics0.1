@@ -3,24 +3,21 @@ package de.berlin.hwr.basketistics.UI;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.media.AudioTrack;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
@@ -299,14 +296,26 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         startGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                List<Integer> startersUniq = new ArrayList<>();
+                for (int starterId : starters) {
+                    if (!startersUniq.contains(starterId)) {
+                        startersUniq.add(starterId);
+                    }
+                }
                 if (starters != null) {
-                    Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
-                    gameIntent.putExtra("origin", TAG);
-                    gameIntent.putExtra(STARTERS, starters);
-                    gameIntent.putExtra(MATCH, matchId);
-                    Log.e(TAG, "" + matchId);
-                    finishAffinity();
-                    startActivity(gameIntent);
+                    if (startersUniq.size() == 5) {
+
+                        Intent gameIntent = new Intent(StartGameActivity.this, GameActivity.class);
+                        gameIntent.putExtra("origin", TAG);
+                        gameIntent.putExtra(STARTERS, starters);
+                        gameIntent.putExtra(MATCH, matchId);
+                        Log.e(TAG, "" + matchId);
+                        finishAffinity();
+                        startActivity(gameIntent);
+                    } else {
+                        String message = "Bitte waehlen Sie jeden Spieler nur einmal aus.";
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });

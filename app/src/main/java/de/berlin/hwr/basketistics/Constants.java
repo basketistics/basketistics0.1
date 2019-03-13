@@ -31,4 +31,6 @@ public abstract class Constants {
     public static final int TURNOVER                = 70;
     public static final int FOUL                    = 80;
 
+    public static final int ENEMY_POINT             =100;
+
 }
