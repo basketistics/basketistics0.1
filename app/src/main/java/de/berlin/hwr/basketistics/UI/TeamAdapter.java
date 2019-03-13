@@ -18,6 +18,12 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.load.model.ResourceLoader;
+import com.bumptech.glide.request.RequestOptions;
+
+import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.util.List;
@@ -95,6 +101,18 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         Log.e(TAG, fileName);
         if (fileName != "") {
 
+            File directory = context.getDir("images", Context.MODE_PRIVATE);
+            File image = new File(directory, team.get(i).getImageFilename());
+            Uri imageUri = Uri.fromFile(image);
+
+            Glide.with(context)
+                    .load(imageUri)
+                    .centerCrop()
+                    .placeholder(R.drawable.marcel_davis)
+                    .into(teamViewHolder.playerImageView);
+
+
+            /*
             ImageSaver imageSaver = new ImageSaver(context.getApplicationContext());
             Bitmap bitmap = imageSaver.setExternal(false)
                     .setFileName(fileName)
@@ -102,6 +120,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
                     .load();
 
             teamViewHolder.playerImageView.setImageBitmap(bitmap);
+            */
         }
 
         // Set ClickListener
