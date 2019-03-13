@@ -23,7 +23,7 @@ public class EventJoinEntity {
     public final int countTwoPointerAttemps;
     public final int countThreePointerAttemps;
     public final int countRebounds;
-    public final int[] starterList;
+    public final int[] starterList; //entweder convert in sql speicherbarer typ oder jeder starter einzeln
     public final int countAssists;
     public final int countSteals;
     public final int countBlocks;
