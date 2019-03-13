@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -89,22 +91,23 @@ public class FirstRunActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == PICK_IMAGE) {
-            try {
 
-                // Get Image
-                Uri selectedImage = data.getData();
-                InputStream inputStream =
-                        getContentResolver().openInputStream(selectedImage);
+            // Get Image
+            Uri selectedImage = data.getData();
+
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(selectedImage);
                 BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
                 teamBitmap = BitmapFactory.decodeStream(bufferedInputStream);
-
-                // Set ImageView
-                teamImageView.setImageBitmap(teamBitmap);
-
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
+            Glide.with(this)
+                    .load(selectedImage)
+                    .centerCrop()
+                    .placeholder(R.drawable.marcel_davis)
+                    .into(teamImageView);
         }
     }
 

@@ -2,9 +2,11 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
@@ -19,6 +21,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.ImageSaver;
@@ -33,7 +38,9 @@ public class MatchesActivity extends AppCompatActivity {
     private final static int ADD_MATCH_ACTIVITY_REQUEST_CODE = 4;
     public static final String TAG = "MatchesActivity";
 
-    SharedPreferences sharedPreferences = null;
+    private static SharedPreferences sharedPreferences = null;
+    private static String teamImageFilename;
+    private static String teamName;
 
     private MatchesViewModel matchesViewModel;
 
@@ -65,16 +72,29 @@ public class MatchesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_matches);
 
-        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+        // Get preferences
+        if (sharedPreferences == null) {
+            sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
+            Log.e(TAG, "SharedPreferences was null");
+        }
 
         // First run?
         if (sharedPreferences.getBoolean("first_run", true)) {
             Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
             startActivity(firstRunIntent);
         }
+
+        Log.e(TAG, "Code after intent is entered.");
+
+        // Get values from preferences
+        if (teamImageFilename == null) {
+            Log.e(TAG, "teamImageFilename was null");
+            teamImageFilename = sharedPreferences.getString("team_image", ""); }
+        if (teamName == null) { teamName = sharedPreferences.getString("team_name", ""); }
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.matchesBottomNavigationView);
@@ -84,6 +104,8 @@ public class MatchesActivity extends AppCompatActivity {
                 switch (menuItem.getItemId()) {
                     case R.id.team:
                         Intent teamIntent = new Intent(MatchesActivity.this, TeamActivity.class);
+                        teamIntent.putExtra("team_name", teamName);
+                        teamIntent.putExtra("team_image", teamImageFilename);
                         startActivity(teamIntent);
                         break;
                     case R.id.matches:
@@ -101,15 +123,26 @@ public class MatchesActivity extends AppCompatActivity {
 
         // Set Team Image
         teamImageView = findViewById(R.id.matchImageView);
-        ImageSaver imageSaver = new ImageSaver(this);
-        Bitmap teamBitmap =  imageSaver.setDirectoryName("images")
-                .setFileName(sharedPreferences.getString("team_image", ""))
-                .load();
-        teamImageView.setImageBitmap(teamBitmap);
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        File directory = this.getDir("images", Context.MODE_PRIVATE);
+        File image = new File(directory, teamImageFilename);
+        Uri imageUri = Uri.fromFile(image);
+
+        Glide.with(this)
+                .load(imageUri)
+                .centerCrop()
+                .placeholder(R.drawable.marcel_davis)
+                .into(teamImageView);
 
         // Set up RecyclerView
         matchesRecyclerView = (RecyclerView) findViewById(R.id.matchesRecyclerView);
-        matchesAdapter = new MatchesAdapter(this, sharedPreferences.getString("team_name", "<PREFERENCES CORRUPTED>"));
+        matchesAdapter = new MatchesAdapter(this, teamName);
         matchesRecyclerView.setAdapter(matchesAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
