@@ -113,8 +113,8 @@ public class AddPlayerActivity extends AppCompatActivity {
                         playerLastNameEditText.getText().toString(),
                         playerFirstNameEditText.getText().toString(),
                         Integer.parseInt(playerNumberEditText.getText().toString()),
-                        playerDescriptionEditText.getText().toString()));
-                teamActivityIntent.putExtra(IMAGE_FILENAME, imageFileName);
+                        playerDescriptionEditText.getText().toString(),
+                        imageFileName));
                 setResult(RESULT_OK, teamActivityIntent);
                 finish();
             }

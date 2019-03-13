@@ -49,15 +49,6 @@ public class TeamActivity extends AppCompatActivity {
             teamViewModel.insert(playerEntity);
             teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
-            // Get imageUri
-            final String imageUriString = (String) data.getExtras().get(AddPlayerActivity.IMAGE_FILENAME);
-
-            // Only save Uri if valid
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("PLAYER" + teamViewModel.getAllPlayers().getValue().size(), imageUriString);
-            editor.commit();
-            Log.e(TAG, imageUriString);
-
         } else {
             // TODO: Exceptionhandling.
         }
@@ -93,6 +84,8 @@ public class TeamActivity extends AppCompatActivity {
         });
 
         // Set Team Image
+        // TODO: Send filename via intent and check for that on first run
+
         teamImageView = findViewById(R.id.teamImageView);
         ImageSaver imageSaver = new ImageSaver(this);
         Bitmap teamBitmap =  imageSaver.setDirectoryName("images")

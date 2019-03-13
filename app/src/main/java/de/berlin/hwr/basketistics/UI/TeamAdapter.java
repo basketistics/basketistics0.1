@@ -30,8 +30,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     private static final String TAG = "TeamAdapter";
 
-    SharedPreferences sharedPreferences;
-
     // Cached copy of Players
     private List<PlayerEntity> team;
 
@@ -79,7 +77,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LinearLayout playerListItem = (LinearLayout) inflater.inflate(R.layout.team_list_item, parent, false);
         TeamViewHolder teamViewHolder = new TeamViewHolder(playerListItem);
-        sharedPreferences = parent.getContext().getSharedPreferences(FirstRunActivity.PREFERENCES, Context.MODE_PRIVATE);
         return teamViewHolder;
     }
 
@@ -94,7 +91,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         teamViewHolder.playerDescription.setText(team.get(i).getDescription());
 
         // Set Image
-        String fileName = sharedPreferences.getString("PLAYER" + team.get(i).getId(), "");
+        String fileName = team.get(i).getImageFilename();
         Log.e(TAG, fileName);
         if (fileName != "") {
 

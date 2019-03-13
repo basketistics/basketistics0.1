@@ -25,11 +25,15 @@ public class PlayerEntity implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
-    public PlayerEntity(String lastName, String firstName, int number, String description) {
+    @ColumnInfo(name = "image_filename")
+    private String imageFilename;
+
+    public PlayerEntity(String lastName, String firstName, int number, String description, String imageFilename) {
         this.lastName = lastName;
         this.firstName = firstName;
         this.number = number;
         this.description = description;
+        this.imageFilename = imageFilename;
     }
 
     // Getter and Setter
@@ -72,5 +76,13 @@ public class PlayerEntity implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getImageFilename() {
+        return imageFilename;
+    }
+
+    public void setImageFilename(String imageFilename) {
+        this.imageFilename = imageFilename;
     }
 }
