@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -18,6 +20,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.ImageSaver;
@@ -28,6 +35,7 @@ public class TeamActivity extends AppCompatActivity {
 
     private final static int ADD_PLAYER_ACTIVITY_REQUEST_CODE = 3;
     public static final String TAG = "TeamActivity";
+    private static final int PICK_TEAM_IMAGE = 7;
 
     private SharedPreferences sharedPreferences;
 
@@ -39,6 +47,8 @@ public class TeamActivity extends AppCompatActivity {
     private TeamAdapter teamAdapter;
     private ImageView teamImageView;
 
+    private Bitmap teamBitmap;
+
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -49,8 +59,27 @@ public class TeamActivity extends AppCompatActivity {
             teamViewModel.insert(playerEntity);
             teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
-        } else {
-            // TODO: Exceptionhandling.
+        } else if (requestCode == PICK_TEAM_IMAGE) {
+            try {
+
+                // Get Image
+                Uri selectedImage = data.getData();
+                InputStream inputStream =
+                        getContentResolver().openInputStream(selectedImage);
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                teamBitmap = BitmapFactory.decodeStream(bufferedInputStream);
+
+                // Set ImageView
+                Glide.with(this)
+                        .load(selectedImage)
+                        .centerCrop()
+                        .placeholder(R.drawable.marcel_davis)
+                        .into(teamImageView);
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
@@ -124,5 +153,21 @@ public class TeamActivity extends AppCompatActivity {
                 startActivityForResult(addPlayerIntent, ADD_PLAYER_ACTIVITY_REQUEST_CODE);
             }
         });
+
+        // Make TeamImage swappable
+        teamImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                dispatchChoosePictureIntent();
+                return false;
+            }
+        });
+    }
+
+    private void dispatchChoosePictureIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_TEAM_IMAGE);
     }
 }
