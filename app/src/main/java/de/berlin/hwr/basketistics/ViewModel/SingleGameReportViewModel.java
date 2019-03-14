@@ -101,18 +101,18 @@ public class SingleGameReportViewModel extends AndroidViewModel {
             playerReports.add(new PlayerReport(
                     id,
                     0,
-                    repository.getOnePointerByPlayerId(id, matchId).getCountOnePointer(),
-                    repository.getTwoPointerByPlayerId(id, matchId).getCountTwoPointer(),
-                    repository.getThreePointerByPlayerId(id, matchId).getCountThreePointer(),
-                    repository.getOnePointerAttemptByPlayerId(id, matchId).getCountOnePointerAttemps(),
-                    repository.getTwoPointerAttemptByPlayerId(id, matchId).getCountTwoPointerAttemps(),
-                    repository.getThreePointerAttemptByPlayerId(id, matchId).getCountThreePointerAttemps(),
-                    repository.getReboundsByPlayerId(id, matchId).getCountRebounds(),
-                    repository.getAssistsByPlayerId(id, matchId).getCountAssists(),
-                    repository.getStealsByPlayerId(id, matchId).getCountSteals(),
-                    repository.getBlocksByPlayerId(id, matchId).getCountBlocks(),
-                    repository.getTurnoverByPlayerId(id, matchId).getCountTurnover(),
-                    repository.getFoulsByPlayerId(id, matchId).getCountFouls(),
+                    repository.getOnePointerByPlayerId(id, matchId),
+                    repository.getTwoPointerByPlayerId(id, matchId),
+                    repository.getThreePointerByPlayerId(id, matchId),
+                    repository.getOnePointerAttemptByPlayerId(id, matchId),
+                    repository.getTwoPointerAttemptByPlayerId(id, matchId),
+                    repository.getThreePointerAttemptByPlayerId(id, matchId),
+                    repository.getReboundsByPlayerId(id, matchId),
+                    repository.getAssistsByPlayerId(id, matchId),
+                    repository.getStealsByPlayerId(id, matchId),
+                    repository.getBlocksByPlayerId(id, matchId),
+                    repository.getTurnoverByPlayerId(id, matchId),
+                    repository.getFoulsByPlayerId(id, matchId),
                     thisPlayerStarts,
                     0));
 
@@ -120,12 +120,13 @@ public class SingleGameReportViewModel extends AndroidViewModel {
     }
 
     public PlayerReport getReportByPlayerId(int playerId){
+        fetchPlayerReports();
         for (PlayerReport pr: playerReports)
         {
             if(pr.playerId==playerId)
                 return pr;
         }
-        return null;
+        return playerReports.get(1);
     }
 
 }

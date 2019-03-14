@@ -129,15 +129,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 quarterCount = 1;
 
 
-                try
-                {
-                    wait(5000);
-                }
-                catch(InterruptedException ex)
-            {
-                ex.printStackTrace();
-            }
+
                 Intent goToStatActivity = new Intent(this, StatActivity.class);
+                goToStatActivity.putExtra("matchID", currentMatchId);
                 startActivity(goToStatActivity);
                 break;
 
@@ -163,7 +157,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     CountDownTimerWithPause timer = new CountDownTimerWithPause(
-            600000,
+            6000,
             1000,
             false) {
         @Override
@@ -197,7 +191,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     Log.i(TAG, "timer already running");
                 }
 
-                else if ((timer.timeLeft() < 600000)&& quater_running==1){
+                else if ((timer.timeLeft() < 6000)&& quater_running==1){
                     timer.resume();
                     timer_running = true;
                     Log.i(TAG, "timer resumed");

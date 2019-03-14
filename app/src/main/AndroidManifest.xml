@@ -35,6 +35,7 @@
         <activity android:name=".UI.AddPlayerActivity" />
         <activity android:name=".UI.GameActivity" />
         <activity android:name=".UI.StatActivity" />
+
         <activity android:name=".UI.MatchesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
