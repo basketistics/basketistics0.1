@@ -10,8 +10,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.EventJoinEntity;
 @Dao
 public interface EventJoinDao {
 
-    @Insert
-    void insert(EventJoinDao eventJoinDao);
+    //@Insert
+    //void insert(EventJoinDao eventJoinDao);
 
     @Query("SELECT player_id FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='STARTER'  AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.match_id=(:matchId)")
     List<Integer> getStarterByMatchId(int matchId);
