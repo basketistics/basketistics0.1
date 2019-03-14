@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.github.barteksc.pdfviewer.PDFView;
-import java.io.*;
-import java.io.IOException;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;

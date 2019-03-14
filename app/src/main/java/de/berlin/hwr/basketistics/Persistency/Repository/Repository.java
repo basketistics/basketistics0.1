@@ -789,14 +789,14 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerAndMatch(integers[0], integers[1]);
         }
     }
-
 /*
+
     //-----------By PlayerId----------
 
     //-----One Point Made-----
-    public EventJoinEntity getOnePointerByPlayerId (int playerId) {
+    public Integer getOnePointerByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetOnePointerByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -807,7 +807,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetOnePointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetOnePointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -815,17 +815,17 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getOnePointerByPlayerId(integers[0]);
         }
     }
 
     //-----Two Pointer Made-----
-    public EventJoinEntity getTwoPointerByPlayerId (int playerId) {
+    public Integer getTwoPointerByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
-            eventJoinEntity = new GetOnePointerByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+            eventJoinEntity = new GetTwoPointerByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -834,7 +834,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetTwoPointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetTwoPointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -842,15 +842,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getTwoPointerByPlayerId(integers[0]);
         }
     }
 
     //-----Three Pointer Made-----
-    public EventJoinEntity getThreePointerByPlayerId (int playerId) {
+    public Integer getThreePointerByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetThreePointerByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -861,7 +861,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetThreePointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetThreePointerByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -869,15 +869,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getThreePointerByPlayerId(integers[0]);
         }
     }
 
     //-----One Point attempts-----
-    public EventJoinEntity getOnePointerAttemptByPlayerId (int playerId) {
+    public Integer getOnePointerAttemptByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetOnePointerAttemptByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -888,7 +888,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetOnePointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetOnePointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -896,14 +896,14 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getOnePointAttemptsByPlayerId(integers[0]);
         }
     }
     //-----Two Point attempts-----
-    public EventJoinEntity getTwoPointerAttemptByPlayerId (int playerId) {
+    public Integer getTwoPointerAttemptByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetTwoPointerAttemptByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -914,7 +914,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetTwoPointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetTwoPointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -922,15 +922,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getTwoPointAttemptsByPlayerId(integers[0]);
         }
     }
 
     //-----Three Point attempts-----
-    public EventJoinEntity getThreePointerAttemptByPlayerId (int playerId) {
+    public Integer getThreePointerAttemptByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetThreePointerAttemptByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -941,7 +941,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetThreePointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetThreePointerAttemptByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -949,15 +949,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getThreePointAttemptsByPlayerId(integers[0]);
         }
     }
 
         //-----------Assists-----------
-    public EventJoinEntity getAssistsByPlayerId (int playerId) {
+    public Integer getAssistsByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetAssistsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -968,7 +968,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetAssistsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetAssistsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -976,15 +976,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getAssistsByPlayerId(integers[0]);
         }
     }
 
     //-----------Steals-----------
-    public EventJoinEntity getStealsByPlayerId (int playerId) {
+    public Integer getStealsByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetStealsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -995,7 +995,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetStealsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetStealsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -1003,15 +1003,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getStealsByPlayerId(integers[0]);
         }
     }
 
     //-----------Blocks-----------
-    public EventJoinEntity getBlocksByPlayerId (int playerId) {
+    public Integer getBlocksByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetBlocksByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -1022,7 +1022,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetBlocksByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetBlocksByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -1030,15 +1030,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getBlocksByPlayerId(integers[0]);
         }
     }
 
     //-----------Turnover-----------
-    public EventJoinEntity getTurnoverByPlayerId (int playerId) {
+    public Integer getTurnoverByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetTurnoverByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -1049,7 +1049,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetTurnoverByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetTurnoverByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -1057,15 +1057,15 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getTurnoversByPlayerId(integers[0]);
         }
     }
 
     //-----------Fouls-----------
-    public EventJoinEntity getFoulsByPlayerId (int playerId) {
+    public Integer getFoulsByPlayerId (int playerId) {
 
-        EventJoinEntity eventJoinEntity = null;
+        Integer eventJoinEntity = null;
         try {
             eventJoinEntity = new GetFoulsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
         } catch (ExecutionException e) {
@@ -1076,7 +1076,7 @@ public class Repository {
         return eventJoinEntity;
     }
 
-    private class GetFoulsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, EventJoinEntity> {
+    private class GetFoulsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
 
         private EventJoinDao asyncEventJoinDao;
 
@@ -1084,7 +1084,7 @@ public class Repository {
             this.asyncEventJoinDao = eventJoinDao;
         }
         @Override
-        protected EventJoinEntity doInBackground(Integer... integers) {
+        protected Integer doInBackground(Integer... integers) {
             return asyncEventJoinDao.getFoulsByPlayerId(integers[0]);
         }
     }
