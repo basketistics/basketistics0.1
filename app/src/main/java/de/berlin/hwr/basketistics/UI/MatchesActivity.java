@@ -86,6 +86,7 @@ public class MatchesActivity extends AppCompatActivity {
                     case R.id.team:
                         Intent teamIntent = new Intent(MatchesActivity.this, TeamActivity.class);
                         startActivity(teamIntent);
+                        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
                         break;
                     case R.id.matches:
                         Log.i(TAG, "already in MatchesActivity");

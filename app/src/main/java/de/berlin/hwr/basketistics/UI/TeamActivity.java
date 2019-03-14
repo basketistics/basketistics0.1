@@ -73,6 +73,7 @@ public class TeamActivity extends AppCompatActivity {
                     case R.id.matches:
                         Intent matchesIntent = new Intent(TeamActivity.this, MatchesActivity.class);
                         startActivity(matchesIntent);
+                        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
                         break;
                     case R.id.reports:
                         Log.i(TAG, "ReportsActivity not implemented yet.");
