@@ -7,10 +7,12 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 
 import java.io.BufferedInputStream;
@@ -23,7 +25,7 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 
 // TODO: Set Flag FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS to Intent calling this Activity
-public class AddPlayerActivity extends AppCompatActivity {
+public class AddPlayerActivity extends AppCompatActivity implements AddPlayerOnSavedListener{
 
     public final static String EXTRA_REPLY = "de.hwr.basketistis.AddPlayerActivity.REPLY";
 
@@ -41,6 +43,10 @@ public class AddPlayerActivity extends AppCompatActivity {
     private EditText playerNumberEditText;
     private EditText playerDescriptionEditText;
     private Button addPlayerButton;
+
+    String imageFilename;
+
+    private ProgressBar progressBar;
 
     private void dispatchChoosePictureIntent() {
         Intent intent = new Intent();
@@ -80,6 +86,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         playerNumberEditText = (EditText) findViewById(R.id.add_playerNumber);
         playerDescriptionEditText = (EditText) findViewById(R.id.add_playerDescription);
         addPlayerButton = (Button) findViewById(R.id.add_addPlayerButton);
+        progressBar = findViewById(R.id.addPlayerProgressBar);
     }
 
     @Override
@@ -104,31 +111,49 @@ public class AddPlayerActivity extends AppCompatActivity {
                 // TODO: Check whether user input is legit.
 
                 // Save Bitmap to app storage and return Uri
-                String imageFileName = playerFirstNameEditText.getText().toString() + "_" + playerLastNameEditText.getText().toString() + "_" + new Date();
-                new SaveBitmpAsyncTask(imageFileName, playerBitmap).execute();
-
-                // Create player from user input and pass via intent to TeamActivity
-                Intent teamActivityIntent = new Intent();
-                teamActivityIntent.putExtra(EXTRA_REPLY, new PlayerEntity(
-                        playerLastNameEditText.getText().toString(),
-                        playerFirstNameEditText.getText().toString(),
-                        Integer.parseInt(playerNumberEditText.getText().toString()),
-                        playerDescriptionEditText.getText().toString(),
-                        imageFileName));
-                setResult(RESULT_OK, teamActivityIntent);
-                finish();
+                imageFilename = playerFirstNameEditText.getText().toString() + "_" + playerLastNameEditText.getText().toString() + "_" + new Date();
+                new SaveBitmpAsyncTask(
+                        imageFilename,
+                        playerBitmap,
+                        progressBar,
+                        AddPlayerActivity.this).execute();
             }
         });
+    }
+
+    @Override
+    public void onSaved() {
+        // Create player from user input and pass via intent to TeamActivity
+        Intent teamActivityIntent = new Intent();
+        teamActivityIntent.putExtra(EXTRA_REPLY, new PlayerEntity(
+                playerLastNameEditText.getText().toString(),
+                playerFirstNameEditText.getText().toString(),
+                Integer.parseInt(playerNumberEditText.getText().toString()),
+                playerDescriptionEditText.getText().toString(),
+                imageFilename));
+        setResult(RESULT_OK, teamActivityIntent);
+        Log.e(TAG, "onSaved()");
+        finish();
     }
 
     private class SaveBitmpAsyncTask extends AsyncTask {
 
         private Bitmap bitmap;
         private String fileName;
+        private ProgressBar progressBar;
+        private AddPlayerOnSavedListener onSavedListener;
 
-        public SaveBitmpAsyncTask(String fileName, Bitmap bitmap) {
+        public SaveBitmpAsyncTask(String fileName, Bitmap bitmap, ProgressBar progressBar, AddPlayerOnSavedListener onSavedListener) {
             this.bitmap = bitmap;
             this.fileName = fileName;
+            this.progressBar = progressBar;
+            this.onSavedListener = onSavedListener;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -141,6 +166,14 @@ public class AddPlayerActivity extends AppCompatActivity {
                     .save(bitmap);
 
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+
+        progressBar.setVisibility(View.GONE);
+        onSavedListener.onSaved();
         }
     }
 }
