@@ -790,7 +790,7 @@ public class Repository {
         }
     }
 
-
+/*
     //-----------By PlayerId----------
 
     //-----One Point Made-----
@@ -1088,7 +1088,7 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerId(integers[0]);
         }
     }
-
+*/
 
 }
 
