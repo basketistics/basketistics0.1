@@ -21,46 +21,82 @@ public interface EventJoinDao {
     //AUSWECHSEL
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ONE_POINT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getOnePointerByPlayerId(int playerId, int matchId);
+    int getOnePointerByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TWO_POINTS' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getTwoPointerByPlayerId(int playerId, int matchId);
+    int getTwoPointerByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='THREE_POINTS' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getThreePointerByPlayerId(int playerId, int matchId);
+    int getThreePointerByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ONE_POINT_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getOnePointAttemptsByPlayerId(int playerId, int matchId);
+    int getOnePointAttemptsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TWO_POINTS_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getTwoPointAttemptsByPlayerId(int playerId, int matchId);
+    int getTwoPointAttemptsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='THREE_POINTS_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getThreePointAttemptsByPlayerId(int playerId, int matchId);
+    int getThreePointAttemptsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='REBOUND' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getReboundsByPlayerId(int playerId, int matchId);
+    int getReboundsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ASSIST' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getAssistsByPlayerId(int playerId, int matchId);
+    int getAssistsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='STEAL' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getStealsByPlayerId(int playerId, int matchId);
+    int getStealsByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='BLOCK' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getBlocksByPlayerId(int playerId, int matchId);
+    int getBlocksByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TURNOVER' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getTurnoversByPlayerId(int playerId, int matchId);
+    int getTurnoversByPlayerAndMatch(int playerId, int matchId);
 
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='FOUL' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
-    int getFoulsByPlayerId(int playerId, int matchId);
+    int getFoulsByPlayerAndMatch(int playerId, int matchId);
 
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ONE_POINT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getOnePointerByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TWO_POINTS' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getTwoPointerByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='THREE_POINTS' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getThreePointerByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ONE_POINT_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getOnePointAttemptsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TWO_POINTS_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getTwoPointAttemptsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='THREE_POINTS_ATTEMPT' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getThreePointAttemptsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='REBOUND' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getReboundsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='ASSIST' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getAssistsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='STEAL' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getStealsByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='BLOCK' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getBlocksByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='TURNOVER' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getTurnoversByPlayer(int playerId, int matchId);
+
+    @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='FOUL' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
+    int getFoulsByPlayer(int playerId, int matchId);
     //@Query("SELECT COUNT(player_id) FROM PlayerEntity, EventEntity")
 
 
 
-    @Query("SELECT player_id FROM EventEntity WHERE match_id=(:match_id)")
+    @Query("SELECT player_id FROM EventEntity WHERE match_id=(:match_id) GROUP BY player_id")
     List<Integer> getPlayerIdsByMatch(int match_id);
 
 
