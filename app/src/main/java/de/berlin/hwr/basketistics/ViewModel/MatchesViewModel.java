@@ -46,8 +46,11 @@ public class MatchesViewModel extends AndroidViewModel {
         if (matches.getValue() == null) {
             matches.setValue(new ArrayList<MatchEntity>());
         }
-        matches.getValue().add(matchEntity);
         repository.insertMatch(matchEntity);
+
+        // This id is used only once
+        matchEntity.setId(repository.getAllMatches().size());
+        matches.getValue().add(matchEntity);
     }
 }
 
