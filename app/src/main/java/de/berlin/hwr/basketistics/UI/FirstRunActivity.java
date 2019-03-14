@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+
+import com.bumptech.glide.Glide;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
@@ -22,7 +25,7 @@ import java.util.Date;
 import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.R;
 
-public class FirstRunActivity extends AppCompatActivity {
+public class FirstRunActivity extends AppCompatActivity implements OnTeamCreatedListener{
 
     public static final String PREFERENCES = "de.berlin.hwr.basketistics.PREFERENCES";
     private final static int PICK_IMAGE = 5;
@@ -33,6 +36,7 @@ public class FirstRunActivity extends AppCompatActivity {
     private ImageView teamImageView;
     private Button takePictureButton;
     private Button startButton;
+    private ProgressBar progressBar;
 
     private Bitmap teamBitmap;
 
@@ -49,6 +53,8 @@ public class FirstRunActivity extends AppCompatActivity {
         startButton = findViewById(R.id.firstStartButton);
         teamImageView = findViewById(R.id.first_teamImageView);
         takePictureButton = findViewById(R.id.first_takePictureButton);
+
+        progressBar = findViewById(R.id.firstStartProgressBar);
 
         sharedPreferences = getSharedPreferences(PREFERENCES, Context.MODE_PRIVATE);
 
@@ -68,18 +74,7 @@ public class FirstRunActivity extends AppCompatActivity {
 
                     // Save Bitmap to app storage and return Uri
                     String imageFileName = "TEAM_IMAGE" + "_" + new Date();
-                    new SaveBitmpAsyncTask(imageFileName, teamBitmap).execute();
-
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putString("team_name", teamName.getText().toString());
-                    editor.putString("team_home", teamHome.getText().toString());
-                    editor.putString("team_whatever", teamWhatEver.getText().toString());
-                    editor.putString("team_image", imageFileName);
-                    editor.putBoolean("first_run", false);
-                    editor.commit();
-
-                    Intent matchesIntent = new Intent(FirstRunActivity.this, MatchesActivity.class);
-                    startActivity(matchesIntent);
+                    new CreateTeamAsyncTask(imageFileName, teamBitmap, FirstRunActivity.this).execute();
                 }
             }
         });
@@ -99,7 +94,11 @@ public class FirstRunActivity extends AppCompatActivity {
                 teamBitmap = BitmapFactory.decodeStream(bufferedInputStream);
 
                 // Set ImageView
-                teamImageView.setImageBitmap(teamBitmap);
+                Glide.with(this)
+                        .load(selectedImage)
+                        .centerCrop()
+                        .placeholder(R.drawable.marcel_davis)
+                        .into(teamImageView);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -115,18 +114,39 @@ public class FirstRunActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
     }
 
-    private class SaveBitmpAsyncTask extends AsyncTask {
+    @Override
+    public void onTeamCreated() {
+        Intent matchesIntent = new Intent(FirstRunActivity.this, MatchesActivity.class);
+        startActivity(matchesIntent);
+    }
+
+    private class CreateTeamAsyncTask extends AsyncTask {
 
         private Bitmap bitmap;
         private String fileName;
+        private OnTeamCreatedListener onTeamCreatedListener;
 
-        public SaveBitmpAsyncTask(String fileName, Bitmap bitmap) {
+        public CreateTeamAsyncTask(String fileName, Bitmap bitmap, OnTeamCreatedListener onTeamCreatedListener) {
             this.bitmap = bitmap;
             this.fileName = fileName;
+            this.onTeamCreatedListener = onTeamCreatedListener;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected Object doInBackground(Object[] objects) {
+
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("team_name", teamName.getText().toString());
+            editor.putString("team_home", teamHome.getText().toString());
+            editor.putString("team_whatever", teamWhatEver.getText().toString());
+            editor.putString("team_image", fileName);
+            editor.putBoolean("first_run", false);
+            editor.commit();
 
             ImageSaver imageSaver = new ImageSaver(getApplicationContext());
             imageSaver.setExternal(false)
@@ -136,5 +156,14 @@ public class FirstRunActivity extends AppCompatActivity {
 
             return null;
         }
+
+        @Override
+        protected void onPostExecute(Object o) {
+            super.onPostExecute(o);
+
+            progressBar.setVisibility(View.GONE);
+            onTeamCreatedListener.onTeamCreated();
+        }
+
     }
 }
