@@ -78,6 +78,7 @@ public class MatchesActivity extends AppCompatActivity {
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.matchesBottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.matches);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {

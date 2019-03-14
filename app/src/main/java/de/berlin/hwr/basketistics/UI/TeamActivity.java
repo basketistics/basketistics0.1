@@ -62,6 +62,7 @@ public class TeamActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
         bottomNavigationView = findViewById(R.id.teamBottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.team);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
