@@ -60,7 +60,7 @@ public class TeamActivity extends AppCompatActivity {
             teamViewModel.insert(playerEntity);
             teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
 
-        } else if (requestCode == PICK_TEAM_IMAGE) {
+        } else if (requestCode == PICK_TEAM_IMAGE && resultCode == RESULT_OK) {
             try {
 
                 // Get Image

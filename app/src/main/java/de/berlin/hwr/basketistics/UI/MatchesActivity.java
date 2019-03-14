@@ -72,7 +72,7 @@ public class MatchesActivity extends AppCompatActivity{
             for (MatchEntity match : matchesViewModel.getAllMatches().getValue()) {
                 Log.e(TAG, "MatchID: " + match.getId());
             }
-        } else if (requestCode == PICK_TEAM_IMAGE) {
+        } else if (requestCode == PICK_TEAM_IMAGE && resultCode == RESULT_OK) {
             try {
 
                 // Get Image

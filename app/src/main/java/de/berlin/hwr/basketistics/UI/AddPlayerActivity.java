@@ -58,7 +58,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AddPlayerOnS
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (requestCode == PICK_IMAGE) {
+        if (requestCode == PICK_IMAGE && resultCode == RESULT_OK) {
             try {
 
                 // Get Image
