@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 
+import com.bumptech.glide.Glide;
+
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -69,7 +71,11 @@ public class AddPlayerActivity extends AppCompatActivity implements AddPlayerOnS
                 playerBitmap = BitmapFactory.decodeStream(bufferedInputStream);
 
                 // Set ImageView
-                playerImageView.setImageBitmap(playerBitmap);
+                Glide.with(this)
+                        .load(selectedImage)
+                        .centerInside()
+                        .placeholder(R.drawable.marcel_davis)
+                        .into(playerImageView);
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

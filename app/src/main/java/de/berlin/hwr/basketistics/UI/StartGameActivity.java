@@ -90,6 +90,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
                         ).show();
 
                     } else {
+
                         clickedPlayerIndex = finalI;
 
                         // Inflate the popup_points.xml View

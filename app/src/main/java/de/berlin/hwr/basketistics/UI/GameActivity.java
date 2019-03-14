@@ -2,10 +2,12 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -21,11 +23,13 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
@@ -631,16 +635,18 @@ timer_running = true;
                 @Override
                 public void onChanged(@Nullable PlayerEntity playerEntity) {
 
-                    int playerId = eventViewModel.getPlayerEvents(finalI).getPlayer().getValue().getId();
-                    String fileName = sharedPreferences.getString("PLAYER" + playerId, "");
-                    Log.e(TAG, "PLAYER" + playerId);
+                    String fileName = playerEntity.getImageFilename();
 
-                    ImageSaver imageSaver = new ImageSaver(GameActivity.this.getApplicationContext());
-                    Bitmap bitmap = imageSaver.setExternal(false)
-                            .setFileName(fileName)
-                            .setDirectoryName("images")
-                            .load();
-                    playerImageViews[finalI].setImageBitmap(bitmap);
+                    File directory = GameActivity.this.getDir("images", Context.MODE_PRIVATE);
+                    File image = new File(directory, playerEntity.getImageFilename());
+                    Uri imageUri = Uri.fromFile(image);
+
+                    Glide.with(GameActivity.this)
+                            .load(imageUri)
+                            .centerCrop()
+                            .placeholder(R.drawable.marcel_davis)
+                            .into(playerImageViews[finalI]);
+
                 }
             });
         }

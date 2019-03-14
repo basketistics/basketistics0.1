@@ -47,7 +47,7 @@
                         <ImageView
                             android:id="@+id/player_1_imageView"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_weight="30"
                             android:scaleType="centerCrop"
                             app:srcCompat="@drawable/marcel_davis" />
@@ -325,7 +325,7 @@
                     <ImageView
                         android:id="@+id/player_1_imageView2"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="30"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
@@ -598,7 +598,7 @@
                     <ImageView
                         android:id="@+id/player_1_imageView3"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="30"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />
@@ -871,7 +871,7 @@
                     <ImageView
                         android:id="@+id/player_1_imageView4"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="30"
                         android:rotation="180"
                         android:scaleType="centerCrop"
@@ -1145,7 +1145,7 @@
                     <ImageView
                         android:id="@+id/player_1_imageView5"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="30"
                         android:scaleType="centerCrop"
                         app:srcCompat="@drawable/marcel_davis" />

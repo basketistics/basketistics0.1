@@ -2,6 +2,7 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -26,9 +27,9 @@ import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.Date;
+import java.io.File;
 import java.util.List;
 
-import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
@@ -38,9 +39,8 @@ public class TeamActivity extends AppCompatActivity {
     public static final String TAG = "TeamActivity";
     private static final int PICK_TEAM_IMAGE = 7;
 
-    private SharedPreferences sharedPreferences;
-
     private TeamViewModel teamViewModel;
+    private SharedPreferences sharedPreferences;
 
     private BottomNavigationView bottomNavigationView;
     private FloatingActionButton addPlayerButton;
@@ -49,6 +49,8 @@ public class TeamActivity extends AppCompatActivity {
     private ImageView teamImageView;
 
     private Bitmap teamBitmap;
+    private String teamImageFilename;
+    private String teamName;
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -77,6 +79,7 @@ public class TeamActivity extends AppCompatActivity {
                         .placeholder(R.drawable.marcel_davis)
                         .into(teamImageView);
 
+                sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
                 String imageFileName = "TEAM_IMAGE" + "_" + new Date();
                 new SwapTeamImageAsyncTask(
                         imageFileName,
@@ -96,8 +99,6 @@ public class TeamActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team);
-
-        sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
         bottomNavigationView = findViewById(R.id.teamBottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.team);
@@ -123,15 +124,24 @@ public class TeamActivity extends AppCompatActivity {
             }
         });
 
-        // Set Team Image
-        // TODO: Send filename via intent and check for that on first run
+        // Get Strings from Intent
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (teamImageFilename == null) { teamImageFilename = (String) extras.get("team_image"); }
+        if (teamName == null) { teamName = (String) extras.get("team_name"); }
 
+        // Set Team Image
         teamImageView = findViewById(R.id.teamImageView);
-        ImageSaver imageSaver = new ImageSaver(this);
-        Bitmap teamBitmap =  imageSaver.setDirectoryName("images")
-                .setFileName(sharedPreferences.getString("team_image", ""))
-                .load();
-        teamImageView.setImageBitmap(teamBitmap);
+
+        File directory = this.getDir("images", Context.MODE_PRIVATE);
+        File image = new File(directory, teamImageFilename);
+        Uri imageUri = Uri.fromFile(image);
+
+        Glide.with(this)
+                .load(imageUri)
+                .centerCrop()
+                .placeholder(R.drawable.marcel_davis)
+                .into(teamImageView);
 
         // Set up RecyclerView
         teamRecyclerView = (RecyclerView) findViewById(R.id.teamRecyclerView);
