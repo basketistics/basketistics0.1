@@ -25,6 +25,7 @@ import com.bumptech.glide.Glide;
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.ImageSaver;
@@ -75,6 +76,14 @@ public class TeamActivity extends AppCompatActivity {
                         .centerCrop()
                         .placeholder(R.drawable.marcel_davis)
                         .into(teamImageView);
+
+                String imageFileName = "TEAM_IMAGE" + "_" + new Date();
+                new SwapTeamImageAsyncTask(
+                        imageFileName,
+                        teamBitmap,
+                        sharedPreferences,
+                        TeamActivity.this
+                ).execute();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();

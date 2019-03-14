@@ -20,12 +20,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import de.berlin.hwr.basketistics.ImageSaver;
@@ -35,7 +37,7 @@ import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
-public class MatchesActivity extends AppCompatActivity {
+public class MatchesActivity extends AppCompatActivity{
 
     private final static int ADD_MATCH_ACTIVITY_REQUEST_CODE = 4;
     public static final String TAG = "MatchesActivity";
@@ -50,6 +52,8 @@ public class MatchesActivity extends AppCompatActivity {
     private RecyclerView matchesRecyclerView;
     private MatchesAdapter matchesAdapter;
     private ImageView teamImageView;
+
+    private ProgressBar progressBar;
 
     private Bitmap teamBitmap;
 
@@ -84,6 +88,14 @@ public class MatchesActivity extends AppCompatActivity {
                         .centerCrop()
                         .placeholder(R.drawable.marcel_davis)
                         .into(teamImageView);
+
+                String imageFileName = "TEAM_IMAGE" + "_" + new Date();
+                new SwapTeamImageAsyncTask(
+                        imageFileName,
+                        teamBitmap,
+                        sharedPreferences,
+                        MatchesActivity.this
+                ).execute();
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
