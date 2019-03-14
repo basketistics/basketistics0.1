@@ -56,6 +56,8 @@ public interface EventJoinDao {
     @Query("SELECT COUNT(event_id) FROM EventEntity, EventTypeEntity WHERE eventTypeEntity.event_name='FOUL' AND eventEntity.match_id =(:matchId) AND EventEntity.event_type=EventTypeEntity.event_id AND EventEntity.player_id=(:playerId)")
     EventJoinEntity getFoulsByPlayerId(int playerId, int matchId);
 
+    //@Query("SELECT COUNT(player_id) FROM PlayerEntity, EventEntity")
+
 
 
     @Query("SELECT player_id FROM EventEntity WHERE match_id=(:match_id)")
