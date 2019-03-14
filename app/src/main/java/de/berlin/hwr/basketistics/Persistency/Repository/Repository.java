@@ -789,7 +789,7 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerAndMatch(integers[0], integers[1]);
         }
     }
-/*
+
 
     //-----------By PlayerId----------
 
@@ -1088,7 +1088,7 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerId(integers[0]);
         }
     }
-*/
+
 
 }
 
