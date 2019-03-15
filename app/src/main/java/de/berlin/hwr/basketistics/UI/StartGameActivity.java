@@ -70,176 +70,54 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
 
         //TODO: Refactor into proper OnClicklistener
 
-        // Make player-listings clickable
-        starterTextViews[0].setOnClickListener(new View.OnClickListener() {
+        for (int i = 0; i < 5; i++) {
 
-            RecyclerView playerRecyclerView;
-            TeamAdapter teamAdapter;
+            // Make player-listings clickable
+            final int finalI = i;
+            starterTextViews[i].setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+                RecyclerView playerRecyclerView;
+                TeamAdapter teamAdapter;
 
-                clickedPlayerIndex = 0;
+                @Override
+                public void onClick(View v) {
 
-                // Inflate the popup_points.xml View
-                LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
-                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
+                    if (teamViewModel.getAllPlayers().getValue().size() < 5) {
+                        Toast.makeText(
+                                StartGameActivity.this,
+                                "Bitte legen Sie mindestens 5 Spieler an.",
+                                Toast.LENGTH_LONG
+                        ).show();
 
-                // Create the popup Window
-                playerPopupWindow = new PopupWindow(StartGameActivity.this);
-                playerPopupWindow.setContentView(playerListView);
-                playerPopupWindow.setFocusable(true);
-                // TODO: Calculate from displaysize and pixeldensity!
-                playerPopupWindow.setWidth(1300);
-                playerPopupWindow.showAsDropDown(v);
+                    } else {
 
-                // Set up RecyclerView
-                playerRecyclerView =
-                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
-                teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
-                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
-                playerRecyclerView.setAdapter(teamAdapter);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                playerRecyclerView.setLayoutManager(linearLayoutManager);
-            }
-        });
+                        clickedPlayerIndex = finalI;
 
-        starterTextViews[1].setOnClickListener(new View.OnClickListener() {
+                        // Inflate the popup_points.xml View
+                        LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
+                        View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
 
-            RecyclerView playerRecyclerView;
-            TeamAdapter teamAdapter;
+                        // Create the popup Window
+                        playerPopupWindow = new PopupWindow(StartGameActivity.this);
+                        playerPopupWindow.setContentView(playerListView);
+                        playerPopupWindow.setFocusable(true);
+                        // TODO: Calculate from displaysize and pixeldensity!
+                        playerPopupWindow.setWidth(1300);
+                        playerPopupWindow.showAsDropDown(v);
 
-            @Override
-            public void onClick(View v) {
-
-                clickedPlayerIndex = 1;
-
-                // Inflate the popup_points.xml View
-                LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
-                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
-
-                // Create the popup Window
-                playerPopupWindow = new PopupWindow(StartGameActivity.this);
-                playerPopupWindow.setContentView(playerListView);
-                playerPopupWindow.setFocusable(true);
-                // TODO: Calculate from displaysize and pixeldensity!
-                playerPopupWindow.setWidth(1300);
-                playerPopupWindow.showAsDropDown(v);
-
-                // Set up RecyclerView
-                playerRecyclerView =
-                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
-                teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
-                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
-                playerRecyclerView.setAdapter(teamAdapter);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                playerRecyclerView.setLayoutManager(linearLayoutManager);
-            }
-        });
-
-        starterTextViews[2].setOnClickListener(new View.OnClickListener() {
-
-            RecyclerView playerRecyclerView;
-            TeamAdapter teamAdapter;
-
-            @Override
-            public void onClick(View v) {
-
-                clickedPlayerIndex = 2;
-
-                // Inflate the popup_points.xml View
-                LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
-                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
-
-                // Create the popup Window
-                playerPopupWindow = new PopupWindow(StartGameActivity.this);
-                playerPopupWindow.setContentView(playerListView);
-                playerPopupWindow.setFocusable(true);
-                // TODO: Calculate from displaysize and pixeldensity!
-                playerPopupWindow.setWidth(1300);
-                playerPopupWindow.showAsDropDown(v);
-
-                // Set up RecyclerView
-                playerRecyclerView =
-                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
-                teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
-                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
-                playerRecyclerView.setAdapter(teamAdapter);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                playerRecyclerView.setLayoutManager(linearLayoutManager);
-            }
-        });
-
-        starterTextViews[3].setOnClickListener(new View.OnClickListener() {
-
-            RecyclerView playerRecyclerView;
-            TeamAdapter teamAdapter;
-
-            @Override
-            public void onClick(View v) {
-
-                clickedPlayerIndex = 3;
-
-                // Inflate the popup_points.xml View
-                LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
-                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
-
-                // Create the popup Window
-                playerPopupWindow = new PopupWindow(StartGameActivity.this);
-                playerPopupWindow.setContentView(playerListView);
-                playerPopupWindow.setFocusable(true);
-                // TODO: Calculate from displaysize and pixeldensity!
-                playerPopupWindow.setWidth(1300);
-                playerPopupWindow.showAsDropDown(v);
-
-                // Set up RecyclerView
-                playerRecyclerView =
-                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
-                teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
-                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
-                playerRecyclerView.setAdapter(teamAdapter);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                playerRecyclerView.setLayoutManager(linearLayoutManager);
-            }
-        });
-
-        starterTextViews[4].setOnClickListener(new View.OnClickListener() {
-
-            RecyclerView playerRecyclerView;
-            TeamAdapter teamAdapter;
-
-            @Override
-            public void onClick(View v) {
-
-                clickedPlayerIndex = 4;
-
-                // Inflate the popup_points.xml View
-                LayoutInflater layoutInflater = StartGameActivity.this.getLayoutInflater();
-                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
-
-                // Create the popup Window
-                playerPopupWindow = new PopupWindow(StartGameActivity.this);
-                playerPopupWindow.setContentView(playerListView);
-                playerPopupWindow.setFocusable(true);
-                // TODO: Calculate from displaysize and pixeldensity!
-                playerPopupWindow.setWidth(1300);
-                playerPopupWindow.showAsDropDown(v);
-
-                // Set up RecyclerView
-                playerRecyclerView =
-                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
-                teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
-                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
-                playerRecyclerView.setAdapter(teamAdapter);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
-                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                playerRecyclerView.setLayoutManager(linearLayoutManager);
-            }
-        });
+                        // Set up RecyclerView
+                        playerRecyclerView =
+                                (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
+                        teamAdapter = new TeamAdapter(StartGameActivity.this, StartGameActivity.this, playerPopupWindow);
+                        teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
+                        playerRecyclerView.setAdapter(teamAdapter);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(StartGameActivity.this);
+                        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                        playerRecyclerView.setLayoutManager(linearLayoutManager);
+                    }
+                }
+            });
+        }
     }
 
 
