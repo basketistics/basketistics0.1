@@ -115,7 +115,9 @@ public class TeamActivity extends AppCompatActivity {
                         overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
                         break;
                     case R.id.reports:
-                        Log.i(TAG, "ReportsActivity not implemented yet.");
+                        Intent reportIntent = new Intent(TeamActivity.this, ReportActivity.class);
+                        startActivity(reportIntent);
+                        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
                         break;
                     default:
                         return false;
@@ -127,8 +129,8 @@ public class TeamActivity extends AppCompatActivity {
         // Get Strings from Intent
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
-        if (teamImageFilename == null) { teamImageFilename = (String) extras.get("team_image"); }
-        if (teamName == null) { teamName = (String) extras.get("team_name"); }
+        if (teamImageFilename == null) { teamImageFilename = extras.getString("team_image"); }
+        if (teamName == null) { teamName = extras.getString("team_name"); }
 
         // Set Team Image
         teamImageView = findViewById(R.id.teamImageView);

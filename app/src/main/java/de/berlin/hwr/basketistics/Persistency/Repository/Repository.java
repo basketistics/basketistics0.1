@@ -792,7 +792,7 @@ public class Repository {
 
 
     //-----------By PlayerId----------
-
+/*
     //-----One Point Made-----
     public Integer getOnePointerByPlayerId (int playerId) {
 
@@ -1088,7 +1088,7 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerId(integers[0]);
         }
     }
-
+*/
 
 }
 

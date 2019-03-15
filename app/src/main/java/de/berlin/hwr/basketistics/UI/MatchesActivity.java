@@ -148,7 +148,9 @@ public class MatchesActivity extends AppCompatActivity{
                         Log.i(TAG, "already in MatchesActivity");
                         break;
                     case R.id.reports:
-                        Log.i(TAG, "ReportsActivity not implemented yet.");
+                        Intent reportIntent = new Intent(MatchesActivity.this, ReportActivity.class);
+                        startActivity(reportIntent);
+                        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
                         break;
                     default:
                         return false;
