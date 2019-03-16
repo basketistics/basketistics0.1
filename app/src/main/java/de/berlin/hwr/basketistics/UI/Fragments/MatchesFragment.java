@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -91,6 +92,30 @@ public class MatchesFragment extends Fragment {
         // get ViewModel
         matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
         teamName = ((MainActivity)getActivity()).getTeamName();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.fragment_matches, container, false);
+
+        // Inflate the layout for this fragment
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Set up RecyclerView
+        matchesRecyclerView = getActivity().findViewById(R.id.matchesFragmentRecyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        matchesRecyclerView.setLayoutManager(linearLayoutManager);
+
+        matchesAdapter = new MatchesAdapter(getActivity(), teamName);
+        matchesRecyclerView.setAdapter(matchesAdapter);
 
         // Observe ViewModel
         matchesViewModel.getAllMatches().observe(this, new Observer<List<MatchEntity>>() {
@@ -101,24 +126,9 @@ public class MatchesFragment extends Fragment {
                 matchesAdapter.setMatches(matchesViewModel.getAllMatches().getValue());
             }
         });
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.fragment_matches, container, false);
-
-        // Set up RecyclerView
-        matchesRecyclerView = (RecyclerView) container.findViewById(R.id.matchesFragmentRecyclerView);
-        matchesAdapter = new MatchesAdapter(getActivity(), teamName);
-        matchesRecyclerView.setAdapter(matchesAdapter);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        matchesRecyclerView.setLayoutManager(linearLayoutManager);
 
         // Start MatchesActivity on button click
-        addMatchButton = container.findViewById(R.id.matchAddMatchFloatingActionButton);
+        addMatchButton = getActivity().findViewById(R.id.matchAddMatchFloatingActionButton);
         addMatchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,8 +137,6 @@ public class MatchesFragment extends Fragment {
             }
         });
 
-        // Inflate the layout for this fragment
-        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
