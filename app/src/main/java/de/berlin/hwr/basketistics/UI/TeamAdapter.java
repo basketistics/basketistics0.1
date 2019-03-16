@@ -18,11 +18,13 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+
+
+
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.model.ResourceLoader;
 import com.bumptech.glide.request.RequestOptions;
-
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -133,6 +135,10 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
                     popupWindow.dismiss();
                 }
             });
+
+
+
+
         }
     }
 

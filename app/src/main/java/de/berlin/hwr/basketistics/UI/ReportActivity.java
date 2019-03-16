@@ -89,7 +89,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Bundle page2 = new Bundle();
         page2.putString("url", "Player Stats");
-        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page));
+        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page2));
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager = findViewById(R.id.pager);
@@ -108,7 +108,7 @@ public class ReportActivity extends AppCompatActivity {
 
         setUpNavBar();
 
-
+        inflateFragment();
     }
 
 
