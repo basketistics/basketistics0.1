@@ -11,14 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesViewHolder> {
 
@@ -44,9 +42,9 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         public MatchesViewHolder(View itemView) {
             super(itemView);
             matchHomeTeam = itemView.findViewById(R.id.listMatchHomeTeam);
-            matchOutTeam = itemView.findViewById(R.id.listMatchOutTeam);
-            matchDate = itemView.findViewById(R.id.listMatchDate);
-            matchCity = itemView.findViewById(R.id.listMatchCity);
+            matchOutTeam = itemView.findViewById(R.id.newStartOut);
+            matchDate = itemView.findViewById(R.id.newStartDate);
+            matchCity = itemView.findViewById(R.id.newStartCity);
             startGameButton = itemView.findViewById(R.id.listMatchDoSomethingButton);
         }
     }

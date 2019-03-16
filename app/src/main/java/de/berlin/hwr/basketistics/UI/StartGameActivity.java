@@ -124,7 +124,7 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_start_game);
+        setContentView(R.layout.new_start_game_activity);
 
         sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
@@ -133,18 +133,18 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
         teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
 
         // Find Views
-        opponentTextView = findViewById(R.id.start_matchItemOutTeam);
-        teamTextView = findViewById(R.id.start_matchItemHomeTeam);
-        cityTextView = findViewById(R.id.start_matchCityTextView);
-        dateTextView = findViewById(R.id.start_matchDateTextView);
+        opponentTextView = findViewById(R.id.newStartOut);
+        teamTextView = findViewById(R.id.newStartHome);
+        cityTextView = findViewById(R.id.newStartCity);
+        dateTextView = findViewById(R.id.newStartDate);
 
-        starterTextViews[0] = findViewById(R.id.starter1);
-        starterTextViews[1] = findViewById(R.id.starter2);
-        starterTextViews[2] = findViewById(R.id.starter3);
-        starterTextViews[3] = findViewById(R.id.starter4);
-        starterTextViews[4] = findViewById(R.id.starter5);
+        starterTextViews[0] = findViewById(R.id.newStartGamePLayer1);
+        starterTextViews[1] = findViewById(R.id.newStartGamePlayer2);
+        starterTextViews[2] = findViewById(R.id.newStartGamePlayer3);
+        starterTextViews[3] = findViewById(R.id.newStartGamePlayer4);
+        starterTextViews[4] = findViewById(R.id.newStartGamePlayer5);
 
-        startGameButton = findViewById(R.id.match_startGameButton);
+        startGameButton = findViewById(R.id.newStartGameButton);
 
         try {
             // Get current match from MatchesViewModel

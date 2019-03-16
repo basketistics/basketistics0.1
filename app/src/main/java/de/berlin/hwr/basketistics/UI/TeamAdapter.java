@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -43,11 +42,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
         public TeamViewHolder(View itemView) {
             super(itemView);
-            playerImageView = (ImageView) itemView.findViewById(R.id.listPLayerImageView);
+            playerImageView = (ImageView) itemView.findViewById(R.id.bla);
             playerName = (TextView) itemView.findViewById(R.id.listPLayerName);
-            playerNumber = (TextView) itemView.findViewById(R.id.listPlayerNumberTextView);
-            playerDescription = (TextView) itemView.findViewById(R.id.listPLayerDescription);
-            cardView = (CardView) itemView.findViewById(R.id.newPlayerListItem);
+            playerNumber = (TextView) itemView.findViewById(R.id.listPlayer2NumberTextView);
+            playerDescription = (TextView) itemView.findViewById(R.id.listPLayer1Description);
+            cardView = (CardView) itemView.findViewById(R.id.match);
         }
     }
 
