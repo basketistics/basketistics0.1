@@ -27,6 +27,8 @@ import de.berlin.hwr.basketistics.UI.MatchesActivity;
 import de.berlin.hwr.basketistics.UI.MatchesAdapter;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
+import static android.app.Activity.RESULT_OK;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -137,6 +139,17 @@ public class MatchesFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ADD_MATCH_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            MatchEntity matchEntity = (MatchEntity) data.getExtras().get(AddMatchActivity.EXTRA_REPLY);
+            matchesViewModel.insert(matchEntity);
+            matchesAdapter.setMatches(matchesViewModel.getAllMatches().getValue());
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event
