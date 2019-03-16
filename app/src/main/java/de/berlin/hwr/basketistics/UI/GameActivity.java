@@ -2,11 +2,12 @@ package de.berlin.hwr.basketistics.UI;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
@@ -30,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import de.berlin.hwr.basketistics.BroadcastService;
 import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
@@ -67,9 +69,20 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     private TextView enemyPointsTextView;
 
     // Timer
+    private int quarterRunning = 0;
     private TextView timerTextView;
-    boolean timer_running = false;
+    boolean timerRunning = false;
     int quarterCount = 1;
+    private BroadcastReceiver br;
+    private long millisLeft;
+    private long quarterMillis = 30000;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        registerReceiver(br, new IntentFilter(BroadcastService.COUNTDOWN_BR));
+        Log.i(TAG, "Registered broacast receiver");
+    }
 
     void initEnemyPoints() {
         incEnemyPointsButton = findViewById(R.id.ePoints_inc);
@@ -106,33 +119,33 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     }
 
-    private void finishCurrentQuater(){
+    private void finishCurrentQuarter(){
         switch (quarterCount) {
             case 1:
-                quater_running=0;
+                quarterRunning =0;
                 eventViewModel.endFirstQuarter();
                 timerTextView.setText("End of 1st");
                 quarterCount++;
                 break;
             case 2:
-                quater_running=0;
+                quarterRunning =0;
                 eventViewModel.endSecondQuarter();
                 timerTextView.setText("End of 2nd");
                 quarterCount++;
                 break;
             case 3:
-                quater_running=0;
+                quarterRunning =0;
                 eventViewModel.endThirdQuarter();
                 timerTextView.setText("End of 3rd");
                 quarterCount++;
                 break;
             case 4:
-                quater_running=0;
+                quarterRunning =0;
                 eventViewModel.endFourthQuarter();
                 timerTextView.setText("End of 4th");
                 quarterCount = 1;
 
-
+                unregisterReceiver(br);
 
                 Intent goToStatActivity = new Intent(this, StatActivity.class);
                 goToStatActivity.putExtra("matchID", currentMatchId);
@@ -160,56 +173,35 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         }
     }
 
-    CountDownTimerWithPause timer = new CountDownTimerWithPause(
-            6000,
-            1000,
-            false) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            String timeLeft = format("%02d:%02d",
-                    TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisUntilFinished)),
-                    TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished)));
-            timerTextView.setText(timeLeft);
-        }
 
-        @Override
-        public void onFinish() {
-            finishCurrentQuater();
-            timer_running = false;
-        }
-    };
-        private int quater_running=0;
-    private void timerHandler()
-    {
+    private void timerHandler() {
 
         timerTextView = findViewById(R.id.currTime);
-
 
         Button timerStart = findViewById(R.id.timer_start);
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e(TAG, "onClick: ");
 
-                if (timer_running)
-                {
-                    Log.i(TAG, "timer already running");
-                }
-
-                else if ((timer.timeLeft() < 6000)&& quater_running==1){
-                    timer.resume();
-                    timer_running = true;
+                if (timerRunning) { Log.i(TAG, "timer already running"); }
+                else if ((millisLeft < quarterMillis) && quarterRunning == 1){
+                    startService(new Intent(GameActivity.this, BroadcastService.class)
+                            .putExtra("millisLeft", millisLeft));
+                    Log.i(TAG, "Started service");
+                    timerRunning = true;
                     Log.i(TAG, "timer resumed");
                     eventViewModel.startGame();
-
                 }
-                if(timerTextView.getText().toString().startsWith("E") | quater_running == 0) {
-                    timer.cancel();
-                    timer.create();
+                if(timerTextView.getText().toString().startsWith("E") | quarterRunning == 0) {
                     Log.i(TAG, quarterCount + " quater started");
-                    timer.resume();
+                    millisLeft = quarterMillis;
+                    startService(new Intent(GameActivity.this, BroadcastService.class)
+                            .putExtra("millisLeft", millisLeft));
+                    Log.i(TAG, "Started service");
                     insertQuaterstart();
-                    quater_running = 1;
-timer_running = true;
+                    quarterRunning = 1;
+                    timerRunning = true;
                 }
             }
         });
@@ -218,8 +210,8 @@ timer_running = true;
         timerPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                timer.pause();
-                timer_running = false;
+                stopService(new Intent(GameActivity.this, BroadcastService.class));
+                timerRunning = false;
                 Log.i(TAG, "timer paused");
                 eventViewModel.pauseGame();
             }
@@ -611,9 +603,28 @@ timer_running = true;
         attachPlayerDescriptionToViewModel();
         attachPlayerImageViewToViewModel();
         initEnemyPoints();
-        // initImages();
         timerHandler();
 
+        timerTextView = findViewById(R.id.currTime);
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                millisLeft  = (long) intent.getExtras().get("countdown");
+
+                if (millisLeft < 999) {
+                    finishCurrentQuarter();
+                    millisLeft = quarterMillis;
+                }
+                else {
+                    String timeLeft = format("%02d:%02d",
+                            TimeUnit.MILLISECONDS.toMinutes(millisLeft) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millisLeft)),
+                            TimeUnit.MILLISECONDS.toSeconds(millisLeft) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millisLeft)));
+                    timerTextView.setText(timeLeft);
+                }
+            }
+        };
     }
 
     @Override

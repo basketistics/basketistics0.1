@@ -1,12 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.ParcelFileDescriptor;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,16 +14,10 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.model.ResourceLoader;
-import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.IOException;
 import java.util.List;
 
-import de.berlin.hwr.basketistics.ImageSaver;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 
@@ -38,7 +27,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
     // Cached copy of Players
     private List<PlayerEntity> team;
-
     private LayoutInflater inflater;
     private ClickListener clickListener;
     private PopupWindow popupWindow;
@@ -111,16 +99,6 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
                     .placeholder(R.drawable.marcel_davis)
                     .into(teamViewHolder.playerImageView);
 
-
-            /*
-            ImageSaver imageSaver = new ImageSaver(context.getApplicationContext());
-            Bitmap bitmap = imageSaver.setExternal(false)
-                    .setFileName(fileName)
-                    .setDirectoryName("images")
-                    .load();
-
-            teamViewHolder.playerImageView.setImageBitmap(bitmap);
-            */
         }
 
         // Set ClickListener
