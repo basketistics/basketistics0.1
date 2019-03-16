@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.berlin.hwr.basketistics">
-
     <!-- For Camera usage -->
     <uses-feature
         android:name="android.hardware.camera"
@@ -17,7 +16,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <!-- For camera usage -->
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -29,19 +27,21 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".UI.StartGameActivity"
-            android:launchMode="singleTask"/>
+        <activity
+            android:name=".UI.StartGameActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".UI.TeamActivity" />
         <activity android:name=".UI.AddPlayerActivity" />
         <activity android:name=".UI.GameActivity" />
-        <activity android:name=".UI.MatchesActivity">
+        <activity android:name=".UI.MatchesActivity"></activity>
+        <activity android:name=".UI.AddMatchActivity" />
+        <activity android:name=".UI.FirstRunActivity" />
+        <activity android:name=".UI.MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.AddMatchActivity" />
-        <activity android:name=".UI.FirstRunActivity"></activity>
     </application>
 
 </manifest>
