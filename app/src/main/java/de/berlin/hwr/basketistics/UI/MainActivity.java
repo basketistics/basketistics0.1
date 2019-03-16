@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     private SectionsStatePagerAdapter sectionsStatePagerAdapter;
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
+    private MenuItem prevMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +126,29 @@ public class MainActivity extends AppCompatActivity
             public boolean onLongClick(View v) {
                 dispatchChoosePictureIntent();
                 return false;
+            }
+        });
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (prevMenuItem != null) {
+                    prevMenuItem.setChecked(false);
+                } else {
+                    bottomNavigationView.getMenu().getItem(0).setChecked(false);
+                }
+                Log.d("page", "onPageSelected: " + position);
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+                prevMenuItem = bottomNavigationView.getMenu().getItem(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
             }
         });
     }

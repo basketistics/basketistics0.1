@@ -58,6 +58,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     public static void setPos(int pos) {
         ViewPagerAdapter.pos = pos;
     }
+
+
 }
 
 
