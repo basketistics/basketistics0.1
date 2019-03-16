@@ -9,11 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.barteksc.pdfviewer.PDFView;
-
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;
-import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class StatActivity extends AppCompatActivity {
 
@@ -38,7 +35,7 @@ public class StatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
-        setContentView(R.layout.stat_single_game_and_player);
+        setContentView(R.layout.stat_single_player_and_game);
 
         //-------TextViews--------
         TextView pointsMade = findViewById(R.id.visu_points_val);

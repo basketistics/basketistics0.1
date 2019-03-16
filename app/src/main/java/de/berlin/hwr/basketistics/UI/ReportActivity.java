@@ -1,6 +1,5 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.arch.lifecycle.ReportFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -8,23 +7,17 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.arch.lifecycle.ViewModelProviders;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
+
+import com.bumptech.glide.manager.SupportRequestManagerFragment;
 
 import java.util.List;
 import java.util.Vector;
 
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;
-import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
-
 
 
 public class ReportActivity extends AppCompatActivity {
@@ -35,8 +28,7 @@ public class ReportActivity extends AppCompatActivity {
     private static String teamImageFilename;
     private static String teamName;
     ViewPager viewPager;
-
-
+    int playerId;
 
 
     void setUpNavBar(){
@@ -89,7 +81,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Bundle page2 = new Bundle();
         page2.putString("url", "Player Stats");
-        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page2));
+        fragments.add(Fragment.instantiate(this, PlayerReportsListFragment.class.getName(),page2));
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager = findViewById(R.id.pager);
@@ -97,7 +89,13 @@ public class ReportActivity extends AppCompatActivity {
 
     }
 
+    public void setPlayerId(int playerId){
+        this.playerId = playerId;
+    }
 
+    public int getPlayerId(){
+        return playerId;
+    }
 
 
     @Override

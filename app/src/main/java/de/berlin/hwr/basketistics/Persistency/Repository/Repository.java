@@ -792,7 +792,7 @@ public class Repository {
 
 
     //-----------By PlayerId----------
-/*
+
     //-----One Point Made-----
     public Integer getOnePointerByPlayerId (int playerId) {
 
@@ -1035,6 +1035,33 @@ public class Repository {
         }
     }
 
+    //-----------Blocks-----------
+    public Integer getReboundsByPlayerId (int playerId) {
+
+        Integer eventJoinEntity = null;
+        try {
+            eventJoinEntity = new GetReboundsByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventJoinEntity;
+    }
+
+    private class GetReboundsByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private EventJoinDao asyncEventJoinDao;
+
+        public GetReboundsByPlayerIdAsyncTask(EventJoinDao eventJoinDao) {
+            this.asyncEventJoinDao = eventJoinDao;
+        }
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            return asyncEventJoinDao.getBlocksByPlayerId(integers[0]);
+        }
+    }
+
     //-----------Turnover-----------
     public Integer getTurnoverByPlayerId (int playerId) {
 
@@ -1088,7 +1115,35 @@ public class Repository {
             return asyncEventJoinDao.getFoulsByPlayerId(integers[0]);
         }
     }
-*/
+
+
+    //-----------Games Played-----------
+    public Integer getGamesPlayedByPlayerId (int playerId) {
+
+        Integer eventJoinEntity = null;
+        try {
+            eventJoinEntity = new GetGamesPlayedByPlayerIdAsyncTask(eventJoinDao).execute(playerId).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return eventJoinEntity;
+    }
+
+    private class GetGamesPlayedByPlayerIdAsyncTask extends AsyncTask<Integer, Void, Integer> {
+
+        private EventJoinDao asyncEventJoinDao;
+
+        public GetGamesPlayedByPlayerIdAsyncTask(EventJoinDao eventJoinDao) {
+            this.asyncEventJoinDao = eventJoinDao;
+        }
+        @Override
+        protected Integer doInBackground(Integer... integers) {
+            return asyncEventJoinDao.getGamesPlayedByPlayerId(integers[0]);
+        }
+    }
+
 
 }
 

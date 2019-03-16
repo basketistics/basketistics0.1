@@ -10,7 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="100">
+        android:weightSum="100"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,69 +25,81 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/player_pic"
-                    android:layout_width="265dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/marcel_davis" />
+                    android:orientation="horizontal"
+                    android:weightSum="100">
 
-                <TextView
-                    android:id="@+id/playername"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="Player Name"
-                    android:textSize="40sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/player_pic"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <ImageView
+                        android:id="@+id/player_pic"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_weight="50"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/marcel_davis" />
 
-                <TextView
-                    android:id="@+id/playerinfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="Player Info"
-                    android:textSize="30sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/player_pic"
-                    app:layout_constraintTop_toBottomOf="@+id/playername" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="50"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/game"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="TuS vs. Wiesel"
-                    android:textSize="20sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/player_pic"
-                    app:layout_constraintTop_toBottomOf="@+id/playerinfo" />
+                        <android.support.constraint.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/gameinfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:text="01.01.1999  12:00"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/player_pic"
-                    app:layout_constraintTop_toBottomOf="@+id/game" />
+                            <TextView
+                                android:id="@+id/game"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="TuS vs. Wiesel"
+                                android:textSize="20sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/playerinfo" />
+
+                            <TextView
+                                android:id="@+id/gameinfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="01.01.1999  12:00"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/game" />
+
+                            <TextView
+                                android:id="@+id/playerinfo"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Player Info"
+                                android:textSize="27sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/playername" />
+
+                            <TextView
+                                android:id="@+id/playername"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="120dp"
+                                android:text="Player Name"
+                                android:textSize="30sp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </android.support.constraint.ConstraintLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
 
             </android.support.constraint.ConstraintLayout>
         </LinearLayout>
@@ -115,19 +129,6 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/visu_min"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Minutes played: "
-                        android:textSize="28sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
                         android:id="@+id/visu_points"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -150,6 +151,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="FG; M/A/%: "
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/visu_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minutes played: "
                         android:textSize="28sp" />
                 </TableRow>
 
@@ -195,12 +209,38 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/visu_tov"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Turnover: "
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
                         android:id="@+id/visu_rebounds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Rebounds"
                         android:textSize="28sp" />
 
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/visu_steals"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Steals: "
+                        android:textSize="28sp" />
                 </TableRow>
 
                 <TableRow
@@ -235,36 +275,23 @@
                     android:padding="5dp">
 
                     <TextView
-                        android:id="@+id/visu_steals"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Steals: "
-                        android:textSize="28sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/visu_tov"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Turnover: "
-                        android:textSize="28sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
                         android:id="@+id/visu_fouls"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Fouls: "
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/visu_starter"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Starter: "
                         android:textSize="28sp" />
                 </TableRow>
 
@@ -417,6 +444,21 @@
                         android:layout_height="wrap_content"
                         android:text="0"
                         android:textSize="28sp" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/visu_starter_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No"
+                        android:textSize="28sp" />
+
                 </TableRow>
 
             </TableLayout>

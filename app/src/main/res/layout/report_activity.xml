@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/report_activity_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/fragment_holder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <fragment
+            android:id="@+id/fragmentContainer_playerstats"
+            android:name="de.berlin.hwr.basketistics.UI.SinglePlayerReportFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"
@@ -37,6 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/navbar"/>
+        app:menu="@menu/navbar" />
 
-</android.support.constraint.ConstraintLayout >
+</android.support.constraint.ConstraintLayout>

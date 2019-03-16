@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,14 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-
 import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
-public class PlayerReportsFragment extends Fragment implements OnPlayerClickedListener{
+public class PlayerReportsListFragment extends Fragment implements OnPlayerClickedListener{
 
     private static final String TAG = "ReportPlayerPickFrag";
 
@@ -42,8 +42,6 @@ public class PlayerReportsFragment extends Fragment implements OnPlayerClickedLi
 
 
         View rootView = inflater.inflate(R.layout.player_list_popup, container, false);
-        // 1. get a reference to recyclerView
-        //clickedPlayerIndex = finalI;
 
         // Set up RecyclerView
 
@@ -75,5 +73,19 @@ public class PlayerReportsFragment extends Fragment implements OnPlayerClickedLi
     public void onPlayerClicked(int playerId) {
         // Show report for player (playerId)
         Log.e(TAG, "onPlayerClicked: PlayerID = " + playerId);
+        Bundle data = new Bundle();
+        data.putInt("playerId", playerId);
+
+
+
+
+
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager()
+                .beginTransaction();
+        SinglePlayerReportFragment mFrag = new SinglePlayerReportFragment();
+        mFrag.setArguments(data);
+        transaction.replace(R.id.fragmentContainer_playerstats, mFrag);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
