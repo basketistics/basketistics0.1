@@ -3,6 +3,7 @@ package de.berlin.hwr.basketistics.UI;
 import android.content.Context;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,15 +39,15 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
         private TextView playerName;
         private TextView playerNumber;
         private TextView playerDescription;
-        private LinearLayout itemLinearLayout;
+        private CardView cardView;
 
         public TeamViewHolder(View itemView) {
             super(itemView);
-            playerImageView = (ImageView) itemView.findViewById(R.id.playerPicture);
-            playerName = (TextView) itemView.findViewById(R.id.playerNameTextView);
-            playerNumber = (TextView) itemView.findViewById(R.id.playerNumber);
-            playerDescription = (TextView) itemView.findViewById(R.id.playerDescription1);
-            itemLinearLayout = (LinearLayout) itemView.findViewById(R.id.teamListItemLinearLayout);
+            playerImageView = (ImageView) itemView.findViewById(R.id.listPLayerImageView);
+            playerName = (TextView) itemView.findViewById(R.id.listPLayerName);
+            playerNumber = (TextView) itemView.findViewById(R.id.listPlayerNumberTextView);
+            playerDescription = (TextView) itemView.findViewById(R.id.listPLayerDescription);
+            cardView = (CardView) itemView.findViewById(R.id.newPlayerListItem);
         }
     }
 
@@ -69,8 +70,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     @NonNull
     @Override
     public TeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LinearLayout playerListItem = (LinearLayout) inflater.inflate(R.layout.team_list_item, parent, false);
-        TeamViewHolder teamViewHolder = new TeamViewHolder(playerListItem);
+        CardView cardView = (CardView) inflater.inflate(R.layout.new_player_list_item, parent, false);
+        TeamViewHolder teamViewHolder = new TeamViewHolder(cardView);
         return teamViewHolder;
     }
 
@@ -103,7 +104,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
         // Set ClickListener
         if (clickListener != null) {
-            teamViewHolder.itemLinearLayout.setOnClickListener(new View.OnClickListener() {
+            teamViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     PlayerEntity player = team.get(i);
