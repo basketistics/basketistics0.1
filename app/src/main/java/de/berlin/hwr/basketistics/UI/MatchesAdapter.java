@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,11 +43,11 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
 
         public MatchesViewHolder(View itemView) {
             super(itemView);
-            matchHomeTeam = itemView.findViewById(R.id.matchItemHomeTeam);
-            matchOutTeam = itemView.findViewById(R.id.start_matchItemOutTeam);
-            matchDate = itemView.findViewById(R.id.matchDateTextView);
-            matchCity = itemView.findViewById(R.id.matchCityTextView);
-            startGameButton = itemView.findViewById(R.id.selectMatchButton);
+            matchHomeTeam = itemView.findViewById(R.id.listMatchHomeTeam);
+            matchOutTeam = itemView.findViewById(R.id.listMatchOutTeam);
+            matchDate = itemView.findViewById(R.id.listMatchDate);
+            matchCity = itemView.findViewById(R.id.listMatchCity);
+            startGameButton = itemView.findViewById(R.id.listMatchDoSomethingButton);
         }
     }
 
@@ -60,8 +61,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     @NonNull
     @Override
     public MatchesAdapter.MatchesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final LinearLayout matchesListItem = (LinearLayout) inflater.inflate(R.layout.match_list_item, parent, false);
-        MatchesAdapter.MatchesViewHolder matchesViewHolder = new MatchesAdapter.MatchesViewHolder(matchesListItem);
+        final CardView cardView = (CardView) inflater.inflate(R.layout.new_match_list_item, parent, false);
+        MatchesAdapter.MatchesViewHolder matchesViewHolder = new MatchesAdapter.MatchesViewHolder(cardView);
         return matchesViewHolder;
     }
 
