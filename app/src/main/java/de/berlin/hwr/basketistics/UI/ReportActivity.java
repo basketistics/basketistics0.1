@@ -98,17 +98,16 @@ public class ReportActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                Intent mainIntent;
                 switch (menuItem.getItemId()) {
                     case R.id.team:
-                        Intent teamIntent = new Intent(ReportActivity.this, TeamActivity.class);
-                        teamIntent.putExtra("team_name", teamName);
-                        teamIntent.putExtra("team_image", teamImageFilename);
-                        startActivity(teamIntent);
+                        mainIntent = new Intent(ReportActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
                         overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
                         break;
                     case R.id.matches:
-                        Intent matchIntend = new Intent(ReportActivity.this, MatchesActivity.class);
-                        startActivity(matchIntend);
+                        mainIntent = new Intent(ReportActivity.this, MainActivity.class);
+                        startActivity(mainIntent);
                         overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
                         break;
                     case R.id.reports:

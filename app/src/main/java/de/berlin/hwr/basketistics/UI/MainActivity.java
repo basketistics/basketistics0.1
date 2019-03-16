@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity
                     case R.id.reports:
                         Intent reportsIntent = new Intent(MainActivity.this, ReportActivity.class);
                         startActivity(reportsIntent);
+                        overridePendingTransition(R.anim.from_right_in, R.anim.from_left_out);
                         break;
                     default:
                         return false;
