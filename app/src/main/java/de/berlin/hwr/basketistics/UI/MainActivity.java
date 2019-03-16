@@ -3,19 +3,27 @@ package de.berlin.hwr.basketistics.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.Date;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
@@ -25,10 +33,12 @@ public class MainActivity extends AppCompatActivity
         implements MatchesFragment.OnFragmentInteractionListener, TeamFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
+    private static final int PICK_TEAM_IMAGE = 13;
 
     private static SharedPreferences sharedPreferences = null;
     private static String teamImageFilename;
     private static String teamName;
+    private Bitmap teamBitmap;
 
     private ImageView teamImageView;
     private SectionsStatePagerAdapter sectionsStatePagerAdapter;
@@ -107,6 +117,57 @@ public class MainActivity extends AppCompatActivity
                 .centerCrop()
                 .placeholder(R.drawable.marcel_davis)
                 .into(teamImageView);
+
+        // Make TeamImage swappable
+        teamImageView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                dispatchChoosePictureIntent();
+                return false;
+            }
+        });
+    }
+
+    private void dispatchChoosePictureIntent() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_TEAM_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_TEAM_IMAGE && resultCode == RESULT_OK) {
+            try {
+
+                // Get Image
+                Uri selectedImage = data.getData();
+                InputStream inputStream =
+                        getContentResolver().openInputStream(selectedImage);
+                BufferedInputStream bufferedInputStream = new BufferedInputStream(inputStream);
+                teamBitmap = BitmapFactory.decodeStream(bufferedInputStream);
+
+                // Set ImageView
+                Glide.with(this)
+                        .load(selectedImage)
+                        .centerCrop()
+                        .placeholder(R.drawable.marcel_davis)
+                        .into(teamImageView);
+
+                String imageFileName = "TEAM_IMAGE" + "_" + new Date();
+                new SwapTeamImageAsyncTask(
+                        imageFileName,
+                        teamBitmap,
+                        sharedPreferences,
+                        this
+                ).execute();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setupViewPager(ViewPager viewPager){
