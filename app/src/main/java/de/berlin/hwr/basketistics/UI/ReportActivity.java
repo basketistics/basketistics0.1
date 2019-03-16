@@ -39,54 +39,11 @@ public class ReportActivity extends AppCompatActivity {
 
 
 
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.report_activity);
-
-
-
-
-
-
-
-        List<Fragment> fragments = new Vector<Fragment>();
-
-        //for each fragment you want to add to the pager
-        Bundle page = new Bundle();
-        page.putString("url", "Team Stats");
-        fragments.add(Fragment.instantiate(this, TeamReportFragment.class.getName(),page));
-
-        Bundle page2 = new Bundle();
-        page2.putString("url", "Player Stats");
-        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page));
-
-        //after adding all the fragments write the below lines
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
-        viewPager = findViewById(R.id.pager);
-        viewPager.setAdapter(viewPagerAdapter);
-
-
-
-
-
-
-
+    void setUpNavBar(){
         if (sharedPreferences == null) {
             sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
             Log.e(TAG, "SharedPreferences was null");
         }
-
-
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-
-
-
-        // Set up navbar
 
         if (teamImageFilename == null) {
             Log.e(TAG, "teamImageFilename was null");
@@ -120,17 +77,36 @@ public class ReportActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+
+    void inflateFragment(){
+        List<Fragment> fragments = new Vector<Fragment>();
+
+        Bundle page = new Bundle();
+        page.putString("url", "Team Stats");
+        fragments.add(Fragment.instantiate(this, TeamReportFragment.class.getName(),page));
+
+        Bundle page2 = new Bundle();
+        page2.putString("url", "Player Stats");
+        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page));
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager = findViewById(R.id.pager);
+        viewPager.setAdapter(viewPagerAdapter);
+
+    }
 
 
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.report_activity);
 
-
-
-
-
-
+        setUpNavBar();
 
 
     }

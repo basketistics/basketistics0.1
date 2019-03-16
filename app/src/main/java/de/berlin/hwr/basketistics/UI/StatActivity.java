@@ -37,6 +37,7 @@ public class StatActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
         setContentView(R.layout.stat_single_game_and_player);
 
         //-------TextViews--------
