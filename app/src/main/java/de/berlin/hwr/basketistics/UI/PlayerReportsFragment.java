@@ -24,7 +24,7 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
-public class PlayerReportsFragment extends Fragment {
+public class PlayerReportsFragment extends Fragment implements OnPlayerClickedListener{
 
     private static final String TAG = "ReportPlayerPickFrag";
 
@@ -48,7 +48,7 @@ public class PlayerReportsFragment extends Fragment {
         // Set up RecyclerView
 
         teamRecyclerView = rootView.findViewById(R.id.playerListRecyclerView);
-        teamAdapter = new TeamAdapter(getActivity());
+        teamAdapter = new TeamAdapter(getActivity(), this);
         teamRecyclerView.setAdapter(teamAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -71,4 +71,9 @@ public class PlayerReportsFragment extends Fragment {
         return rootView;
     }
 
+    @Override
+    public void onPlayerClicked(int playerId) {
+        // Show report for player (playerId)
+        Log.e(TAG, "onPlayerClicked: PlayerID = " + playerId);
+    }
 }
