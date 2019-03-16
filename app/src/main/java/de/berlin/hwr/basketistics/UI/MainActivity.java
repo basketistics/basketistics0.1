@@ -19,9 +19,10 @@ import java.io.File;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
+import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements MatchesFragment.OnFragmentInteractionListener{
+        implements MatchesFragment.OnFragmentInteractionListener, TeamFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
 
@@ -71,7 +72,6 @@ public class MainActivity extends AppCompatActivity
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.mainBottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.matches);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -79,14 +79,10 @@ public class MainActivity extends AppCompatActivity
                 // TODO: Set up navigation for fragments
                 switch (menuItem.getItemId()) {
                     case R.id.team:
-                        // Intent teamIntent = new Intent(MainActivity.this, TeamActivity.class);
-                        // teamIntent.putExtra("team_name", teamName);
-                        // teamIntent.putExtra("team_image", teamImageFilename);
-                        // startActivity(teamIntent);
-                        // overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
+                        setViewPager(0);
                         break;
                     case R.id.matches:
-                        Log.i(TAG, "already in MatchesActivity");
+                        setViewPager(1);
                         break;
                     case R.id.reports:
                         Log.i(TAG, "ReportsActivity not implemented yet.");
@@ -115,7 +111,8 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager){
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new MatchesFragment(), "MatchesFragment");
+        adapter.addFragment(new TeamFragment(), "TeamFragment"); // item #0
+        adapter.addFragment(new MatchesFragment(), "MatchesFragment"); // item #1
         viewPager.setAdapter(adapter);
     }
 

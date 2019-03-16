@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UI.Fragments.MatchesFragment">
+    tools:context=".UI.Fragments.TeamFragment">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/matchesFragmentRecyclerView"
+        android:id="@+id/teamFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:layout_editor_absoluteX="222dp"
-        tools:layout_editor_absoluteY="336dp"></android.support.v7.widget.RecyclerView>
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="199dp"></android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/matchAddMatchFloatingActionButton"
+        android:id="@+id/teamAddTeamFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -24,4 +24,5 @@
         android:src="@drawable/ic_add_circle_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
