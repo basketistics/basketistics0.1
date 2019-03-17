@@ -81,7 +81,7 @@ public class ReportActivity extends AppCompatActivity {
 
         Bundle page2 = new Bundle();
         page2.putString("url", "Player Stats");
-        fragments.add(Fragment.instantiate(this, PlayerReportsListFragment.class.getName(),page2));
+        fragments.add(Fragment.instantiate(this, SinglePlayerReportFragment.class.getName(),page2));
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager = findViewById(R.id.pager);

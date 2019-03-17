@@ -84,7 +84,7 @@ public class PlayerReportsListFragment extends Fragment implements OnPlayerClick
                 .beginTransaction();
         SinglePlayerReportFragment mFrag = new SinglePlayerReportFragment();
         mFrag.setArguments(data);
-        transaction.replace(R.id.fragmentContainer_playerstats, mFrag);
+       // transaction.replace(R.id.fragmentContainer_playerstats, mFrag);
         transaction.addToBackStack(null);
         transaction.commit();
     }

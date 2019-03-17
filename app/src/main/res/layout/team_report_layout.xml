@@ -79,13 +79,24 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_min"
+                                    android:id="@+id/visu_games"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Minutes played: "
+                                    android:text="Games: "
                                     android:textSize="28sp" />
                             </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="5dp">
 
+                                <TextView
+                                    android:id="@+id/visu_win_lose"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Win/Lose"
+                                    android:textSize="28sp" />
+                            </TableRow>
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -95,7 +106,7 @@
                                     android:id="@+id/visu_points"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Points:"
+                                    android:text="Points per game:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -162,7 +173,7 @@
                                     android:id="@+id/visu_rebounds"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Rebounds"
+                                    android:text="Rebounds per game:"
                                     android:textSize="28sp" />
 
                             </TableRow>
@@ -176,7 +187,7 @@
                                     android:id="@+id/visu_assists"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Assists:"
+                                    android:text="Assists per game:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -189,7 +200,7 @@
                                     android:id="@+id/visu_blocks"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Blocks: "
+                                    android:text="Blocks per game:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -202,7 +213,7 @@
                                     android:id="@+id/visu_steals"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Steals: "
+                                    android:text="Steals per game:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -215,7 +226,7 @@
                                     android:id="@+id/visu_tov"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Turnover: "
+                                    android:text="Turnover per game:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -228,9 +239,10 @@
                                     android:id="@+id/visu_fouls"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Fouls: "
+                                    android:text="Fouls per game:"
                                     android:textSize="28sp" />
                             </TableRow>
+
 
                         </TableLayout>
 
@@ -245,7 +257,31 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_min_val"
+                                    android:id="@+id/visu_games_valT"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0"
+                                    android:textSize="28sp" />
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/visu_win_lose_valT"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="0/0"
+                                    android:textSize="28sp" />
+                            </TableRow>
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="5dp">
+
+                                <TextView
+                                    android:id="@+id/visu_points_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -258,20 +294,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_points_val"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0"
-                                    android:textSize="28sp" />
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
-
-                                <TextView
-                                    android:id="@+id/visu_fgs_val"
+                                    android:id="@+id/visu_fgs_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -284,7 +307,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fgs3_val"
+                                    android:id="@+id/visu_fgs3_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -297,7 +320,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fts_val"
+                                    android:id="@+id/visu_fts_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -310,7 +333,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_rebounds_val"
+                                    android:id="@+id/visu_rebounds_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -324,7 +347,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_assists_val"
+                                    android:id="@+id/visu_assists_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -337,7 +360,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_blocks_val"
+                                    android:id="@+id/visu_blocks_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -350,7 +373,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_steals_val"
+                                    android:id="@+id/visu_steals_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -363,7 +386,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_tov_val"
+                                    android:id="@+id/visu_tov_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -376,7 +399,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fouls_val"
+                                    android:id="@+id/visu_fouls_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"

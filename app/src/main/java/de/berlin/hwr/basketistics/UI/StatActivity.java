@@ -70,7 +70,7 @@ public class StatActivity extends AppCompatActivity {
             fieldGoals.setText("0/ 0/ 0%");
         else
             fieldGoals.setText(reportPlayer1.twoPoints+ "/ " + reportPlayer1.twoPointsAttempt +"/ " + ((100/(float)reportPlayer1.twoPointsAttempt)*(float)reportPlayer1.twoPoints+"%"));
-        if(reportPlayer1.twoPointsAttempt==0)
+        if(reportPlayer1.threePointsAttempt==0)
             fieldGoals3.setText("0/ 0/ 0%");
         else
             fieldGoals3.setText(reportPlayer1.threePoints+ "/ " + reportPlayer1.threePointsAttempt +"/ " + ((100/(float)reportPlayer1.threePointsAttempt)*(float)reportPlayer1.threePoints+"%"));

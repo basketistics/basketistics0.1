@@ -129,6 +129,19 @@
                     android:padding="5dp">
 
                     <TextView
+                        android:id="@+id/visu_min"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minutes played: "
+                        android:textSize="28sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
+
+                    <TextView
                         android:id="@+id/visu_points"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -151,19 +164,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="FG; M/A/%: "
-                        android:textSize="28sp" />
-                </TableRow>
-
-                <TableRow
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="5dp">
-
-                    <TextView
-                        android:id="@+id/visu_min"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Minutes played: "
                         android:textSize="28sp" />
                 </TableRow>
 
