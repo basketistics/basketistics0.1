@@ -76,7 +76,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     int quarterCount = 1;
     private BroadcastReceiver br;
     private long millisLeft;
-    private long quarterMillis = 30000;
+    private long quarterMillis = 600000;
 
     @Override
     public void onResume() {
