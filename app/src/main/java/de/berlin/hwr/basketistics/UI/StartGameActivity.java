@@ -102,7 +102,9 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
                         playerPopupWindow.setContentView(playerListView);
                         playerPopupWindow.setFocusable(true);
                         // TODO: Calculate from displaysize and pixeldensity!
-                        playerPopupWindow.setWidth(1300);
+                        playerPopupWindow.setClippingEnabled(false);
+                        playerPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+                        playerPopupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
                         playerPopupWindow.showAsDropDown(v);
 
                         // Set up RecyclerView

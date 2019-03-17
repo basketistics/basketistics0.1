@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -332,8 +333,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     playerPopupWindow = new PopupWindow(GameActivity.this);
                     playerPopupWindow.setContentView(playerListView);
                     playerPopupWindow.setFocusable(true);
-                    // TODO: Calculate from displaysize and pixeldensity!
-                    playerPopupWindow.setWidth(1300);
+                    playerPopupWindow.setClippingEnabled(false);
+                    playerPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+                    playerPopupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
                     playerPopupWindow.showAsDropDown(v);
 
                     // Set up RecyclerView
