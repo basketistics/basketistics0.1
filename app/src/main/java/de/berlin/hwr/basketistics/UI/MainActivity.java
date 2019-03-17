@@ -29,6 +29,7 @@ import java.util.Date;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
+import de.berlin.hwr.basketistics.UI.Fragments.ReportsFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestReportsFragment;
@@ -38,7 +39,7 @@ public class MainActivity
         implements MatchesFragment.OnFragmentInteractionListener,
         TeamFragment.OnFragmentInteractionListener,
         TestReportsFragment.OnFragmentInteractionListener,
-        TestFragment.OnFragmentInteractionListener {
+        ReportsFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
     private static final int PICK_TEAM_IMAGE = 13;
@@ -231,7 +232,7 @@ public class MainActivity
         SectionsStatePagerAdapter adapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new TeamFragment(), "TeamFragment"); // item #0
         adapter.addFragment(new MatchesFragment(), "MatchesFragment"); // item #1
-        adapter.addFragment(new TestReportsFragment(), "ReportsFragment"); // item #2
+        adapter.addFragment(new ReportsFragment(), "ReportsFragment"); // item #2
         viewPager.setAdapter(adapter);
     }
 

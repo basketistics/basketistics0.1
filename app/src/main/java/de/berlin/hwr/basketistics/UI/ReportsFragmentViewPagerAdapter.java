@@ -12,6 +12,8 @@ public class ReportsFragmentViewPagerAdapter extends FragmentPagerAdapter {
     private final List<Fragment> fragmentList = new ArrayList<>();
     private final List<String> fragmentTitleList = new ArrayList<>();
 
+    private static int pos;
+
     public ReportsFragmentViewPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -29,5 +31,28 @@ public class ReportsFragmentViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return fragmentList.size();
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+
+        setPos(position);
+
+        String PageTitle = "";
+
+        switch(pos)
+        {
+            case 0:
+                PageTitle = "Team Stats";
+                break;
+            case 1:
+                PageTitle = "Player Stats";
+                break;
+        }
+        return PageTitle;
+    }
+
+    public static void setPos(int pos) {
+        ReportsFragmentViewPagerAdapter.pos = pos;
     }
 }

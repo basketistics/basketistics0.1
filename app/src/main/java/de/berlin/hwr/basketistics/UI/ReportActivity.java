@@ -29,59 +29,15 @@ public class ReportActivity extends AppCompatActivity {
     int playerId;
 
 
-    void setUpNavBar(){
-        if (sharedPreferences == null) {
-            sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
-            Log.e(TAG, "SharedPreferences was null");
-        }
-
-        if (teamImageFilename == null) {
-            Log.e(TAG, "teamImageFilename was null");
-            teamImageFilename = sharedPreferences.getString("team_image", ""); }
-        if (teamName == null) { teamName = sharedPreferences.getString("team_name", ""); }
-
-        bottomNavigationView = findViewById(R.id.reportBottomNavigationView);
-        bottomNavigationView.setSelectedItemId(R.id.reports);
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                Intent mainIntent;
-                switch (menuItem.getItemId()) {
-                    case R.id.team:
-                        mainIntent = new Intent(ReportActivity.this, MainActivity.class);
-                        startActivity(mainIntent);
-                        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
-                        break;
-                    case R.id.matches:
-                        mainIntent = new Intent(ReportActivity.this, MainActivity.class);
-                        startActivity(mainIntent);
-                        overridePendingTransition(R.anim.from_left_in, R.anim.from_right_out);
-                        break;
-                    case R.id.reports:
-                        Log.i(TAG, "Already in ReportActivity.");
-                        break;
-                    default:
-                        return false;
-                }
-                return true;
-            }
-        });
-    }
-
-
     void inflateFragment(){
         List<Fragment> fragments = new Vector<Fragment>();
-
-        Bundle page = new Bundle();
-        page.putString("url", "Team Stats");
-        fragments.add(Fragment.instantiate(this, TeamReportFragment.class.getName(),page));
 
         Bundle page2 = new Bundle();
         page2.putString("url", "Player Stats");
         fragments.add(Fragment.instantiate(this, SinglePlayerReportFragment.class.getName(),page2));
 
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
-        viewPager = findViewById(R.id.pager);
+        viewPager = findViewById(R.id.reportsViewPager);
         viewPager.setAdapter(viewPagerAdapter);
 
     }
@@ -100,8 +56,6 @@ public class ReportActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.report_activity);
-
-        setUpNavBar();
 
         inflateFragment();
     }
