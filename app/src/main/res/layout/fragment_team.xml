@@ -10,9 +10,15 @@
         android:id="@+id/teamFragmentRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="199dp"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/teamAddTeamFloatingActionButton"

@@ -6,6 +6,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.support.annotation.NonNull;
+import android.util.Log;
 
 import de.berlin.hwr.basketistics.Persistency.Dao.EventDao;
 import de.berlin.hwr.basketistics.Persistency.Dao.EventJoinDao;
@@ -31,6 +33,8 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 @TypeConverters({Converter.class})
 public abstract class Database extends RoomDatabase {
 
+    private static final String TAG = "Database";
+
     public abstract PlayerDao playerDao();
     public abstract EventDao eventDao();
     public abstract MatchDao matchDao();
@@ -53,15 +57,23 @@ public abstract class Database extends RoomDatabase {
                 }
             }
         }
+
         return INSTANCE;
     }
 
     private static RoomDatabase.Callback databaseCallback = new RoomDatabase.Callback() {
 
         @Override
+        public void onOpen(@NonNull SupportSQLiteDatabase db) {
+            super.onOpen(db);
+            Log.e(TAG, "onOpen: was called");
+        }
+
+        @Override
         public void onCreate(SupportSQLiteDatabase db) {
             super.onCreate(db);
             new PopulateDbAsyncTask(INSTANCE).execute();
+            Log.e(TAG, "onCreate: was called.");
         }
     };
 
