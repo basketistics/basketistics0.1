@@ -123,24 +123,28 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     private void finishCurrentQuarter(){
         switch (quarterCount) {
             case 1:
+                timerRunning = false;
                 quarterRunning =0;
                 eventViewModel.endFirstQuarter();
                 timerTextView.setText("End of 1st");
                 quarterCount++;
                 break;
             case 2:
+                timerRunning = false;
                 quarterRunning =0;
                 eventViewModel.endSecondQuarter();
                 timerTextView.setText("End of 2nd");
                 quarterCount++;
                 break;
             case 3:
+                timerRunning = false;
                 quarterRunning =0;
                 eventViewModel.endThirdQuarter();
                 timerTextView.setText("End of 3rd");
                 quarterCount++;
                 break;
             case 4:
+                timerRunning = false;
                 quarterRunning =0;
                 eventViewModel.endFourthQuarter();
                 timerTextView.setText("End of 4th");
@@ -614,8 +618,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             public void onReceive(Context context, Intent intent) {
 
                 millisLeft  = (long) intent.getExtras().get("countdown");
+                Log.e(TAG, "onReceive: millisLeft = " + millisLeft);
 
-                if (millisLeft < 999) {
+                if (millisLeft < 2200) {
                     finishCurrentQuarter();
                     millisLeft = quarterMillis;
                 }
