@@ -17,8 +17,6 @@ import android.widget.ProgressBar;
 
 import com.bumptech.glide.Glide;
 
-import com.bumptech.glide.Glide;
-
 import java.io.BufferedInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -99,7 +97,7 @@ public class FirstRunActivity extends AppCompatActivity implements OnTeamCreated
                 Glide.with(this)
                         .load(selectedImage)
                         .centerCrop()
-                        .placeholder(R.drawable.marcel_davis)
+                        .placeholder(R.drawable.avatar_icon)
                         .into(teamImageView);
 
             } catch (FileNotFoundException e) {
@@ -109,7 +107,7 @@ public class FirstRunActivity extends AppCompatActivity implements OnTeamCreated
             Glide.with(this)
                     .load(selectedImage)
                     .centerCrop()
-                    .placeholder(R.drawable.marcel_davis)
+                    .placeholder(R.drawable.avatar_icon)
                     .into(teamImageView);
         }
     }

@@ -96,7 +96,7 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
             Glide.with(context)
                     .load(imageUri)
                     .centerCrop()
-                    .placeholder(R.drawable.marcel_davis)
+                    .placeholder(R.drawable.avatar_icon)
                     .into(teamViewHolder.playerImageView);
 
         }

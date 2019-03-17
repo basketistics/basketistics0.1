@@ -76,7 +76,7 @@ public class TeamActivity extends AppCompatActivity {
                 Glide.with(this)
                         .load(selectedImage)
                         .centerCrop()
-                        .placeholder(R.drawable.marcel_davis)
+                        .placeholder(R.drawable.avatar_icon)
                         .into(teamImageView);
 
                 sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
@@ -142,7 +142,7 @@ public class TeamActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(imageUri)
                 .centerCrop()
-                .placeholder(R.drawable.marcel_davis)
+                .placeholder(R.drawable.avatar_icon)
                 .into(teamImageView);
 
         // Set up RecyclerView

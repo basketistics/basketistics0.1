@@ -1,7 +1,5 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.app.Fragment;
-import android.arch.lifecycle.ReportFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,7 +11,6 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -141,7 +138,7 @@ public class MainActivity
         Glide.with(this)
                 .load(imageUri)
                 .centerCrop()
-                .placeholder(R.drawable.marcel_davis)
+                .placeholder(R.drawable.avatar_icon)
                 .into(teamImageView);
 
         // Make TeamImage swappable
@@ -213,7 +210,7 @@ public class MainActivity
                 Glide.with(this)
                         .load(selectedImage)
                         .centerCrop()
-                        .placeholder(R.drawable.marcel_davis)
+                        .placeholder(R.drawable.avatar_icon)
                         .into(teamImageView);
 
                 String imageFileName = "TEAM_IMAGE" + "_" + new Date();

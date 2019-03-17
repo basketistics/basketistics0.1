@@ -668,7 +668,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     Glide.with(GameActivity.this)
                             .load(imageUri)
                             .centerCrop()
-                            .placeholder(R.drawable.marcel_davis)
+                            .placeholder(R.drawable.avatar_icon)
                             .into(playerImageViews[finalI]);
 
                 }

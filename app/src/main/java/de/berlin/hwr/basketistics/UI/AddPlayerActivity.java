@@ -74,7 +74,7 @@ public class AddPlayerActivity extends AppCompatActivity implements AddPlayerOnS
                 Glide.with(this)
                         .load(selectedImage)
                         .centerInside()
-                        .placeholder(R.drawable.marcel_davis)
+                        .placeholder(R.drawable.avatar_icon)
                         .into(playerImageView);
 
             } catch (FileNotFoundException e) {
