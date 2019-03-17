@@ -86,9 +86,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     void initEnemyPoints() {
-        incEnemyPointsButton = findViewById(R.id.ePoints_inc);
-        decEnemyPointsButton = findViewById(R.id.ePoints_dec);
-        enemyPointsTextView = findViewById(R.id.score);
+        incEnemyPointsButton = findViewById(R.id.newGameIncEnemyPoints);
+        decEnemyPointsButton = findViewById(R.id.newGameDecEnemyPoints);
+        enemyPointsTextView = findViewById(R.id.newGamePointsTextView);
 
         incEnemyPointsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,9 +181,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
     private void timerHandler() {
 
-        timerTextView = findViewById(R.id.currTime);
+        timerTextView = findViewById(R.id.newGameTimerTextView);
 
-        Button timerStart = findViewById(R.id.timer_start);
+        Button timerStart = findViewById(R.id.newGameTimeStart);
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,7 +211,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
         });
 
-        Button timerPause = findViewById(R.id.timer_end);
+        Button timerPause = findViewById(R.id.newGameTimeStop);
         timerPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -306,11 +306,11 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     }
 
     private void bindPlayerImageViews() {
-        playerImageViews[0] = findViewById(R.id.player_1_imageView);
-        playerImageViews[1] = findViewById(R.id.player_1_imageView2);
-        playerImageViews[2] = findViewById(R.id.player_1_imageView3);
-        playerImageViews[3] = findViewById(R.id.player_1_imageView4);
-        playerImageViews[4] = findViewById(R.id.player_1_imageView5);
+        playerImageViews[0] = findViewById(R.id.newGamePlayer1ImageView);
+        playerImageViews[1] = findViewById(R.id.newGamePlayer2ImageView);
+        playerImageViews[2] = findViewById(R.id.newGamePlayer3ImageView);
+        playerImageViews[3] = findViewById(R.id.newGamePlayer4ImageView);
+        playerImageViews[4] = findViewById(R.id.newGamePlayer4ImageView);
     }
 
     private void attachImageViewPopUps() {
@@ -380,102 +380,102 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     // find button views and bind them to Button objects
     private void bindPlayerButtons() {
 
-        playerButtons[0][0] = findViewById(R.id.points_1);
-        playerButtons[1][0] = findViewById(R.id.points_2);
-        playerButtons[2][0] = findViewById(R.id.points_3);
-        playerButtons[3][0] = findViewById(R.id.points_4);
-        playerButtons[4][0] = findViewById(R.id.points_5);
+        playerButtons[0][0] = findViewById(R.id.newGamePlayerShotButton1);
+        playerButtons[1][0] = findViewById(R.id.newGamePlayerShotButton2);
+        playerButtons[2][0] = findViewById(R.id.newGamePlayerShotButton3);
+        playerButtons[3][0] = findViewById(R.id.newGamePlayerShotButton4);
+        playerButtons[4][0] = findViewById(R.id.newGamePlayerShotButton5);
 
-        playerButtons[0][1] = findViewById(R.id.rebound_1);
-        playerButtons[1][1] = findViewById(R.id.rebound_2);
-        playerButtons[2][1] = findViewById(R.id.rebound_3);
-        playerButtons[3][1] = findViewById(R.id.rebound_4);
-        playerButtons[4][1] = findViewById(R.id.rebound_5);
+        playerButtons[0][1] = findViewById(R.id.newGameReboundButton1);
+        playerButtons[1][1] = findViewById(R.id.newGameReboundButton2);
+        playerButtons[2][1] = findViewById(R.id.newGameReboundButton3);
+        playerButtons[3][1] = findViewById(R.id.newGameReboundButton4);
+        playerButtons[4][1] = findViewById(R.id.newGameReboundButton5);
 
-        playerButtons[0][2] = findViewById(R.id.assist_1);
-        playerButtons[1][2] = findViewById(R.id.assist_2);
-        playerButtons[2][2] = findViewById(R.id.assist_3);
-        playerButtons[3][2] = findViewById(R.id.assist_4);
-        playerButtons[4][2] = findViewById(R.id.assist_5);
+        playerButtons[0][2] = findViewById(R.id.newGameAssistButton1);
+        playerButtons[1][2] = findViewById(R.id.newGameAssistButton2);
+        playerButtons[2][2] = findViewById(R.id.newGameAssistButton3);
+        playerButtons[3][2] = findViewById(R.id.newGameAssistButton4);
+        playerButtons[4][2] = findViewById(R.id.newGameAssistButton5);
 
-        playerButtons[0][3] = findViewById(R.id.steal_1);
-        playerButtons[1][3] = findViewById(R.id.steal_2);
-        playerButtons[2][3] = findViewById(R.id.steal_3);
-        playerButtons[3][3] = findViewById(R.id.steal_4);
-        playerButtons[4][3] = findViewById(R.id.steal_5);
+        playerButtons[0][3] = findViewById(R.id.newGameStealButton1);
+        playerButtons[1][3] = findViewById(R.id.newGameStealButton2);
+        playerButtons[2][3] = findViewById(R.id.newGameStealButton3);
+        playerButtons[3][3] = findViewById(R.id.newGameStealButton4);
+        playerButtons[4][3] = findViewById(R.id.newGameStealButton5);
 
-        playerButtons[0][4] = findViewById(R.id.block_1);
-        playerButtons[1][4] = findViewById(R.id.block_2);
-        playerButtons[2][4] = findViewById(R.id.block_3);
-        playerButtons[3][4] = findViewById(R.id.block_4);
-        playerButtons[4][4] = findViewById(R.id.block_5);
+        playerButtons[0][4] = findViewById(R.id.newGameBlockButton1);
+        playerButtons[1][4] = findViewById(R.id.newGameBlockButton2);
+        playerButtons[2][4] = findViewById(R.id.newGameBlockButton3);
+        playerButtons[3][4] = findViewById(R.id.newGameBlockButton4);
+        playerButtons[4][4] = findViewById(R.id.newGameBlockButton5);
 
-        playerButtons[0][5] = findViewById(R.id.turnOver_1);
-        playerButtons[1][5] = findViewById(R.id.turnOver_2);
-        playerButtons[2][5] = findViewById(R.id.turnOver_3);
-        playerButtons[3][5] = findViewById(R.id.turnOver_4);
-        playerButtons[4][5] = findViewById(R.id.turnOver_5);
+        playerButtons[1][5] = findViewById(R.id.newGameTurnoverButton1);
+        playerButtons[0][5] = findViewById(R.id.newGameTurnoverButton2);
+        playerButtons[2][5] = findViewById(R.id.newGameTurnoverButton3);
+        playerButtons[3][5] = findViewById(R.id.newGameTurnoverButton4);
+        playerButtons[4][5] = findViewById(R.id.newGameTurnoverButton5);
 
-        playerButtons[0][6] = findViewById(R.id.foul_1);
-        playerButtons[1][6] = findViewById(R.id.foul_2);
-        playerButtons[2][6] = findViewById(R.id.foul_3);
-        playerButtons[3][6] = findViewById(R.id.foul_4);
-        playerButtons[4][6] = findViewById(R.id.foul_5);
+        playerButtons[0][6] = findViewById(R.id.newGameFoulButton1);
+        playerButtons[1][6] = findViewById(R.id.newGameFoulButton2);
+        playerButtons[2][6] = findViewById(R.id.newGameFoulButton3);
+        playerButtons[3][6] = findViewById(R.id.newGameFoulButton4);
+        playerButtons[4][6] = findViewById(R.id.newGameFoulButton5);
     }
 
     private void bindPlayerTextViews() {
 
-        playerTextViews[0][0] = findViewById(R.id.shot_1_textView);
-        playerTextViews[1][0] = findViewById(R.id.shot_2_textView);
-        playerTextViews[2][0] = findViewById(R.id.shot_3_textView);
-        playerTextViews[3][0] = findViewById(R.id.shot_4_textView);
-        playerTextViews[4][0] = findViewById(R.id.shot_5_textView);
+        playerTextViews[0][0] = findViewById(R.id.newGamePlayerShot1);
+        playerTextViews[1][0] = findViewById(R.id.newGamePlayerShot2);
+        playerTextViews[2][0] = findViewById(R.id.newGamePlayerShot3);
+        playerTextViews[3][0] = findViewById(R.id.newGamePlayerShot4);
+        playerTextViews[4][0] = findViewById(R.id.newGamePlayerShot5);
 
-        playerTextViews[0][1] = findViewById(R.id.rebound_1_textView);
-        playerTextViews[1][1] = findViewById(R.id.rebound_2_textView);
-        playerTextViews[2][1] = findViewById(R.id.rebound_3_textView);
-        playerTextViews[3][1] = findViewById(R.id.rebound_4_textView);
-        playerTextViews[4][1] = findViewById(R.id.rebound_5_textView);
+        playerTextViews[0][1] = findViewById(R.id.newGameReboundTextView1);
+        playerTextViews[1][1] = findViewById(R.id.newGameReboundTextView2);
+        playerTextViews[2][1] = findViewById(R.id.newGameReboundTextView3);
+        playerTextViews[3][1] = findViewById(R.id.newGameReboundTextView4);
+        playerTextViews[4][1] = findViewById(R.id.newGameReboundTextView5);
 
-        playerTextViews[0][2] = findViewById(R.id.assist_1_TextView);
-        playerTextViews[1][2] = findViewById(R.id.assist_2_TextView);
-        playerTextViews[2][2] = findViewById(R.id.assist_3_TextView);
-        playerTextViews[3][2] = findViewById(R.id.assist_4_TextView);
-        playerTextViews[4][2] = findViewById(R.id.assist_5_TextView);
+        playerTextViews[0][2] = findViewById(R.id.newGameAssistTextView1);
+        playerTextViews[1][2] = findViewById(R.id.newGameAssistTextView2);
+        playerTextViews[2][2] = findViewById(R.id.newGameAssistTextView3);
+        playerTextViews[3][2] = findViewById(R.id.newGameAssistTextView4);
+        playerTextViews[4][2] = findViewById(R.id.newGameAssistTextView5);
 
-        playerTextViews[0][3] = findViewById(R.id.steal_1_TextView);
-        playerTextViews[1][3] = findViewById(R.id.steal_2_TextView);
-        playerTextViews[2][3] = findViewById(R.id.steal_3_TextView);
-        playerTextViews[3][3] = findViewById(R.id.steal_4_TextView);
-        playerTextViews[4][3] = findViewById(R.id.steal_5_TextView);
+        playerTextViews[0][3] = findViewById(R.id.newGameStealTextView1);
+        playerTextViews[1][3] = findViewById(R.id.newGameStealTextView2);
+        playerTextViews[2][3] = findViewById(R.id.newGameStealTextView3);
+        playerTextViews[3][3] = findViewById(R.id.newGameStealTextView4);
+        playerTextViews[4][3] = findViewById(R.id.newGameStealTextView5);
 
-        playerTextViews[0][4] = findViewById(R.id.block_1_TextView);
-        playerTextViews[1][4] = findViewById(R.id.block_2_TextView);
-        playerTextViews[2][4] = findViewById(R.id.block_3_TextView);
-        playerTextViews[3][4] = findViewById(R.id.block_4_TextView);
-        playerTextViews[4][4] = findViewById(R.id.block_5_TextView);
+        playerTextViews[0][4] = findViewById(R.id.newGameBlockTextView1);
+        playerTextViews[1][4] = findViewById(R.id.newGameBlockTextView2);
+        playerTextViews[2][4] = findViewById(R.id.newGameBlockTextView3);
+        playerTextViews[3][4] = findViewById(R.id.newGameBlockTextView4);
+        playerTextViews[4][4] = findViewById(R.id.newGameBlockTextView5);
 
-        playerTextViews[0][5] = findViewById(R.id.turnover_1_TextView);
-        playerTextViews[1][5] = findViewById(R.id.turnover_2_TextView);
-        playerTextViews[2][5] = findViewById(R.id.turnover_3_TextView);
-        playerTextViews[3][5] = findViewById(R.id.turnover_4_TextView);
-        playerTextViews[4][5] = findViewById(R.id.turnover_5_TextView);
+        playerTextViews[0][5] = findViewById(R.id.newGameTurnoverTextView1);
+        playerTextViews[1][5] = findViewById(R.id.newGameTurnoverTextView2);
+        playerTextViews[2][5] = findViewById(R.id.newGameTurnoverTextView3);
+        playerTextViews[3][5] = findViewById(R.id.newGameTurnoverTextView4);
+        playerTextViews[4][5] = findViewById(R.id.newGameTurnoverTextView5);
 
-        playerTextViews[0][6] = findViewById(R.id.foul_1_TextView);
-        playerTextViews[1][6] = findViewById(R.id.foul_2_TextView);
-        playerTextViews[2][6] = findViewById(R.id.foul_3_TextView);
-        playerTextViews[3][6] = findViewById(R.id.foul_4_TextView);
-        playerTextViews[4][6] = findViewById(R.id.foul_5_TextView);
+        playerTextViews[0][6] = findViewById(R.id.newGameFoulTextView1);
+        playerTextViews[1][6] = findViewById(R.id.newGameFoulTextView2);
+        playerTextViews[2][6] = findViewById(R.id.newGameFoulTextView3);
+        playerTextViews[3][6] = findViewById(R.id.newGameFoulTextView4);
+        playerTextViews[4][6] = findViewById(R.id.newGameFoulTextView5);
 
     }
 
     private void bindPlayerDescriptionTextViews() {
 
-        playerDescription[0] = findViewById(R.id.game_playerDescription1);
-        playerDescription[1] = findViewById(R.id.game_playerDescription2);
-        playerDescription[2] = findViewById(R.id.game_playerDescription3);
-        playerDescription[3] = findViewById(R.id.game_playerDescription4);
-        playerDescription[4] = findViewById(R.id.game_playerDescription5);
+        playerDescription[0] = findViewById(R.id.newGamePlayerNameTextView1);
+        playerDescription[1] = findViewById(R.id.newGamePlayerNameTextView2);
+        playerDescription[2] = findViewById(R.id.newGamePlayerNameTextView3);
+        playerDescription[3] = findViewById(R.id.newGamePlayerNameTextView4);
+        playerDescription[4] = findViewById(R.id.newGamePlayerNameTextView5);
 
         for (int i = 0; i < 5; i++) {
             PlayerEntity playerEntity = eventViewModel.getPlayerByIndex(i).getValue();
@@ -555,7 +555,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.new_activity_game);
 
         sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
 
@@ -611,7 +611,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         initEnemyPoints();
         timerHandler();
 
-        timerTextView = findViewById(R.id.currTime);
+        timerTextView = findViewById(R.id.newGameTimerTextView);
 
         br = new BroadcastReceiver() {
             @Override
@@ -620,7 +620,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 millisLeft  = (long) intent.getExtras().get("countdown");
                 Log.e(TAG, "onReceive: millisLeft = " + millisLeft);
 
-                if (millisLeft < 2200) {
+                if (millisLeft == 0) {
                     finishCurrentQuarter();
                     millisLeft = quarterMillis;
                 }

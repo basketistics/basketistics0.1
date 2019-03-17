@@ -47,6 +47,8 @@ public class BroadcastService extends Service {
             @Override
             public void onFinish() {
                 Log.i(TAG, "Timer finished");
+                bi.putExtra("countdown", (long) 0);
+                sendBroadcast(bi);
             }
         };
         cdt.start();
