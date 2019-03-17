@@ -32,6 +32,8 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     private PopupWindow popupWindow;
     private Context context;
 
+    private OnPlayerClickedListener onPlayerClickedListener;
+
     public static class TeamViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView playerImageView;
@@ -57,6 +59,12 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
     public TeamAdapter(Context context) {
         inflater = LayoutInflater.from(context);
         this.context = context;
+    }
+
+    public TeamAdapter(Context context, OnPlayerClickedListener onPlayerClickedListener) {
+        inflater = LayoutInflater.from(context);
+        this.context = context;
+        this.onPlayerClickedListener = onPlayerClickedListener;
     }
 
     public TeamAdapter(Context context, ClickListener clickListener, PopupWindow popupWindow) {
@@ -109,6 +117,17 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
                     PlayerEntity player = team.get(i);
                     clickListener.onItemClicked(player);
                     popupWindow.dismiss();
+                }
+            });
+        }
+
+        if (onPlayerClickedListener != null) {
+            // Make item clickable to show reports
+            teamViewHolder.cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    team.get(i).getId();
+                    onPlayerClickedListener.onPlayerClicked(team.get(i).getId());
                 }
             });
         }

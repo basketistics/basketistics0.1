@@ -47,6 +47,37 @@
                         android:textColor="@android:color/black"
                         android:textSize="30sp"
                         app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/team_devider"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:text="TuS Neukölln"
+                        android:textColor="@android:color/black"
+                        android:textSize="30sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/team_devider"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+
+                    <TextView
+                        android:id="@+id/team_devider"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:text="gegen"
+                        android:textSize="20sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -79,34 +110,10 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_games"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Games: "
-                                    android:textSize="28sp" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
-
-                                <TextView
-                                    android:id="@+id/visu_win_lose"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Win/Lose"
-                                    android:textSize="28sp" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
-
-                                <TextView
                                     android:id="@+id/visu_points"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Points per game:"
+                                    android:text="Points:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -173,7 +180,7 @@
                                     android:id="@+id/visu_rebounds"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Rebounds per game:"
+                                    android:text="Rebounds:"
                                     android:textSize="28sp" />
 
                             </TableRow>
@@ -187,7 +194,7 @@
                                     android:id="@+id/visu_assists"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Assists per game:"
+                                    android:text="Assists:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -200,7 +207,7 @@
                                     android:id="@+id/visu_blocks"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Blocks per game:"
+                                    android:text="Blocks:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -213,7 +220,7 @@
                                     android:id="@+id/visu_steals"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Steals per game:"
+                                    android:text="Steals:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -226,7 +233,7 @@
                                     android:id="@+id/visu_tov"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Turnover per game:"
+                                    android:text="Turnover:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -239,7 +246,7 @@
                                     android:id="@+id/visu_fouls"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Fouls per game:"
+                                    android:text="Fouls:"
                                     android:textSize="28sp" />
                             </TableRow>
 
@@ -257,31 +264,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_games_valT"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0"
-                                    android:textSize="28sp" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
-
-                                <TextView
-                                    android:id="@+id/visu_win_lose_valT"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="0/0"
-                                    android:textSize="28sp" />
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
-
-                                <TextView
-                                    android:id="@+id/visu_points_valT"
+                                    android:id="@+id/visu_points_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -294,7 +277,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fgs_valT"
+                                    android:id="@+id/visu_fgs_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -307,7 +290,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fgs3_valT"
+                                    android:id="@+id/visu_fgs3_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -320,7 +303,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fts_valT"
+                                    android:id="@+id/visu_fts_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0/ 0/ 0"
@@ -333,7 +316,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_rebounds_valT"
+                                    android:id="@+id/visu_rebounds_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -347,7 +330,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_assists_valT"
+                                    android:id="@+id/visu_assists_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -360,7 +343,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_blocks_valT"
+                                    android:id="@+id/visu_blocks_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -373,7 +356,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_steals_valT"
+                                    android:id="@+id/visu_steals_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -386,7 +369,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_tov_valT"
+                                    android:id="@+id/visu_tov_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"
@@ -399,7 +382,7 @@
                                 android:padding="5dp">
 
                                 <TextView
-                                    android:id="@+id/visu_fouls_valT"
+                                    android:id="@+id/visu_fouls_valG"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="0"

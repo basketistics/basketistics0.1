@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,58 +26,14 @@ public class ReportActivity extends AppCompatActivity {
     private static String teamImageFilename;
     private static String teamName;
     ViewPager viewPager;
+    int playerId;
 
 
-
-
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.report_activity);
-
-
-
-
-
-
-
-        List<Fragment> fragments = new Vector<Fragment>();
-
-        //for each fragment you want to add to the pager
-        Bundle page = new Bundle();
-        page.putString("url", "Team Stats");
-        fragments.add(Fragment.instantiate(this, TeamReportFragment.class.getName(),page));
-
-        Bundle page2 = new Bundle();
-        page2.putString("url", "Player Stats");
-        fragments.add(Fragment.instantiate(this, PlayerReportsFragment.class.getName(),page));
-
-        //after adding all the fragments write the below lines
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
-        viewPager = findViewById(R.id.pager);
-        viewPager.setAdapter(viewPagerAdapter);
-
-
-
-
-
-
-
+    void setUpNavBar(){
         if (sharedPreferences == null) {
             sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
             Log.e(TAG, "SharedPreferences was null");
         }
-
-
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-
-
-
-        // Set up navbar
 
         if (teamImageFilename == null) {
             Log.e(TAG, "teamImageFilename was null");
@@ -111,19 +66,44 @@ public class ReportActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
 
 
+    void inflateFragment(){
+        List<Fragment> fragments = new Vector<Fragment>();
+
+        Bundle page = new Bundle();
+        page.putString("url", "Team Stats");
+        fragments.add(Fragment.instantiate(this, TeamReportFragment.class.getName(),page));
+
+        Bundle page2 = new Bundle();
+        page2.putString("url", "Player Stats");
+        fragments.add(Fragment.instantiate(this, SinglePlayerReportFragment.class.getName(),page2));
+
+        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragments);
+        viewPager = findViewById(R.id.pager);
+        viewPager.setAdapter(viewPagerAdapter);
+
+    }
+
+    public void setPlayerId(int playerId){
+        this.playerId = playerId;
+    }
+
+    public int getPlayerId(){
+        return playerId;
+    }
 
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
+        setContentView(R.layout.report_activity);
 
+        setUpNavBar();
 
-
-
-
-
-
-
+        inflateFragment();
     }
 
 

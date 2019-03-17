@@ -9,11 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.github.barteksc.pdfviewer.PDFView;
-
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;
-import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
+import de.berlin.hwr.basketistics.ViewModel.SingleGameAndPlayerReportViewModel;
 
 public class StatActivity extends AppCompatActivity {
 
@@ -24,7 +21,7 @@ public class StatActivity extends AppCompatActivity {
     PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(2250, 1400, 1).create();
 
     PdfDocument.Page page = doc.startPage(pageInfo);
-    SingleGameReportViewModel gameViewModel;
+    SingleGameAndPlayerReportViewModel gameViewModel;
 
 
 
@@ -37,7 +34,8 @@ public class StatActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.stat_single_game_and_player);
+
+        setContentView(R.layout.stat_single_player_and_game);
 
         //-------TextViews--------
         TextView pointsMade = findViewById(R.id.visu_points_val);
@@ -51,13 +49,13 @@ public class StatActivity extends AppCompatActivity {
         TextView turnover = findViewById(R.id.visu_tov_val);
         TextView fouls = findViewById(R.id.visu_fouls_val);
 
-        gameViewModel = ViewModelProviders.of(this).get(SingleGameReportViewModel.class);
+        gameViewModel = ViewModelProviders.of(this).get(SingleGameAndPlayerReportViewModel.class);
 
 
         int matchId = getIntent().getExtras().getInt("matchID");
         gameViewModel.setMatchId(matchId);
 
-        SingleGameReportViewModel.PlayerReport reportPlayer1 = gameViewModel.getReportByPlayerId(1);
+        SingleGameAndPlayerReportViewModel.PlayerReport reportPlayer1 = gameViewModel.getReportByPlayerId(1);
 
         Log.i(TAG, ""+reportPlayer1.threePointsAttempt);
 
@@ -72,7 +70,7 @@ public class StatActivity extends AppCompatActivity {
             fieldGoals.setText("0/ 0/ 0%");
         else
             fieldGoals.setText(reportPlayer1.twoPoints+ "/ " + reportPlayer1.twoPointsAttempt +"/ " + ((100/(float)reportPlayer1.twoPointsAttempt)*(float)reportPlayer1.twoPoints+"%"));
-        if(reportPlayer1.twoPointsAttempt==0)
+        if(reportPlayer1.threePointsAttempt==0)
             fieldGoals3.setText("0/ 0/ 0%");
         else
             fieldGoals3.setText(reportPlayer1.threePoints+ "/ " + reportPlayer1.threePointsAttempt +"/ " + ((100/(float)reportPlayer1.threePointsAttempt)*(float)reportPlayer1.threePoints+"%"));
