@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.berlin.hwr.basketistics.Persistency.Entities.EventEntity;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
 
@@ -85,6 +86,29 @@ public class SingleGameAndPlayerReportViewModel extends AndroidViewModel {
         }
     }
 
+    // TODO: TEST!
+    private long calcTimePlayed(Boolean isStarter, long startTime, long endTime, List<EventEntity> eventEntities) {
+
+        long time = 0;
+        boolean listIsNotEmpty = true;
+
+        int i = 0;
+        if (isStarter) {
+            if (eventEntities.size() % 2 == 0) {
+                time = eventEntities.get(0).getTimestamp().getTime() - startTime;
+            }
+            while (listIsNotEmpty) {
+                time += eventEntities.get(i + 1).getTimestamp().getTime() - eventEntities.get(i).getTimestamp().getTime();
+                if (eventEntities.get(i + 2) == null ) { listIsNotEmpty = false; }
+                if (eventEntities.get(i + 2) != null && eventEntities.get(i + 3) == null ) {
+                    time += endTime - eventEntities.get(i + 2).getTimestamp().getTime();
+                    listIsNotEmpty = false;
+                }
+            }
+        }
+
+        return time;
+    }
 
     private void fetchPlayerReports()
     {
