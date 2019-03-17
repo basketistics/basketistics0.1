@@ -10,14 +10,14 @@ import java.util.List;
 import de.berlin.hwr.basketistics.Persistency.Repository.Repository;
 
 
-public class SingleGameReportViewModel extends AndroidViewModel {
+public class SingleGameAndPlayerReportViewModel extends AndroidViewModel {
 
     Repository repository = new Repository(getApplication());
     private int matchId;
 
     private List<PlayerReport> playerReports = new ArrayList<PlayerReport>();
 
-    SingleGameReportViewModel(@NonNull Application application){
+    SingleGameAndPlayerReportViewModel(@NonNull Application application){
     super(application);
 
 
@@ -121,12 +121,13 @@ public class SingleGameReportViewModel extends AndroidViewModel {
 
     public PlayerReport getReportByPlayerId(int playerId){
         fetchPlayerReports();
+        int playerIndex = 0;
         for (PlayerReport pr: playerReports)
         {
             if(pr.playerId==playerId)
-                return pr;
+                playerIndex = playerReports.indexOf(pr);
         }
-        return playerReports.get(1);
+        return playerReports.get(playerIndex);
     }
 
 }

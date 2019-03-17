@@ -134,7 +134,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
 
 
-                Intent goToStatActivity = new Intent(this, StatActivity.class);
+                Intent goToStatActivity = new Intent(this, GameReportFragment.class);
                 goToStatActivity.putExtra("matchID", currentMatchId);
                 startActivity(goToStatActivity);
                 break;

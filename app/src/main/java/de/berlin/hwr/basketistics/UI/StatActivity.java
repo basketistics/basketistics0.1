@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.ViewModel.SingleGameReportViewModel;
+import de.berlin.hwr.basketistics.ViewModel.SingleGameAndPlayerReportViewModel;
 
 public class StatActivity extends AppCompatActivity {
 
@@ -21,7 +21,7 @@ public class StatActivity extends AppCompatActivity {
     PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(2250, 1400, 1).create();
 
     PdfDocument.Page page = doc.startPage(pageInfo);
-    SingleGameReportViewModel gameViewModel;
+    SingleGameAndPlayerReportViewModel gameViewModel;
 
 
 
@@ -49,13 +49,13 @@ public class StatActivity extends AppCompatActivity {
         TextView turnover = findViewById(R.id.visu_tov_val);
         TextView fouls = findViewById(R.id.visu_fouls_val);
 
-        gameViewModel = ViewModelProviders.of(this).get(SingleGameReportViewModel.class);
+        gameViewModel = ViewModelProviders.of(this).get(SingleGameAndPlayerReportViewModel.class);
 
 
         int matchId = getIntent().getExtras().getInt("matchID");
         gameViewModel.setMatchId(matchId);
 
-        SingleGameReportViewModel.PlayerReport reportPlayer1 = gameViewModel.getReportByPlayerId(1);
+        SingleGameAndPlayerReportViewModel.PlayerReport reportPlayer1 = gameViewModel.getReportByPlayerId(1);
 
         Log.i(TAG, ""+reportPlayer1.threePointsAttempt);
 
