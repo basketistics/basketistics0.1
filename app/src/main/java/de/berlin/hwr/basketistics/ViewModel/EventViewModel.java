@@ -116,10 +116,14 @@ public class EventViewModel extends AndroidViewModel {
         }
     }
 
-    public void insertPlayer(int playerId, int playerIndex) {
+    public int insertPlayer(int playerId, int playerIndex) {
+
+        int lastPLayerId = currentPlayerEvents[playerIndex].getPlayer().getValue().getId();
 
         currentPlayerEvents[playerIndex].getPlayer().setValue(repository.getPlayerById(playerId));
         updateEvents(playerId, playerIndex);
+
+        return lastPLayerId;
     }
 
     public PlayerEvents[] getCurrentPlayerEvents() { return currentPlayerEvents; }

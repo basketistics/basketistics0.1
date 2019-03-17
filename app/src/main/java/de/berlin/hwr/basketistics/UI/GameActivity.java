@@ -368,7 +368,9 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
         }
         if (isUniq) {
-            eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
+            int lastPlayerId = eventViewModel.insertPlayer(playerEntity.getId(), clickedPlayerIndex);
+            eventViewModel.playerIn(playerEntity.getId());
+            eventViewModel.playerOut(lastPlayerId);
         } else {
             Toast.makeText(
                     getApplicationContext(),
