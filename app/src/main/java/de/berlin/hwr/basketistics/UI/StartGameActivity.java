@@ -58,6 +58,13 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     private int[] starters = new int[5];
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putIntArray("starters", starters);
+    }
+
+    @Override
     public void onItemClicked(PlayerEntity playerEntity) {
         starters[clickedPlayerIndex] = playerEntity.getId();
         starterTextViews[clickedPlayerIndex].setText(
@@ -126,6 +133,11 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null && savedInstanceState.get("starters") != null) {
+            starters = (int[]) savedInstanceState.get("starters");
+        }
+
         setContentView(R.layout.new_start_game_activity);
 
         sharedPreferences = getSharedPreferences(FirstRunActivity.PREFERENCES, MODE_PRIVATE);
@@ -199,5 +211,13 @@ public class StartGameActivity extends AppCompatActivity implements TeamAdapter.
                 }
             }
         });
+
+        // Check, whether players have already been choosen
+        for (int i = 0; i < 5; i++) {
+            if (starters[i] != 0) {
+                starterTextViews[i].setText(
+                        teamViewModel.getAllPlayers().getValue().get(i).getFirstName() + " " + teamViewModel.getAllPlayers().getValue().get(i).getLastName());
+            }
+        }
     }
 }

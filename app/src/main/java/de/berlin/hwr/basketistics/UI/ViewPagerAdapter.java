@@ -1,12 +1,10 @@
 package de.berlin.hwr.basketistics.UI;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.List;
-import java.util.Vector;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
     List<Fragment> fragments;

@@ -1,5 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.app.Fragment;
+import android.arch.lifecycle.ReportFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +13,7 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.Guideline;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,13 +33,15 @@ import java.util.Date;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
+import de.berlin.hwr.basketistics.UI.Fragments.TestFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestReportsFragment;
 
 public class MainActivity
         extends AppCompatActivity
         implements MatchesFragment.OnFragmentInteractionListener,
         TeamFragment.OnFragmentInteractionListener,
-        TestReportsFragment.OnFragmentInteractionListener {
+        TestReportsFragment.OnFragmentInteractionListener,
+        TestFragment.OnFragmentInteractionListener {
 
     private static final String TAG = "MainActivity";
     private static final int PICK_TEAM_IMAGE = 13;
@@ -175,10 +180,12 @@ public class MainActivity
 
             @Override
             public void onPageScrollStateChanged(int i) {
-
             }
-
         });
+    }
+
+    public interface FragmentOnVisibleListener {
+        void onVisible();
     }
 
     private void dispatchChoosePictureIntent() {
