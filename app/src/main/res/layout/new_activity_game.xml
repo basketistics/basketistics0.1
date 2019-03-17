@@ -258,7 +258,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/guideline7" />
@@ -272,7 +272,7 @@
         android:textAlignment="center"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView5" />
@@ -375,7 +375,7 @@
         android:padding="4dp"
         android:text="PTS"
         app:layout_constraintBottom_toTopOf="@+id/newGameReboundTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGamePlayerShot5" />
@@ -391,7 +391,7 @@
         android:padding="4dp"
         android:text="RBND"
         app:layout_constraintBottom_toTopOf="@+id/newGameAssistTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameReboundTextView5" />
@@ -407,7 +407,7 @@
         android:padding="4dp"
         android:text="ASST"
         app:layout_constraintBottom_toTopOf="@+id/newGameStealTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameAssistTextView5" />
@@ -423,7 +423,7 @@
         android:padding="4dp"
         android:text="STL"
         app:layout_constraintBottom_toTopOf="@+id/newGameBlockTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameStealTextView5" />
@@ -439,7 +439,7 @@
         android:padding="4dp"
         android:text="TOVR"
         app:layout_constraintBottom_toTopOf="@+id/newGameFoulTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameTurnoverTextView5" />
@@ -455,7 +455,7 @@
         android:padding="4dp"
         android:text="FOUL"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameFoulTextView5" />
@@ -473,7 +473,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGamePlayerShotButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
@@ -491,7 +491,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameReboundButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGamePlayerShotButton5" />
@@ -509,7 +509,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameAssistButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameReboundButton5" />
@@ -527,7 +527,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameStealButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameAssistButton5" />
@@ -545,7 +545,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameTurnoverButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameBlockButton5" />
@@ -563,7 +563,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameFoulButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameTurnoverButton5" />
@@ -991,7 +991,7 @@
         app:layout_constraintGuide_percent="0.15" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
+        android:id="@+id/mainGuideLine"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -1095,7 +1095,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/marcel_davis" />
@@ -1347,7 +1347,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -1361,7 +1361,7 @@
         app:layout_constraintBottom_toTopOf="@+id/newGameTimeStop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <Button
@@ -1374,7 +1374,7 @@
         android:text="pause"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/newGameTimeStart" />
 
     <TextView
@@ -1388,7 +1388,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView15"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <TextView
@@ -1402,7 +1402,7 @@
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
     <TextView
@@ -1415,7 +1415,7 @@
         app:layout_constraintBottom_toTopOf="@+id/newGameOutNameTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/newGameHomeNameTextView" />
 
     <TextView
@@ -1429,7 +1429,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/newGameAssistTextView5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2" />
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine" />
 
     <Button
         android:id="@+id/newGameIncEnemyPoints"
@@ -1441,7 +1441,7 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/newGameAssistButton5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline2" />
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine" />
 
     <Button
         android:id="@+id/newGameDecEnemyPoints"
@@ -1453,7 +1453,7 @@
         android:text="-"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.363"
-        app:layout_constraintStart_toEndOf="@+id/guideline2"
+        app:layout_constraintStart_toEndOf="@+id/mainGuideLine"
         app:layout_constraintTop_toBottomOf="@+id/newGameIncEnemyPoints" />
 
     <TextView
@@ -1569,7 +1569,7 @@
         android:padding="4dp"
         android:text="BLCK"
         app:layout_constraintBottom_toTopOf="@+id/newGameTurnoverTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameBlockTextView5" />
@@ -1587,7 +1587,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/newGameBlockButton5"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
         app:layout_constraintTop_toBottomOf="@+id/newGameStealButton5" />
