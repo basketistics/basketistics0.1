@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -155,7 +157,7 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
             popupWindow.setClippingEnabled(false);
             popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
-            popupWindow.setBackgroundDrawable();
+            popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
             popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
             ((MainActivity)getActivity()).hideTeamImage();
 
@@ -241,6 +243,7 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
         popupWindow.setClippingEnabled(false);
         popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
         ((MainActivity)getActivity()).hideTeamImage();
 
