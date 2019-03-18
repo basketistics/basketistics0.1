@@ -110,7 +110,6 @@ public class MainActivity
                 isJustFinished = true;
                 viewPager.setCurrentItem(1);
                 lastMatchId = matchId;
-                teamName = getIntent().getStringExtra("teamName");
             }
         }
 
@@ -120,7 +119,7 @@ public class MainActivity
         if (teamImageFilename == null) {
             Log.e(TAG, "teamImageFilename was null");
             teamImageFilename = sharedPreferences.getString("team_image", ""); }
-        if (teamName == null) { teamName = sharedPreferences.getString("team_name", ""); }
+        if (teamName == null) { teamName = sharedPreferences.getString("team_name", "Mein Team"); }
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.mainBottomNavigationView);
