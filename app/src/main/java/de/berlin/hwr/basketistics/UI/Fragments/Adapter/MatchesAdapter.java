@@ -17,7 +17,6 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
-import de.berlin.hwr.basketistics.UI.MainActivity;
 import de.berlin.hwr.basketistics.UI.OnMatchReportClickedListener;
 import de.berlin.hwr.basketistics.UI.StartGameActivity;
 
@@ -93,6 +92,19 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
                     onMatchReportClickedListener.onReportClicked(matchId);
                 }
             });
+
+            if (matches.get(i).getIsWinner() != null) {
+                // Check whether game is won or lost
+                if (matches.get(i).getIsWinner()) {
+                    matchesViewHolder.matchCity.setText("SIEG");
+                    Log.e(TAG, "onBindViewHolder: matchWon");
+                } else {
+                    matchesViewHolder.matchCity.setText("NIEDERLAGE");
+                    Log.e(TAG, "onBindViewHolder: match lost");
+                }
+            } else {
+                matchesViewHolder.matchCity.setText("SIEG");
+            }
         }
         else {
             matchesViewHolder.gameFinished.setVisibility(View.GONE);

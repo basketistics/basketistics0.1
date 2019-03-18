@@ -48,6 +48,7 @@ public class MatchEntity implements Serializable {
         this.date = date;
         this.description = description;
         this.isFinished = isFinished;
+        this.isWinner = false;
     }
 
     // Getter and Setter
@@ -108,11 +109,11 @@ public class MatchEntity implements Serializable {
         this.pointsOpponent = pointsOpponent;
     }
 
-    public Boolean getWinner() {
+    public Boolean getIsWinner() {
         return isWinner;
     }
 
-    public void setWinner(Boolean winner) {
+    public void setIsWinner(Boolean winner) {
         isWinner = winner;
     }
 

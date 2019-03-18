@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     private static final String TAG = "GameActivity";
 
     private SharedPreferences sharedPreferences;
-
+    boolean isWinner;
     // Lets have all the Buttons in an array to save some space
     private Button[][] playerButtons = new Button[5][7];
 
@@ -150,6 +150,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 eventViewModel.endThirdQuarter();
                 timerTextView.setText("End of 3rd");
                 quarterCount++;
+
                 break;
             case 4:
                 timerRunning = false;
@@ -169,9 +170,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                     @Override
                     public void onClick(View v) {
                         MatchesViewModel matchesViewModel = ViewModelProviders.of(GameActivity.this).get(MatchesViewModel.class);
-                        boolean isWinner = (eventViewModel.getPoints().getValue() > eventViewModel.getEnemyPoints().getValue()) ? true : false;
+                        isWinner = (eventViewModel.getPoints().getValue() > eventViewModel.getEnemyPoints().getValue()) ? true : false;
                         if (isWinner)
                             matchesViewModel.setIsWinner(currentMatchId);
+                        Log.e(TAG, "onClick: isWinner");
 
                         // End event
                         eventViewModel.gameOver();
