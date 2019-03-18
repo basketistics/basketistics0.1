@@ -114,6 +114,28 @@ public class Repository {
 
     // ---------- Matches ---------- //
 
+    public void endMatch() {
+
+    }
+
+    private static class EndMatchAsyncTask extends AsyncTask<MatchEntity, Void, Void>{
+
+        private final static String TAG = "InsertMatchAsyncTask";
+
+        private MatchDao asyncMatchDao;
+
+        EndMatchAsyncTask(MatchDao matchDao) {
+            this.asyncMatchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(MatchEntity... matchEntities) {
+            asyncMatchDao.endGame(matchEntities[0].getId());
+            return null;
+        }
+
+    }
+
     public List<MatchEntity> getAllMatches() {
         List<MatchEntity> matchEntities = null;
         try {

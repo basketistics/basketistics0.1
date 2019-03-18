@@ -22,11 +22,7 @@ import java.util.List;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.AddPlayerActivity;
-import de.berlin.hwr.basketistics.UI.MainActivity;
-import de.berlin.hwr.basketistics.UI.MatchesAdapter;
-import de.berlin.hwr.basketistics.UI.TeamActivity;
-import de.berlin.hwr.basketistics.UI.TeamAdapter;
-import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 import static android.app.Activity.RESULT_OK;

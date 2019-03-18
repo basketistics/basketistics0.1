@@ -27,7 +27,7 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
                 MatchEntity.class,
                 EventTypeEntity.class,
                 EventJoinEntity.class},
-        version = 15,
+        version = 16,
         exportSchema = false)
 
 @TypeConverters({Converter.class})

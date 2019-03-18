@@ -37,13 +37,17 @@ public class MatchEntity implements Serializable {
     @ColumnInfo(name = "description")
     private String description;
 
+    @ColumnInfo(name = "is_finished")
+    private boolean isFinished;
+
     // Constructor
-    public MatchEntity(String city, String opponent, Boolean isHome, String date, String description) {
+    public MatchEntity(String city, String opponent, Boolean isHome, String date, String description, boolean isFinished) {
         this.city = city;
         this.opponent = opponent;
         this.isHome = isHome;
         this.date = date;
         this.description = description;
+        this.isFinished = isFinished;
     }
 
     // Getter and Setter
@@ -119,4 +123,9 @@ public class MatchEntity implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public boolean getIsFinished() { return isFinished; }
+
+    public void setIsFinished(boolean isFinished) { this.isFinished = isFinished; }
+
 }

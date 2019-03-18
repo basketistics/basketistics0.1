@@ -121,8 +121,8 @@ public class FirstRunActivity extends AppCompatActivity implements OnTeamCreated
 
     @Override
     public void onTeamCreated() {
-        Intent matchesIntent = new Intent(FirstRunActivity.this, MatchesActivity.class);
-        startActivity(matchesIntent);
+        Intent mainIntent = new Intent(FirstRunActivity.this, MainActivity.class);
+        startActivity(mainIntent);
     }
 
     private class CreateTeamAsyncTask extends AsyncTask {
