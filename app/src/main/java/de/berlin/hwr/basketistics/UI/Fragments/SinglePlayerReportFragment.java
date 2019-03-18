@@ -45,6 +45,18 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
     private TextView playerNumberTextView;
     private TextView playerDescriptionTextView;
     private ImageView playerImageView;
+    TextView gamesPlayed;
+    TextView pointsMade;
+    TextView freeThrows;
+    TextView fieldGoals;
+    TextView fieldGoals3;
+    TextView rebounds;
+    TextView assists;
+    TextView blocks;
+    TextView steals;
+    TextView turnover;
+    TextView fouls;
+
 
     private TeamAdapter teamAdapter;
     private PopupWindow playerPopupWindow;
@@ -87,6 +99,20 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
         playerDescriptionTextView = view.findViewById(R.id.playerReportDescription);
         playerImageView = view.findViewById(R.id.playerReportImage);
 
+
+        gamesPlayed = view.findViewById(R.id.visu_games_played_valS);
+        pointsMade= view.findViewById(R.id.visu_points_valS);
+        freeThrows= view.findViewById(R.id.visu_fts_valS);
+        fieldGoals= view.findViewById(R.id.visu_fgs_valS);
+        fieldGoals3= view.findViewById(R.id.visu_fgs3_valS);
+        rebounds= view.findViewById(R.id.visu_rebounds_valS);
+        assists= view.findViewById(R.id.visu_assists_valS);
+        blocks = view.findViewById(R.id.visu_blocks_valS);
+        steals = view.findViewById(R.id.visu_steals_valSi);
+        turnover = view.findViewById(R.id.visu_tov_valSi);
+        fouls = view.findViewById(R.id.visu_fouls_valSi);
+
+
         playerNameTextView.setText("Bitte Spieler waehlen.");
 
         teamAdapter = new TeamAdapter(getActivity(),this);
@@ -123,25 +149,35 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
 
 
 
+
+        }
+
+
+
+    @Override
+    public void onPlayerClicked(int playerId) {
+        PlayerEntity playerEntity = teamViewModel.getAllPlayers().getValue().get(playerId - 1);
+        playerNameTextView.setText(playerEntity.getFirstName() + playerEntity.getLastName());
+        playerNumberTextView.setText(playerEntity.getNumber() + "");
+        playerDescriptionTextView.setText(playerEntity.getDescription());
+        Glide.with(this)
+                .load(((MainActivity)getActivity()).getImageUri())
+                .centerCrop()
+                .placeholder(R.drawable.avatar_icon)
+                .into(playerImageView);
+
+        // TODO: report
+
+
         gameViewModel = ViewModelProviders.of(this).get(PlayerReportViewModel.class);
 
 
         //-------TextViews--------
-        TextView gamesPlayed = view.findViewById(R.id.visu_games_played_valS);
-        TextView pointsMade = view.findViewById(R.id.visu_points_valS);
-        TextView freeThrows = view.findViewById(R.id.visu_fts_valS);
-        TextView fieldGoals = view.findViewById(R.id.visu_fgs_valS);
-        TextView fieldGoals3 = view.findViewById(R.id.visu_fgs3_valS);
-        TextView rebounds = view.findViewById(R.id.visu_rebounds_valS);
-        TextView assists = view.findViewById(R.id.visu_assists_valS);
-        TextView blocks = view.findViewById(R.id.visu_blocks_valS);
-        TextView steals = view.findViewById(R.id.visu_steals_valSi);
-        TextView turnover = view.findViewById(R.id.visu_tov_valSi);
-        TextView fouls = view.findViewById(R.id.visu_fouls_valSi);
+
 
         Bundle extras = getArguments();
         // int playerId = extras.getInt("playerId");
-        int playerId = 1;
+
         gameViewModel.setPlayerId(playerId);
 
         PlayerReportViewModel.PlayerReport playerReport = gameViewModel.getReportByPlayerId();
@@ -203,23 +239,6 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
             String foulText = (float) playerReport.foul / playerReport.gamesPlayed + "";
             foulText = foulText.length() > 5 ? foulText.substring(0, 4) : foulText;
             fouls.setText(foulText);
-        }
-
-    }
-
-    @Override
-    public void onPlayerClicked(int playerId) {
-        PlayerEntity playerEntity = teamViewModel.getAllPlayers().getValue().get(playerId - 1);
-        playerNameTextView.setText(playerEntity.getFirstName() + playerEntity.getLastName());
-        playerNumberTextView.setText(playerEntity.getNumber() + "");
-        playerDescriptionTextView.setText(playerEntity.getDescription());
-        Glide.with(this)
-                .load(((MainActivity)getActivity()).getImageUri())
-                .centerCrop()
-                .placeholder(R.drawable.avatar_icon)
-                .into(playerImageView);
-
-        // TODO: report
 
         playerPopupWindow.dismiss();
     }
