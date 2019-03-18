@@ -263,6 +263,7 @@ public class EventViewModel extends AndroidViewModel {
 
     public void gameOver() {
         repository.insertEvent(new EventEntity(Constants.GAME_OVER, 0, currentMatchId.getValue()));
+        repository.endMatch(currentMatchId.getValue());
         Log.e(TAG, "gameOver: GAME OVER!!");
     }
 

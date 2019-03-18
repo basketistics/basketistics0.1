@@ -17,6 +17,8 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.MainActivity;
+import de.berlin.hwr.basketistics.UI.OnMatchReportClickedListener;
 import de.berlin.hwr.basketistics.UI.StartGameActivity;
 
 public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesViewHolder> {
@@ -31,6 +33,8 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     private Context context;
 
     private String teamName;
+
+    private OnMatchReportClickedListener onMatchReportClickedListener;
 
     public static class MatchesViewHolder extends RecyclerView.ViewHolder {
 
@@ -52,9 +56,10 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
         }
     }
 
-    public MatchesAdapter(Context context, String teamName) {
+    public MatchesAdapter(Context context, String teamName, OnMatchReportClickedListener onMatchReportClickedListener) {
         this.context = context;
         this.teamName = teamName;
+        this.onMatchReportClickedListener = onMatchReportClickedListener;
         inflater = LayoutInflater.from(context);
 
     }
@@ -85,7 +90,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
             matchesViewHolder.startGameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // TODO: Show report
                 }
             });
         }

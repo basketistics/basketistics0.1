@@ -157,10 +157,6 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 // Stop listening to timer service (Does that actually kill it??)
                 unregisterReceiver(br);
 
-                // End event
-                eventViewModel.gameOver();
-
-
                 timerPause.setVisibility(View.GONE);
                 timerStart.setVisibility(View.GONE);
 
@@ -168,9 +164,14 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 endGame.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        // End event
+                        eventViewModel.gameOver();
+
                         Intent mainIntent = new Intent(GameActivity.this, MainActivity.class);
                         mainIntent.putExtra("lastGame", currentMatchId);
                         startActivity(mainIntent);
+                        finishAffinity();
                     }
                 });
                 break;

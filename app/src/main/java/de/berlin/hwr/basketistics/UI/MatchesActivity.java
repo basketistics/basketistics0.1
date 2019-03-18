@@ -181,7 +181,7 @@ public class MatchesActivity extends AppCompatActivity{
 
         // Set up RecyclerView
         matchesRecyclerView = (RecyclerView) findViewById(R.id.matchesRecyclerView);
-        matchesAdapter = new MatchesAdapter(this, teamName);
+        matchesAdapter = new MatchesAdapter(this, teamName, null);
         matchesRecyclerView.setAdapter(matchesAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

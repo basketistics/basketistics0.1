@@ -26,6 +26,7 @@ import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.AddMatchActivity;
 import de.berlin.hwr.basketistics.UI.MainActivity;
 import de.berlin.hwr.basketistics.UI.Fragments.Adapter.MatchesAdapter;
+import de.berlin.hwr.basketistics.UI.OnMatchReportClickedListener;
 import de.berlin.hwr.basketistics.UI.StartGameActivity;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
@@ -39,7 +40,7 @@ import static android.app.Activity.RESULT_OK;
  * Use the {@link MatchesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MatchesFragment extends Fragment {
+public class MatchesFragment extends Fragment implements OnMatchReportClickedListener {
 
     private static final String TAG = "MatchesFragment";
 
@@ -119,7 +120,7 @@ public class MatchesFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         matchesRecyclerView.setLayoutManager(linearLayoutManager);
 
-        matchesAdapter = new MatchesAdapter(getActivity(), teamName);
+        matchesAdapter = new MatchesAdapter(getActivity(), teamName, this);
         matchesRecyclerView.setAdapter(matchesAdapter);
 
         // Observe ViewModel
@@ -156,6 +157,8 @@ public class MatchesFragment extends Fragment {
             popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
             ((MainActivity)getActivity()).hideTeamImage();
+
+            // TODO: Logic.
 
             playerListView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -220,5 +223,32 @@ public class MatchesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onReportClicked(int matchId) {
+        // Inflate the popup_points.xml View
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View playerListView = layoutInflater.inflate(R.layout.game_report_layout, null);
+
+        // TODO: Insert actual values
+
+        // Create the popup Window
+        final PopupWindow popupWindow = new PopupWindow(getActivity());
+        popupWindow.setContentView(playerListView);
+        popupWindow.setFocusable(true);
+        popupWindow.setClippingEnabled(false);
+        popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
+        ((MainActivity)getActivity()).hideTeamImage();
+
+        playerListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).showTeamImage();
+                popupWindow.dismiss();
+            }
+        });
     }
 }
