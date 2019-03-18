@@ -61,14 +61,14 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
     private TeamAdapter teamAdapter;
     private PopupWindow playerPopupWindow;
 
-    private String[] parseTextViewItems(String[] list){
+    private String[] parseTextViewItems(String[] list) {
 
         String[] parsedList = new String[3];
-        for (int i =0; i<3;i++){
-            if (list[i].length()>=12)
-                parsedList[i] = (list[i].substring(0,12)+"%");
+        for (int i = 0; i < 3; i++) {
+            if (list[i].length() >= 12)
+                parsedList[i] = (list[i].substring(0, 12) + "%");
             else
-                parsedList[i]=list[i]+"%";
+                parsedList[i] = list[i] + "%";
 
         }
 
@@ -101,12 +101,12 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
 
 
         gamesPlayed = view.findViewById(R.id.visu_games_played_valS);
-        pointsMade= view.findViewById(R.id.visu_points_valS);
-        freeThrows= view.findViewById(R.id.visu_fts_valS);
-        fieldGoals= view.findViewById(R.id.visu_fgs_valS);
-        fieldGoals3= view.findViewById(R.id.visu_fgs3_valS);
-        rebounds= view.findViewById(R.id.visu_rebounds_valS);
-        assists= view.findViewById(R.id.visu_assists_valS);
+        pointsMade = view.findViewById(R.id.visu_points_valS);
+        freeThrows = view.findViewById(R.id.visu_fts_valS);
+        fieldGoals = view.findViewById(R.id.visu_fgs_valS);
+        fieldGoals3 = view.findViewById(R.id.visu_fgs3_valS);
+        rebounds = view.findViewById(R.id.visu_rebounds_valS);
+        assists = view.findViewById(R.id.visu_assists_valS);
         blocks = view.findViewById(R.id.visu_blocks_valS);
         steals = view.findViewById(R.id.visu_steals_valSi);
         turnover = view.findViewById(R.id.visu_tov_valSi);
@@ -115,7 +115,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
 
         playerNameTextView.setText("Bitte Spieler waehlen.");
 
-        teamAdapter = new TeamAdapter(getActivity(),this);
+        teamAdapter = new TeamAdapter(getActivity(), this);
 
 
         cardView.setOnClickListener(new View.OnClickListener() {
@@ -148,10 +148,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
         });
 
 
-
-
-        }
-
+    }
 
 
     @Override
@@ -161,7 +158,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
         playerNumberTextView.setText(playerEntity.getNumber() + "");
         playerDescriptionTextView.setText(playerEntity.getDescription());
         Glide.with(this)
-                .load(((MainActivity)getActivity()).getImageUri())
+                .load(((MainActivity) getActivity()).getImageUri())
                 .centerCrop()
                 .placeholder(R.drawable.avatar_icon)
                 .into(playerImageView);
@@ -170,7 +167,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
 
 
         gameViewModel = ViewModelProviders.of(this).get(PlayerReportViewModel.class);
-
+        playerPopupWindow.dismiss();
 
         //-------TextViews--------
 
@@ -182,17 +179,17 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
 
         PlayerReportViewModel.PlayerReport playerReport = gameViewModel.getReportByPlayerId();
         String[] inputList = new String[3];
-        inputList[0] = playerReport.onePoint+ "/ " + playerReport.onePointAttempt +"/ " + ((100/(float)playerReport.onePointAttempt)*(float)playerReport.onePoint);
-        inputList[1] = (playerReport.twoPoints+ "/ " + playerReport.twoPointsAttempt +"/ " + ((100/(float)playerReport.twoPointsAttempt)*(float)playerReport.twoPoints));
-        inputList[2] = playerReport.threePoints+ "/ " + playerReport.threePointsAttempt +"/ " + ((100/(float)playerReport.threePointsAttempt)*(float)playerReport.threePoints);
+        inputList[0] = playerReport.onePoint + "/ " + playerReport.onePointAttempt + "/ " + ((100 / (float) playerReport.onePointAttempt) * (float) playerReport.onePoint);
+        inputList[1] = (playerReport.twoPoints + "/ " + playerReport.twoPointsAttempt + "/ " + ((100 / (float) playerReport.twoPointsAttempt) * (float) playerReport.twoPoints));
+        inputList[2] = playerReport.threePoints + "/ " + playerReport.threePointsAttempt + "/ " + ((100 / (float) playerReport.threePointsAttempt) * (float) playerReport.threePoints);
 
         String[] textlist = parseTextViewItems(inputList);
 
-        String pointsMadeText = ((float)playerReport.onePoint + (float)playerReport.twoPoints*2 + (float)playerReport.threePoints*3)/playerReport.gamesPlayed+"";
+        String pointsMadeText = ((float) playerReport.onePoint + (float) playerReport.twoPoints * 2 + (float) playerReport.threePoints * 3) / playerReport.gamesPlayed + "";
 
-        pointsMadeText = (pointsMadeText.length()>4) ? pointsMadeText.replaceAll(" ","").substring(0,4) :  pointsMadeText ;
+        pointsMadeText = (pointsMadeText.length() > 4) ? pointsMadeText.replaceAll(" ", "").substring(0, 4) : pointsMadeText;
 
-        if(playerReport.gamesPlayed == 0){
+        if (playerReport.gamesPlayed == 0) {
             pointsMade.setText("0");
             rebounds.setText("0");
             assists.setText("0");
@@ -200,7 +197,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
             blocks.setText("0");
             turnover.setText("0");
             fouls.setText("0");
-        }else {
+        } else {
             gamesPlayed.setText(playerReport.gamesPlayed + "");
             pointsMade.setText(pointsMadeText);
             if (playerReport.onePointAttempt == 0)
@@ -239,8 +236,7 @@ public class SinglePlayerReportFragment extends Fragment implements OnPlayerClic
             String foulText = (float) playerReport.foul / playerReport.gamesPlayed + "";
             foulText = foulText.length() > 5 ? foulText.substring(0, 4) : foulText;
             fouls.setText(foulText);
-
-        playerPopupWindow.dismiss();
+        }
     }
 }
 
