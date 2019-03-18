@@ -86,19 +86,7 @@
                                     android:text="Games: "
                                     android:textSize="28sp" />
                             </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
 
-                                <TextView
-                                    android:id="@+id/visu_win_lose"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:text="Win/Lose"
-                                    android:textSize="28sp" />
-                            </TableRow>
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -276,19 +264,7 @@
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
-                            <TableRow
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="5dp">
 
-                                <TextView
-                                    android:id="@+id/visu_win_lose_valT"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:background="@android:color/white"
-                                    android:text="0/0"
-                                    android:textSize="28sp" />
-                            </TableRow>
                             <TableRow
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"

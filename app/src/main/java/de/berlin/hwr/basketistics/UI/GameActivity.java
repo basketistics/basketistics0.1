@@ -81,7 +81,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     int quarterCount = 1;
     private BroadcastReceiver br;
     private long millisLeft;
-    private long quarterMillis = 5000;
+    private long quarterMillis = 60000;
     Button timerStart;
     Button timerPause;
     Button endGame;
