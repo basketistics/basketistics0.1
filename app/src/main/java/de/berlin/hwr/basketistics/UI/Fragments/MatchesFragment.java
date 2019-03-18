@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
@@ -201,6 +202,21 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
             TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
             TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
 
+            int matchId = ((MainActivity)getActivity()).getLastMatchId();
+
+            TextView teamName = popupWindow.getContentView().findViewById(R.id.gameReportTEamName);
+            TextView opponentNAme = popupWindow.getContentView().findViewById(R.id.gameReportOpponentName);
+
+            MatchesViewModel matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
+            try {
+                opponentNAme.setText(matchesViewModel.getMatchById(matchId).getOpponent());
+                teamName.setText(((MainActivity)getActivity()).getTeamName());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
             // Set team image
             ImageView teamImageView;
             teamImageView = popupWindow.getContentView().findViewById(R.id.gameReportImageView);
@@ -211,7 +227,6 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
                     .into(teamImageView);
 
 
-            int matchId = ((MainActivity)getActivity()).getLastMatchId();
             Log.e(TAG, "onViewCreated: matchId = " + matchId);
 
             GameReportViewModel.GameReport gameReport = gameReportViewModel.getGameReport(matchId);
@@ -282,8 +297,7 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
                 }
             });
 
-            teamName = ((MainActivity)getActivity()).getTeamName();
-            matchesAdapter.setTeamName(teamName);
+            showLastGame = false;
         }
     }
 
@@ -375,6 +389,21 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
         TextView steals = popupWindow.getContentView().findViewById(R.id.visu_steals_valG);
         TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
         TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
+
+        MatchesViewModel matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
+
+        TextView teamName = popupWindow.getContentView().findViewById(R.id.gameReportTEamName);
+        TextView opponentNAme = popupWindow.getContentView().findViewById(R.id.gameReportOpponentName);
+
+        teamName.setText(((MainActivity)getActivity()).getTeamName());
+        try {
+            opponentNAme.setText(matchesViewModel.getMatchById(matchId).getOpponent());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
 
         // Set team image
         ImageView teamImageView;

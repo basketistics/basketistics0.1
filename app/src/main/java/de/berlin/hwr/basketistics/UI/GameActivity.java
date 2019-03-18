@@ -27,9 +27,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import org.w3c.dom.Text;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import de.berlin.hwr.basketistics.BroadcastService;
@@ -38,6 +41,7 @@ import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
+import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 import static java.lang.String.format;
@@ -328,7 +332,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         playerImageViews[1] = findViewById(R.id.newGamePlayer2ImageView);
         playerImageViews[2] = findViewById(R.id.newGamePlayer3ImageView);
         playerImageViews[3] = findViewById(R.id.newGamePlayer4ImageView);
-        playerImageViews[4] = findViewById(R.id.newGamePlayer4ImageView);
+        playerImageViews[4] = findViewById(R.id.newGamePlayer5ImageView);
     }
 
     private void attachImageViewPopUps() {
@@ -430,8 +434,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         playerButtons[3][4] = findViewById(R.id.newGameBlockButton4);
         playerButtons[4][4] = findViewById(R.id.newGameBlockButton5);
 
-        playerButtons[1][5] = findViewById(R.id.newGameTurnoverButton1);
-        playerButtons[0][5] = findViewById(R.id.newGameTurnoverButton2);
+        playerButtons[0][5] = findViewById(R.id.newGameTurnoverButton1);
+        playerButtons[1][5] = findViewById(R.id.newGameTurnoverButton2);
         playerButtons[2][5] = findViewById(R.id.newGameTurnoverButton3);
         playerButtons[3][5] = findViewById(R.id.newGameTurnoverButton4);
         playerButtons[4][5] = findViewById(R.id.newGameTurnoverButton5);
@@ -630,6 +634,20 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachPlayerImageViewToViewModel();
         initEnemyPoints();
         timerHandler();
+
+        TextView homeTeamName = findViewById(R.id.newGameHomeNameTextView);
+        TextView outTeamName = findViewById(R.id.newGameOutNameTextView);
+
+        MatchesViewModel matchesViewModel = ViewModelProviders.of(this).get(MatchesViewModel.class);
+
+        homeTeamName.setText(sharedPreferences.getString("team_name", "Mein Team"));
+        try {
+            outTeamName.setText(matchesViewModel.getMatchById(currentMatchId).getOpponent());
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         endGame = findViewById(R.id.endGameButton);
 
