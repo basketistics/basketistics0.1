@@ -18,9 +18,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -198,6 +201,15 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
             TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
             TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
 
+            // Set team image
+            ImageView teamImageView;
+            teamImageView = popupWindow.getContentView().findViewById(R.id.gameReportImageView);
+            Glide.with(getActivity())
+                    .load(((MainActivity)getActivity()).getImageUri())
+                    .centerCrop()
+                    .placeholder(R.drawable.avatar_icon)
+                    .into(teamImageView);
+
 
             int matchId = ((MainActivity)getActivity()).getLastMatchId();
             Log.e(TAG, "onViewCreated: matchId = " + matchId);
@@ -363,6 +375,16 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
         TextView steals = popupWindow.getContentView().findViewById(R.id.visu_steals_valG);
         TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
         TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
+
+        // Set team image
+        ImageView teamImageView;
+        teamImageView = popupWindow.getContentView().findViewById(R.id.gameReportImageView);
+        Glide.with(getActivity())
+                .load(((MainActivity)getActivity()).getImageUri())
+                .centerCrop()
+                .placeholder(R.drawable.avatar_icon)
+                .into(teamImageView);
+
 
         Log.e(TAG, "onViewCreated: matchId = " + matchId);
 

@@ -1,4 +1,4 @@
-package de.berlin.hwr.basketistics.UI;
+package de.berlin.hwr.basketistics.UI.Fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -8,15 +8,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.MainActivity;
 import de.berlin.hwr.basketistics.ViewModel.TeamReportViewModel;
 
 public class TeamReportFragment extends Fragment {
 
     private static final String TAG = "TeamReportFragment";
 
+    private ImageView teamImageView;
 
     TeamReportViewModel teamReportViewModel;
     
@@ -51,6 +56,13 @@ public class TeamReportFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         teamReportViewModel = ViewModelProviders.of(this).get(TeamReportViewModel.class);
+        // Set team image
+        teamImageView = getView().findViewById(R.id.teamReportLayoutImage);
+        Glide.with(getActivity())
+                .load(((MainActivity)getActivity()).getImageUri())
+                .centerCrop()
+                .placeholder(R.drawable.avatar_icon)
+                .into(teamImageView);
 
 
         //-------TextViews--------
@@ -127,8 +139,5 @@ public class TeamReportFragment extends Fragment {
             foulText = foulText.length() > 5 ? foulText.substring(0, 4) : foulText;
             fouls.setText(foulText);
         }
-
-    
-        
     }
 }

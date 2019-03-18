@@ -62,6 +62,14 @@ public class MainActivity
     private boolean isJustFinished = false;
     private int lastMatchId;
 
+    private Uri imageUri;
+
+    public Uri getImageUri() {
+        return imageUri;
+    }
+
+    public Bitmap getTeamBitmap() {return teamBitmap;}
+
     public int getLastMatchId() {return lastMatchId;}
 
     public boolean getIsJustFinished() { return isJustFinished; }
@@ -152,7 +160,7 @@ public class MainActivity
 
         File directory = this.getDir("images", Context.MODE_PRIVATE);
         File image = new File(directory, teamImageFilename);
-        Uri imageUri = Uri.fromFile(image);
+        imageUri = Uri.fromFile(image);
 
         Glide.with(this)
                 .load(imageUri)
