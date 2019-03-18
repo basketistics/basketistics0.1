@@ -148,7 +148,7 @@ public class MatchesFragment extends Fragment {
             View playerListView = layoutInflater.inflate(R.layout.game_report_layout, null);
 
             // Create the popup Window
-            PopupWindow popupWindow = new PopupWindow(getActivity());
+            final PopupWindow popupWindow = new PopupWindow(getActivity());
             popupWindow.setContentView(playerListView);
             popupWindow.setFocusable(true);
             popupWindow.setClippingEnabled(false);
@@ -156,6 +156,14 @@ public class MatchesFragment extends Fragment {
             popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
             ((MainActivity)getActivity()).hideTeamImage();
+
+            playerListView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)getActivity()).showTeamImage();
+                    popupWindow.dismiss();
+                }
+            });
         }
     }
 
