@@ -434,8 +434,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         playerButtons[3][4] = findViewById(R.id.newGameBlockButton4);
         playerButtons[4][4] = findViewById(R.id.newGameBlockButton5);
 
-        playerButtons[1][5] = findViewById(R.id.newGameTurnoverButton1);
-        playerButtons[0][5] = findViewById(R.id.newGameTurnoverButton2);
+        playerButtons[0][5] = findViewById(R.id.newGameTurnoverButton1);
+        playerButtons[1][5] = findViewById(R.id.newGameTurnoverButton2);
         playerButtons[2][5] = findViewById(R.id.newGameTurnoverButton3);
         playerButtons[3][5] = findViewById(R.id.newGameTurnoverButton4);
         playerButtons[4][5] = findViewById(R.id.newGameTurnoverButton5);
