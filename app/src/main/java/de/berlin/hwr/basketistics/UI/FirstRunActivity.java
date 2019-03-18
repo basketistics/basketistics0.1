@@ -122,6 +122,7 @@ public class FirstRunActivity extends AppCompatActivity implements OnTeamCreated
     @Override
     public void onTeamCreated() {
         Intent mainIntent = new Intent(FirstRunActivity.this, MainActivity.class);
+        mainIntent.putExtra("teamName", teamName.getText());
         startActivity(mainIntent);
     }
 

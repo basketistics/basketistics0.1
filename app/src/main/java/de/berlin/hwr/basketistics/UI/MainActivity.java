@@ -110,6 +110,7 @@ public class MainActivity
                 isJustFinished = true;
                 viewPager.setCurrentItem(1);
                 lastMatchId = matchId;
+                teamName = getIntent().getStringExtra("teamName");
             }
         }
 
