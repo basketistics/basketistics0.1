@@ -118,7 +118,7 @@
                     android:layout_weight="60"
                     android:autofillHints="Description"
                     android:ems="10"
-                    android:hint="Description"
+                    android:hint="Position"
                     android:inputType="text|textMultiLine"
                     android:paddingLeft="48dp"
                     android:textAlignment="textStart" />
