@@ -128,4 +128,6 @@ public class MatchEntity implements Serializable {
 
     public void setIsFinished(boolean isFinished) { this.isFinished = isFinished; }
 
+
+
 }

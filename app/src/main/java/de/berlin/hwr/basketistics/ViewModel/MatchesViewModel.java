@@ -52,5 +52,10 @@ public class MatchesViewModel extends AndroidViewModel {
         matchEntity.setId(repository.getAllMatches().size());
         matches.getValue().add(matchEntity);
     }
+
+    public void setIsWinner(int id) {
+        repository.setIsWinner(id);
+
+    }
 }
 

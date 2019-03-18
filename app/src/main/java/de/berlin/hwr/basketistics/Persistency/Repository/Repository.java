@@ -84,6 +84,31 @@ public class Repository {
 
     }
 
+
+    //------- set is winner ---------
+    public void setIsWinner(int matchId) {
+        new setIsWinnerAsyncTask(matchDao).execute(matchId);
+    }
+
+    private static class setIsWinnerAsyncTask extends AsyncTask<Integer, Void, Void>{
+
+        private MatchDao asyncMatchDao;
+
+        setIsWinnerAsyncTask(MatchDao matchDao) {
+            this.asyncMatchDao = matchDao;
+        }
+
+        @Override
+        protected Void doInBackground(Integer... integers) {
+
+                asyncMatchDao.setIsWinning(integers[0]);
+            return null;
+        }
+
+    }
+
+
+
     // ---------- EventTypes ---------- //
     public List<EventTypeEntity> getAllEventTypeEntities() {
         List<EventTypeEntity> eventTypeEntities= null;

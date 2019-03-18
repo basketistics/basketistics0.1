@@ -25,4 +25,7 @@ public interface MatchDao {
 
     @Query("UPDATE MatchEntity SET is_finished = 1 WHERE id IS :gameId")
     void endGame(int gameId);
+
+    @Query("UPDATE MatchEntity SET is_winner = 1 WHERE id IS :gameId")
+    void setIsWinning(int gameId);
 }

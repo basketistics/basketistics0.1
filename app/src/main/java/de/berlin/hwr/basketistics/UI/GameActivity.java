@@ -168,6 +168,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 endGame.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        MatchesViewModel matchesViewModel = ViewModelProviders.of(GameActivity.this).get(MatchesViewModel.class);
+                        boolean isWinner = (eventViewModel.getPoints().getValue() > eventViewModel.getEnemyPoints().getValue()) ? true : false;
+                        if (isWinner)
+                            matchesViewModel.setIsWinner(currentMatchId);
 
                         // End event
                         eventViewModel.gameOver();
