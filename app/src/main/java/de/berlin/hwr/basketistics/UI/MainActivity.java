@@ -60,6 +60,9 @@ public class MainActivity
     private MenuItem prevMenuItem;
 
     private boolean isJustFinished = false;
+    private int lastMatchId;
+
+    public int getLastMatchId() {return lastMatchId;}
 
     public boolean getIsJustFinished() { return isJustFinished; }
 
@@ -104,8 +107,9 @@ public class MainActivity
         if (extras != null) {
             int matchId = (int) extras.get("lastGame");
             if (matchId != 0) {
-                isJustFinished= true;
+                isJustFinished = true;
                 viewPager.setCurrentItem(1);
+                lastMatchId = matchId;
             }
         }
 

@@ -90,6 +90,7 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
             matchesViewHolder.startGameButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    onMatchReportClickedListener.onReportClicked(matchId);
                 }
             });
         }

@@ -155,6 +155,7 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
             popupWindow.setClippingEnabled(false);
             popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setBackgroundDrawable();
             popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
             ((MainActivity)getActivity()).hideTeamImage();
 
