@@ -45,11 +45,11 @@ public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder
 
         public TeamViewHolder(View itemView) {
             super(itemView);
-            playerImageView = (ImageView) itemView.findViewById(R.id.bla);
+            playerImageView = (ImageView) itemView.findViewById(R.id.playerReportImage);
             playerName = (TextView) itemView.findViewById(R.id.listPLayerName);
-            playerNumber = (TextView) itemView.findViewById(R.id.listPlayer2NumberTextView);
-            playerDescription = (TextView) itemView.findViewById(R.id.listPLayer1Description);
-            cardView = (CardView) itemView.findViewById(R.id.match);
+            playerNumber = (TextView) itemView.findViewById(R.id.playerReportNumber);
+            playerDescription = (TextView) itemView.findViewById(R.id.playerReportDescription);
+            cardView = (CardView) itemView.findViewById(R.id.playerReportCard);
         }
     }
 

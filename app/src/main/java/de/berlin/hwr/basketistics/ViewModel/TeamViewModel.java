@@ -14,6 +14,7 @@ public class TeamViewModel extends AndroidViewModel {
 
     private Repository repository;
     private MutableLiveData<List<PlayerEntity>> allPlayers;
+    private MutableLiveData<Integer> currentWorkaroundPlayerId;
 
     public TeamViewModel(Application application) {
         super(application);
@@ -29,5 +30,16 @@ public class TeamViewModel extends AndroidViewModel {
     public void insert(PlayerEntity playerEntity) {
         allPlayers.getValue().add(playerEntity);
         repository.insertPlayer(playerEntity);
+    }
+
+    public void setWorkaroundPLayer(int playerId) {
+        if (currentWorkaroundPlayerId == null) {
+            currentWorkaroundPlayerId = new MutableLiveData<>();
+        }
+        currentWorkaroundPlayerId.setValue(playerId);
+    }
+
+    public MutableLiveData<Integer> getCurrentWorkaroundPlayerId() {
+        return currentWorkaroundPlayerId;
     }
 }

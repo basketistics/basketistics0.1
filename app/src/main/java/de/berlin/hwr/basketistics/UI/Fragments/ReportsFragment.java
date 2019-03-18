@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.ReportsFragmentViewPagerAdapter;
-import de.berlin.hwr.basketistics.UI.SinglePlayerReportFragment;
 
 /**
  * A simple {@link Fragment} subclass.

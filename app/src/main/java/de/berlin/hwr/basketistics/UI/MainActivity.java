@@ -1,6 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
 import android.app.Fragment;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,13 +37,15 @@ import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.ReportsFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestReportsFragment;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class MainActivity
         extends AppCompatActivity
         implements MatchesFragment.OnFragmentInteractionListener,
         TeamFragment.OnFragmentInteractionListener,
         TestReportsFragment.OnFragmentInteractionListener,
-        ReportsFragment.OnFragmentInteractionListener {
+        ReportsFragment.OnFragmentInteractionListener,
+        OnPlayerClickedListener {
 
     private static final String TAG = "MainActivity";
     private static final int PICK_TEAM_IMAGE = 13;
@@ -206,6 +209,12 @@ public class MainActivity
             public void onPageScrollStateChanged(int i) {
             }
         });
+    }
+
+    @Override
+    public void onPlayerClicked(int playerId) {
+        TeamViewModel teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
+        teamViewModel.setWorkaroundPLayer(playerId);
     }
 
     public interface FragmentOnVisibleListener {
