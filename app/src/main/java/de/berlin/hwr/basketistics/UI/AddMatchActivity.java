@@ -54,7 +54,9 @@ public class AddMatchActivity extends AppCompatActivity {
                         opponentEditText.getText().toString(),
                         isHome,
                         dateTimeEditText.getText().toString(),
-                        descriptionEditText.getText().toString());
+                        descriptionEditText.getText().toString(),
+                        false
+                );
 
                 Intent matchesIntent = new Intent(AddMatchActivity.this, MatchesActivity.class);
                 matchesIntent.putExtra(EXTRA_REPLY, match);

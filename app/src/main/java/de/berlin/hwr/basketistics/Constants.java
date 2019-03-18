@@ -33,4 +33,5 @@ public abstract class Constants {
 
     public static final int ENEMY_POINT             =100;
 
+    public static final int GAME_OVER               =666;
 }

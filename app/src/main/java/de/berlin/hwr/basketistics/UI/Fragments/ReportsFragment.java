@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.ReportsFragmentViewPagerAdapter;
-import de.berlin.hwr.basketistics.UI.SinglePlayerReportFragment;
-import de.berlin.hwr.basketistics.UI.TeamReportFragment;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +27,8 @@ public class ReportsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    public static final String TAG = "ReportsFragment";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -82,6 +82,7 @@ public class ReportsFragment extends Fragment {
 
         viewPager = getActivity().findViewById(R.id.reportViewPager);
         setupViewPager(viewPager);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -129,5 +130,9 @@ public class ReportsFragment extends Fragment {
         adapter.addFragment(new TeamReportFragment(), "TeamReportFragment");
         adapter.addFragment(new SinglePlayerReportFragment(), "SinglePlayerReportFragment");
         viewPager.setAdapter(adapter);
+    }
+
+    public void showFinishedGame() {
+
     }
 }

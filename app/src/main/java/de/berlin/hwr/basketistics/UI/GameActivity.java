@@ -36,6 +36,7 @@ import de.berlin.hwr.basketistics.BroadcastService;
 import de.berlin.hwr.basketistics.Constants;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
 import de.berlin.hwr.basketistics.ViewModel.EventViewModel;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
@@ -76,7 +77,10 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
     int quarterCount = 1;
     private BroadcastReceiver br;
     private long millisLeft;
-    private long quarterMillis = 600000;
+    private long quarterMillis = 5000;
+    Button timerStart;
+    Button timerPause;
+    Button endGame;
 
     @Override
     public void onResume() {
@@ -150,13 +154,27 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
                 timerTextView.setText("End of 4th");
                 quarterCount = 1;
 
+                // Stop listening to timer service (Does that actually kill it??)
                 unregisterReceiver(br);
 
-                Intent goToStatActivity = new Intent(this, GameReportFragment.class);
-                goToStatActivity.putExtra("matchID", currentMatchId);
-                startActivity(goToStatActivity);
-                break;
+                timerPause.setVisibility(View.GONE);
+                timerStart.setVisibility(View.GONE);
 
+                endGame.setVisibility(View.VISIBLE);
+                endGame.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        // End event
+                        eventViewModel.gameOver();
+
+                        Intent mainIntent = new Intent(GameActivity.this, MainActivity.class);
+                        mainIntent.putExtra("lastGame", currentMatchId);
+                        startActivity(mainIntent);
+                        finishAffinity();
+                    }
+                });
+                break;
         }
     }
 
@@ -183,7 +201,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
 
         timerTextView = findViewById(R.id.newGameTimerTextView);
 
-        Button timerStart = findViewById(R.id.newGameTimeStart);
+        timerStart = findViewById(R.id.newGameTimeStart);
         timerStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -211,7 +229,7 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
             }
         });
 
-        Button timerPause = findViewById(R.id.newGameTimeStop);
+        timerPause = findViewById(R.id.newGameTimeStop);
         timerPause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -612,6 +630,8 @@ public class GameActivity extends AppCompatActivity implements TeamAdapter.Click
         attachPlayerImageViewToViewModel();
         initEnemyPoints();
         timerHandler();
+
+        endGame = findViewById(R.id.endGameButton);
 
         timerTextView = findViewById(R.id.newGameTimerTextView);
 

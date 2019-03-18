@@ -1,5 +1,7 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.app.Fragment;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +17,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 
@@ -31,15 +36,16 @@ import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.ReportsFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
-import de.berlin.hwr.basketistics.UI.Fragments.TestFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestReportsFragment;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 public class MainActivity
         extends AppCompatActivity
         implements MatchesFragment.OnFragmentInteractionListener,
         TeamFragment.OnFragmentInteractionListener,
         TestReportsFragment.OnFragmentInteractionListener,
-        ReportsFragment.OnFragmentInteractionListener {
+        ReportsFragment.OnFragmentInteractionListener,
+        OnPlayerClickedListener {
 
     private static final String TAG = "MainActivity";
     private static final int PICK_TEAM_IMAGE = 13;
@@ -55,6 +61,21 @@ public class MainActivity
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
     private MenuItem prevMenuItem;
+
+    private boolean isJustFinished = false;
+    private int lastMatchId;
+
+    private Uri imageUri;
+
+    public Uri getImageUri() {
+        return imageUri;
+    }
+
+    public Bitmap getTeamBitmap() {return teamBitmap;}
+
+    public int getLastMatchId() {return lastMatchId;}
+
+    public boolean getIsJustFinished() { return isJustFinished; }
 
     public void hideTeamImage() {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) guideline.getLayoutParams();
@@ -73,8 +94,6 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.e(TAG, "onCreate: was passed.");
-
         // Fragments Adapter
         sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
@@ -88,11 +107,21 @@ public class MainActivity
             Log.e(TAG, "SharedPreferences was null");
         }
 
-        // TODO: Make Fragment
         // First run?
         if (sharedPreferences.getBoolean("first_run", true)) {
             Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
             startActivity(firstRunIntent);
+        }
+
+        // Just finished game?
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int matchId = (int) extras.get("lastGame");
+            if (matchId != 0) {
+                isJustFinished = true;
+                viewPager.setCurrentItem(1);
+                lastMatchId = matchId;
+            }
         }
 
         Log.e(TAG, "Code after intent is entered.");
@@ -101,7 +130,7 @@ public class MainActivity
         if (teamImageFilename == null) {
             Log.e(TAG, "teamImageFilename was null");
             teamImageFilename = sharedPreferences.getString("team_image", ""); }
-        if (teamName == null) { teamName = sharedPreferences.getString("team_name", ""); }
+        if (teamName == null) { teamName = sharedPreferences.getString("team_name", "Mein Team"); }
 
         // Set up navbar
         bottomNavigationView = findViewById(R.id.mainBottomNavigationView);
@@ -134,7 +163,7 @@ public class MainActivity
 
         File directory = this.getDir("images", Context.MODE_PRIVATE);
         File image = new File(directory, teamImageFilename);
-        Uri imageUri = Uri.fromFile(image);
+        imageUri = Uri.fromFile(image);
 
         Glide.with(this)
                 .load(imageUri)
@@ -180,6 +209,12 @@ public class MainActivity
             public void onPageScrollStateChanged(int i) {
             }
         });
+    }
+
+    @Override
+    public void onPlayerClicked(int playerId) {
+        TeamViewModel teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
+        teamViewModel.setWorkaroundPLayer(playerId);
     }
 
     public interface FragmentOnVisibleListener {

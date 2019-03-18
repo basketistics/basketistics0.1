@@ -1,25 +1,53 @@
-package de.berlin.hwr.basketistics.UI;
+package de.berlin.hwr.basketistics.UI.Fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
+import org.w3c.dom.Text;
+
+import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
+import de.berlin.hwr.basketistics.UI.GameActivity;
+import de.berlin.hwr.basketistics.UI.MainActivity;
+import de.berlin.hwr.basketistics.UI.OnPlayerClickedListener;
+import de.berlin.hwr.basketistics.UI.StartGameActivity;
 import de.berlin.hwr.basketistics.ViewModel.PlayerReportViewModel;
+import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
 
-public class SinglePlayerReportFragment extends Fragment {
+public class SinglePlayerReportFragment extends Fragment implements OnPlayerClickedListener {
 
     private static final String TAG = "PlayerReportFragment";
 
     PlayerReportViewModel gameViewModel;
+    private TeamViewModel teamViewModel;
+
+    private CardView cardView;
+    private TextView playerNameTextView;
+    private TextView playerNumberTextView;
+    private TextView playerDescriptionTextView;
+    private ImageView playerImageView;
+
+    private TeamAdapter teamAdapter;
+    private PopupWindow playerPopupWindow;
 
     private String[] parseTextViewItems(String[] list){
 
@@ -36,9 +64,6 @@ public class SinglePlayerReportFragment extends Fragment {
     }
 
 
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +71,7 @@ public class SinglePlayerReportFragment extends Fragment {
 
         Log.i(TAG, "onCreateView: in Fragment");
 
+        teamViewModel = ViewModelProviders.of(this).get(TeamViewModel.class);
 
         return rootview;
     }
@@ -53,6 +79,47 @@ public class SinglePlayerReportFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
+        cardView = view.findViewById(R.id.playerReportCard);
+        playerNameTextView = view.findViewById(R.id.playerReportName);
+        playerNumberTextView = view.findViewById(R.id.playerReportNumber);
+        playerDescriptionTextView = view.findViewById(R.id.playerReportDescription);
+        playerImageView = view.findViewById(R.id.playerReportImage);
+
+        playerNameTextView.setText("Bitte Spieler waehlen.");
+
+        teamAdapter = new TeamAdapter(getActivity(),this);
+
+
+        cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Inflate the popup_points.xml View
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View playerListView = layoutInflater.inflate(R.layout.player_list_popup, null);
+
+                // Create the popup Window
+                playerPopupWindow = new PopupWindow(getActivity());
+                playerPopupWindow.setContentView(playerListView);
+                playerPopupWindow.setFocusable(true);
+                // TODO: Calculate from displaysize and pixeldensity!
+                playerPopupWindow.setClippingEnabled(false);
+                playerPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+                playerPopupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+                playerPopupWindow.showAsDropDown(v);
+
+                // Set up RecyclerView
+                RecyclerView playerRecyclerView =
+                        (RecyclerView) playerPopupWindow.getContentView().findViewById(R.id.playerListRecyclerView);
+                teamAdapter.setTeam(teamViewModel.getAllPlayers().getValue());
+                playerRecyclerView.setAdapter(teamAdapter);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+                linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                playerRecyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
 
 
 
@@ -138,6 +205,23 @@ public class SinglePlayerReportFragment extends Fragment {
             fouls.setText(foulText);
         }
 
+    }
+
+    @Override
+    public void onPlayerClicked(int playerId) {
+        PlayerEntity playerEntity = teamViewModel.getAllPlayers().getValue().get(playerId - 1);
+        playerNameTextView.setText(playerEntity.getFirstName() + playerEntity.getLastName());
+        playerNumberTextView.setText(playerEntity.getNumber() + "");
+        playerDescriptionTextView.setText(playerEntity.getDescription());
+        Glide.with(this)
+                .load(((MainActivity)getActivity()).getImageUri())
+                .centerCrop()
+                .placeholder(R.drawable.avatar_icon)
+                .into(playerImageView);
+
+        // TODO: report
+
+        playerPopupWindow.dismiss();
     }
 }
 

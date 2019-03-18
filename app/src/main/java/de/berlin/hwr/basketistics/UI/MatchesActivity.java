@@ -33,6 +33,7 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.MatchesAdapter;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 public class MatchesActivity extends AppCompatActivity{
@@ -180,7 +181,7 @@ public class MatchesActivity extends AppCompatActivity{
 
         // Set up RecyclerView
         matchesRecyclerView = (RecyclerView) findViewById(R.id.matchesRecyclerView);
-        matchesAdapter = new MatchesAdapter(this, teamName);
+        matchesAdapter = new MatchesAdapter(this, teamName, null);
         matchesRecyclerView.setAdapter(matchesAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -34,7 +34,13 @@ public class EventViewModel extends AndroidViewModel {
         super(application);
         Log.e(TAG, "Constructor.");
         // Prevent us from nullpointers.
-        this.currentMatch.setValue(new MatchEntity("<no_city>", "<no_opponent>", false, "<no_date>", "<no_description>"));
+        this.currentMatch.setValue(new MatchEntity(
+                "<no_city>",
+                "<no_opponent>",
+                false, "<no_date>",
+                "<no_description>",
+                false
+        ));
         this.currentMatchId = new MutableLiveData<Integer>();
         this.repository = new Repository(application);
         this.points.setValue(0);
@@ -277,6 +283,12 @@ public class EventViewModel extends AndroidViewModel {
 
     public void setEnemyPoints(MutableLiveData<Integer> enemyPoints) {
         this.enemyPoints = enemyPoints;
+    }
+
+    public void gameOver() {
+        repository.insertEvent(new EventEntity(Constants.GAME_OVER, 0, currentMatchId.getValue()));
+        repository.endMatch(currentMatchId.getValue());
+        Log.e(TAG, "gameOver: GAME OVER!!");
     }
 
     public class PlayerEvents {

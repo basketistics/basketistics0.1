@@ -23,6 +23,8 @@ import java.util.concurrent.ExecutionException;
 import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.MatchesAdapter;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 
