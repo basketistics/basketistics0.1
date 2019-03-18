@@ -82,6 +82,7 @@
                                     android:id="@+id/visu_games"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Games: "
                                     android:textSize="28sp" />
                             </TableRow>
@@ -94,6 +95,7 @@
                                     android:id="@+id/visu_win_lose"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Win/Lose"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -106,6 +108,7 @@
                                     android:id="@+id/visu_points"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Points per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -125,7 +128,8 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="FG; M/A/%: "
-                                    android:textSize="28sp" />
+                                    android:textSize="28sp"
+                                    android:background="@android:color/white" />
                             </TableRow>
 
                             <TableRow
@@ -142,6 +146,7 @@
                                     android:id="@+id/visu_fgs3"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="FG3; M/A/%: "
                                     android:textSize="28sp" />
                             </TableRow>
@@ -160,6 +165,7 @@
                                     android:id="@+id/visu_fts"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="FT; M/A/%: "
                                     android:textSize="28sp" />
                             </TableRow>
@@ -173,6 +179,7 @@
                                     android:id="@+id/visu_rebounds"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Rebounds per game:"
                                     android:textSize="28sp" />
 
@@ -187,6 +194,7 @@
                                     android:id="@+id/visu_assists"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Assists per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -200,6 +208,7 @@
                                     android:id="@+id/visu_blocks"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Blocks per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -213,6 +222,7 @@
                                     android:id="@+id/visu_steals"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Steals per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -226,6 +236,7 @@
                                     android:id="@+id/visu_tov"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Turnover per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -239,6 +250,7 @@
                                     android:id="@+id/visu_fouls"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="Fouls per game:"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -260,6 +272,7 @@
                                     android:id="@+id/visu_games_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -272,6 +285,7 @@
                                     android:id="@+id/visu_win_lose_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0/0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -284,6 +298,7 @@
                                     android:id="@+id/visu_points_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -297,6 +312,7 @@
                                     android:id="@+id/visu_fgs_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0/ 0/ 0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -310,6 +326,7 @@
                                     android:id="@+id/visu_fgs3_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0/ 0/ 0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -323,6 +340,7 @@
                                     android:id="@+id/visu_fts_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0/ 0/ 0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -336,6 +354,7 @@
                                     android:id="@+id/visu_rebounds_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
 
@@ -350,6 +369,7 @@
                                     android:id="@+id/visu_assists_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -363,6 +383,7 @@
                                     android:id="@+id/visu_blocks_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -376,6 +397,7 @@
                                     android:id="@+id/visu_steals_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -389,6 +411,7 @@
                                     android:id="@+id/visu_tov_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
@@ -402,6 +425,7 @@
                                     android:id="@+id/visu_fouls_valT"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:background="@android:color/white"
                                     android:text="0"
                                     android:textSize="28sp" />
                             </TableRow>
