@@ -17,7 +17,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/gameReportOpponentName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
@@ -43,7 +43,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/newStartDate"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
+            app:layout_constraintEnd_toStartOf="@+id/gameReportOpponentName"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newMatchesItemGameFinishedTextView" />
@@ -62,7 +62,7 @@
             app:layout_constraintBottom_toTopOf="@+id/newStartCity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintStart_toEndOf="@+id/gameReportOpponentName"
             app:layout_constraintTop_toBottomOf="@+id/newMatchesItemGameFinishedTextView" />
 
         <TextView
@@ -76,8 +76,8 @@
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintStart_toEndOf="@+id/gameReportOpponentName"
+            app:layout_constraintTop_toBottomOf="@+id/gameReportOpponentName" />
 
         <TextView
             android:id="@+id/newStartDate"
@@ -91,9 +91,9 @@
             android:textAlignment="center"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/listMatchDoSomethingButton"
-            app:layout_constraintEnd_toStartOf="@+id/textView8"
+            app:layout_constraintEnd_toStartOf="@+id/gameReportOpponentName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8" />
+            app:layout_constraintTop_toBottomOf="@+id/gameReportOpponentName" />
 
         <TextView
             android:id="@+id/newMatchesItemGameFinishedTextView"
@@ -107,7 +107,7 @@
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/textView8"
+            app:layout_constraintBottom_toTopOf="@+id/gameReportOpponentName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

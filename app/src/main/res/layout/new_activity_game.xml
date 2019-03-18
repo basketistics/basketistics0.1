@@ -249,21 +249,6 @@
         app:layout_constraintTop_toBottomOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/newGamePlayerNumberTextView5"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView5"
-        app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/guideline7" />
-
-    <TextView
         android:id="@+id/newGamePlayerNameTextView5"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -275,21 +260,6 @@
         app:layout_constraintEnd_toStartOf="@+id/mainGuideLine"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline6"
-        app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView5" />
-
-    <TextView
-        android:id="@+id/newGamePlayerNumberTextView4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView4"
-        app:layout_constraintEnd_toStartOf="@+id/guideline6"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline5"
         app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <TextView
@@ -304,21 +274,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline5"
-        app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView4" />
-
-    <TextView
-        android:id="@+id/newGamePlayerNumberTextView3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline5"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <TextView
@@ -333,21 +288,6 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline5"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline4"
-        app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView3" />
-
-    <TextView
-        android:id="@+id/newGamePlayerNumberTextView2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView2"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <TextView
@@ -362,7 +302,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView2" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/newGamePlayerShotButton5"
@@ -981,7 +921,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
+        app:layout_constraintGuide_percent="0.23" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline7"
@@ -1101,21 +1041,6 @@
         app:srcCompat="@drawable/marcel_davis" />
 
     <TextView
-        android:id="@+id/newGamePlayerNumberTextView1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/newGamePlayerNameTextView1"
-        app:layout_constraintEnd_toStartOf="@+id/guideline3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/guideline7" />
-
-    <TextView
         android:id="@+id/newGamePlayerNameTextView1"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -1127,7 +1052,7 @@
         app:layout_constraintEnd_toStartOf="@+id/guideline3"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newGamePlayerNumberTextView1" />
+        app:layout_constraintTop_toBottomOf="@+id/guideline7" />
 
     <Button
         android:id="@+id/newGamePlayerShotButton1"

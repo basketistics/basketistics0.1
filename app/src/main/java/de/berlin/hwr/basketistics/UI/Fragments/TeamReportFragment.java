@@ -24,6 +24,7 @@ public class TeamReportFragment extends Fragment {
     private ImageView teamImageView;
 
     TeamReportViewModel teamReportViewModel;
+    String teamNameString;
     
     
 
@@ -46,7 +47,8 @@ public class TeamReportFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootview = inflater.inflate(R.layout.team_report_layout, container, false);
-    
+
+        teamNameString = ((MainActivity)getActivity()).getTeamName();
         return rootview;
     }
 
@@ -77,6 +79,8 @@ public class TeamReportFragment extends Fragment {
         TextView steals = view.findViewById(R.id.visu_steals_valT);
         TextView turnover = view.findViewById(R.id.visu_tov_valT);
         TextView fouls = view.findViewById(R.id.visu_fouls_valT);
+        TextView teamName = view.findViewById(R.id.teamREportTEamName);
+        teamName.setText(((MainActivity)getActivity()).getTeamName());
 
 
         TeamReportViewModel.TeamReport teamReport = teamReportViewModel.getReport();
