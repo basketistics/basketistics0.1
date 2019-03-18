@@ -32,6 +32,7 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.TeamAdapter;
 import de.berlin.hwr.basketistics.ViewModel.TeamViewModel;
 public class TeamActivity extends AppCompatActivity {
 

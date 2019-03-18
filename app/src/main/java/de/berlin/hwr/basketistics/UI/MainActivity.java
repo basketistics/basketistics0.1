@@ -1,5 +1,6 @@
 package de.berlin.hwr.basketistics.UI;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +16,12 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import com.bumptech.glide.Glide;
 
@@ -31,7 +35,6 @@ import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.Fragments.MatchesFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.ReportsFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TeamFragment;
-import de.berlin.hwr.basketistics.UI.Fragments.TestFragment;
 import de.berlin.hwr.basketistics.UI.Fragments.TestReportsFragment;
 
 public class MainActivity
@@ -56,6 +59,13 @@ public class MainActivity
     private BottomNavigationView bottomNavigationView;
     private MenuItem prevMenuItem;
 
+    private boolean isJustFinished = false;
+    private int lastMatchId;
+
+    public int getLastMatchId() {return lastMatchId;}
+
+    public boolean getIsJustFinished() { return isJustFinished; }
+
     public void hideTeamImage() {
         ConstraintLayout.LayoutParams params = (ConstraintLayout.LayoutParams) guideline.getLayoutParams();
         params.guidePercent = 0.00f;
@@ -73,8 +83,6 @@ public class MainActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Log.e(TAG, "onCreate: was passed.");
-
         // Fragments Adapter
         sectionsStatePagerAdapter = new SectionsStatePagerAdapter(getSupportFragmentManager());
 
@@ -88,11 +96,21 @@ public class MainActivity
             Log.e(TAG, "SharedPreferences was null");
         }
 
-        // TODO: Make Fragment
         // First run?
         if (sharedPreferences.getBoolean("first_run", true)) {
             Intent firstRunIntent = new Intent(this, FirstRunActivity.class);
             startActivity(firstRunIntent);
+        }
+
+        // Just finished game?
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int matchId = (int) extras.get("lastGame");
+            if (matchId != 0) {
+                isJustFinished = true;
+                viewPager.setCurrentItem(1);
+                lastMatchId = matchId;
+            }
         }
 
         Log.e(TAG, "Code after intent is entered.");

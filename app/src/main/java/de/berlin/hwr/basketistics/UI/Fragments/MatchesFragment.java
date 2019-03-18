@@ -4,6 +4,8 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +18,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 
 import java.util.List;
 
@@ -23,8 +27,9 @@ import de.berlin.hwr.basketistics.Persistency.Entities.MatchEntity;
 import de.berlin.hwr.basketistics.R;
 import de.berlin.hwr.basketistics.UI.AddMatchActivity;
 import de.berlin.hwr.basketistics.UI.MainActivity;
-import de.berlin.hwr.basketistics.UI.MatchesActivity;
-import de.berlin.hwr.basketistics.UI.MatchesAdapter;
+import de.berlin.hwr.basketistics.UI.Fragments.Adapter.MatchesAdapter;
+import de.berlin.hwr.basketistics.UI.OnMatchReportClickedListener;
+import de.berlin.hwr.basketistics.UI.StartGameActivity;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 import static android.app.Activity.RESULT_OK;
@@ -37,7 +42,7 @@ import static android.app.Activity.RESULT_OK;
  * Use the {@link MatchesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MatchesFragment extends Fragment {
+public class MatchesFragment extends Fragment implements OnMatchReportClickedListener {
 
     private static final String TAG = "MatchesFragment";
 
@@ -60,6 +65,7 @@ public class MatchesFragment extends Fragment {
 
     private MatchesViewModel matchesViewModel;
     private static String teamName;
+    private boolean showLastGame = false;
 
     public MatchesFragment() {
         // Required empty public constructor
@@ -116,7 +122,7 @@ public class MatchesFragment extends Fragment {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         matchesRecyclerView.setLayoutManager(linearLayoutManager);
 
-        matchesAdapter = new MatchesAdapter(getActivity(), teamName);
+        matchesAdapter = new MatchesAdapter(getActivity(), teamName, this);
         matchesRecyclerView.setAdapter(matchesAdapter);
 
         // Observe ViewModel
@@ -139,6 +145,32 @@ public class MatchesFragment extends Fragment {
             }
         });
 
+        if (showLastGame) {
+            // Inflate the popup_points.xml View
+            LayoutInflater layoutInflater = this.getLayoutInflater();
+            View playerListView = layoutInflater.inflate(R.layout.game_report_layout, null);
+
+            // Create the popup Window
+            final PopupWindow popupWindow = new PopupWindow(getActivity());
+            popupWindow.setContentView(playerListView);
+            popupWindow.setFocusable(true);
+            popupWindow.setClippingEnabled(false);
+            popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+            popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+            popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
+            ((MainActivity)getActivity()).hideTeamImage();
+
+            // TODO: Logic.
+
+            playerListView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ((MainActivity)getActivity()).showTeamImage();
+                    popupWindow.dismiss();
+                }
+            });
+        }
     }
 
     @Override
@@ -168,6 +200,11 @@ public class MatchesFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+
+        // check whether to show last game
+        if (((MainActivity)getActivity()).getIsJustFinished()) {
+            showLastGame = true;
+        }
     }
 
     @Override
@@ -189,5 +226,33 @@ public class MatchesFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    @Override
+    public void onReportClicked(int matchId) {
+        // Inflate the popup_points.xml View
+        LayoutInflater layoutInflater = this.getLayoutInflater();
+        View playerListView = layoutInflater.inflate(R.layout.game_report_layout, null);
+
+        // TODO: Insert actual values
+
+        // Create the popup Window
+        final PopupWindow popupWindow = new PopupWindow(getActivity());
+        popupWindow.setContentView(playerListView);
+        popupWindow.setFocusable(true);
+        popupWindow.setClippingEnabled(false);
+        popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+        popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
+        ((MainActivity)getActivity()).hideTeamImage();
+
+        playerListView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity)getActivity()).showTeamImage();
+                popupWindow.dismiss();
+            }
+        });
     }
 }

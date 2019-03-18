@@ -22,4 +22,7 @@ public interface MatchDao {
 
     @Insert
     void insert(MatchEntity matchEntity);
+
+    @Query("UPDATE MatchEntity SET is_finished = 1 WHERE id IS :gameId")
+    void endGame(int gameId);
 }

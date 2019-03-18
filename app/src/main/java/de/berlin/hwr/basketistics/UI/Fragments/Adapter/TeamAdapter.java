@@ -1,4 +1,4 @@
-package de.berlin.hwr.basketistics.UI;
+package de.berlin.hwr.basketistics.UI.Fragments.Adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,6 +20,7 @@ import java.util.List;
 
 import de.berlin.hwr.basketistics.Persistency.Entities.PlayerEntity;
 import de.berlin.hwr.basketistics.R;
+import de.berlin.hwr.basketistics.UI.OnPlayerClickedListener;
 
 public class TeamAdapter extends RecyclerView.Adapter<TeamAdapter.TeamViewHolder> {
 
