@@ -47,45 +47,69 @@ public class EventViewModel extends AndroidViewModel {
 
     public void setStarters(int[] playerIds) {
         Log.e(TAG, "setStarters() was entered.");
-        for (Integer playerId : playerIds) {
-            repository.insertEvent(new EventEntity(Constants.STARTER, playerId, currentMatchId.getValue()));
-        }
     }
 
     public void pauseGame() {
         repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void startFirstQuarter() {
         repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_START, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_START, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void endFirstQuarter() {
         repository.insertEvent(new EventEntity(Constants.FIRST_QUARTER_END, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void startSecondQuarter() {
         repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_START, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_START, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void endSecondQuarter() {
         repository.insertEvent(new EventEntity(Constants.SECOND_QUARTER_END, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void startThirdQuarter() {
         repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_START, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_START, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void endThirdQuarter() {
         repository.insertEvent(new EventEntity(Constants.THIRD_QUARTER_END, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void startFourthQuarter() {
         repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_START, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_START, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void endFourthQuarter() {
         repository.insertEvent(new EventEntity(Constants.FOURTH_QUARTER_END, 0, currentMatchId.getValue()));
+        for (int i = 0; i < 5; i++) {
+            repository.insertEvent(new EventEntity(Constants.GAME_PAUSE, currentPlayerEvents[i].getPlayer().getValue().getId(), currentMatchId.getValue()));
+        }
     }
 
     public void playerIn(int playerId) {
