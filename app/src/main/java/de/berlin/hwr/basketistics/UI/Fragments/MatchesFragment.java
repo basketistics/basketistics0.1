@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ import de.berlin.hwr.basketistics.UI.MainActivity;
 import de.berlin.hwr.basketistics.UI.Fragments.Adapter.MatchesAdapter;
 import de.berlin.hwr.basketistics.UI.OnMatchReportClickedListener;
 import de.berlin.hwr.basketistics.UI.StartGameActivity;
+import de.berlin.hwr.basketistics.ViewModel.GameReportViewModel;
 import de.berlin.hwr.basketistics.ViewModel.MatchesViewModel;
 
 import static android.app.Activity.RESULT_OK;
@@ -64,8 +66,25 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
     private FloatingActionButton addMatchButton;
 
     private MatchesViewModel matchesViewModel;
+    private GameReportViewModel gameReportViewModel;
     private static String teamName;
     private boolean showLastGame = false;
+
+
+    private String[] parseTextViewItems(String[] list){
+
+        String[] parsedList = new String[3];
+        for (int i =0; i<3;i++){
+            if (list[i].length()>=12)
+                parsedList[i] = (list[i].substring(0,12)+"%");
+            else
+                parsedList[i]=list[i]+"%";
+
+        }
+
+        return parsedList;
+    }
+
 
     public MatchesFragment() {
         // Required empty public constructor
@@ -158,10 +177,90 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
             popupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.setHeight(LinearLayout.LayoutParams.MATCH_PARENT);
             popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
+
             popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
             ((MainActivity)getActivity()).hideTeamImage();
 
             // TODO: Logic.
+            gameReportViewModel = ViewModelProviders.of(this).get(GameReportViewModel.class);
+
+
+            //-------TextViews--------
+
+            TextView pointsMade = popupWindow.getContentView().findViewById(R.id.visu_points_valG);
+            TextView freeThrows = popupWindow.getContentView().findViewById(R.id.visu_fts_valG);
+            TextView fieldGoals = popupWindow.getContentView().findViewById(R.id.visu_fgs_valG);
+            TextView fieldGoals3 = popupWindow.getContentView().findViewById(R.id.visu_fgs3_valG);
+            TextView rebounds = popupWindow.getContentView().findViewById(R.id.visu_rebounds_valG);
+            TextView assists = popupWindow.getContentView().findViewById(R.id.visu_assists_valG);
+            TextView blocks = popupWindow.getContentView().findViewById(R.id.visu_blocks_valG);
+            TextView steals = popupWindow.getContentView().findViewById(R.id.visu_steals_valG);
+            TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
+            TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
+
+
+            int matchId = ((MainActivity)getActivity()).getLastMatchId();
+            Log.e(TAG, "onViewCreated: matchId = " + matchId);
+
+            GameReportViewModel.GameReport gameReport = gameReportViewModel.getGameReport(matchId);
+            String[] inputList = new String[3];
+            inputList[0] = gameReport.onePoint+ "/ " + gameReport.onePointAttempt +"/ " + ((100/(float)gameReport.onePointAttempt)*(float)gameReport.onePoint);
+            inputList[1] = (gameReport.twoPoints+ "/ " + gameReport.twoPointsAttempt +"/ " + ((100/(float)gameReport.twoPointsAttempt)*(float)gameReport.twoPoints));
+            inputList[2] = gameReport.threePoints+ "/ " + gameReport.threePointsAttempt +"/ " + ((100/(float)gameReport.threePointsAttempt)*(float)gameReport.threePoints);
+
+            String[] textlist = parseTextViewItems(inputList);
+
+            String pointsMadeText = ((float)gameReport.onePoint + (float)gameReport.twoPoints*2 + (float)gameReport.threePoints*3)+"";
+
+            pointsMadeText = (pointsMadeText.length()>4) ? pointsMadeText.replaceAll(" ","").substring(0,4) :  pointsMadeText ;
+
+
+            pointsMade.setText(pointsMadeText);
+            if (gameReport.onePointAttempt == 0)
+                freeThrows.setText("0/ 0/ 0%");
+            else
+                freeThrows.setText(textlist[0]);
+            if (gameReport.twoPointsAttempt == 0)
+                fieldGoals.setText("0/ 0/ 0%");
+            else
+                fieldGoals.setText(textlist[1]);
+            if (gameReport.threePointsAttempt == 0)
+                fieldGoals3.setText("0/ 0/ 0%");
+            else
+                fieldGoals3.setText(textlist[2]);
+
+            String rebText = (float) gameReport.rebound + "";
+            rebText = rebText.length() > 5 ? rebText.substring(0, 4) : rebText;
+            rebounds.setText(rebText);
+
+            String astText = ((float) gameReport.assist + "");
+            astText = astText.length() > 5 ? astText.substring(0, 4) : astText;
+            assists.setText(astText);
+
+            String blkText = (float) gameReport.block + "";
+            blkText = blkText.length() > 5 ? blkText.substring(0, 4) : blkText;
+            blocks.setText(blkText);
+
+            String stlText = (float) gameReport.steal + "";
+            stlText = stlText.length() > 5 ? stlText.substring(0, 4) : stlText;
+            steals.setText(stlText);
+
+            String tovText = (float) gameReport.turnover + "";
+            tovText = tovText.length() > 5 ? tovText.substring(0, 4) : tovText;
+            turnover.setText(tovText);
+
+            String foulText = (float) gameReport.foul + "";
+            foulText = foulText.length() > 5 ? foulText.substring(0, 4) : foulText;
+            fouls.setText(foulText);
+
+
+
+
+
+
+
+
+
 
             playerListView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -170,6 +269,9 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
                     popupWindow.dismiss();
                 }
             });
+
+            teamName = ((MainActivity)getActivity()).getTeamName();
+            matchesAdapter.setTeamName(teamName);
         }
     }
 
@@ -246,6 +348,74 @@ public class MatchesFragment extends Fragment implements OnMatchReportClickedLis
         popupWindow.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.colorPrimary)));
         popupWindow.showAtLocation(matchesRecyclerView, 0, 0, 0);
         ((MainActivity)getActivity()).hideTeamImage();
+
+        gameReportViewModel = ViewModelProviders.of(this).get(GameReportViewModel.class);
+
+        //-------TextViews--------
+
+        TextView pointsMade = popupWindow.getContentView().findViewById(R.id.visu_points_valG);
+        TextView freeThrows = popupWindow.getContentView().findViewById(R.id.visu_fts_valG);
+        TextView fieldGoals = popupWindow.getContentView().findViewById(R.id.visu_fgs_valG);
+        TextView fieldGoals3 = popupWindow.getContentView().findViewById(R.id.visu_fgs3_valG);
+        TextView rebounds = popupWindow.getContentView().findViewById(R.id.visu_rebounds_valG);
+        TextView assists = popupWindow.getContentView().findViewById(R.id.visu_assists_valG);
+        TextView blocks = popupWindow.getContentView().findViewById(R.id.visu_blocks_valG);
+        TextView steals = popupWindow.getContentView().findViewById(R.id.visu_steals_valG);
+        TextView turnover = popupWindow.getContentView().findViewById(R.id.visu_tov_valG);
+        TextView fouls = popupWindow.getContentView().findViewById(R.id.visu_fouls_valG);
+
+        Log.e(TAG, "onViewCreated: matchId = " + matchId);
+
+        GameReportViewModel.GameReport gameReport = gameReportViewModel.getGameReport(matchId);
+        String[] inputList = new String[3];
+        inputList[0] = gameReport.onePoint+ "/ " + gameReport.onePointAttempt +"/ " + ((100/(float)gameReport.onePointAttempt)*(float)gameReport.onePoint);
+        inputList[1] = (gameReport.twoPoints+ "/ " + gameReport.twoPointsAttempt +"/ " + ((100/(float)gameReport.twoPointsAttempt)*(float)gameReport.twoPoints));
+        inputList[2] = gameReport.threePoints+ "/ " + gameReport.threePointsAttempt +"/ " + ((100/(float)gameReport.threePointsAttempt)*(float)gameReport.threePoints);
+
+        String[] textlist = parseTextViewItems(inputList);
+
+        String pointsMadeText = ((float)gameReport.onePoint + (float)gameReport.twoPoints*2 + (float)gameReport.threePoints*3)+"";
+
+        pointsMadeText = (pointsMadeText.length()>4) ? pointsMadeText.replaceAll(" ","").substring(0,4) :  pointsMadeText ;
+
+
+        pointsMade.setText(pointsMadeText);
+        if (gameReport.onePointAttempt == 0)
+            freeThrows.setText("0/ 0/ 0%");
+        else
+            freeThrows.setText(textlist[0]);
+        if (gameReport.twoPointsAttempt == 0)
+            fieldGoals.setText("0/ 0/ 0%");
+        else
+            fieldGoals.setText(textlist[1]);
+        if (gameReport.threePointsAttempt == 0)
+            fieldGoals3.setText("0/ 0/ 0%");
+        else
+            fieldGoals3.setText(textlist[2]);
+
+        String rebText = (float) gameReport.rebound + "";
+        rebText = rebText.length() > 5 ? rebText.substring(0, 4) : rebText;
+        rebounds.setText(rebText);
+
+        String astText = ((float) gameReport.assist + "");
+        astText = astText.length() > 5 ? astText.substring(0, 4) : astText;
+        assists.setText(astText);
+
+        String blkText = (float) gameReport.block + "";
+        blkText = blkText.length() > 5 ? blkText.substring(0, 4) : blkText;
+        blocks.setText(blkText);
+
+        String stlText = (float) gameReport.steal + "";
+        stlText = stlText.length() > 5 ? stlText.substring(0, 4) : stlText;
+        steals.setText(stlText);
+
+        String tovText = (float) gameReport.turnover + "";
+        tovText = tovText.length() > 5 ? tovText.substring(0, 4) : tovText;
+        turnover.setText(tovText);
+
+        String foulText = (float) gameReport.foul + "";
+        foulText = foulText.length() > 5 ? foulText.substring(0, 4) : foulText;
+        fouls.setText(foulText);
 
         playerListView.setOnClickListener(new View.OnClickListener() {
             @Override

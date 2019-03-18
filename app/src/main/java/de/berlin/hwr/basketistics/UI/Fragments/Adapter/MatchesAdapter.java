@@ -129,4 +129,6 @@ public class MatchesAdapter extends RecyclerView.Adapter<MatchesAdapter.MatchesV
     public int getItemCount() {
         return matches.size();
     }
+
+    public void setTeamName(String teamName) {this.teamName = teamName;}
 }
